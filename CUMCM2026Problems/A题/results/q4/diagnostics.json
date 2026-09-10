@@ -1,0 +1,16 @@
+{
+  "threshold_time_s": 182979.0810658776,
+  "last_time_s": 183000.0,
+  "picard_max": 7,
+  "picard_mean": 5.126124197002142,
+  "monotone_profiles": true,
+  "center_is_max": true,
+  "maximum_step_mass_residual": 3.69788834969631e-15,
+  "relative_cumulative_mass_residual": 6.185901464264402e-13,
+  "nodes": 321,
+  "late_dt_s": 10.0,
+  "early_dt_s": 1.0,
+  "grid_power": 2.0,
+  "transport_frame": "uniform_material_shrinkage",
+  "threshold_radius_m": 0.012
+}

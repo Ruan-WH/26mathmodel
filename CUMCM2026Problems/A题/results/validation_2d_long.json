@@ -1,0 +1,96 @@
+[
+  {
+    "question": 1,
+    "radial_nodes": 41,
+    "half_axial_nodes": 31,
+    "grid_power": 2.0,
+    "dt_s": 10,
+    "early_dt_s": 10.0,
+    "drying_time_2d_h": null,
+    "drying_time_1d_h": null,
+    "difference_s": null,
+    "maximum_location_index": [
+      0,
+      10
+    ],
+    "maximum_at_radial_axial_center": false,
+    "picard_max": 5,
+    "runtime_s": 9.390058300006785,
+    "midplane_max_abs_temperature_difference_c": 1.883708549144103e-07,
+    "midplane_max_abs_moisture_difference": 2.2870594307278225e-14,
+    "end_to_midplane_max_temperature_difference_c": 3.6675756453177684,
+    "end_to_midplane_max_moisture_difference": 0.9041244048237449
+  },
+  {
+    "question": 3,
+    "radial_nodes": 41,
+    "half_axial_nodes": 31,
+    "grid_power": 2.0,
+    "dt_s": 60,
+    "early_dt_s": 10.0,
+    "drying_time_2d_h": 57.21975630195217,
+    "drying_time_1d_h": 57.221977265216815,
+    "difference_s": -7.995467752742115,
+    "maximum_location_index": [
+      0,
+      0
+    ],
+    "maximum_at_radial_axial_center": true,
+    "picard_max": 12,
+    "runtime_s": 357.25520439998945
+  },
+  {
+    "question": 4,
+    "radial_nodes": 41,
+    "half_axial_nodes": 31,
+    "grid_power": 2.0,
+    "dt_s": 60,
+    "early_dt_s": 10.0,
+    "drying_time_2d_h": 50.8646136506969,
+    "drying_time_1d_h": 50.86462178439494,
+    "difference_s": -0.02928131294902414,
+    "maximum_location_index": [
+      0,
+      0
+    ],
+    "maximum_at_radial_axial_center": true,
+    "picard_max": 9,
+    "runtime_s": 334.7341993000009
+  },
+  {
+    "question": 3,
+    "radial_nodes": 41,
+    "half_axial_nodes": 61,
+    "grid_power": 2.0,
+    "dt_s": 60,
+    "early_dt_s": 10.0,
+    "drying_time_2d_h": 57.21986611828811,
+    "drying_time_1d_h": 57.221977265216815,
+    "difference_s": -7.600128943333402,
+    "maximum_location_index": [
+      0,
+      0
+    ],
+    "maximum_at_radial_axial_center": true,
+    "picard_max": 12,
+    "runtime_s": 500.34668300001067
+  },
+  {
+    "question": 4,
+    "radial_nodes": 41,
+    "half_axial_nodes": 61,
+    "grid_power": 2.0,
+    "dt_s": 60,
+    "early_dt_s": 10.0,
+    "drying_time_2d_h": 50.86461400110684,
+    "drying_time_1d_h": 50.86462178439494,
+    "difference_s": -0.028019837191095576,
+    "maximum_location_index": [
+      0,
+      0
+    ],
+    "maximum_at_radial_axial_center": true,
+    "picard_max": 9,
+    "runtime_s": 339.52219719999994
+  }
+]

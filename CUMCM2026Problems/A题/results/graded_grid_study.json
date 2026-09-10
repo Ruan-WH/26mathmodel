@@ -1,0 +1,58 @@
+[
+  {
+    "q": 3,
+    "nodes": 81,
+    "grid_power": 2,
+    "time_h": 57.178394431148355,
+    "mass_residual": 1.4245685241464755e-13
+  },
+  {
+    "q": 4,
+    "nodes": 81,
+    "grid_power": 2,
+    "time_h": 50.82834607218137,
+    "mass_residual": 0.0
+  },
+  {
+    "q": 3,
+    "nodes": 161,
+    "grid_power": 2,
+    "time_h": 57.17776187521487,
+    "mass_residual": 2.6418954170295886e-13
+  },
+  {
+    "q": 4,
+    "nodes": 161,
+    "grid_power": 2,
+    "time_h": 50.82768742749878,
+    "mass_residual": 3.7616968363770015e-14
+  },
+  {
+    "q": 3,
+    "nodes": 321,
+    "grid_power": 2,
+    "time_h": 57.17760348635456,
+    "mass_residual": 3.0180651006672884e-13
+  },
+  {
+    "q": 4,
+    "nodes": 321,
+    "grid_power": 2,
+    "time_h": 50.82752251829933,
+    "mass_residual": 6.185901464264402e-13
+  },
+  {
+    "q": 3,
+    "nodes": 641,
+    "grid_power": 2,
+    "time_h": 57.17756387008183,
+    "mass_residual": 8.051598603528606e-12
+  },
+  {
+    "q": 4,
+    "nodes": 641,
+    "grid_power": 2,
+    "time_h": 50.827481271674294,
+    "mass_residual": 3.102877432117085e-12
+  }
+]

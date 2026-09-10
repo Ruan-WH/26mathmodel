@@ -1,26 +1,134 @@
 {
-  "temperature_minus_5pct": {
-    "terminal_temperature_scale": 0.95,
-    "terminal_moisture_scale": 1.0,
-    "q3_drying_time_h": 60.86128538456115,
-    "q4_drying_time_h": 56.24399292721159
+  "baseline": {
+    "q3_drying_time_h": 57.1865629636894,
+    "q4_drying_time_h": 50.83509469325534,
+    "temperature_offset_c": 0,
+    "ambient_moisture_scale": 1,
+    "diffusivity_scale": 1,
+    "mass_transfer_scale": 1,
+    "shrinkage_amplitude_scale": 1,
+    "nodes": 81,
+    "dt_s": 20,
+    "early_dt_s": 2
   },
-  "temperature_plus_5pct": {
-    "terminal_temperature_scale": 1.05,
-    "terminal_moisture_scale": 1.0,
-    "q3_drying_time_h": 52.02152629839609,
-    "q4_drying_time_h": 48.18336094512627
+  "temperature_minus_2C": {
+    "q3_drying_time_h": 60.978808756590624,
+    "q4_drying_time_h": 54.15950087541898,
+    "temperature_offset_c": -2,
+    "ambient_moisture_scale": 1,
+    "diffusivity_scale": 1,
+    "mass_transfer_scale": 1,
+    "shrinkage_amplitude_scale": 1,
+    "nodes": 81,
+    "dt_s": 20,
+    "early_dt_s": 2
+  },
+  "temperature_plus_2C": {
+    "q3_drying_time_h": 53.718443239003086,
+    "q4_drying_time_h": 47.79131863822536,
+    "temperature_offset_c": 2,
+    "ambient_moisture_scale": 1,
+    "diffusivity_scale": 1,
+    "mass_transfer_scale": 1,
+    "shrinkage_amplitude_scale": 1,
+    "nodes": 81,
+    "dt_s": 20,
+    "early_dt_s": 2
   },
   "ambient_moisture_minus_5pct": {
-    "terminal_temperature_scale": 1.0,
-    "terminal_moisture_scale": 0.95,
-    "q3_drying_time_h": 56.06087865701118,
-    "q4_drying_time_h": 51.89066645207651
+    "q3_drying_time_h": 57.13920433303237,
+    "q4_drying_time_h": 50.78333142707774,
+    "temperature_offset_c": 0,
+    "ambient_moisture_scale": 0.95,
+    "diffusivity_scale": 1,
+    "mass_transfer_scale": 1,
+    "shrinkage_amplitude_scale": 1,
+    "nodes": 81,
+    "dt_s": 20,
+    "early_dt_s": 2
   },
   "ambient_moisture_plus_5pct": {
-    "terminal_temperature_scale": 1.0,
-    "terminal_moisture_scale": 1.05,
-    "q3_drying_time_h": 56.332333074969235,
-    "q4_drying_time_h": 52.09596555290727
+    "q3_drying_time_h": 57.238543165358976,
+    "q4_drying_time_h": 50.89388427911926,
+    "temperature_offset_c": 0,
+    "ambient_moisture_scale": 1.05,
+    "diffusivity_scale": 1,
+    "mass_transfer_scale": 1,
+    "shrinkage_amplitude_scale": 1,
+    "nodes": 81,
+    "dt_s": 20,
+    "early_dt_s": 2
+  },
+  "diffusivity_minus_5pct": {
+    "q3_drying_time_h": 59.84679364471992,
+    "q4_drying_time_h": 53.187213603088836,
+    "temperature_offset_c": 0,
+    "ambient_moisture_scale": 1,
+    "diffusivity_scale": 0.95,
+    "mass_transfer_scale": 1,
+    "shrinkage_amplitude_scale": 1,
+    "nodes": 81,
+    "dt_s": 20,
+    "early_dt_s": 2
+  },
+  "diffusivity_plus_5pct": {
+    "q3_drying_time_h": 54.78541277744182,
+    "q4_drying_time_h": 48.70986913527441,
+    "temperature_offset_c": 0,
+    "ambient_moisture_scale": 1,
+    "diffusivity_scale": 1.05,
+    "mass_transfer_scale": 1,
+    "shrinkage_amplitude_scale": 1,
+    "nodes": 81,
+    "dt_s": 20,
+    "early_dt_s": 2
+  },
+  "mass_transfer_minus_5pct": {
+    "q3_drying_time_h": 57.531418209930884,
+    "q4_drying_time_h": 50.970314100710354,
+    "temperature_offset_c": 0,
+    "ambient_moisture_scale": 1,
+    "diffusivity_scale": 1,
+    "mass_transfer_scale": 0.95,
+    "shrinkage_amplitude_scale": 1,
+    "nodes": 81,
+    "dt_s": 20,
+    "early_dt_s": 2
+  },
+  "mass_transfer_plus_5pct": {
+    "q3_drying_time_h": 56.88103049506986,
+    "q4_drying_time_h": 50.71729112357283,
+    "temperature_offset_c": 0,
+    "ambient_moisture_scale": 1,
+    "diffusivity_scale": 1,
+    "mass_transfer_scale": 1.05,
+    "shrinkage_amplitude_scale": 1,
+    "nodes": 81,
+    "dt_s": 20,
+    "early_dt_s": 2
+  },
+  "shrinkage_amplitude_minus_5pct": {
+    "q3_drying_time_h": 57.1865629636894,
+    "q4_drying_time_h": 53.75585791733988,
+    "temperature_offset_c": 0,
+    "ambient_moisture_scale": 1,
+    "diffusivity_scale": 1,
+    "mass_transfer_scale": 1,
+    "shrinkage_amplitude_scale": 0.95,
+    "nodes": 81,
+    "dt_s": 20,
+    "early_dt_s": 2
+  },
+  "shrinkage_amplitude_plus_5pct": {
+    "q3_drying_time_h": 57.1865629636894,
+    "q4_drying_time_h": 48.020458958161335,
+    "temperature_offset_c": 0,
+    "ambient_moisture_scale": 1,
+    "diffusivity_scale": 1,
+    "mass_transfer_scale": 1,
+    "shrinkage_amplitude_scale": 1.05,
+    "nodes": 81,
+    "dt_s": 20,
+    "early_dt_s": 2
   }
 }

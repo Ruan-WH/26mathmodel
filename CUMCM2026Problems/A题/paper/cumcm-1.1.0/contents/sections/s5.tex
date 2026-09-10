@@ -1,157 +1,62 @@
-\section{模型准备}
+\section{模型准备与统一数值方法}
+\subsection{输入数据与边界重构}
+圆柱初始半径 $R_0=0.02$~m、长度 $L=0.25$~m，初始状态为
+\begin{equation}T(r,0)=28~{}^\circ\mathrm C,\qquad C(r,0)=2.55~\mathrm{kg/kg}.\label{eq:initial}\end{equation}
+附件1包含241个环境时刻，间隔60~s；附件2包含145个半径时刻，间隔1800~s。采用 PCHIP 保形插值\cite{fritsch1980}，环境在4~h后保持末值，半径仅在附件覆盖的72~h内使用。环境测量波动不强行单调化；半径按非增序列重构，调整数记录在数据审计文件中。
 
-\subsection{几何降维与初始条件}
-
-在圆柱坐标 $(r,\theta,z)$ 中，轴对称条件使 $\partial/\partial\theta=0$。主模型进一步取中截面 $z=L/2$，忽略该处的轴向梯度，计算域为 $0\le r\le R(t)$。固定半径问题中 $R=R_0=0.02$~m；移动边界问题稍后映射到 $0\le\xi\le1$。初始条件为
-\begin{equation}
-T(r,0)=28~{}^\circ\mathrm C,\qquad C(r,0)=2.55~\mathrm{kg/kg}.
-\label{eq:initial}
-\end{equation}
-
-这一降维不是把整根药材等同为无空间差异的集中参数系统，而是保留了题目要求的径向分布。其合理性来自圆柱较大的长径比，并将在后文以包含端面的二维 $r$--$z$ 模型进行独立检查。
-
-\subsection{附件数据检查与边界重构}
-
-附件数据的结构与采用方式汇总于\cref{tab:data}. 附件一共有 241 个等间隔时刻，附件二共有 145 个等间隔时刻，二者采样频率与数值积分步长均不一致，因此不能把原始测点直接当作逐步边界值。
-
-\begin{table}[!htbp]
-\centering
-\caption{附件时序数据及模型处理方式}
-\label{tab:data}
-\begin{tabular}{llll}
-\toprule
-数据 & 覆盖区间 & 采样间隔 & 模型处理\\
-\midrule
-环境温度 $T_e$ & 0--14400 s & 60 s & PCHIP，区间外保持末值\\
-环境水分 $C_e$ & 0--14400 s & 60 s & PCHIP，区间外保持末值\\
-药材半径 $R$ & 0--259200 s & 1800 s & 单调 PCHIP 并同步求导\\
-\bottomrule
-\end{tabular}
-\end{table}
-
-对任一相邻数据点 $(t_j,y_j)$、$(t_{j+1},y_{j+1})$，令 $\vartheta=(t-t_j)/(t_{j+1}-t_j)$，PCHIP 在区间内写为
-\begin{equation}
-y(t)=h_{00}(\vartheta)y_j+h_{10}(\vartheta)\Delta t_jd_j
-     +h_{01}(\vartheta)y_{j+1}+h_{11}(\vartheta)\Delta t_jd_{j+1},
-\label{eq:pchip}
-\end{equation}
-其中
-\[
-h_{00}=2\vartheta^3-3\vartheta^2+1,\quad h_{10}=\vartheta^3-2\vartheta^2+\vartheta,
-\]
-\[
-h_{01}=-2\vartheta^3+3\vartheta^2,\quad h_{11}=\vartheta^3-\vartheta^2.
-\]
-节点斜率 $d_j$ 按相邻割线斜率的保形规则确定，使单调数据区间不产生新的极值\cite{fritsch1980}。相较普通三次样条，该处理可避免半径在快速收缩段出现非物理回弹；相较分段线性插值，其一阶连续性又能稳定给出问题四所需的 $\dot R(t)$。
-
-附件一的环境温度从 $28~{}^\circ\mathrm C$ 上升至 $50.165~{}^\circ\mathrm C$，环境水分浓度从 0.01963 变化至 0.04986~kg/kg。实测序列存在小幅波动，故未强制其单调化；只有半径数据按物理要求实施单调约束。超过 14400~s 后采用常值延拓，从而不向长期计算人为加入新的升温程序。
-
-\subsection{径向热湿控制方程}
-
-基于 Fourier 导热定律和 Fick 扩散定律\cite{crank1975}，固定半径域内的控制方程为
+\subsection{固定域控制方程与边界}
+固定半径下采用
 \begin{align}
-\rho(C)c_p(C)\frac{\partial T}{\partial t}
-&=\frac{1}{r}\frac{\partial}{\partial r}\left[rk(C)\frac{\partial T}{\partial r}\right],\label{eq:heat}\\
-\frac{\partial C}{\partial t}
-&=\frac{1}{r}\frac{\partial}{\partial r}\left[rD(T,C)\frac{\partial C}{\partial r}\right].\label{eq:mass}
+\rho(C)c_p(C)\frac{\partial T}{\partial t}&=\frac1r\frac\partial{\partial r}\left(rk(C)\frac{\partial T}{\partial r}\right),\label{eq:heat}\\
+\frac{\partial C}{\partial t}&=\frac1r\frac\partial{\partial r}\left(rD(T,C)\frac{\partial C}{\partial r}\right).\label{eq:mass}
 \end{align}
-式中 $\rho c_p$ 是单位体积热容量，决定温度对净热通量的响应速度；$D$ 是以题设浓度变量定义的等效扩散系数。问题一中除 $D(C)$ 外各物性为常数，问题二至四中所有系数均随状态更新。
-
-轴线处没有净通量，故满足
-\begin{equation}
-\left.\frac{\partial T}{\partial r}\right|_{r=0}=0,\qquad
-\left.\frac{\partial C}{\partial r}\right|_{r=0}=0.
-\label{eq:center}
-\end{equation}
-侧表面采用“向外法向通量等于表面对流通量”的约定：
+该有效扩散模型以均匀干物质参考权重定义含水率储存；题给经验密度只进入热方程，所涉及的近似已在模型假设中说明。
+轴线为零通量，侧表面为
 \begin{align}
--k\left.\frac{\partial T}{\partial r}\right|_{r=R}
-&=h_T[T(R,t)-T_e(t)],\label{eq:heatbc}\\
--D\left.\frac{\partial C}{\partial r}\right|_{r=R}
-&=h_m[C(R,t)-C_e(t)].\label{eq:massbc}
+\partial_rT(0,t)=\partial_rC(0,t)&=0,\label{eq:center}\\
+-k\partial_rT(R,t)&=h_T(T_s-T_e),\label{eq:heatbc}\\
+-D\partial_rC(R,t)&=h_m(C_s-C_e).\label{eq:massbc}
 \end{align}
-当环境温度高于表面温度时，\cref{eq:heatbc}给出指向药材内部的热流；当表面水分浓度高于环境时，\cref{eq:massbc}给出向外水分通量。该符号检验可防止 Robin 条件写反后出现“越烘越湿”等非物理解。
+以向外通量为正，环境更热时热流指向内部，药材更湿时水分流向外部。
 
-\subsection{物性关系及耦合路径}
-
-问题一使用附件二的常物性
-\begin{equation}
-\rho=820,\quad c_p=2600,\quad k=0.36,\quad
-D=7.0\times10^{-9}\exp(-0.89/C).
-\label{eq:prop1}
-\end{equation}
-问题二、三使用附件三关系
+\subsection{题给物性与状态耦合}
+附录2给出第一问的常热物性及非线性扩散系数：
+\begin{equation}\rho=820,\quad c_p=2600,\quad k=0.36,\quad D=7\times10^{-9}e^{-0.89/C}.\label{eq:prop1}\end{equation}
+第二、三问使用附录3：
 \begin{align}
-\rho&=650+128C,&c_p&=1450+2736\frac{C}{C+1},\nonumber\\
-k&=0.21+0.38\frac{C}{C+1},&
-D&=2.4\times10^{-3}\exp(-0.45/C)\exp[-3850/(T+273.15)].
-\label{eq:prop23}
+\rho&=650+128C,&c_p&=1450+2736\frac C{C+1},\nonumber\\
+k&=0.21+0.38\frac C{C+1},&D&=2.4\times10^{-3}e^{-0.45/C}e^{-3850/(T+273.15)}.\label{eq:prop23}
 \end{align}
-问题四使用附件四关系
+第四问使用附录4：
 \begin{align}
-\rho&=760+90C,&c_p&=1850+2150\frac{C}{C+1},\nonumber\\
-k&=0.12+0.20\frac{C}{C+1},&
-D&=4.2\times10^{-4}\exp(-0.30/C)\exp[-3850/(T+273.15)].
-\label{eq:prop4}
+\rho&=760+90C,&c_p&=1850+2150\frac C{C+1},\nonumber\\
+k&=0.12+0.20\frac C{C+1},&D&=4.2\times10^{-4}e^{-0.30/C}e^{-3850/(T+273.15)}.\label{eq:prop4}
 \end{align}
+含水率决定储热与导热物性，温度和含水率共同决定有效扩散率，构成状态耦合。
 
-由\cref{eq:prop23,eq:prop4}可知，水分降低会同时改变储热能力和导热能力，温度升高则通过 Arrhenius 指数提高 $D$；反过来，水分场的变化又会改变下一时间层的温度方程系数。本文所称热湿耦合即指这一“水分影响热物性、温度与水分共同影响扩散系数”的闭环，而非题面未给参数的汽化潜热耦合。
-
-\subsection{节点中心有限体积离散}
-
-空间节点取 $r_i=i\Delta r$，$i=0,1,\ldots,N$，内部界面位于 $r_{i+1/2}=(r_i+r_{i+1})/2$。按单位轴向长度积分后，第 $i$ 个环形控制体体积和界面面积分别为
+\subsection{守恒控制体与非线性界面通量}
+内部求解使用\SolverNodes{}个径向节点，取表面加密映射 $\xi_i=1-[1-i/(N-1)]^2$，$i=0,\ldots,N-1$，并令 $r_i=R(t)\xi_i$；固定域取 $R(t)=R_0$。题目要求的21个物理位置是输出网格，不限制内部离散。各界面采用实际相邻节点距离 $r_{i+1}-r_i$ 计算传导系数 $G_f=A_f k_f/(r_{i+1}-r_i)$ 或 $A_fD_f/(r_{i+1}-r_i)$。界面在相邻节点中点，中心及表面控制体边界分别截在0和当前半径：
+\begin{equation}V_i=\pi(r_{i+1/2}^2-r_{i-1/2}^2),\qquad A_f=2\pi r_f.\label{eq:cv}\end{equation}
+以 $\phi$ 表示 $T$ 或 $C$，全隐式控制体方程为
 \begin{equation}
-V_i=\pi(r_{i+1/2}^2-r_{i-1/2}^2),\qquad A_{i+1/2}=2\pi r_{i+1/2}.
-\label{eq:cv}
+\frac{s_iV_i}{\Delta t}(\phi_i^{n+1}-\phi_i^n)=G_E(\phi_{i+1}^{n+1}-\phi_i^{n+1})-G_W(\phi_i^{n+1}-\phi_{i-1}^{n+1}),\label{eq:fvm}
 \end{equation}
-中心控制体下边界直接取 0，表面控制体上边界取 $R$。这种几何构造自动消除了连续方程在 $r=0$ 处形式上的 $1/r$ 奇点。
+热方程取 $s=\rho c_p$，含水率方程取 $s=1$。表面直接加入 $A_Rh(\phi_e-\phi_s)$。内部界面通量在相邻控制体中符号相反，因此离散求和能消去内部交换\cite{patankar1980}。
 
-以 $\phi$ 统一表示 $T$ 或 $C$，储存系数记为 $s$，扩散系数记为 $\Gamma$。在时间层 $n+1$ 采用全隐式格式，内部节点守恒式为
+对 $k$ 用相邻节点平均；对变化剧烈的 $D(T,C)=b(T)e^{-a/C}$，使用 Kirchhoff 原函数
+\begin{equation}F_a(C)=Ce^{-a/C}+a\operatorname{Ei}(-a/C),\qquad F_a'(C)=e^{-a/C},\label{eq:kirchhoff}\end{equation}
+构造界面扩散率
 \begin{equation}
-\frac{s_iV_i}{\Delta t}(\phi_i^{n+1}-\phi_i^n)
-=G_{i+1/2}(\phi_{i+1}^{n+1}-\phi_i^{n+1})
--G_{i-1/2}(\phi_i^{n+1}-\phi_{i-1}^{n+1}),
-\label{eq:fvm}
+D_f=b(T_f)\frac{F_a(C_{i+1})-F_a(C_i)}{C_{i+1}-C_i},\qquad T_f=\frac{T_i+T_{i+1}}2.\label{eq:faceD}
 \end{equation}
-其中
+当两浓度相近时使用中点极限。该格式对浓度方向积分，但仍近似界面温度和空间几何，不能称为原方程的精确离散。其作用是避免低含水率薄层中简单算术平均过度放大界面扩散率，效果由后文加密试验验证。
+
+\subsection{非线性迭代、时间推进与事件}
+每一步由旧解开始 Picard 迭代：由当前含水率求热物性及新温度，再更新界面扩散率并求含水率。当温度迭代差小于 $10^{-8}$~$^\circ$C、含水率迭代差小于 $10^{-10}$~kg/kg时结束，最多30次，失败则报错。
+第一、二问时间步为1~s；第三、四问前3~h也为1~s，此后为10~s。步长在边界延拓切换、输出时刻处截断，避免跨越数据处理节点。第二、三问同网格、同物性、同前段步长，因此其共同时间点可直接核对。
+
+定义 $M(t)=\max_i C_i(t)$，若 $M^n>0.15\ge M^{n+1}$，令
 \begin{equation}
-G_{i+1/2}=\frac{A_{i+1/2}\Gamma_{i+1/2}}{\Delta r},\qquad
-\Gamma_{i+1/2}=\frac{\Gamma_i+\Gamma_{i+1}}{2}.
-\label{eq:conductance}
+\lambda=\frac{M^n-0.15}{M^n-M^{n+1}},\qquad \widehat t_d=t_n+\lambda\Delta t.\label{eq:eventinterp}
 \end{equation}
-温度场取 $s=\rho c_p,\Gamma=k$，水分场取 $s=1,\Gamma=D$。将\cref{eq:fvm}整理为
-\begin{equation}
--a_W\phi_{i-1}^{n+1}+a_P\phi_i^{n+1}-a_E\phi_{i+1}^{n+1}=b_i,
-\label{eq:tridiag}
-\end{equation}
-其中
-\[
-a_W=G_{i-1/2},\quad a_E=G_{i+1/2},\quad
-a_P=\frac{s_iV_i}{\Delta t}+a_W+a_E,\quad
-b_i=\frac{s_iV_i}{\Delta t}\phi_i^n.
-\]
-矩阵主对角元为正，非对角元非正并满足对角占优，既保留局部守恒，也有利于保持温度、水分的离散最大值性质\cite{patankar1980}。
-
-中心节点令 $a_W=0$，自然实现零通量条件。表面节点将 Robin 通量直接并入控制体：
-\begin{equation}
-a_P\leftarrow a_P+A_Rh,\qquad
-b_N\leftarrow b_N+A_Rh\phi_e,\qquad A_R=2\pi R,
-\label{eq:robindiscrete}
-\end{equation}
-其中热场取 $(h,\phi_e)=(h_T,T_e)$，水分场取 $(h_m,C_e)$。最终每一场只需求解一个三对角线性系统，计算量随径向节点数线性增长。
-
-\subsection{非线性 Picard 迭代与输出控制}
-
-在每个新时间层，令初始迭代值等于上一时间层结果，并执行：
-\begin{enumerate}
-  \item 由当前 $C^{(m)}$ 计算 $\rho,c_p,k$，组装并求解温度三对角系统，得到 $T^{(m+1)}$；
-  \item 由 $T^{(m+1)},C^{(m)}$ 计算 $D$，组装并求解水分三对角系统，得到 $C^{(m+1)}$；
-  \item 检查
-  \[
-  \|T^{(m+1)}-T^{(m)}\|_\infty<10^{-8},\qquad
-  \|C^{(m+1)}-C^{(m)}\|_\infty<10^{-10};
-  \]
-  若未同时满足则返回步骤 1，最多允许 30 次迭代。
-\end{enumerate}
-
-问题一、二采用 $\Delta t=1$~s，问题三、四采用 $\Delta t=10$~s；后两问每 60~s保存一次提交场。程序在每一步检查有限值、$0\le C\le2.55$、径向单调性和 Picard 收敛次数；阈值跨越时另存插值得到的真实首达剖面。由此，数值积分步长、提交采样间隔和物理事件精度成为三个相互独立且可审计的量。
+同时插值达标剖面。该量是离散数值解的事件估计，不能保证真实连续解的阈值恰落在这两个时间层之间；总误差还包括空间、时间和模型误差。提交文件另按题意逐秒或逐分钟采样，最终完整分钟覆盖估计事件。

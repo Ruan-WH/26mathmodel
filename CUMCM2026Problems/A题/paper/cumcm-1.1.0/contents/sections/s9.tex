@@ -1,156 +1,46 @@
-\section{问题四：收缩移动边界模型的建立与求解}
-
-\subsection{半径数据重构与固定域映射}
-
-附件二给出的半径由初始 2~cm 持续减小至 1.2~cm。经单调 PCHIP 重构后，在本问主要时刻的半径见\cref{tab:q4radius}。前 6~h 半径已经缩小到 1.374~cm，完成总收缩量的 78.3\%；此后收缩速度逐渐减小，36~h 后在四位小数精度下稳定为 1.200~cm。由此可见，几何变化主要集中在干燥早期，但它对随后全部扩散过程都会持续产生影响。
-
-\begin{table}[!htbp]
-\centering
-\caption{问题四典型时刻的重构半径}\label{tab:q4radius}
-\begin{tabular}{rrrrrrrrrr}
-\toprule
-$t$/h&0&6&12&18&24&30&36&48&51.986\\
-\midrule
-$R$/cm&2.000&1.374&1.248&1.214&1.204&1.201&1.200&1.200&1.200\\
-\bottomrule
-\end{tabular}
-\end{table}
-
-若直接在物理域 $0\le r\le R(t)$ 上使用固定的 0.1~cm 网格，节点数会随时间减少，旧节点场量还需频繁插值到新网格，不利于保持守恒。为此定义无量纲固定域坐标
-\begin{equation}
-\xi=\frac{r}{R(t)},\qquad 0\le\xi\le1,
-\label{eq:xi}
-\end{equation}
-并令 $\psi(\xi,t)=\phi(r,t)$。半径收缩时，固定 $\xi$ 的节点随材料截面同步向内移动，始终保留 21 个节点，不需要改变矩阵维数。
-
-\subsection{移动边界方程推导}
-
-在固定物理坐标和固定材料坐标下的时间导数不同。由 $r=R(t)\xi$ 和链式法则可得
-\begin{equation}
-\left.\frac{\partial\phi}{\partial t}\right|_r
-=\left.\frac{\partial\psi}{\partial t}\right|_\xi
--\frac{\dot R}{R}\xi\frac{\partial\psi}{\partial\xi},
-\qquad
-\frac{\partial\phi}{\partial r}=\frac{1}{R}\frac{\partial\psi}{\partial\xi}.
-\label{eq:chainmoving}
-\end{equation}
-将其代入固定域扩散方程，得到统一形式
-\begin{equation}
-\frac{\partial\psi}{\partial t}
--\frac{\dot R}{R}\xi\frac{\partial\psi}{\partial\xi}
-=\frac{1}{R^2\xi}\frac{\partial}{\partial\xi}
-\left(\xi\Gamma\frac{\partial\psi}{\partial\xi}\right),
-\label{eq:moving}
-\end{equation}
-其中水分场取 $\psi=C,\Gamma=D$；温度场需在左侧两个时间/移动项前乘以 $\rho c_p$，右侧取 $\Gamma=k$。该固定域处理是移动边界干燥模型的常用思路\cite{adroit2019}。
-
-式\eqref{eq:moving}包含两个半径效应。第一，扩散算子前的 $R^{-2}$ 随半径减小而增大，等价于实际扩散距离缩短；第二，坐标运动产生速度
-\begin{equation}
-u_\xi=-\frac{\dot R}{R}\xi.
-\label{eq:uxi}
-\end{equation}
-附件半径单调下降，故 $u_\xi\ge0$。中心处 $u_\xi=0$，表面处取最大值，说明坐标运动对外层场的影响更直接。
-
-表面边界也必须同步变换。由 $\partial/partial r=R^{-1}\partial/partial\xi$ 得
+\section{问题四：材料收缩模型与达标时间}
+\subsection{质量基准和材料坐标}
+使用附件2重构 $R(t)$，令 $\xi=r/R(t)$。均匀径向收缩假设给出材料速度 $v_r=\dot R\xi$，网格速度同为 $w_r=\dot R\xi$。干物质与水分守恒写为
 \begin{align}
--\frac{k}{R}\left.\frac{\partial T}{\partial\xi}\right|_{\xi=1}
-&=h_T(T_s-T_e),\label{eq:movingheatbc}\\
--\frac{D}{R}\left.\frac{\partial C}{\partial\xi}\right|_{\xi=1}
-&=h_m(C_s-C_e).
-\label{eq:movingmassbc}
+\partial_t\rho_d+\frac1r\partial_r(r\rho_dv_r)&=0,\label{eq:drymass}\\
+\rho_d(\partial_tC+v_r\partial_rC)&=\frac1r\partial_r(r\rho_dD\partial_rC).\label{eq:wetmass}
 \end{align}
-因此在无量纲控制体方程中，内部扩散导通系数乘 $R^{-2}$，表面对流导通系数乘 $R^{-1}$。若只缩放网格而遗漏这些尺度因子，模型将不能正确反映半径变化带来的通量放大。
+初始 $\rho_d$ 均匀时，$\rho_d(t)R^2(t)=\rho_{d0}R_0^2$，故 $\rho_d$ 在每个时刻对空间均匀，可从\cref{eq:wetmass}中约去。这样固定的材料控制体具有固定干物质质量，$C$ 仍是水质量与干物质质量之比。
 
-\subsection{移动项离散与迭代流程}
-
-在 $\xi_i=i/20$ 的固定节点上，对\cref{eq:moving}的扩散项继续采用中心有限体积格式。移动项使用全隐式一阶迎风离散；由于 $u_{\xi,i}\ge0$，第 $i$ 个节点的离散贡献为
+设 $\psi(\xi,t)=C(R(t)\xi,t)$，则
 \begin{equation}
-s_iV_i\,u_{\xi,i}
-\frac{\psi_i^{n+1}-\psi_{i-1}^{n+1}}{\Delta\xi},
-\label{eq:upwind}
+\left.\partial_tC\right|_r=\left.\partial_t\psi\right|_\xi-\frac{\dot R}R\xi\partial_\xi\psi,\qquad
+v_r\partial_rC=\frac{\dot R}R\xi\partial_\xi\psi.\label{eq:chainmoving}
 \end{equation}
-并分别加入主对角元和下对角元。迎风格式虽为一阶，但本题计算得到的最大移动 Courant 数
+两项相消，得到
+\begin{align}
+\partial_tC\big|_\xi&=\frac1{R^2\xi}\partial_\xi(\xi D\partial_\xi C),\label{eq:moving}\\
+\rho(C)c_p(C)\partial_tT\big|_\xi&=\frac1{R^2\xi}\partial_\xi(\xi k\partial_\xi T).\label{eq:movingheat}
+\end{align}
+这里不能再单独加入 $-(\dot R/R)\xi\partial_\xi C$，否则相当于把网格运动当作材料与网格之间的相对运动。温度方程仍采用题给经验储热系数，并未由\cref{eq:drymass}重新解释为严格混合物能量守恒。
+
+\subsection{边界、离散与质量核验}
+表面条件变为
 \begin{equation}
-\max_{i,n}\frac{u_{\xi,i}^n\Delta t}{\Delta\xi}=0.00838,
-\label{eq:cflq4}
+-\frac kR\partial_\xi T=h_T(T_s-T_e),\qquad
+-\frac DR\partial_\xi C=h_m(C_s-C_e).\label{eq:movingbc}
 \end{equation}
-远小于 1，移动项的单步数值耗散受到控制；扩散项仍采用二阶中心界面通量。
-
-每个时间层先由半径 PCHIP 计算 $R^{n+1}$ 和 $\dot R^{n+1}$，再更新环境量及附件四物性，依次求解温度与水分三对角系统。Picard 最大迭代次数为 4，平均为 3.56。完整逻辑见\cref{fig:moving}：内层菱形判断控制物性迭代收敛，外层菱形判断全域阈值；未收敛时返回当前时间层重算，未达标时才推进至下一时间层。
-
-\begin{figure}[!htbp]
-\centering
-\includegraphics[height=0.72\textheight]{moving_boundary_solver.pdf}
-\caption{问题四移动边界全隐式迭代流程}\label{fig:moving}
-\end{figure}
-
-\subsection{物理位置输出规则}
-
-计算解首先定义在固定材料坐标 $\xi$ 上，而题目模板给出的列对应固定物理位置 $r_j=0,0.1,\ldots,1.9$~cm。对任一时刻，仅当 $r_j\le R(t)$ 时计算
+内部扩散尺度为 $R^{-2}$，表面项尺度为 $R^{-1}$。采用固定材料节点、Kirchhoff 界面通量及全隐式迭代，不需迎风项，也不使用 Courant 数作为精度证据。
+记单位总干质量归一化的控制体权重为 $\omega_i=V_i/\sum_jV_j$，则每步检查
 \begin{equation}
-C(r_j,t)=\mathcal I_\xi[C(\xi,t)]\big|_{\xi=r_j/R(t)},
-\label{eq:physicaloutput}
+\varepsilon_n=\sum_i\omega_i(C_i^{n+1}-C_i^n)+\Delta t\frac{2h_m}{R^{n+1}}(C_s^{n+1}-C_e^{n+1}).\label{eq:balance}
 \end{equation}
-其中 $\mathcal I_\xi$ 为固定域节点间线性插值；当 $r_j>R(t)$ 时，该位置已经处于药材外部，单元格留空而不是填 0。最后一列始终记录 $C(\xi=1,t)$，即随半径移动的实时表面。
+累计残差除以初始平均含水率，形成可比较的守恒指标。该检查与材料坐标的干物质质量权重一致。
+\begin{figure}[!htbp]\centering\includegraphics[width=0.85\textwidth]{moving_boundary_solver.pdf}
+\caption{材料坐标收缩求解与验证流程}\label{fig:moving}\end{figure}
 
-这一规则区分了“固定空间传感器位置”和“随材料移动的表面位置”。例如 6~h 时 $R=1.374$~cm，故 $r=1.4$~cm 及更外列均应留空；而 $r=1.0$~cm 仍位于药材内部，其对应材料坐标已由初始的 0.5 变化为约 0.728。若继续把 $r=2.0$~cm 列当作表面，就会把药材外部的环境量误认为材料状态。
+\subsection{结果与同物性固定半径对照}
+计算得到
+\begin{equation}\widehat t_d=\QfourSeconds{}~\mathrm s=\QfourHours{}~\mathrm h,\qquad R(\widehat t_d)=\QfourRadius{}~\mathrm{cm}.\label{eq:q4time}\end{equation}
+\input{contents/generated/q4_moisture.tex}
+表中固定物理位置通过 $\xi=r_j/R(t)$ 插值；当 $r_j>R(t)$ 时该位置位于材料外，留空；末列始终为 $\xi=1$ 的实时表面。result4.xlsx保留 $0,0.1,\ldots,1.9$~cm及动态表面，逐分钟输出至\QfourOutputEnd{}~s。
 
-\subsection{达标时间与浓度分布}
-
-问题四继续以全域最大水分浓度作为终止量。全部剖面保持中心最大，故事件定位仍可用\cref{eq:eventinterp,eq:profileinterp}。计算得到
-\begin{equation}
-t_d=187148.5658~\mathrm{s}=51.9857~\mathrm{h},\qquad
-R(t_d)=1.2000~\mathrm{cm}.
-\label{eq:q4time}
-\end{equation}
-典型时刻的固定物理位置与动态表面水分见\cref{tab:q4}。6~h 时中心水分仍为 1.9229，动态表面已降至 $0.5549~\mathrm{kg/kg}$；24~h 时中心为 0.3042，表面只有 0.0709；达标时中心为 0.1500，表面为 0.0525。
-
-\begin{table}[!htbp]
-\centering
-\caption{问题四典型时刻水分浓度（kg/kg）}\label{tab:q4}
-\begin{tabular}{rrrrr}
-\toprule
-$t$/h&0 cm&0.5 cm&1.0 cm&动态表面\\
-\midrule
-6&1.9229&1.7535&1.2333&0.5549\\
-12&0.8581&0.7631&0.4784&0.2099\\
-18&0.4534&0.4078&0.2619&0.1008\\
-24&0.3042&0.2777&0.1876&0.0709\\
-30&0.2359&0.2177&0.1530&0.0607\\
-36&0.1983&0.1843&0.1333&0.0564\\
-42&0.1746&0.1632&0.1206&0.0543\\
-48&0.1583&0.1486&0.1116&0.0530\\
-51.9857&0.1500&0.1411&0.1070&0.0525\\
-\bottomrule
-\end{tabular}
-\end{table}
-
-动态表面在 $14.3491$~h 已达到 0.15，而中心需要 $51.9857$~h，两者仍相差 $37.6366$~h。收缩虽然显著缩短了内部扩散距离，却没有消除“外干内湿”的过程特征，因此实际控制仍应关注中心或内部代理量。
-
-\subsection{收缩效应的反事实分解}
-
-问题三和问题四的物性函数不同，直接比较 $56.1863$~h 与 $51.9857$~h 只能说明两个完整情景的差异，不能把 $4.2006$~h 全部归因于收缩。为得到可解释的几何贡献，本文另做两组控制计算：
-\begin{enumerate}
-  \item 使用附件四物性和相同环境，但保持 $R=2$~cm，得到固定半径反事实时长 $128.0711$~h；
-  \item 使用附件四物性和真实 $R(t)$，但删去\cref{eq:uxi}的坐标移动项，得到 $50.5467$~h。
-\end{enumerate}
-
-第一组与完整收缩模型之间只改变几何描述，故收缩带来的总时长变化为
-\begin{equation}
-\Delta t_R=128.0711-51.9857=76.0854~\mathrm{h},\qquad
-\eta_R=\frac{\Delta t_R}{128.0711}=59.41\%.
-\label{eq:q4reduction}
-\end{equation}
-第二组表明，在相同收缩曲线下加入移动项后，时长由 50.5467~h 增至 51.9857~h，即增加 1.4390~h。故本题中 $R^{-2}$ 引起的扩散距离缩短是主要加速机制，而坐标移动项产生较小的反向净效应。两组中心水分轨迹及半径变化见\cref{fig:q4}。
-
-\begin{figure}[!htbp]
-\centering
-\includegraphics[width=0.92\textwidth]{q4_shrinkage_comparison.pdf}
-\caption{问题四收缩与固定半径反事实比较}\label{fig:q4}
-\end{figure}
-
-\subsection{数值检查与结果文件}
-
-将时间步由 10~s 减半为 5~s，达标时间由 51.9857~h 变为 51.9826~h，相对差为 $5.94\times10^{-5}$。整个计算中半径保持单调非增，最大移动 Courant 数小于 0.01，水分剖面保持中心最大，且全部 Picard 迭代正常收敛。这些检查分别覆盖了几何输入、移动项离散、物理方向和非线性求解。
-
-结果四工作簿从 60~s 起每分钟记录，最后完整输出时刻为 187200~s，覆盖真实首达时刻。首列为时间，随后是 $0\sim1.9$~cm 的固定物理位置，末列为动态表面；超过当前半径的位置按\cref{eq:physicaloutput}留空。该空值具有明确的几何含义，不属于数据缺失，也不能在后处理中用零值填补。
+采用相同附录4物性、相同环境及相同数值设置，仅保持 $R=2$~cm的对照时间为\QfourFixedHours{}~h。收缩情景相对于该对照缩短\QfourReduction{}\%。这一比例是本模型及给定收缩曲线下的条件性比较，不代表对其他材料或收缩机理的普遍规律。
+\begin{figure}[!htbp]\centering\includegraphics[width=0.94\textwidth]{q4_shrinkage_comparison.pdf}
+\caption{同物性固定半径与材料收缩情景的比较}\label{fig:q4}\end{figure}
+扩散距离缩短解释了主要加速方向。由于第三问采用另一组物性，不能将其与第四问的时间差全归因于收缩。本文也不再把纯坐标项的增删解释为独立的物理收缩机制。

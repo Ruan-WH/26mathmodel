@@ -1,0 +1,22 @@
+{
+  "kirchhoff_quadrature_max_relative_error": 1.4812595594548839e-12,
+  "bessel_robin_eigenmode": [
+    {
+      "nodes": 41,
+      "dt_s": 0.5,
+      "max_abs_error": 1.2475646581244781e-05
+    },
+    {
+      "nodes": 81,
+      "dt_s": 0.5,
+      "max_abs_error": 9.171577850075607e-06
+    },
+    {
+      "nodes": 161,
+      "dt_s": 0.5,
+      "max_abs_error": 8.34436269381289e-06
+    }
+  ],
+  "closed_uniform_shrinkage_max_error": 3.552713678800501e-15,
+  "all_pass": true
+}

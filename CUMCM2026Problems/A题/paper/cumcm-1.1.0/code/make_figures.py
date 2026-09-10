@@ -128,7 +128,7 @@ def plot_profiles(
             linewidth=1.3,
             marker="o",
             markersize=2.3,
-            markevery=4,
+            markevery=max(1, len(radius_cm) // 20),
             label=label,
         )
     axis.set_xlabel("到药材中心的距离 / cm")
@@ -250,11 +250,13 @@ def figure_q3() -> None:
 
     requested_h = [6, 18, 36, 48, end_h]
     indexes = nearest_indices(time_h, requested_h)
+    profiles = data["moisture"][indexes].copy()
+    profiles[-1] = data["threshold_moisture"]
     labels = ["6 h", "18 h", "36 h", "48 h", f"{end_h:.3f} h"]
     plot_profiles(
         axes[1],
         radius_cm,
-        data["moisture"][indexes],
+        profiles,
         labels,
         "水分浓度 / (kg·kg⁻¹)",
     )

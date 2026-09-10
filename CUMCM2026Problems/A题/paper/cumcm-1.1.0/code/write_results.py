@@ -57,7 +57,8 @@ def write_fixed_workbook(
     book = load_workbook(output_path)
     fields = np.load(fields_path)
     times = fields["times_s"]
-    radii_cm = fields["radius_m"] * 100.0
+    source_radii_cm = fields["radius_m"] * 100.0
+    radii_cm = np.linspace(0.0, 2.0, 21)
     start = 1 if abs(times[0]) < 1e-12 else 0
     written_rows = len(times) - start + 1
     sheet_variables = (
@@ -73,7 +74,7 @@ def write_fixed_workbook(
         for index in range(start, len(times)):
             sheet.append(
                 [int(round(float(times[index])))]
-                + [round(float(value), 4) for value in values[index]]
+                + [round(float(value), 4) for value in np.interp(radii_cm, source_radii_cm, values[index])]
             )
         style_sheet(sheet, written_rows, len(radii_cm) + 1)
     book.save(output_path)
@@ -172,6 +173,30 @@ def verify_workbook(item: dict) -> dict:
             for details in verification["sheets"].values()
         )
     )
+    question = int(path.stem[-1])
+    # Cache the arrays once: indexing an NpzFile repeatedly decompresses a full
+    # field for every workbook row, which makes large workbooks very slow.
+    with np.load(RESULTS_DIR / f'q{question}' / 'fields.npz') as archive:
+        fields = {key: archive[key] for key in archive.files}
+    expected_times = fields['times_s'][1:]
+    mismatches = 0
+    for sheet in book.worksheets:
+        key = 'temperature_c' if sheet.title == '温度' else 'moisture'
+        for index, row in enumerate(sheet.iter_rows(min_row=2, values_only=True), start=1):
+            if row[0] != int(round(expected_times[index-1])):
+                mismatches += 1
+            if question != 4:
+                expected = np.interp(np.linspace(0, .02, 21), fields['radius_m'], fields[key][index])
+                expected = [round(float(v), 4) for v in expected]
+            else:
+                radius = fields['radii_m'][index]
+                expected = [None if r > radius+1e-12 else round(float(np.interp(r/radius, fields['xi'], fields['moisture'][index])),4)
+                            for r in np.arange(0.,.02,.001)]
+                expected.append(round(float(fields['moisture'][index,-1]),4))
+            mismatches += sum(actual != desired for actual, desired in zip(row[1:], expected))
+    verification['source_value_mismatches'] = mismatches
+    verification['pass'] = verification['pass'] and mismatches == 0
+    book.close()
     return verification
 
 
@@ -199,16 +224,15 @@ def main() -> None:
         write_moving_workbook(),
     ]
     report = {
-        "authoring_backend": "openpyxl fallback",
-        "fallback_reason": (
-            "@oai/artifact-tool and container_tools marker are unavailable in the "
-            "current Windows runtime; template structure is preserved with openpyxl."
-        ),
+        "authoring_backend": "openpyxl (existing template writer)",
+        "method": "Existing template-based writer; all output values checked against solver fields.",
         "outputs": outputs,
         "verification": [verify_workbook(item) for item in outputs],
     }
     report_path = RESULTS_DIR / "workbook_verification.json"
     report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+    if not all(item['pass'] for item in report['verification']):
+        raise RuntimeError('Workbook verification failed; see workbook_verification.json')
     print(json.dumps(report, ensure_ascii=False, indent=2))
 
 

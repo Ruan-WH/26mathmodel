@@ -1,0 +1,12 @@
+{
+  "pdf": "26mathmodel\\CUMCM2026Problems\\A题\\A题_完整论文.pdf",
+  "pages": 36,
+  "compiled_with": "Tectonic 0.15.0",
+  "overfull_boxes": 0,
+  "missing_glyphs": 0,
+  "visual_review": "All pages reviewed as contact sheets; detailed symbol table, verification table and bibliography checked.",
+  "source_syntax": "all pass",
+  "paper_code_copies": "all identical",
+  "sha256": "0166afa7cac30f0d0034b21faab8e2683c72f59215f9854f2cb279897fa4572f",
+  "workbooks": "Four current result workbooks exported, all source-value checks passed, synchronized to attachment 3 with identical SHA-256 hashes."
+}

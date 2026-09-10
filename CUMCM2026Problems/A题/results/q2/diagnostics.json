@@ -1,0 +1,15 @@
+{
+  "threshold_time_s": null,
+  "last_time_s": 10800.0,
+  "picard_max": 4,
+  "picard_mean": 4.0,
+  "monotone_profiles": true,
+  "center_is_max": true,
+  "maximum_step_mass_residual": 2.7383287694651703e-15,
+  "relative_cumulative_mass_residual": 1.385210029469568e-12,
+  "nodes": 321,
+  "late_dt_s": 1.0,
+  "early_dt_s": 1.0,
+  "grid_power": 2.0,
+  "transport_frame": "fixed"
+}

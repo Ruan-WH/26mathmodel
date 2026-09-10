@@ -2,7 +2,7 @@
 
 The model uses a node-centred finite-volume discretisation in the radial
 coordinate, fully implicit diffusion, Picard iteration for nonlinear
-properties, and an ALE-style fixed-domain transform for shrinkage.
+properties, and a material-coordinate transform for uniform radial shrinkage.
 """
 
 from __future__ import annotations
@@ -19,6 +19,7 @@ import numpy as np
 from openpyxl import load_workbook
 from scipy.interpolate import PchipInterpolator
 from scipy.linalg import solve_banded
+from scipy.special import expi
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -27,7 +28,8 @@ RESULTS_DIR = ROOT / "results"
 H_T = 25.0
 H_M = 8.0e-7
 R_FIXED = 0.02
-NODES = 21
+NODES = 321
+GRID_POWER = 2.0
 INITIAL_T = 28.0
 INITIAL_C = 2.55
 THRESHOLD_C = 0.15
@@ -155,6 +157,36 @@ def face_interpolate(left: np.ndarray, right: np.ndarray) -> np.ndarray:
     return 0.5 * (left + right)
 
 
+def moisture_faces(temperature: np.ndarray, moisture: np.ndarray,
+                   property_model: Callable, axis: int = 0) -> np.ndarray:
+    """Kirchhoff secant flux: integrate D(T_face,C) over the face concentration jump.
+
+    F_a(C) = C exp(-a/C) + a Ei(-a/C), with F_a' = exp(-a/C).
+    This avoids arithmetic averaging across the strongly nonlinear dry surface layer.
+    """
+    left = np.take(moisture, np.arange(moisture.shape[axis] - 1), axis=axis)
+    right = np.take(moisture, np.arange(1, moisture.shape[axis]), axis=axis)
+    tl = np.take(temperature, np.arange(temperature.shape[axis] - 1), axis=axis)
+    tr = np.take(temperature, np.arange(1, temperature.shape[axis]), axis=axis)
+    midpoint = np.maximum(0.5 * (left + right), 1e-8)
+    exponent = getattr(property_model, 'moisture_exponent', 0.45)
+    def primitive(c):
+        c = np.maximum(c, 1e-8)
+        return c * np.exp(-exponent / c) + exponent * expi(-exponent / c)
+    jump = right - left
+    close = np.abs(jump) < 1e-5 * midpoint
+    secant = np.exp(-exponent / midpoint)
+    np.divide(primitive(right) - primitive(left), jump,
+              out=secant, where=~close)
+    prefactor = property_model(0.5 * (tl + tr), np.ones_like(midpoint))[3] * np.exp(exponent)
+    return prefactor * np.maximum(secant, 0.0)
+
+
+property_q1.moisture_exponent = 0.89
+property_q23.moisture_exponent = 0.45
+property_q4.moisture_exponent = 0.30
+
+
 def node_control_volumes(coordinate: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
     """Return dimensionless/physical radial CV volumes and internal face radii."""
     faces = 0.5 * (coordinate[:-1] + coordinate[1:])
@@ -162,6 +194,11 @@ def node_control_volumes(coordinate: np.ndarray) -> tuple[np.ndarray, np.ndarray
     upper = np.concatenate((faces, [coordinate[-1]]))
     volumes = math.pi * (upper**2 - lower**2)
     return volumes, faces
+
+
+def radial_grid(nodes: int) -> np.ndarray:
+    """Surface-graded material grid; resolve the initial sub-millimetre dry layer."""
+    return 1.0 - (1.0 - np.linspace(0.0, 1.0, nodes)) ** GRID_POWER
 
 
 def implicit_radial_step(
@@ -174,12 +211,14 @@ def implicit_radial_step(
     boundary_conductance: float,
     boundary_value: float,
     advection_velocity: np.ndarray | None = None,
+    face_conductivity: np.ndarray | None = None,
 ) -> np.ndarray:
     """One implicit node-centred radial FVM step on coordinate [0, 1] or [0, R]."""
     count = len(old)
     volumes, faces = node_control_volumes(coordinate)
-    delta = float(coordinate[1] - coordinate[0])
-    face_property = face_interpolate(conductivity[:-1], conductivity[1:])
+    delta = np.diff(coordinate)
+    face_property = (face_interpolate(conductivity[:-1], conductivity[1:])
+                     if face_conductivity is None else face_conductivity)
     conductance = 2.0 * math.pi * faces * face_property * diffusion_scale / delta
 
     capacity = storage * volumes / dt
@@ -226,12 +265,14 @@ def advance_coupled(
     temperature = temperature_old.copy()
     moisture = moisture_old.copy()
     if moving_domain:
-        coordinate = np.linspace(0.0, 1.0, len(temperature_old))
+        coordinate = radial_grid(len(temperature_old))
         diffusion_scale = 1.0 / radius_m**2
         boundary_scale = 1.0 / radius_m
-        shrink_velocity = -(radius_rate_m_s / radius_m) * coordinate
+        # Uniform material shrinkage: v_r = Rdot * xi equals the grid velocity.
+        # The relative advection term therefore vanishes in material coordinates.
+        shrink_velocity = None
     else:
-        coordinate = np.linspace(0.0, radius_m, len(temperature_old))
+        coordinate = radius_m * radial_grid(len(temperature_old))
         diffusion_scale = 1.0
         boundary_scale = 1.0
         shrink_velocity = None
@@ -264,6 +305,7 @@ def advance_coupled(
             boundary_conductance=mass_boundary,
             boundary_value=ambient_moisture,
             advection_velocity=shrink_velocity,
+            face_conductivity=moisture_faces(next_temperature, moisture, property_model),
         )
 
         error_t = float(np.max(np.abs(next_temperature - temperature)))
@@ -284,207 +326,115 @@ def advance_coupled(
     return temperature, moisture, iteration
 
 
-def simulate_fixed(
-    environment: Environment,
-    property_model: Callable[[np.ndarray, np.ndarray], tuple[np.ndarray, ...]],
-    end_time_s: float | None,
-    dt_s: float,
-    output_interval_s: float,
-    stop_at_threshold: bool,
-    terminal_temp_scale: float = 1.0,
-    terminal_moisture_scale: float = 1.0,
-) -> dict[str, np.ndarray | float | int | bool]:
-    temperature = np.full(NODES, INITIAL_T)
-    moisture = np.full(NODES, INITIAL_C)
-    radial_m = np.linspace(0.0, R_FIXED, NODES)
-    times = [0.0]
-    temperatures = [temperature.copy()]
-    moistures = [moisture.copy()]
-    iterations: list[int] = []
-    monotone_profiles = True
-    center_is_max = True
-    previous_max = float(np.max(moisture))
-    previous_time = 0.0
+def _simulate(environment, property_model, end_time_s, dt_s, output_interval_s,
+              stop_at_threshold, radius_history=None, terminal_temp_scale=1.0,
+              terminal_moisture_scale=1.0, nodes=None, early_dt_s=1.0,
+              terminal_temp_offset_c=0.0):
+    """Material-coordinate solve; identical first 3 h stepping for Q2 and Q3.
+
+    Normalized CV volumes are fixed dry-solid mass weights. Their sum is pi.
+    Physical dry density scales as R^-2, so total dry mass is constant.
+    The reported mass balance is water mass per unit dry-solid mass.
+    """
+    nodes = NODES if nodes is None else nodes
+    coordinate = radial_grid(nodes)
+    weights = node_control_volumes(coordinate)[0] / math.pi
+    temperature = np.full(nodes, INITIAL_T)
+    moisture = np.full(nodes, INITIAL_C)
+    times, temperatures, moistures, radii = [0.0], [temperature.copy()], [moisture.copy()], [R_FIXED]
+    iterations = []
     threshold_time = math.nan
-    threshold_temperature: np.ndarray | None = None
-    threshold_moisture: np.ndarray | None = None
-    stop_output_time = math.inf
-    time_s = 0.0
-    next_output = output_interval_s
-    maximum_time = float(end_time_s if end_time_s is not None else 10.0 * 24.0 * 3600.0)
-
+    threshold_temperature = threshold_moisture = None
+    threshold_radius = math.nan
+    time_s, next_output, stop_output_time = 0.0, output_interval_s, math.inf
+    maximum_time = float(end_time_s if end_time_s is not None else
+                         (radius_history.time_s[-1] if radius_history else 10 * 86400))
+    monotone_profiles = center_is_max = True
+    integrated_loss = maximum_mass_residual = 0.0
     while time_s < maximum_time - 1e-9:
-        step = min(dt_s, maximum_time - time_s)
+        requested_dt = min(dt_s, early_dt_s) if time_s < 10800 - 1e-9 else dt_s
+        step = min(requested_dt, maximum_time - time_s, next_output - time_s)
+        for knot in (10800.0, 14400.0):
+            if time_s < knot - 1e-9:
+                step = min(step, knot - time_s)
         new_time = time_s + step
-        temperature_before = temperature.copy()
-        moisture_before = moisture.copy()
-        ambient_t, ambient_c = environment.values(
-            new_time, terminal_temp_scale, terminal_moisture_scale
-        )
+        old_t, old_c = temperature.copy(), moisture.copy()
+        radius = radius_history.values(new_time)[0] if radius_history else R_FIXED
+        ambient_t, ambient_c = environment.values(new_time, terminal_temp_scale,
+                                                 terminal_moisture_scale)
+        if new_time > environment.time_s[-1]:
+            ambient_t += terminal_temp_offset_c
         temperature, moisture, count = advance_coupled(
-            temperature,
-            moisture,
-            step,
-            R_FIXED,
-            0.0,
-            ambient_t,
-            ambient_c,
-            property_model,
-            moving_domain=False,
-        )
+            old_t, old_c, step, radius, 0.0, ambient_t, ambient_c,
+            property_model, moving_domain=radius_history is not None)
         iterations.append(count)
+        # Backward-Euler surface flux with the same boundary state as the solver.
+        boundary_loss = step * 2.0 * H_M / radius * (moisture[-1] - ambient_c)
+        residual = float(weights @ (moisture - old_c) + boundary_loss)
+        maximum_mass_residual = max(maximum_mass_residual, abs(residual))
+        integrated_loss += boundary_loss
         time_s = new_time
-        current_max = float(np.max(moisture))
-        monotone_profiles = monotone_profiles and bool(np.all(np.diff(moisture) <= 2e-9))
-        center_is_max = center_is_max and bool(
-            moisture[0] >= float(np.max(moisture)) - 1e-9
-        )
-
-        if previous_max > THRESHOLD_C >= current_max and math.isnan(threshold_time):
-            fraction = (previous_max - THRESHOLD_C) / max(previous_max - current_max, 1e-15)
-            threshold_time = previous_time + fraction * step
-            threshold_temperature = (
-                temperature_before + fraction * (temperature - temperature_before)
-            )
-            threshold_moisture = moisture_before + fraction * (moisture - moisture_before)
-            stop_output_time = (
-                math.ceil(threshold_time / output_interval_s) * output_interval_s
-            )
-
-        if time_s + 1e-8 >= next_output:
+        monotone_profiles &= bool(np.all(np.diff(moisture) <= 2e-9))
+        center_is_max &= bool(moisture[0] >= np.max(moisture) - 1e-9)
+        before, after = float(np.max(old_c)), float(np.max(moisture))
+        if before > THRESHOLD_C >= after and math.isnan(threshold_time):
+            fraction = (before - THRESHOLD_C) / (before - after)
+            threshold_time = time_s - step + fraction * step
+            threshold_temperature = old_t + fraction * (temperature - old_t)
+            threshold_moisture = old_c + fraction * (moisture - old_c)
+            threshold_radius = radius_history.values(threshold_time)[0] if radius_history else R_FIXED
+            stop_output_time = math.ceil(threshold_time / output_interval_s) * output_interval_s
+        if time_s >= next_output - 1e-8:
             times.append(time_s)
             temperatures.append(temperature.copy())
             moistures.append(moisture.copy())
+            radii.append(radius)
             next_output += output_interval_s
-
-        if stop_at_threshold and time_s + 1e-8 >= stop_output_time:
+        if stop_at_threshold and time_s >= stop_output_time - 1e-8:
             break
-        previous_max = current_max
-        previous_time = time_s
-
-    return {
-        "times_s": np.asarray(times),
-        "radius_m": radial_m,
-        "temperature_c": np.asarray(temperatures),
-        "moisture": np.asarray(moistures),
-        "threshold_time_s": threshold_time,
-        "threshold_temperature_c": threshold_temperature,
-        "threshold_moisture": threshold_moisture,
-        "last_time_s": time_s,
-        "picard_max": int(max(iterations, default=0)),
-        "picard_mean": float(np.mean(iterations) if iterations else 0.0),
-        "monotone_profiles": monotone_profiles,
-        "center_is_max": center_is_max,
+    if stop_at_threshold and not math.isfinite(threshold_time):
+        raise RuntimeError('Threshold was not reached within supplied time horizon')
+    result = {
+        'times_s': np.asarray(times), 'temperature_c': np.asarray(temperatures),
+        'moisture': np.asarray(moistures), 'threshold_time_s': threshold_time,
+        'threshold_temperature_c': threshold_temperature,
+        'threshold_moisture': threshold_moisture, 'last_time_s': time_s,
+        'picard_max': int(max(iterations, default=0)),
+        'picard_mean': float(np.mean(iterations)),
+        'monotone_profiles': bool(monotone_profiles), 'center_is_max': bool(center_is_max),
+        'maximum_step_mass_residual': maximum_mass_residual,
+        'relative_cumulative_mass_residual': abs(float(weights @ moisture) + integrated_loss - INITIAL_C) / INITIAL_C,
+        'nodes': nodes, 'late_dt_s': dt_s, 'early_dt_s': min(early_dt_s, dt_s),
+        'grid_power': GRID_POWER,
+        'transport_frame': 'uniform_material_shrinkage' if radius_history else 'fixed',
     }
+    if radius_history:
+        result.update(xi=coordinate, radii_m=np.asarray(radii),
+                      threshold_radius_m=threshold_radius)
+    else:
+        result['radius_m'] = coordinate * R_FIXED
+    return result
 
 
-def simulate_moving(
-    environment: Environment,
-    radius_history: RadiusHistory,
-    dt_s: float,
-    output_interval_s: float,
-    stop_at_threshold: bool = True,
-    terminal_temp_scale: float = 1.0,
-    terminal_moisture_scale: float = 1.0,
-    include_advection: bool = True,
-) -> dict[str, np.ndarray | float | int | bool]:
-    xi = np.linspace(0.0, 1.0, NODES)
-    temperature = np.full(NODES, INITIAL_T)
-    moisture = np.full(NODES, INITIAL_C)
-    times = [0.0]
-    radii = [R_FIXED]
-    temperatures = [temperature.copy()]
-    moistures = [moisture.copy()]
-    iterations: list[int] = []
-    previous_max = float(np.max(moisture))
-    previous_time = 0.0
-    threshold_time = math.nan
-    threshold_temperature: np.ndarray | None = None
-    threshold_moisture: np.ndarray | None = None
-    threshold_radius_m = math.nan
-    stop_output_time = math.inf
-    time_s = 0.0
-    next_output = output_interval_s
-    maximum_time = float(radius_history.time_s[-1])
-    monotone_profiles = True
-    center_is_max = True
-    maximum_cfl = 0.0
+def simulate_fixed(environment, property_model, end_time_s, dt_s, output_interval_s,
+                   stop_at_threshold, terminal_temp_scale=1.0,
+                   terminal_moisture_scale=1.0, nodes=None, early_dt_s=1.0,
+                   terminal_temp_offset_c=0.0):
+    return _simulate(environment, property_model, end_time_s, dt_s, output_interval_s,
+                     stop_at_threshold, terminal_temp_scale=terminal_temp_scale,
+                     terminal_moisture_scale=terminal_moisture_scale, nodes=nodes,
+                     early_dt_s=early_dt_s, terminal_temp_offset_c=terminal_temp_offset_c)
 
-    while time_s < maximum_time - 1e-9:
-        step = min(dt_s, maximum_time - time_s)
-        new_time = time_s + step
-        temperature_before = temperature.copy()
-        moisture_before = moisture.copy()
-        radius_m, radius_rate_m_s = radius_history.values(new_time)
-        if not include_advection:
-            radius_rate_m_s = 0.0
-        ambient_t, ambient_c = environment.values(
-            new_time, terminal_temp_scale, terminal_moisture_scale
-        )
-        temperature, moisture, count = advance_coupled(
-            temperature,
-            moisture,
-            step,
-            radius_m,
-            radius_rate_m_s,
-            ambient_t,
-            ambient_c,
-            property_q4,
-            moving_domain=True,
-        )
-        iterations.append(count)
-        time_s = new_time
-        current_max = float(np.max(moisture))
-        maximum_cfl = max(
-            maximum_cfl,
-            float(abs(radius_rate_m_s / radius_m) * step / (xi[1] - xi[0])),
-        )
-        monotone_profiles = monotone_profiles and bool(np.all(np.diff(moisture) <= 2e-9))
-        center_is_max = center_is_max and bool(
-            moisture[0] >= float(np.max(moisture)) - 1e-9
-        )
 
-        if previous_max > THRESHOLD_C >= current_max and math.isnan(threshold_time):
-            fraction = (previous_max - THRESHOLD_C) / max(previous_max - current_max, 1e-15)
-            threshold_time = previous_time + fraction * step
-            threshold_temperature = (
-                temperature_before + fraction * (temperature - temperature_before)
-            )
-            threshold_moisture = moisture_before + fraction * (moisture - moisture_before)
-            threshold_radius_m = radius_history.values(threshold_time)[0]
-            stop_output_time = (
-                math.ceil(threshold_time / output_interval_s) * output_interval_s
-            )
-
-        if time_s + 1e-8 >= next_output:
-            times.append(time_s)
-            radii.append(radius_m)
-            temperatures.append(temperature.copy())
-            moistures.append(moisture.copy())
-            next_output += output_interval_s
-
-        if stop_at_threshold and time_s + 1e-8 >= stop_output_time:
-            break
-        previous_max = current_max
-        previous_time = time_s
-
-    return {
-        "times_s": np.asarray(times),
-        "xi": xi,
-        "radii_m": np.asarray(radii),
-        "temperature_c": np.asarray(temperatures),
-        "moisture": np.asarray(moistures),
-        "threshold_time_s": threshold_time,
-        "threshold_temperature_c": threshold_temperature,
-        "threshold_moisture": threshold_moisture,
-        "threshold_radius_m": threshold_radius_m,
-        "last_time_s": time_s,
-        "picard_max": int(max(iterations, default=0)),
-        "picard_mean": float(np.mean(iterations) if iterations else 0.0),
-        "monotone_profiles": monotone_profiles,
-        "center_is_max": center_is_max,
-        "maximum_advection_cfl": maximum_cfl,
-    }
+def simulate_moving(environment, radius_history, dt_s, output_interval_s,
+                    stop_at_threshold=True, terminal_temp_scale=1.0,
+                    terminal_moisture_scale=1.0, nodes=None, early_dt_s=1.0,
+                    terminal_temp_offset_c=0.0):
+    return _simulate(environment, property_q4, None, dt_s, output_interval_s,
+                     stop_at_threshold, radius_history=radius_history,
+                     terminal_temp_scale=terminal_temp_scale,
+                     terminal_moisture_scale=terminal_moisture_scale, nodes=nodes,
+                     early_dt_s=early_dt_s, terminal_temp_offset_c=terminal_temp_offset_c)
 
 
 def extract_fixed_table(
@@ -718,7 +668,6 @@ def run_all(run_convergence: bool = True) -> None:
         "radius_at_end_cm": float(radius_history.values(q4_end)[0] * 100.0),
         "center_is_max": q4["center_is_max"],
         "monotone_profiles": q4["monotone_profiles"],
-        "maximum_advection_cfl": q4["maximum_advection_cfl"],
         "picard_max": q4["picard_max"],
         "picard_mean": q4["picard_mean"],
     }
@@ -739,14 +688,6 @@ def run_all(run_convergence: bool = True) -> None:
             output_interval_s=60.0,
             stop_at_threshold=True,
         )
-        q4_no_adv = simulate_moving(
-            environment,
-            radius_history,
-            dt_s=10.0,
-            output_interval_s=60.0,
-            stop_at_threshold=True,
-            include_advection=False,
-        )
         q3_summary["time_step_check"] = {
             "dt10_s_time_h": q3_end / 3600.0,
             "dt5_s_time_h": float(q3_fine["threshold_time_s"]) / 3600.0,
@@ -761,14 +702,11 @@ def run_all(run_convergence: bool = True) -> None:
                 float(q4_fine["threshold_time_s"]) - q4_end
             ) / float(q4_fine["threshold_time_s"]),
         }
-        q4_summary["moving_term_comparison"] = {
-            "with_advection_h": q4_end / 3600.0,
-            "without_advection_h": float(q4_no_adv["threshold_time_s"]) / 3600.0,
-            "difference_h": (
-                float(q4_no_adv["threshold_time_s"]) - q4_end
-            ) / 3600.0,
-        }
 
+    for name, result in [('q1', q1), ('q2', q2), ('q3', q3), ('q4', q4)]:
+        write_summary(RESULTS_DIR / name / 'diagnostics.json', {
+            key: value for key, value in result.items() if not isinstance(value, np.ndarray)
+            and value is not None})
     write_summary(RESULTS_DIR / "q3" / "summary.json", q3_summary)
     write_summary(RESULTS_DIR / "q4" / "summary.json", q4_summary)
 

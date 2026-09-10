@@ -4,15 +4,22 @@
 \centering
 \small
 \caption{支撑材料及作用}
-\begin{tabular}{p{0.28\textwidth}p{0.62\textwidth}}
+\begin{tabular}{p{0.42\textwidth}p{0.52\textwidth}}
 \toprule
 文件 & 作用\\
 \midrule
 \texttt{solve\_drying.py} & 四问有限体积求解、首达判定、移动边界与步长检验主程序\\
 \texttt{write\_results.py} & 四份提交工作簿的生成、格式处理和回读核验\\
 \texttt{validate\_2d.py} & 二维轴对称端面效应独立核验\\
-\texttt{run\_sensitivity.py} & 环境温度及水分浓度的灵敏度分析\\
+\texttt{run\_sensitivity.py} & 温度、含湿量、扩散、传质和收缩幅度情景分析\\
 \texttt{make\_figures.py} & 论文科研图的可复现绘制与矢量导出\\
+\texttt{reproduce.py} & 按依赖顺序运行复现，工作簿导出为显式选项\\
+\texttt{grid\_study.py} & 81、161、321、641节点的空间收敛对照\\
+\texttt{check\_fields.py} & 场量加密、前段步长与第二三问一致性检查\\
+\texttt{check\_numerics.py} & 解析模态、界面积分与封闭收缩基准\\
+\texttt{run\_q4\_counterfactual.py} & 附录4同物性固定半径对照\\
+\texttt{make\_flowcharts.py} & 流程图与可编辑源文件\\
+\texttt{build\_paper\_data.py} & 生成正文数值和表格，同步论文代码副本\\
 \texttt{result1.xlsx} & 问题一每 1~s、0.1~cm 的温度和水分结果\\
 \texttt{result2.xlsx} & 问题二每 1~s、0.1~cm 的温度和水分结果\\
 \texttt{result3.xlsx} & 问题三每 60~s、0.1~cm 的水分结果\\
@@ -25,4 +32,4 @@
 \normalsize
 \end{table}
 
-复现时先运行 \texttt{solve\_drying.py} 生成四问终算场，再运行工作簿、二维核验、灵敏度和绘图脚本。全部程序使用固定网格与确定性线性代数，不含随机过程；论文附录 B 嵌入的主程序与实际运行文件一致。
+权威运行入口为 A 题外层 \texttt{code} 目录的 \texttt{reproduce.py}。它先生成四问终算场与同物性对照，再运行独立核验、二维验证、灵敏度、绘图和正文数据生成；加入 \texttt{--workbooks} 选项可导出四份工作簿。论文内 \texttt{code} 是同步归档副本。内部采用表面加密材料网格，物理半径可随时间变化；程序不含随机过程。论文附录 B 嵌入的主程序与外层运行文件一致。
