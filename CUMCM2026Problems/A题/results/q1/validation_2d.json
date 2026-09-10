@@ -1,0 +1,13 @@
+{
+  "grid": {
+    "radial_nodes": 21,
+    "half_axial_nodes": 26,
+    "dt_s": 10.0
+  },
+  "midplane_max_abs_temperature_difference_c": 2.415518096654523e-07,
+  "midplane_max_abs_moisture_difference": 8.171241461241152e-13,
+  "end_to_midplane_max_temperature_difference_c": 3.6575710737525995,
+  "end_to_midplane_max_moisture_difference": 0.8567008779017316,
+  "one_dimensional_midplane_pass": true,
+  "picard_max": 5
+}

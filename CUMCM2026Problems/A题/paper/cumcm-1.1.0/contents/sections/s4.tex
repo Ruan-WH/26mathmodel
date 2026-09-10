@@ -1,0 +1,27 @@
+\section{符号说明}
+
+本文主要符号及其单位见\cref{tab:symbols}。温度函数中的绝对温度统一写为 $T_K=T+273.15$，其余温差仍可直接用摄氏度计算。
+
+\begin{table}[!htbp]
+\centering
+\caption{主要符号及含义}
+\label{tab:symbols}
+\begin{tabular}{clcl}
+\toprule
+符号 & 含义 & 单位 & 备注\\
+\midrule
+$r,z$ & 径向、轴向物理坐标 & m & 主模型只保留 $r$\\
+$R(t),L$ & 瞬时半径、圆柱长度 & m & $L=0.25$\\
+$T,T_e$ & 药材温度、环境温度 & $^\circ$C & 扩散系数中换为 K\\
+$C,C_e$ & 药材、环境水分浓度 & kg/kg & 干基比值\\
+$\rho,c_p$ & 密度、比热容 & kg/m$^3$, J/(kg K) & 状态相关\\
+$k,D$ & 导热系数、水分扩散系数 & W/(m K), m$^2$/s & 状态相关\\
+$h_T,h_m$ & 表面传热、传质系数 & W/(m$^2$ K), m/s & Robin 边界\\
+$\xi$ & 固定域材料坐标 & 1 & $\xi=r/R(t)$\\
+$V_i,G_f$ & 控制体体积、界面导通系数 & m$^2$, 依场量而定 & 按单位轴向长度\\
+$\Delta r,\Delta t$ & 空间、时间步长 & m, s & 基准网格 0.001 m\\
+$n,m$ & 时间层、Picard 迭代编号 & 1 & 非负整数\\
+$t_d$ & 全截面达标首达时刻 & s 或 h & $\max C\le0.15$\\
+\bottomrule
+\end{tabular}
+\end{table}

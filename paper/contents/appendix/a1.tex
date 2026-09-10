@@ -1,0 +1,27 @@
+\section{支撑材料文件列表}
+
+论文支撑材料按照“程序、计算结果、图形源文件和AI工具使用记录”分类整理，主要文件见\cref{tab:supporting-materials}。各程序均从项目根目录运行，计算结果写入对应的 \texttt{results/q1} 至 \texttt{results/q5} 目录。
+
+\begin{longtable}{p{0.34\textwidth}p{0.58\textwidth}}
+ \caption{支撑材料文件列表}\label{tab:supporting-materials}\\
+ \toprule[1.5pt]
+ 文件或目录 & 内容说明 \\
+ \midrule[1pt]
+ \endfirsthead
+ \toprule[1.5pt]
+ 文件或目录 & 内容说明 \\
+ \midrule[1pt]
+ \endhead
+ \path{code/q1_smoke_duration.py} & 问题一给定投放策略计算、事件求根与灵敏度分析程序 \\
+ \path{code/q2_single_smoke_optimization.py} & 问题二单枚烟幕弹多盆地优化程序 \\
+ \path{code/q3_three_smoke_optimization.py} & 问题三共享航迹约束下的三弹时序优化程序 \\
+ \path{code/q4_q5_joint_optimization.py} & 问题四、问题五多机多弹协同求解与高精度终算程序 \\
+ \path{results/q1--q5/} & 各问的汇总结果、收敛记录、约束检查、策略表和遮蔽区间数据 \\
+ \path{results/q3/result1.xlsx} & 问题三官方格式结果表 \\
+ \path{results/q4/result2.xlsx} & 问题四官方格式结果表 \\
+ \path{results/q5/result3.xlsx} & 问题五官方格式结果表 \\
+ \path{diagrams/q1--q5/} & 各问技术路线图的 DrawIO 源文件及 PDF、PNG 导出文件 \\
+ \path{figures/q1--q5/} & 根据真实计算数据生成的诊断图与结果图 \\
+ \path{supporting_materials/AI_tool_usage_record.md} & AI工具名称、使用环节、用途及人工核验方式记录 \\
+ \bottomrule[1.5pt]
+\end{longtable}

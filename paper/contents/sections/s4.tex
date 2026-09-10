@@ -1,0 +1,255 @@
+\section{问题二模型建立和求解}
+
+\subsection{决策变量与约束}
+
+设 FY1 的航向角为 $\theta$，从 $x$ 轴正向逆时针计，水平单位方向向量为
+\begin{equation}
+    \bm e(\theta)=(\cos\theta,\sin\theta,0)^{\mathsf T}.
+\end{equation}
+为避免同时把投放点和起爆点作为冗余变量，选取
+\begin{equation}
+    \bm x=(\theta,v,t_e,\tau)^{\mathsf T}
+    \label{eq:q2-decision}
+\end{equation}
+作为决策变量，其中 $v$ 为无人机速度，$t_e$ 为起爆时刻，$\tau$ 为引信延时。投放时刻为 $t_r=t_e-\tau$，由此反算投放点与起爆点：
+\begin{align}
+    \bm r_r&=\bm u_0+v\bm e(\theta)(t_e-\tau), \\
+    \bm r_e&=\bm u_0+v\bm e(\theta)t_e
+    +(0,0,-\tfrac12g\tau^2)^{\mathsf T}.
+    \label{eq:q2-points}
+\end{align}
+设 M1 到达假目标原点的时刻为 $t_M=\lVert\bm m_0\rVert/300$，则可行域为
+\begin{equation}
+    0\le\theta<2\pi,\quad 70\le v\le140,\quad
+    0\le\tau\le t_e\le t_M,\quad
+    1800-\tfrac12g\tau^2\ge0.
+    \label{eq:q2-constraints}
+\end{equation}
+起爆后烟幕球心满足
+\begin{equation}
+    \bm c(t)=\bm r_e-(0,0,3(t-t_e))^{\mathsf T},\qquad
+    t_e\le t\le\min\{t_e+20,t_M\}.
+\end{equation}
+
+\subsection{优化模型汇总}
+
+问题一已经给出了有限视线段距离 $d(\bm p,t)$ 和完整圆柱最坏视线距离 $D(t)$。在此基础上，问题二不仅要选择四个连续决策量，还必须保证投放点、起爆点、烟幕轨迹和有效时间窗相互一致。将前述目标与约束集中后，完整优化模型写为
+\begin{equation}
+\begin{aligned}
+&\max_{\bm x}\quad
+T_{\mathrm{eff}}(\bm x)=\mu\!\left(\Omega(\bm x)\right),\\[-1mm]
+&\text{\rm s.t.}\quad
+\left\{
+\begin{aligned}
+&\bm x=(\theta,v,t_e,\tau)^{\mathsf T},\\
+&0\le\theta<2\pi,\qquad 70\le v\le140,\\
+&t_r=t_e-\tau,\qquad 0\le\tau\le t_e\le t_M,\\
+&\bm e(\theta)=(\cos\theta,\sin\theta,0)^{\mathsf T},\\
+&\bm u(t)=\bm u_0+v\bm e(\theta)t,\qquad \bm r_r=\bm u(t_r),\\
+&\bm r_e=\bm u_0+v\bm e(\theta)t_e
+ +(0,0,-\tfrac12g\tau^2)^{\mathsf T},\\
+&z_e=1800-\tfrac12g\tau^2\ge0,\qquad
+t_M=\dfrac{\lVert\bm m_0\rVert}{300},\\
+&\bm c(t)=\bm r_e-(0,0,3(t-t_e))^{\mathsf T},\\
+&t_e\le t\le\min\{t_e+20,t_M\},\\
+&\mathcal T=\{(x,y,z):x^2+(y-200)^2\le49,\ 0\le z\le10\},\\
+&D(t;\bm x)=\displaystyle\max_{\bm p\in\mathcal T}d(\bm p,t;\bm x),\\
+&\Omega(\bm x)=
+\{t:D(t;\bm x)\le10,\ t_e\le t\le\min(t_e+20,t_M)\}.
+\end{aligned}
+\right.
+\end{aligned}
+\label{eq:q2-complete-model}
+\end{equation}
+
+式\cref{eq:q2-complete-model} 中，前两行限定决策域和投放时序；第三至第五行保证无人机航迹、投放点、起爆点和自由落体高度损失一致；第六行限制烟幕只在起爆后的 $20\,\mathrm{s}$ 寿命内参与评价；最后两行把完整圆柱遮蔽判据嵌入目标函数。这样，任一候选向量都能依次反算全部物理状态，并通过同一个约束系统完成可行性回代。
+
+\subsection{多盆地求解算法}
+
+该模型的目标函数由事件区间长度构成，在大部分未命中策略上取零，并在视线进入或离开烟幕球时发生非光滑切换。若仅从问题一的朝向初始化，种群容易集中到 $\theta\approx\pi$ 的局部盆地。为此，本文先在完整航向域内执行多初值差分进化，同时按航向扇区进行几何筛查；对筛出的 $\theta\approx0$ 外向飞行盆地单独局部细化，并与 $\theta\approx\pi$ 的内向飞行盆地交叉比较。
+
+当候选尚未形成有效遮蔽时，以 $\min_tD(t)-10$ 作为连续的未命中距离引导；出现有效区间后，切换为式\cref{eq:q2-complete-model} 中的真实时长目标。每个候选都先检查速度、时序与起爆高度，再用问题一的有限线段投影计算 $D(t)$，最后通过 Brent 法求取全部阈值事件根并合并有效区间。最优候选再以每个圆周 $5760$ 个角向点复算，并对速度边界及其余决策量作单侧或双侧扰动。完整流程如\cref{fig:q2-flow}所示。
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.76\textwidth]{fig_flow_q2.pdf}
+    \caption{问题二单弹联合优化与可行性复核流程}
+    \label{fig:q2-flow}
+\end{figure}
+
+\subsection{最优投放策略}
+
+多盆地搜索得到航向角 $\theta=0.089221635\,\mathrm{rad}=5.112023^{\circ}$，即 FY1 向 $x$ 轴正向并略偏向 $y$ 轴正向飞行；速度取允许上界 $140\,\mathrm{m/s}$。投放时刻为 $t_r=0.878620\,\mathrm{s}$，引信延时为 $\tau=0.053112\,\mathrm{s}$，故起爆时刻为 $t_e=0.931732\,\mathrm{s}$。相应速度向量、投放点和起爆点为
+\begin{align}
+    \bm v_U&=(139.443135,\ 12.474463,\ 0)^{\mathsf T}\ \mathrm{m/s},\\
+    \bm r_r&=(17922.517471,\ 10.960308,\ 1800.000000)^{\mathsf T}\ \mathrm{m},\\
+    \bm r_e&=(17929.923629,\ 11.622856,\ 1799.986177)^{\mathsf T}\ \mathrm{m}.
+\end{align}
+各项决策量及对应的遮蔽区间如\cref{tab:q2-strategy}所示；速度达到上界，说明扩大水平方向可达范围是该候选取得较长遮蔽窗口的重要条件。
+
+\begin{table}[!htbp]
+    \centering
+    \caption{问题二 FY1 单枚烟幕弹优化策略}
+    \label{tab:q2-strategy}
+    \begin{tabular}{lc}
+        \toprule[1.5pt]
+        决策量或结果 & 数值 \\
+        \midrule[1pt]
+        航向角（$+x$ 轴逆时针） & $5.112023^{\circ}$ \\
+        FY1 速度 & $140.000000\,\mathrm{m/s}$ \\
+        投放时刻与投放点 & $0.878620\,\mathrm{s}$；$(17922.517,10.960,1800.000)\,\mathrm{m}$ \\
+        起爆时刻与起爆点 & $0.931732\,\mathrm{s}$；$(17929.924,11.623,1799.986)\,\mathrm{m}$ \\
+        完全遮蔽区间 & $[0.931732,5.519794]\,\mathrm{s}$ \\
+        最大有效遮蔽时长 & $4.588062\,\mathrm{s}$ \\
+        \bottomrule[1.5pt]
+    \end{tabular}
+\end{table}
+
+完整圆柱在起爆后约 $4\times10^{-7}\,\mathrm{s}$ 即进入完全遮蔽状态，于 $t=5.519794\,\mathrm{s}$ 离开有效烟幕范围，故
+\begin{equation}
+    T_{\mathrm{eff}}=5.519794337-0.931732176
+    =4.588062160\,\mathrm{s}\approx\boxed{4.588\,\mathrm{s}}.
+\end{equation}
+与问题一的给定策略相比，遮蔽时长增加 $3.196\,\mathrm{s}$，提高约 $229.7\%$。优化收敛过程及最优策略下的距离裕度如\cref{fig:q2-diagnostics}所示：图（a）表明外向盆地细化稳定达到 $4.588\,\mathrm{s}$，优于三个随机种子的内向局部盆地；图（b）中 $D(t)$ 在有效窗口内低于 $10\,\mathrm{m}$ 阈值，且最小裕度约为 $9.37\,\mathrm{m}$，验证了该策略并非仅在区间端点临界成立。
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.96\textwidth]{q2_optimization_diagnostics.pdf}
+    \caption{问题二多初值优化收敛与最优策略距离裕度}
+    \label{fig:q2-diagnostics}
+\end{figure}
+
+\subsection{收敛性与边界检验}
+
+三个随机种子所得内向飞行局部盆地时长分别为 $4.540202$、$4.542131$ 和 $4.526500\,\mathrm{s}$。加入独立航向扇区筛查后，外向飞行盆地达到 $4.588062\,\mathrm{s}$，因而取后者作为主结果。圆周角向采样由 $90$ 加密至 $1440$ 时结果保持 $4.588062379\,\mathrm{s}$，加密至 $5760$ 后变化 $2.18\times10^{-7}\,\mathrm{s}$。
+
+最优速度达到上界 $140\,\mathrm{m/s}$；将速度降至 $139.9\,\mathrm{m/s}$，时长降为 $4.588019\,\mathrm{s}$。航向角左右扰动 $0.001\,\mathrm{rad}$、投放时刻前后扰动 $0.01\,\mathrm{s}$、引信延时前后扰动 $0.01\,\mathrm{s}$ 均未获得更大目标值，说明候选解在其余三个方向上具有局部稳定性。起爆高度为 $1799.986\,\mathrm{m}$，全部有效时刻均处于烟幕寿命内且早于导弹到达假目标，所有约束回代通过。
+
+\endinput
+\section{问题二模型建立和求解}
+
+数学建模必然涉及不少数学公式的使用。下面简单介绍一个可能用得上的数学环境。
+
+首先是行内公式，例如 $ \theta $ 是角度。行内公式使用 \verb|$  $| 包裹。
+
+行间公式不需要编号的可以使用 \verb|\[  \]| 包裹，例如
+\[
+E=mc^2
+\]
+其中 $ E $ 是能量，$ m $ 是质量，$ c $ 是光速。
+
+如果希望某个公式带编号，并且在后文中引用可以参考下面的写法：
+\begin{equation}
+E=mc^2
+\label{eq:energy}
+\end{equation}
+式\cref{eq:energy}是质能方程。
+
+多行公式有时候希望能够在特定的位置对齐，以下是其中一种处理方法。
+\begin{align}
+P & = UI \\
+& = I^2R
+\end{align}
+\verb|&| 是对齐的位置， \verb|&| 可以有多个，但是每行的个数要相同。
+
+矩阵的输入也不难。
+\[
+\mathbf{X} = \left(
+    \begin{array}{cccc}
+    x_{11} & x_{12} & \ldots & x_{1n}\\
+    x_{21} & x_{22} & \ldots & x_{2n}\\
+    \vdots & \vdots & \ddots & \vdots\\
+    x_{n1} & x_{n2} & \ldots & x_{nn}\\
+    \end{array} \right)
+\]
+
+分段函数这些可以用 \verb|case| 环境，但是它要放在数学环境里面。
+\[
+f(x) =
+    \begin{cases}
+        0 &  x \text{为无理数} ,\\
+        1 &  x \text{为有理数} .
+    \end{cases}
+\]
+在数学环境里面，字体用的是数学字体，一般与正文字体不同。假如要公式里面有个别文字，则需要把这部分放在 \verb|text| 环境里面，即 \verb|\text{文本环境}| 。
+
+公式中个别需要加粗的字母可以用 \verb|$\bm{math symbol}$| 。如 $ \alpha a\bm{\alpha a} $ 。
+
+以上仅简单介绍了基础的使用，对于更复杂的需求，可以阅读相关的宏包手册，如 \href{http://texdoc.net/texmf-dist/doc/latex/amsmath/amsldoc.pdf}{amsmath}。
+
+希腊字母这些如果不熟悉，可以去查找符号文件 \href{http://mirrors.ctan.org/info/symbols/comprehensive/symbols-a4.pdf}{symbols-a4.pdf} ，也可以去 \href{http://detexify.kirelabs.org/classify.html}{detexify} 网站手写识别。另外还有数学公式识别软件 \href{https://mathpix.com/}{mathpix} 。
+
+下面简单介绍一下定理、证明等环境的使用。
+\begin{definition}
+    定义环境
+    \label{def:nosense}
+\end{definition}
+\cref{def:nosense}除了告诉你怎么使用这个环境以外，没有什么其它的意义。
+
+除了 definition 环境，还可以使用 theorem 、lemma、corollary、assumption、conjecture、axiom、principle、problem、example、proof、solution 这些环境，根据论文的实际需求合理使用。
+
+\begin{theorem}
+    这是一个定理。
+    \label{thm:example}
+\end{theorem}
+由\cref{thm:example}我们知道了定理环境的使用。
+
+\begin{lemma}
+    这是一个引理。
+    \label{lem:example}
+\end{lemma}
+由\cref{lem:example}我们知道了引理环境的使用。
+
+\begin{corollary}
+    这是一个推论。
+    \label{cor:example}
+\end{corollary}
+由\cref{cor:example}我们知道了推论环境的使用。
+
+\begin{assumption}
+    这是一个假设。
+    \label{asu:example}
+\end{assumption}
+由\cref{asu:example}我们知道了假设环境的使用。
+
+\begin{conjecture}
+    这是一个猜想。
+    \label{con:example}
+\end{conjecture}
+由\cref{con:example}我们知道了猜想环境的使用。
+
+\begin{axiom}
+    这是一个公理。
+    \label{axi:example}
+\end{axiom}
+由\cref{axi:example}我们知道了公理环境的使用。
+
+\begin{principle}
+    这是一个定律。
+    \label{pri:example}
+\end{principle}
+由\cref{pri:example}我们知道了定律环境的使用。
+
+\begin{problem}
+    这是一个问题。
+    \label{pro:example}
+\end{problem}
+由\cref{pro:example}我们知道了问题环境的使用。
+
+\begin{example}
+    这是一个例子。
+    \label{exa:example}
+\end{example}
+由\cref{exa:example}我们知道了例子环境的使用。
+
+\begin{proof}
+    这是一个证明。
+    \label{prf:example}
+\end{proof}
+由\cref{prf:example}我们知道了证明环境的使用。
+
+\begin{solution}
+    这是一个解。
+    \label{sol:example}
+\end{solution}
+由\cref{sol:example}我们知道了解环境的使用。

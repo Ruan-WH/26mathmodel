@@ -1,0 +1,108 @@
+\section{问题五模型建立和求解}
+
+\subsection{任务分配与连续决策耦合}
+
+问题五的决策同时包含无人机--导弹分配、每机投弹数量和连续飞行参数，可视为离散资源配置与连续轨迹规划的耦合问题\cite{dantzig1957discrete}。设 $a_{ijk}\in\{0,1\}$ 表示无人机 $FY_i$ 的第 $k$ 枚烟幕弹是否用于干扰 $M_j$；$n_i$ 为该机实际投弹数。每架无人机的全部烟幕弹共享航向 $\theta_i$ 和速度 $v_i$，但投放时刻 $t_{r,ik}$ 与引信延时 $\tau_{ik}$ 可以不同。第 $j$ 枚导弹的联合遮蔽时长定义为
+\begin{equation}
+ T_j=\mu\!\left(\bigcup_{i=1}^{5}\bigcup_{k=1}^{3}
+ \{\Omega_{ijk}:a_{ijk}=1\}\right),
+\end{equation}
+总目标取 $F=T_1+T_2+T_3$。由于三枚导弹是三个同时存在的威胁对象，其时间区间可以跨导弹分别计入；同一导弹内部则必须先取并集再计时。
+
+\subsection{完整优化模型}
+
+综合离散容量、共享航迹、投放间隔、弹道和遮蔽约束，得到
+\begin{equation}
+\begin{aligned}
+&\max\quad F=\sum_{j=1}^{3}\mu\!\left(
+ \bigcup_{i=1}^{5}\bigcup_{k=1}^{3}\{\Omega_{ijk}:a_{ijk}=1\}\right),\\[-1mm]
+&\text{\rm s.t.}\quad
+\left\{\begin{aligned}
+&a_{ijk}\in\{0,1\},\qquad \sum_{j=1}^{3}a_{ijk}\le1,\\
+&n_i=\sum_{j=1}^{3}\sum_{k=1}^{3}a_{ijk}\le3,\qquad i=1,\ldots,5,\\
+&0\le\theta_i<2\pi,\qquad70\le v_i\le140,\\
+&t_{r,i,k+1}-t_{r,ik}\ge1\quad(k<n_i),\\
+&t_{e,ik}=t_{r,ik}+\tau_{ik},\qquad t_{r,ik},\tau_{ik}\ge0,\\
+&a_{ijk}t_{e,ik}\le a_{ijk}t_{M_j},\\
+&\bm r_{r,ik}=\bm u_{i0}+v_i\bm e(\theta_i)t_{r,ik},\\
+&\bm r_{e,ik}=\bm u_{i0}+v_i\bm e(\theta_i)t_{e,ik}
+ +(0,0,-\tfrac12g\tau_{ik}^2)^{\mathsf T},\\
+&z_{e,ik}=u_{i0,z}-\tfrac12g\tau_{ik}^2\ge0,\\
+&\bm c_{ik}(t)=\bm r_{e,ik}-(0,0,3(t-t_{e,ik}))^{\mathsf T},\\
+&t_{e,ik}\le t\le\min\{t_{e,ik}+20,t_{M_j}\}\quad(a_{ijk}=1),\\
+&D_{ijk}(t)=\displaystyle\max_{\bm p\in\mathcal T}d_{ijk}(\bm p,t),\\
+&\Omega_{ijk}=\{t:D_{ijk}(t)\le10\}\quad(a_{ijk}=1).
+\end{aligned}\right.
+\end{aligned}
+\label{eq:q5-complete-model}
+\end{equation}
+其中第二条约束同时限制单机最多三枚和实际资源使用量；第四条确保同机投放间隔；中部各式保证同一无人机的所有投放点位于同一水平直线航迹；最后三式将不同导弹的运动轨迹代入统一的完整圆柱判据。
+
+\subsection{分层求解算法}
+
+若直接把 $15$ 个二进制分配位和全部连续变量交给一个种群算法，搜索维数高且多数候选无法形成有效遮蔽。本文采用三层求解：第一层对 $5\times3$ 个无人机--导弹组合做单弹效能探针，记录正收益组合及其可达时间窗；第二层按单位弹药边际收益构造分配，并保留能补充新时间窗的组合；第三层在每个导弹分组内联合优化共享航向、速度、投放时刻和引信延时。若新增烟幕弹的区间被已有并集完全覆盖，则其边际收益为零并从方案中删除。
+
+该方法本质上把组合选择与连续优化交替进行：分配层提供低维连续子问题，连续层反过来更新边际收益。最终再把所有候选带回式\cref{eq:q5-complete-model}，统一进行容量、间隔、起爆高度、烟幕寿命和事件区间复核。完整流程如\cref{fig:q5-flow}所示。
+
+\begin{figure}[!htbp]
+ \centering
+ \includegraphics[width=0.58\textwidth]{fig_flow_q5.pdf}
+ \caption{问题五任务分配与分组连续优化流程}
+ \label{fig:q5-flow}
+\end{figure}
+
+\subsection{资源分配与投放策略}
+
+效能筛查后采用的主分配为：FY1 的三枚烟幕弹负责 M1；FY2 的两枚、FY3 的一枚和 FY4 的一枚共同负责 M2；FY5 的一枚负责 M3。共使用 $8$ 枚烟幕弹，保留 $7$ 个未使用弹位。保留弹药不是遗漏，而是因为这些候选在当前共享航迹下不能增加任何导弹的时间并集，继续投放只会增加执行负担。各有效弹位的分配与投放参数如\cref{tab:q5-strategy}所示。
+
+\begin{table}[!htbp]
+ \centering
+ \caption{问题五有效烟幕弹的资源分配与投放策略}
+ \label{tab:q5-strategy}
+ \resizebox{\textwidth}{!}{
+ \begin{tabular}{cccccccc}
+  \toprule[1.5pt]
+  无人机 & 导弹 & 弹号 & 航向角/$^{\circ}$ & 速度/(m/s) & 投放时刻/s & 引信延时/s & 单弹时长/s \\
+  \midrule[1pt]
+  FY1 & M1 & 1 & $179.647479$ & $139.998280$ & $0.003000$ & $3.611000$ & $3.834877$ \\
+  FY1 & M1 & 2 & $179.647479$ & $139.998280$ & $3.702000$ & $5.337000$ & $2.591030$ \\
+  FY1 & M1 & 3 & $179.647479$ & $139.998280$ & $5.569000$ & $6.041000$ & $1.204687$ \\
+  FY2 & M2 & 1 & $293.661817$ & $140.000000$ & $5.767996$ & $1.759840$ & $3.921919$ \\
+  FY2 & M2 & 2 & $293.661817$ & $140.000000$ & $6.867996$ & $0.759840$ & $3.828016$ \\
+  FY3 & M2 & 1 & $86.803106$ & $133.400000$ & $24.290000$ & $0.300000$ & $2.897440$ \\
+  FY4 & M2 & 1 & $237.605598$ & $81.600000$ & $12.540000$ & $11.860000$ & $2.590900$ \\
+  FY5 & M3 & 1 & $116.377539$ & $140.000000$ & $11.808152$ & $1.040372$ & $3.721573$ \\
+  \bottomrule[1.5pt]
+ \end{tabular}}
+\end{table}
+
+M1 的三段区间首尾拼接为 $[5.205021,12.814687]$，故 $T_1=7.609665\,\mathrm{s}$。M2 的有效并集为
+\begin{equation}
+ [9.031982,12.953901]\cup[13.111952,16.939968]
+ \cup[27.804699,30.702139],
+\end{equation}
+其中 FY4 的晚段窗口与 FY3 基本重叠，虽其单弹时长为 $2.590900\,\mathrm{s}$，但对并集只提供边界裕量，故 $T_2=10.647375\,\mathrm{s}$。M3 由 FY5 形成 $[13.373007,17.094580]$，得到 $T_3=3.721573\,\mathrm{s}$。综上，
+\begin{equation}
+ F=T_1+T_2+T_3
+ =7.609665451+10.647374566+3.721573169
+ =\boxed{21.978613187\ \mathrm{s}}.
+\end{equation}
+全部投放点、起爆点及未使用弹位均按官方格式写入 \texttt{result3.xlsx}。
+
+分导弹的有效时间窗与无人机任务分配如\cref{fig:q5-diagnostics}所示。图（a）表明 M1 的三弹窗口连续拼接，M2 由四枚弹覆盖三个时段，M3 由 FY5 单独形成窗口；浅色区域表示各导弹的区间并集。图（b）进一步显示投弹资源集中于正收益配对，共形成“FY1--M1、FY2/FY3/FY4--M2、FY5--M3”的稀疏分配结构，与\cref{tab:q5-strategy}一致。
+
+\begin{figure}[!htbp]
+ \centering
+ \includegraphics[width=0.96\textwidth]{q5_coordination_diagnostics.pdf}
+ \caption{问题五分导弹联合时长与有效时间窗}
+ \label{fig:q5-diagnostics}
+\end{figure}
+
+\subsection{可行性与数值精度检验}
+
+FY1 的投放间隔为 $3.699$ 和 $1.867\,\mathrm{s}$，FY2 的两次投放间隔为 $1.100\,\mathrm{s}$，均满足题设。八枚烟幕弹起爆高度的最小值为 FY3 的 $699.559\,\mathrm{m}$，不存在地下起爆；各起爆时刻均早于对应导弹到达假目标的时刻。将角向点数由 $360$ 加密至 $5760$ 后，总目标由 $21.978638125$ 变为 $21.978613187\,\mathrm{s}$，差值仅 $2.49\times10^{-5}\,\mathrm{s}$，说明最终结果对边界离散已基本收敛。
+
+由于模型是高维混合非线性问题，分层启发式不能给出全局最优性的严格证明；但多阶段效能筛查、正边际收益保留、完整约束回代和高密度事件终算共同保证了方案的可执行性与数值可信度。
+
+\endinput
+\section{问题五模型建立和求解}

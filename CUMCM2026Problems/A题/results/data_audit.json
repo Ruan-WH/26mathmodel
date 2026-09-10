@@ -1,0 +1,28 @@
+{
+  "environment_rows": 241,
+  "environment_time_range_s": [
+    0.0,
+    14400.0
+  ],
+  "environment_sampling_s": [
+    60.0
+  ],
+  "temperature_range_c": [
+    28.0,
+    50.246
+  ],
+  "ambient_moisture_range": [
+    0.01963,
+    0.05025
+  ],
+  "radius_rows": 145,
+  "radius_time_range_s": [
+    0.0,
+    259200.0
+  ],
+  "radius_range_cm": [
+    1.198,
+    2.0
+  ],
+  "radius_monotone_adjustments": 0
+}

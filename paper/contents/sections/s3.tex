@@ -1,0 +1,172 @@
+\section{模型准备}
+
+\subsection{统一运动学模型}
+
+导弹 M1 的初始位置为 $\bm m_0=(20000,0,2000)^{\mathsf T}$，以 $300\,\mathrm{m/s}$ 指向假目标原点。其速度与位置分别为
+\begin{equation}
+    \bm v_M=-300\frac{\bm m_0}{\lVert\bm m_0\rVert}
+    =(-298.511157,0,-29.851116)^{\mathsf T},
+    \qquad
+    \bm m(t)=\bm m_0+\bm v_Mt .
+    \label{eq:q1-missile}
+\end{equation}
+
+FY1 从 $(17800,0,1800)$ 出发，以 $120\,\mathrm{m/s}$ 朝假目标方向等高度飞行，因此
+\begin{equation}
+    \bm u(t)=(17800-120t,0,1800)^{\mathsf T}.
+    \label{eq:q1-uav}
+\end{equation}
+在 $t_r=1.5\,\mathrm{s}$ 投放烟幕弹，故投放点为
+\begin{equation}
+    \bm r_r=\bm u(t_r)=(17620,0,1800)^{\mathsf T}\ \mathrm{m}.
+\end{equation}
+烟幕弹延迟 $\tau=3.6\,\mathrm{s}$ 起爆，起爆时刻为 $t_e=t_r+\tau=5.1\,\mathrm{s}$。烟幕弹继承无人机水平速度并作自由落体运动，起爆点为
+\begin{align}
+    \bm r_e
+    &=\bm r_r+(-120,0,0)^{\mathsf T}\tau
+      +(0,0,-\tfrac12g\tau^2)^{\mathsf T} \notag\\
+    &=(17188,0,1736.496)^{\mathsf T}\ \mathrm{m}.
+    \label{eq:q1-explosion}
+\end{align}
+起爆后，烟幕球心在有效期内满足
+\begin{equation}
+    \bm c(t)=(17188,0,1736.496-3(t-5.1))^{\mathsf T},
+    \qquad 5.1\le t\le25.1.
+    \label{eq:q1-cloud}
+\end{equation}
+
+\section{问题一模型建立和求解}
+
+\subsection{完整圆柱目标的遮蔽判据}
+
+真目标建模为集合
+\begin{equation}
+    \mathcal T=\{(x,y,z)^{\mathsf T}:x^2+(y-200)^2\le 7^2,\ 0\le z\le10\}.
+\end{equation}
+对任意 $\bm p\in\mathcal T$，令 $\bm q=\bm p-\bm m(t)$，将烟幕球心投影到导弹与目标点之间的有限线段上：
+\begin{equation}
+    \lambda(\bm p,t)=
+    \operatorname{clip}\!\left(
+    \frac{[\bm c(t)-\bm m(t)]^{\mathsf T}\bm q}{\bm q^{\mathsf T}\bm q},0,1
+    \right).
+    \label{eq:q1-lambda}
+\end{equation}
+相应最短距离为
+\begin{equation}
+    d(\bm p,t)=\left\lVert
+    \bm c(t)-\bm m(t)-\lambda(\bm p,t)\bm q
+    \right\rVert_2,
+\end{equation}
+而完整目标的最坏视线距离定义为
+\begin{equation}
+    D(t)=\max_{\bm p\in\mathcal T}d(\bm p,t).
+    \label{eq:q1-worst}
+\end{equation}
+在烟幕有效期内，仅当 $D(t)\le R_s$ 时，导弹到圆柱目标的全部视线均与烟幕球相交，目标才被完全遮蔽。式\cref{eq:q1-lambda} 将投影参数限制在 $[0,1]$，因而不会把导弹后方的视线延长线误判为遮蔽。
+
+\subsection{数值求解流程}
+
+圆柱为凸集，其视角极值位于投影轮廓边界。计算时对上下圆周进行角向加密采样，得到 $D(t)$ 的数值近似。随后在 $[5.1,25.1]$ 内粗扫 $F(t)=D(t)-10$，定位所有变号区间，并用 Brent 法求出遮蔽状态切换的事件根。完整计算流程如\cref{fig:q1-flow}所示。
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.76\textwidth]{fig_flow_q1.pdf}
+    \caption{问题一完整目标遮蔽判定与事件求根流程}
+    \label{fig:q1-flow}
+\end{figure}
+
+\subsection{结果与分析}
+
+计算得到完整圆柱的遮蔽进入与离开时刻分别为
+\begin{equation}
+    (t_{\mathrm{in}},t_{\mathrm{out}})
+    =(8.056445489,\ 9.448088159)\ \mathrm{s},
+\end{equation}
+因此有效遮蔽时长为
+\begin{equation}
+    T_{\mathrm{eff}}=9.448088159-8.056445489
+    =1.391642669\ \mathrm{s}\approx\boxed{1.392\ \mathrm{s}}.
+\end{equation}
+最坏视线距离随时间的变化如\cref{fig:q1-distance} 所示。进入时刻由圆柱边界的最不利视线首先穿入烟幕球决定；临近离开时刻，导弹与烟幕球的相对位置快速改变，最坏距离越过 $10\,\mathrm{m}$ 阈值。遮蔽期间 $D(t)$ 的最小值为 $4.716707\,\mathrm{m}$，出现在 $t=9.418668\,\mathrm{s}$。
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.92\textwidth]{q1_occlusion_distance.pdf}
+    \caption{烟幕球心至目标视线段的距离及有效遮蔽区间}
+    \label{fig:q1-distance}
+\end{figure}
+
+题面没有明确规定是否可将圆柱目标点化。为检验口径影响，分别取圆柱几何中心 $(0,200,5)$ 和底面圆心 $(0,200,0)$ 作为代表点，结果如\cref{tab:q1-results}所示。点目标口径忽略了目标尺寸，分别比完整圆柱口径高估 $0.0434\,\mathrm{s}$ 和 $0.0186\,\mathrm{s}$。因此本文采用 $1.392\,\mathrm{s}$ 作为保守主结果；若按常见的几何中心视线简化，答案为 $1.435\,\mathrm{s}$。
+
+\begin{table}[!htbp]
+    \centering
+    \caption{不同目标几何口径下的问题一结果}
+    \label{tab:q1-results}
+    \begin{tabular}{lccc}
+        \toprule[1.5pt]
+        判定口径 & 进入时刻/s & 离开时刻/s & 有效时长/s \\
+        \midrule[1pt]
+        完整圆柱目标 & 8.056445 & 9.448088 & 1.391643 \\
+        圆柱几何中心 & 8.013006 & 9.448088 & 1.435082 \\
+        圆柱底面圆心 & 8.037891 & 9.448088 & 1.410197 \\
+        \bottomrule[1.5pt]
+    \end{tabular}
+\end{table}
+
+\subsection{收敛性与敏感性检验}
+
+将每个圆周的角向采样数从 $180$ 加密至 $360$ 时，遮蔽时长仅变化 $2.70\times10^{-6}\,\mathrm{s}$；继续加密至 $5760$ 后，结果在保存精度内不再变化，明显优于 $10^{-4}\,\mathrm{s}$ 的收敛标准。时间边界由事件根直接计算，而非由绘图步长读取。
+
+参数扰动结果如\cref{tab:q1-sensitivity}所示。有效半径增大会延长遮蔽时间，说明判据方向正确；重力与下沉速度改变烟幕球相对视线的穿越轨迹，因此对秒级遮蔽窗口具有可观影响。
+
+\begin{table}[H]
+    \centering
+    \caption{关键物理参数扰动下的完整目标遮蔽时长}
+    \label{tab:q1-sensitivity}
+    \begin{tabular}{lccc}
+        \toprule[1.5pt]
+        参数 & 低值结果/s & 基准结果/s & 高值结果/s \\
+        \midrule[1pt]
+        $g=9.7,9.8,9.9\,\mathrm{m/s^2}$ & 1.2542 & 1.3916 & 1.5228 \\
+        下沉速度 $=2.9,3.0,3.1\,\mathrm{m/s}$ & 1.3281 & 1.3916 & 1.4513 \\
+        有效半径 $=9.5,10.0,10.5\,\mathrm{m}$ & 1.2720 & 1.3916 & 1.5106 \\
+        \bottomrule[1.5pt]
+    \end{tabular}
+\end{table}
+\endinput
+
+\section{绘制普通三线表格}
+表格应具有三线表格式，因此常用 booktabs宏包，其标准格式如\cref{tab:001}~所示。
+\begin{table}[!htbp]
+    \caption{标准三线表格}\label{tab:001} \centering
+    \begin{tabular}{ccccc}
+        \toprule[1.5pt]
+        $D$(in) & $P_u$(lbs) & $u_u$(in) & $\beta$ & $G_f$(psi.in)\\
+        \midrule[1pt]
+        5 & 269.8 & 0.000674 & 1.79 & 0.04089\\
+        10 & 421.0 & 0.001035 & 3.59 & 0.04089\\
+        20 & 640.2 & 0.001565 & 7.18 & 0.04089\\
+        \bottomrule[1.5pt]
+    \end{tabular}
+\end{table}
+
+其绘制表格的代码及其说明如下。
+\begin{tcode}
+    \begin{table}[!htbp]
+        \caption[标签名]{中文标题}
+        \begin{tabular}{cc...c}
+            \toprule[1.5pt]
+            表头第1个格   & 表头第2个格   & ... & 表头第n个格  \\
+            \midrule[1pt]
+            表中数据(1,1) & 表中数据(1,2) & ... & 表中数据(1,n)\\
+            表中数据(2,1) & 表中数据(2,2) & ... & 表中数据(2,n)\\
+            ...................................................\\
+            表中数据(m,1) & 表中数据(m,2) & ... & 表中数据(m,n)\\
+            \bottomrule[1.5pt]
+        \end{tabular}
+    \end{table}
+\end{tcode}
+
+\bigskip
+
+table环境是一个将表格嵌入文本的浮动环境。tabular环境的必选参数由每列对应一个格式字符所组成：c表示居中，l表示左对齐，r表示右对齐，其总个数应与表的列数相同。此外，\verb|@{文本}|可以出现在任意两个上述的列格式之间，其中的文本将被插入每一行的同一位置。表格的各行以\verb|\\|分隔，同一行的各列则以\&分隔。 \verb|\toprule| 、\verb|\midrule| 和 \verb|\bottomrule| 三个命令是由booktabs宏包提供的，其中 \verb|\toprule| 和 \verb|\bottomrule| 分别用来绘制表格的第一条（表格最顶部）和第三条（表格最底部）水平线， \verb|\midrule| 用来绘制第二条（表头之下）水平线，且第一条和第三条水平线的线宽为 1.5pt ，第二条水平线的线宽为 1pt 。引用方法与图片的相同。

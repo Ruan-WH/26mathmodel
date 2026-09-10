@@ -1,0 +1,26 @@
+{
+  "temperature_minus_5pct": {
+    "terminal_temperature_scale": 0.95,
+    "terminal_moisture_scale": 1.0,
+    "q3_drying_time_h": 60.86128538456115,
+    "q4_drying_time_h": 56.24399292721159
+  },
+  "temperature_plus_5pct": {
+    "terminal_temperature_scale": 1.05,
+    "terminal_moisture_scale": 1.0,
+    "q3_drying_time_h": 52.02152629839609,
+    "q4_drying_time_h": 48.18336094512627
+  },
+  "ambient_moisture_minus_5pct": {
+    "terminal_temperature_scale": 1.0,
+    "terminal_moisture_scale": 0.95,
+    "q3_drying_time_h": 56.06087865701118,
+    "q4_drying_time_h": 51.89066645207651
+  },
+  "ambient_moisture_plus_5pct": {
+    "terminal_temperature_scale": 1.0,
+    "terminal_moisture_scale": 1.05,
+    "q3_drying_time_h": 56.332333074969235,
+    "q4_drying_time_h": 52.09596555290727
+  }
+}
