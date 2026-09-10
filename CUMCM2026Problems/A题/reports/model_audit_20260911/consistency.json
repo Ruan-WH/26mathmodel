@@ -1,0 +1,13 @@
+{
+  "q2_excel_last_s": 10800,
+  "common_values": 3780,
+  "different_at_four_decimals": 3230,
+  "max_abs_moisture_difference": 0.0049000000000001265,
+  "location": {
+    "time_s": 60,
+    "radius_cm": 2.0,
+    "q2": 2.3729,
+    "q3": 2.3778
+  },
+  "q3_last_s": 202320.0
+}

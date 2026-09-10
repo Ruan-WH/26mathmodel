@@ -27,7 +27,9 @@ RESULTS_DIR = ROOT / "results"
 H_T = 25.0
 H_M = 8.0e-7
 R_FIXED = 0.02
-NODES = 21
+NODES = 161
+OUTPUT_NODES = 21
+GRID_POWER = 2.0
 INITIAL_T = 28.0
 INITIAL_C = 2.55
 THRESHOLD_C = 0.15
@@ -155,6 +157,12 @@ def face_interpolate(left: np.ndarray, right: np.ndarray) -> np.ndarray:
     return 0.5 * (left + right)
 
 
+def radial_grid(count: int, radius: float = 1.0) -> np.ndarray:
+    """Surface-refined computational mesh; output positions are independent."""
+    s = np.linspace(0.0, 1.0, count)
+    return radius * (1.0 - (1.0 - s) ** GRID_POWER)
+
+
 def node_control_volumes(coordinate: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
     """Return dimensionless/physical radial CV volumes and internal face radii."""
     faces = 0.5 * (coordinate[:-1] + coordinate[1:])
@@ -178,7 +186,7 @@ def implicit_radial_step(
     """One implicit node-centred radial FVM step on coordinate [0, 1] or [0, R]."""
     count = len(old)
     volumes, faces = node_control_volumes(coordinate)
-    delta = float(coordinate[1] - coordinate[0])
+    delta = np.diff(coordinate)
     face_property = face_interpolate(conductivity[:-1], conductivity[1:])
     conductance = 2.0 * math.pi * faces * face_property * diffusion_scale / delta
 
@@ -222,16 +230,17 @@ def advance_coupled(
     tolerance_temperature: float = 1e-8,
     tolerance_moisture: float = 1e-10,
     max_iterations: int = 30,
+    balance: dict | None = None,
 ) -> tuple[np.ndarray, np.ndarray, int]:
     temperature = temperature_old.copy()
     moisture = moisture_old.copy()
     if moving_domain:
-        coordinate = np.linspace(0.0, 1.0, len(temperature_old))
+        coordinate = radial_grid(len(temperature_old))
         diffusion_scale = 1.0 / radius_m**2
         boundary_scale = 1.0 / radius_m
         shrink_velocity = -(radius_rate_m_s / radius_m) * coordinate
     else:
-        coordinate = np.linspace(0.0, radius_m, len(temperature_old))
+        coordinate = radial_grid(len(temperature_old), radius_m)
         diffusion_scale = 1.0
         boundary_scale = 1.0
         shrink_velocity = None
@@ -281,7 +290,32 @@ def advance_coupled(
         raise FloatingPointError("Non-finite state generated.")
     if np.min(moisture) < -1e-10 or np.max(moisture) > INITIAL_C + 1e-8:
         raise FloatingPointError("Moisture left physical bounds.")
+    if balance is not None:
+        volumes, _ = node_control_volumes(coordinate)
+        adv_c = adv_t = 0.0
+        if shrink_velocity is not None:
+            weight = volumes[1:] * np.maximum(shrink_velocity[1:], 0.0) / np.diff(coordinate)
+            adv_c = dt * float(np.dot(weight, np.diff(moisture)))
+            adv_t = dt * float(np.dot(weight * heat_storage[1:], np.diff(temperature)))
+        change = float(np.dot(volumes, moisture - moisture_old))
+        flux = dt * mass_boundary * (float(moisture[-1]) - ambient_moisture)
+        reference = INITIAL_C * float(volumes.sum())
+        balance['moisture_change'] += change / reference
+        balance['boundary_loss'] += flux / reference
+        balance['relative_transport'] += adv_c / reference
+        residual = change + flux + adv_c
+        balance['maximum_step_mass_residual'] = max(balance['maximum_step_mass_residual'], abs(residual) / reference)
+        heat_change = float(np.dot(heat_storage * volumes, temperature - temperature_old))
+        heat_flux = dt * heat_boundary * (float(temperature[-1]) - ambient_temperature_c)
+        heat_reference = INITIAL_T * float(np.dot(heat_storage, volumes))
+        heat_residual = (heat_change + heat_flux + adv_t) / heat_reference
+        balance['maximum_step_heat_equation_residual'] = max(balance['maximum_step_heat_equation_residual'], abs(heat_residual))
     return temperature, moisture, iteration
+
+
+def new_balance() -> dict:
+    return dict(moisture_change=0.0, boundary_loss=0.0, relative_transport=0.0,
+                maximum_step_mass_residual=0.0, maximum_step_heat_equation_residual=0.0)
 
 
 def simulate_fixed(
@@ -293,13 +327,15 @@ def simulate_fixed(
     stop_at_threshold: bool,
     terminal_temp_scale: float = 1.0,
     terminal_moisture_scale: float = 1.0,
+    stop_interval_s: float | None = None,
 ) -> dict[str, np.ndarray | float | int | bool]:
     temperature = np.full(NODES, INITIAL_T)
     moisture = np.full(NODES, INITIAL_C)
-    radial_m = np.linspace(0.0, R_FIXED, NODES)
+    radial_m = radial_grid(NODES, R_FIXED)
+    output_r = np.linspace(0.0, R_FIXED, OUTPUT_NODES)
     times = [0.0]
-    temperatures = [temperature.copy()]
-    moistures = [moisture.copy()]
+    temperatures = [np.interp(output_r, radial_m, temperature)]
+    moistures = [np.interp(output_r, radial_m, moisture)]
     iterations: list[int] = []
     monotone_profiles = True
     center_is_max = True
@@ -309,12 +345,13 @@ def simulate_fixed(
     threshold_temperature: np.ndarray | None = None
     threshold_moisture: np.ndarray | None = None
     stop_output_time = math.inf
+    balance = new_balance()
     time_s = 0.0
     next_output = output_interval_s
     maximum_time = float(end_time_s if end_time_s is not None else 10.0 * 24.0 * 3600.0)
 
     while time_s < maximum_time - 1e-9:
-        step = min(dt_s, maximum_time - time_s)
+        step = min(dt_s, maximum_time - time_s, next_output - time_s)
         new_time = time_s + step
         temperature_before = temperature.copy()
         moisture_before = moisture.copy()
@@ -331,6 +368,7 @@ def simulate_fixed(
             ambient_c,
             property_model,
             moving_domain=False,
+            balance=balance,
         )
         iterations.append(count)
         time_s = new_time
@@ -347,14 +385,13 @@ def simulate_fixed(
                 temperature_before + fraction * (temperature - temperature_before)
             )
             threshold_moisture = moisture_before + fraction * (moisture - moisture_before)
-            stop_output_time = (
-                math.ceil(threshold_time / output_interval_s) * output_interval_s
-            )
+            stop_spacing = output_interval_s if stop_interval_s is None else stop_interval_s
+            stop_output_time = math.ceil(threshold_time / stop_spacing) * stop_spacing
 
         if time_s + 1e-8 >= next_output:
             times.append(time_s)
-            temperatures.append(temperature.copy())
-            moistures.append(moisture.copy())
+            temperatures.append(np.interp(output_r, radial_m, temperature))
+            moistures.append(np.interp(output_r, radial_m, moisture))
             next_output += output_interval_s
 
         if stop_at_threshold and time_s + 1e-8 >= stop_output_time:
@@ -364,17 +401,18 @@ def simulate_fixed(
 
     return {
         "times_s": np.asarray(times),
-        "radius_m": radial_m,
+        "radius_m": output_r,
         "temperature_c": np.asarray(temperatures),
         "moisture": np.asarray(moistures),
         "threshold_time_s": threshold_time,
-        "threshold_temperature_c": threshold_temperature,
-        "threshold_moisture": threshold_moisture,
+        "threshold_temperature_c": None if threshold_temperature is None else np.interp(output_r, radial_m, threshold_temperature),
+        "threshold_moisture": None if threshold_moisture is None else np.interp(output_r, radial_m, threshold_moisture),
         "last_time_s": time_s,
         "picard_max": int(max(iterations, default=0)),
         "picard_mean": float(np.mean(iterations) if iterations else 0.0),
         "monotone_profiles": monotone_profiles,
         "center_is_max": center_is_max,
+        "balance": balance,
     }
 
 
@@ -386,15 +424,18 @@ def simulate_moving(
     stop_at_threshold: bool = True,
     terminal_temp_scale: float = 1.0,
     terminal_moisture_scale: float = 1.0,
-    include_advection: bool = True,
+    include_advection: bool = False,
 ) -> dict[str, np.ndarray | float | int | bool]:
-    xi = np.linspace(0.0, 1.0, NODES)
+    # Default: homogeneous solid shrinkage, material velocity equals mesh velocity.
+    # True retains the former stationary-spatial scalar model for structural comparison.
+    xi = radial_grid(NODES)
+    output_xi = np.linspace(0.0, 1.0, OUTPUT_NODES)
     temperature = np.full(NODES, INITIAL_T)
     moisture = np.full(NODES, INITIAL_C)
     times = [0.0]
     radii = [R_FIXED]
-    temperatures = [temperature.copy()]
-    moistures = [moisture.copy()]
+    temperatures = [np.interp(output_xi, xi, temperature)]
+    moistures = [np.interp(output_xi, xi, moisture)]
     iterations: list[int] = []
     previous_max = float(np.max(moisture))
     previous_time = 0.0
@@ -409,9 +450,10 @@ def simulate_moving(
     monotone_profiles = True
     center_is_max = True
     maximum_cfl = 0.0
+    balance = new_balance()
 
     while time_s < maximum_time - 1e-9:
-        step = min(dt_s, maximum_time - time_s)
+        step = min(dt_s, maximum_time - time_s, next_output - time_s)
         new_time = time_s + step
         temperature_before = temperature.copy()
         moisture_before = moisture.copy()
@@ -431,13 +473,14 @@ def simulate_moving(
             ambient_c,
             property_q4,
             moving_domain=True,
+            balance=balance,
         )
         iterations.append(count)
         time_s = new_time
         current_max = float(np.max(moisture))
         maximum_cfl = max(
             maximum_cfl,
-            float(abs(radius_rate_m_s / radius_m) * step / (xi[1] - xi[0])),
+            float(np.max(abs(radius_rate_m_s / radius_m) * xi[1:] * step / np.diff(xi))),
         )
         monotone_profiles = monotone_profiles and bool(np.all(np.diff(moisture) <= 2e-9))
         center_is_max = center_is_max and bool(
@@ -459,8 +502,8 @@ def simulate_moving(
         if time_s + 1e-8 >= next_output:
             times.append(time_s)
             radii.append(radius_m)
-            temperatures.append(temperature.copy())
-            moistures.append(moisture.copy())
+            temperatures.append(np.interp(output_xi, xi, temperature))
+            moistures.append(np.interp(output_xi, xi, moisture))
             next_output += output_interval_s
 
         if stop_at_threshold and time_s + 1e-8 >= stop_output_time:
@@ -470,13 +513,13 @@ def simulate_moving(
 
     return {
         "times_s": np.asarray(times),
-        "xi": xi,
+        "xi": output_xi,
         "radii_m": np.asarray(radii),
         "temperature_c": np.asarray(temperatures),
         "moisture": np.asarray(moistures),
         "threshold_time_s": threshold_time,
-        "threshold_temperature_c": threshold_temperature,
-        "threshold_moisture": threshold_moisture,
+        "threshold_temperature_c": None if threshold_temperature is None else np.interp(output_xi, xi, threshold_temperature),
+        "threshold_moisture": None if threshold_moisture is None else np.interp(output_xi, xi, threshold_moisture),
         "threshold_radius_m": threshold_radius_m,
         "last_time_s": time_s,
         "picard_max": int(max(iterations, default=0)),
@@ -484,6 +527,8 @@ def simulate_moving(
         "monotone_profiles": monotone_profiles,
         "center_is_max": center_is_max,
         "maximum_advection_cfl": maximum_cfl,
+        "balance": balance,
+        "velocity_model": "stationary_spatial_comparison" if include_advection else "uniform_material_shrinkage",
     }
 
 
@@ -647,10 +692,11 @@ def run_all(run_convergence: bool = True) -> None:
     q2 = simulate_fixed(
         environment,
         property_q23,
-        end_time_s=10800.0,
+        end_time_s=None,
         dt_s=1.0,
         output_interval_s=1.0,
-        stop_at_threshold=False,
+        stop_at_threshold=True,
+        stop_interval_s=60.0,
     )
     save_npz(RESULTS_DIR / "q2" / "fields.npz", q2)
     q2_times = [1800, 3600, 5400, 7200, 9000, 10800]
@@ -666,14 +712,9 @@ def run_all(run_convergence: bool = True) -> None:
     }
     write_summary(RESULTS_DIR / "q2" / "summary.json", q2_summary)
 
-    q3 = simulate_fixed(
-        environment,
-        property_q23,
-        end_time_s=None,
-        dt_s=10.0,
-        output_interval_s=60.0,
-        stop_at_threshold=True,
-    )
+    q3 = dict(q2)
+    for key in ("times_s", "temperature_c", "moisture"):
+        q3[key] = q2[key][::60].copy()
     save_npz(RESULTS_DIR / "q3" / "fields.npz", q3)
     q3_end = float(q3["threshold_time_s"])
     q3_report_times = list(np.arange(6 * 3600, math.floor(q3_end / (6 * 3600)) * 6 * 3600 + 1, 6 * 3600))
@@ -695,7 +736,7 @@ def run_all(run_convergence: bool = True) -> None:
     q4 = simulate_moving(
         environment,
         radius_history,
-        dt_s=10.0,
+        dt_s=1.0,
         output_interval_s=60.0,
         stop_at_threshold=True,
     )
@@ -724,51 +765,61 @@ def run_all(run_convergence: bool = True) -> None:
     }
 
     if run_convergence:
-        q3_fine = simulate_fixed(
+        q3_dt2 = simulate_fixed(
             environment,
             property_q23,
             end_time_s=None,
-            dt_s=5.0,
+            dt_s=2.0,
             output_interval_s=60.0,
             stop_at_threshold=True,
         )
-        q4_fine = simulate_moving(
+        q4_dt2 = simulate_moving(
             environment,
             radius_history,
-            dt_s=5.0,
+            dt_s=2.0,
             output_interval_s=60.0,
             stop_at_threshold=True,
         )
-        q4_no_adv = simulate_moving(
+        q4_stationary = simulate_moving(
             environment,
             radius_history,
-            dt_s=10.0,
+            dt_s=1.0,
             output_interval_s=60.0,
             stop_at_threshold=True,
-            include_advection=False,
+            include_advection=True,
         )
         q3_summary["time_step_check"] = {
-            "dt10_s_time_h": q3_end / 3600.0,
-            "dt5_s_time_h": float(q3_fine["threshold_time_s"]) / 3600.0,
+            "dt1_s_time_h": q3_end / 3600.0,
+            "dt2_s_time_h": float(q3_dt2["threshold_time_s"]) / 3600.0,
             "relative_difference": abs(
-                float(q3_fine["threshold_time_s"]) - q3_end
-            ) / float(q3_fine["threshold_time_s"]),
+                float(q3_dt2["threshold_time_s"]) - q3_end
+            ) / float(q3_dt2["threshold_time_s"]),
         }
         q4_summary["time_step_check"] = {
-            "dt10_s_time_h": q4_end / 3600.0,
-            "dt5_s_time_h": float(q4_fine["threshold_time_s"]) / 3600.0,
+            "dt1_s_time_h": q4_end / 3600.0,
+            "dt2_s_time_h": float(q4_dt2["threshold_time_s"]) / 3600.0,
             "relative_difference": abs(
-                float(q4_fine["threshold_time_s"]) - q4_end
-            ) / float(q4_fine["threshold_time_s"]),
+                float(q4_dt2["threshold_time_s"]) - q4_end
+            ) / float(q4_dt2["threshold_time_s"]),
         }
         q4_summary["moving_term_comparison"] = {
-            "with_advection_h": q4_end / 3600.0,
-            "without_advection_h": float(q4_no_adv["threshold_time_s"]) / 3600.0,
+            "material_model_h": q4_end / 3600.0,
+            "stationary_spatial_model_h": float(q4_stationary["threshold_time_s"]) / 3600.0,
             "difference_h": (
-                float(q4_no_adv["threshold_time_s"]) - q4_end
+                float(q4_stationary["threshold_time_s"]) - q4_end
             ) / 3600.0,
         }
 
+    for summary, simulation in [(q1_summary, q1), (q2_summary, q2), (q3_summary, q3), (q4_summary, q4)]:
+        summary['numerics'] = {'nodes': NODES, 'grid_power': GRID_POWER, 'dt_s': 1.0, 'output_nodes': OUTPUT_NODES}
+        summary['balance'] = simulation['balance']
+        summary['balance']['cumulative_mass_equation_residual'] = abs(sum(simulation['balance'][key] for key in ['moisture_change','boundary_loss','relative_transport']))
+    q2_summary['output_end_s'] = q2['last_time_s']
+    q2_summary['drying_time_h'] = q2['threshold_time_s'] / 3600.0
+    q3_summary['shared_trajectory_with_q2'] = bool(np.array_equal(q3['moisture'], q2['moisture'][::60]))
+    q4_summary['velocity_model'] = q4['velocity_model']
+    write_summary(RESULTS_DIR / "q1" / "summary.json", q1_summary)
+    write_summary(RESULTS_DIR / "q2" / "summary.json", q2_summary)
     write_summary(RESULTS_DIR / "q3" / "summary.json", q3_summary)
     write_summary(RESULTS_DIR / "q4" / "summary.json", q4_summary)
 

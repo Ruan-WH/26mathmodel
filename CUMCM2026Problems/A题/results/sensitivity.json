@@ -1,26 +1,48 @@
 {
+  "baseline": {
+    "terminal_temperature_scale": 1.0,
+    "terminal_moisture_scale": 1.0,
+    "q3_drying_time_h": 57.17683006070712,
+    "q4_drying_time_h": 50.827258357169946
+  },
   "temperature_minus_5pct": {
     "terminal_temperature_scale": 0.95,
     "terminal_moisture_scale": 1.0,
-    "q3_drying_time_h": 60.86128538456115,
-    "q4_drying_time_h": 56.24399292721159
+    "q3_drying_time_h": 61.9879933246351,
+    "q4_drying_time_h": 55.044379438969614
   },
   "temperature_plus_5pct": {
     "terminal_temperature_scale": 1.05,
     "terminal_moisture_scale": 1.0,
-    "q3_drying_time_h": 52.02152629839609,
-    "q4_drying_time_h": 48.18336094512627
+    "q3_drying_time_h": 52.875688806670375,
+    "q4_drying_time_h": 47.05172873629487
   },
   "ambient_moisture_minus_5pct": {
     "terminal_temperature_scale": 1.0,
     "terminal_moisture_scale": 0.95,
-    "q3_drying_time_h": 56.06087865701118,
-    "q4_drying_time_h": 51.89066645207651
+    "q3_drying_time_h": 57.12930724182293,
+    "q4_drying_time_h": 50.77543655223591
   },
   "ambient_moisture_plus_5pct": {
     "terminal_temperature_scale": 1.0,
     "terminal_moisture_scale": 1.05,
-    "q3_drying_time_h": 56.332333074969235,
-    "q4_drying_time_h": 52.09596555290727
+    "q3_drying_time_h": 57.228958313368494,
+    "q4_drying_time_h": 50.88609886545044
+  },
+  "definitions": {
+    "temperature_perturbation_c": 2.5082500000000003,
+    "temperature_definition": "additive Celsius perturbation; dimensionless derivative normalized by Kelvin temperature",
+    "dt_s": 10.0,
+    "radius_history_fixed": true,
+    "q3": {
+      "temperature_derivative_h_per_c": -1.816466563931969,
+      "temperature_kelvin_elasticity": -10.271483859705274,
+      "ambient_moisture_elasticity": 0.017428575777943926
+    },
+    "q4": {
+      "temperature_derivative_h_per_c": -1.5932723418069856,
+      "temperature_kelvin_elasticity": -10.13489343791566,
+      "ambient_moisture_elasticity": 0.02177223733707888
+    }
   }
 }

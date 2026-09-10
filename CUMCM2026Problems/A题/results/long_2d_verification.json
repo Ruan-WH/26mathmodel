@@ -1,0 +1,94 @@
+[
+  {
+    "question": 1,
+    "nr": 41,
+    "nz": 21,
+    "dt_s": 10.0,
+    "end_s": 1800.0,
+    "threshold_2d_h": null,
+    "threshold_matched_1d_h": null,
+    "relative_threshold_difference": null,
+    "global_control_r_z_m": null,
+    "whole_run_midplane_max_temperature_difference": 7.490997049330872e-07,
+    "whole_run_midplane_max_moisture_difference": 7.349676423018536e-14,
+    "whole_run_end_midplane_max_moisture_difference": 0.9716727258130053,
+    "final_midplane_temperature_difference": 7.490997049330872e-07,
+    "final_midplane_moisture_difference": 7.327471962526033e-14
+  },
+  {
+    "question": 3,
+    "nr": 41,
+    "nz": 21,
+    "dt_s": 30.0,
+    "end_s": 205860.0,
+    "threshold_2d_h": 57.173516601169666,
+    "threshold_matched_1d_h": 57.176138875077264,
+    "relative_threshold_difference": 4.586518485274464e-05,
+    "global_control_r_z_m": [
+      0.0,
+      0.0
+    ],
+    "whole_run_midplane_max_temperature_difference": 0.0017751947922945988,
+    "whole_run_midplane_max_moisture_difference": 2.4094149108533358e-05,
+    "whole_run_end_midplane_max_moisture_difference": 0.9699040794968323,
+    "final_midplane_temperature_difference": 2.4797941478027496e-12,
+    "final_midplane_moisture_difference": 2.7680469494861804e-06
+  },
+  {
+    "question": 4,
+    "nr": 41,
+    "nz": 21,
+    "dt_s": 30.0,
+    "end_s": 183030.0,
+    "threshold_2d_h": 50.83985602799629,
+    "threshold_matched_1d_h": 50.839865545628385,
+    "relative_threshold_difference": 1.8720808509233322e-07,
+    "global_control_r_z_m": [
+      0.0,
+      0.0
+    ],
+    "whole_run_midplane_max_temperature_difference": 0.00010838247647626531,
+    "whole_run_midplane_max_moisture_difference": 1.3812798953516392e-06,
+    "whole_run_end_midplane_max_moisture_difference": 1.7069380317872838,
+    "final_midplane_temperature_difference": 1.6200374375330284e-12,
+    "final_midplane_moisture_difference": 1.7704468197043965e-08
+  },
+  {
+    "question": 3,
+    "nr": 81,
+    "nz": 41,
+    "dt_s": 30.0,
+    "end_s": 205890.0,
+    "threshold_2d_h": 57.18829547242977,
+    "threshold_matched_1d_h": 57.19050824532608,
+    "relative_threshold_difference": 3.8692758335075475e-05,
+    "global_control_r_z_m": [
+      0.0,
+      0.0
+    ],
+    "whole_run_midplane_max_temperature_difference": 0.0016948445279325597,
+    "whole_run_midplane_max_moisture_difference": 2.2723329353935284e-05,
+    "whole_run_end_midplane_max_moisture_difference": 0.9728785907544466,
+    "final_midplane_temperature_difference": 8.199663170671556e-12,
+    "final_midplane_moisture_difference": 2.3348352960195218e-06
+  },
+  {
+    "question": 4,
+    "nr": 81,
+    "nz": 41,
+    "dt_s": 30.0,
+    "end_s": 183030.0,
+    "threshold_2d_h": 50.840290454915724,
+    "threshold_matched_1d_h": 50.84029855185292,
+    "relative_threshold_difference": 1.5926221354765566e-07,
+    "global_control_r_z_m": [
+      0.0,
+      0.0
+    ],
+    "whole_run_midplane_max_temperature_difference": 9.234654658740737e-05,
+    "whole_run_midplane_max_moisture_difference": 1.178522539557747e-06,
+    "whole_run_end_midplane_max_moisture_difference": 1.7097752319748976,
+    "final_midplane_temperature_difference": 7.077005648170598e-12,
+    "final_midplane_moisture_difference": 1.5059543057027724e-08
+  }
+]

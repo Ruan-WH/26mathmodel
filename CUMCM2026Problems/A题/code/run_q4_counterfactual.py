@@ -20,7 +20,7 @@ def main() -> None:
         environment,
         property_q4,
         end_time_s=None,
-        dt_s=10.0,
+        dt_s=1.0,
         output_interval_s=60.0,
         stop_at_threshold=True,
     )

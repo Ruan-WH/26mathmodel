@@ -1,0 +1,10 @@
+{
+  "excluded_workbooks_unchanged": {
+    "result1.xlsx": "846d4d9cd14380cdab4b5457869ae382e74e8c960f3b601ea48433fb617b2328",
+    "result2.xlsx": "072c608e9caede314e08be9e3fe700046441ba54344989652c6f2ced9cf77ebf",
+    "result3.xlsx": "5ba00430ae290e82c3d15a1efd349e4607664eeef2ef02541876ee806957ca35",
+    "result4.xlsx": "fb20b5581ba6b1530931a25ad0fb162c312d110a48522380c8f973d43038325e"
+  },
+  "long_2d_checks_pass": true,
+  "long_2d_cases": 5
+}
