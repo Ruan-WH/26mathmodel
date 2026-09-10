@@ -93,6 +93,24 @@ $t$/h&0 cm&0.5 cm&1.0 cm&1.5 cm&2.0 cm\\
 \caption{问题二变物性温度与水分剖面}\label{fig:q2}
 \end{figure}
 
+\subsection{水分迁移与扩散系数的时空证据}
+
+\cref{fig:q2surface}将前 3~h 的逐秒水分场组成连续曲面。初期中心附近保持高含水平台，而表面边界率先下降；随时间推进，高含水平台逐渐消退，显示失水影响由外向内传播。曲面沿半径方向的落差在 3~h 时仍然明显，与此时温度已接近均匀的结果形成对照，说明温度稳定不能代替水分达标。
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.96\textwidth]{q2_moisture_surface.pdf}
+\caption{问题二前 3 h 水分浓度的三维时空曲面}\label{fig:q2surface}
+\end{figure}
+
+为进一步解释曲面的形成机制，将同一时空位置的温度和水分代入\cref{eq:prop23}，得到\cref{fig:q2diffusivity}。色阶表示扩散系数，白色曲线为其等值线，标注数值以 $10^{-9}~\mathrm{m^2/s}$ 为单位。前 3~h 内 $D$ 的范围约为 $5.548\times10^{-9}$ 至 $1.252\times10^{-8}~\mathrm{m^2/s}$：升温阶段整体扩散能力增强，但后期表层始终低于内部。这表明表层失水造成的扩散抑制已经抵消部分升温收益；采用一个仅随时间变化的平均扩散系数，会掩盖这一径向差异。
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.96\textwidth]{q2_diffusivity_map.pdf}
+\caption{问题二状态相关扩散系数的时空云图及等值线}\label{fig:q2diffusivity}
+\end{figure}
+
 \subsection{本问结论与结果文件}
 
 问题二完成了由常物性基准模型向状态耦合非线性模型的扩展。结果揭示：温度场约在 3~h 内接近径向均匀，而水分场仍有 $0.7581~\mathrm{kg/kg}$ 的中心—表面差；在此之后，环境热量主要通过提高 $D(T,C)$ 促进内部水分迁移，而非继续显著改变温度分布。

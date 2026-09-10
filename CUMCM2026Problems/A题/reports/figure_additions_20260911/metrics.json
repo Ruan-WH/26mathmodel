@@ -1,0 +1,79 @@
+{
+  "q1_temperature_surface": {
+    "shape": [
+      1801,
+      21
+    ],
+    "min": 27.999999999999964,
+    "max": 36.78648464621063,
+    "time_range_s": [
+      0,
+      1800
+    ]
+  },
+  "q2_moisture_surface": {
+    "shape": [
+      10801,
+      21
+    ],
+    "min": 1.0081325977491788,
+    "max": 2.550000000000004,
+    "time_range_s": [
+      0,
+      10800
+    ]
+  },
+  "q2_diffusivity_map": {
+    "shape": [
+      10801,
+      21
+    ],
+    "min_1e9": 5.5479004876587705,
+    "max_1e9": 12.521744444420328,
+    "center_end_1e9": 12.387227197213711,
+    "surface_end_1e9": 10.271842196013157
+  },
+  "q3_drying_front": {
+    "surface_crossing_h": 12.541400563990631,
+    "center_crossing_h": 57.16898866840205,
+    "lag_h": 44.627588104411416,
+    "radial_interpolation": "linear between 21 saved output nodes",
+    "time_samples": 3432
+  },
+  "q4_shrinking_field": {
+    "snapshots": [
+      {
+        "time_h": 0.0,
+        "radius_cm": 2.0,
+        "center_C": 2.55
+      },
+      {
+        "time_h": 6.0,
+        "radius_cm": 1.374,
+        "center_C": 1.7164339654622909
+      },
+      {
+        "time_h": 12.0,
+        "radius_cm": 1.248,
+        "center_C": 0.7340561996748806
+      },
+      {
+        "time_h": 24.0,
+        "radius_cm": 1.204,
+        "center_C": 0.2837033391199767
+      },
+      {
+        "time_h": 36.0,
+        "radius_cm": 1.2,
+        "center_C": 0.19204069693952835
+      },
+      {
+        "time_h": 50.8213345750398,
+        "radius_cm": 1.2,
+        "center_C": 0.15
+      }
+    ],
+    "all_time_samples": 3051,
+    "method": "axisymmetric reconstruction of 1D radial solution, not independent 2D simulation"
+  }
+}

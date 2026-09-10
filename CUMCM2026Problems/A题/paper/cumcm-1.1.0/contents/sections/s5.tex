@@ -2,6 +2,8 @@
 
 \subsection{几何降维与初始条件}
 
+药材的初始几何及坐标约定见\cref{fig:geometry}。取一端面中心为原点 $O$，$z$ 轴沿药材轴线，$x$、$y$ 轴位于端面内；圆柱长 $L=25$~cm，初始半径 $R_0=2$~cm。中截面中心记为 $O_m$，径向距离 $r$ 从该点起算，周向角 $\theta$ 从正 $x$ 轴起算。图中热量传入箭头示意预热阶段，水分箭头表示向外迁移。
+
 在圆柱坐标 $(r,\theta,z)$ 中，轴对称条件使 $\partial/\partial\theta=0$。主模型进一步取中截面 $z=L/2$，忽略该处的轴向梯度，计算域为 $0\le r\le R(t)$。固定半径问题中 $R=R_0=0.02$~m；移动边界问题稍后映射到 $0\le\xi\le1$。初始条件为
 \begin{equation}
 T(r,0)=28~{}^\circ\mathrm C,\qquad C(r,0)=2.55~\mathrm{kg/kg}.
@@ -9,6 +11,13 @@ T(r,0)=28~{}^\circ\mathrm C,\qquad C(r,0)=2.55~\mathrm{kg/kg}.
 \end{equation}
 
 这一降维不是把整根药材等同为无空间差异的集中参数系统，而是保留了题目要求的径向分布。其合理性来自圆柱较大的长径比，并将在后文以包含端面的二维 $r$--$z$ 模型进行独立检查。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.84\textwidth]{geometry_coordinates.pdf}
+\caption{药材初始几何、坐标系与径向计算域（中截面单独放大）}
+\label{fig:geometry}
+\end{figure}
 
 \subsection{附件数据检查与边界重构}
 

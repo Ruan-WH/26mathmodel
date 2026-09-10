@@ -1,0 +1,57 @@
+{
+  "original_asset_count": 22,
+  "changed_original_assets": [],
+  "new_figures": {
+    "q1surface": {
+      "figure": 3,
+      "page": 13
+    },
+    "q2surface": {
+      "figure": 5,
+      "page": 17
+    },
+    "q2diffusivity": {
+      "figure": 6,
+      "page": 17
+    },
+    "q3front": {
+      "figure": 8,
+      "page": 21
+    },
+    "q4field": {
+      "figure": 11,
+      "page": 26
+    }
+  },
+  "embedded_fonts": {
+    "q1_temperature_surface": [
+      "BHJLVU+SimSun",
+      "FHXFSG+TimesNewRomanPSMT"
+    ],
+    "q2_moisture_surface": [
+      "BHJLVU+SimSun",
+      "FHXFSG+TimesNewRomanPSMT"
+    ],
+    "q2_diffusivity_map": [
+      "BHJLVU+SimSun",
+      "FHXFSG+TimesNewRomanPSMT"
+    ],
+    "q3_drying_front": [
+      "BHJLVU+SimSun",
+      "FHXFSG+TimesNewRomanPSMT"
+    ],
+    "q4_shrinking_field": [
+      "BHJLVU+SimSun",
+      "FHXFSG+TimesNewRomanPSMT"
+    ]
+  },
+  "total_pages": 51,
+  "pages_before_appendices": 31,
+  "source_sha256": {
+    "results\\q1\\fields.npz": "9330e7249efc81d66a4cab40c600f3721076c2d2d66a238ca1b828cc23417192",
+    "results\\q2\\fields.npz": "286128c513878445381c24f5e306723085811022865e31dceaf36a91b8a3e87e",
+    "results\\q3\\fields.npz": "23a0b8e714b333c1f05a303380b1c02deccab5c6123992f7796107fba1ec9325",
+    "results\\q4\\fields.npz": "b36855356d5709fee80f586e803a24ab877caaf3fa712eb9ef07672a61213c98"
+  },
+  "latex_blocking_issues": []
+}
