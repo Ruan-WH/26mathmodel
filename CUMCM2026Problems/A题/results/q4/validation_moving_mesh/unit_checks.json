@@ -1,0 +1,7 @@
+{
+  "gcl_normalized_max": 1.6699524399070448e-16,
+  "insulated_temperature_max_error": 7.176481631177012e-13,
+  "insulated_moisture_max_error": 9.370282327836321e-14,
+  "stationary_temperature_max_error": 2.1174173525650986e-12,
+  "stationary_moisture_max_error": 5.773159728050814e-15
+}

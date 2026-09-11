@@ -1,0 +1,23 @@
+\subsection{移动网格独立验证}
+
+为检验问题四结果对坐标实现的依赖，另在物理坐标 $r$ 中独立组装移动控制体方程。节点沿 $r_i^n=R(t_n)\xi_i$ 运动，$\xi_i$ 仅用于标记同一组 161 个表面加密节点；每步重新计算控制体界面 $b_f$、体积 $V_i=\pi(b_{i+1/2}^2-b_{i-1/2}^2)$、面积 $A_f=2\pi b_f$ 和节点间距，直接以 $A_fD_f/\Delta r_f$ 构造通量，不调用固定域变换算子。两法使用相同初值、附件四物性、PCHIP 半径与环境边界、1~s 时间步、Picard 收敛标准及首达判据，各自独立推进温度和水分状态。
+
+移动控制体的水分通量包含 $\rho_d C(v_s-w)$。在主模型均匀材料收缩闭合 $v_s=w$ 下，该相对对流项为零，但仍须更新体积并保持干骨架质量。令 $\rho_d^n=M_d/\sum_iV_i^n$、$m_i^n=\rho_d^nV_i^n$，采用
+\begin{equation}
+\frac{m_i^{n+1}C_i^{n+1}-m_i^nC_i^n}{\Delta t}
+=\sum_{j\sim i}\frac{\rho_d^{n+1}D_{ij}^{n+1}A_{ij}^{n+1}}{|r_j^{n+1}-r_i^{n+1}|}(C_j^{n+1}-C_i^{n+1})-B_i^{n+1},
+\label{eq:q4physicalinventory}
+\end{equation}
+其中仅表面控制体有 $B_i=\rho_d A_s h_m(C_s-C_e)$，中心通量为零。界面扫掠量以 $\bar A_f=\pi(b_f^{n+1}+b_f^n)$ 与 $w_f=(b_f^{n+1}-b_f^n)/\Delta t$ 计算，逐步核验 $\Delta V_i=\Delta t[(\bar A w)_{i+1/2}-(\bar A w)_{i-1/2}]$。温度沿用主模型的有效热方程；记 $H_i=(\rho c_p)_iV_i$，库存式必须包含 $T_i^n(H_i^{n+1}-H_i^n)$ 修正，不能误将 $H_iT_i$ 视为无源守恒的总焓。
+
+\input{contents/sections/q4_moving_mesh_table.tex}
+
+两法干燥时间分别为 $50.8213345750398$~h 和 $50.8213345750672$~h，绝对差为 $9.86\times10^{-8}$~s，相对差为 $5.39\times10^{-13}$。逐秒、全节点比较得到中心水分轨迹最大绝对差 $8.93\times10^{-14}$~kg/kg，全水分场最大差 $2.61\times10^{-13}$~kg/kg，温度场最大差 $1.15\times10^{-10}$~$^\circ$C。累计水分收支残差占初始水质量的 $1.57\times10^{-14}$，并通过绝热绝湿收缩保持常值、静止网格退化及几何守恒检查。重算的固定域结果与原保存结果一致，原始结果文件保持不变。
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.96\textwidth]{q4_moving_mesh_validation.pdf}
+\caption{两种坐标实现的中心水分轨迹及物理半径剖面对比；曲线在图示精度下重合，圆点仅用于区分移动网格曲线}\label{fig:q4movingvalidation}
+\end{figure}
+
+在相同均匀收缩假设下，物理控制体库存式可代数化回固定域离散式，所得差异处于浮点舍入量级。因此，这一验证支持问题四结果不依赖于单一坐标变换的程序实现；其独立性在于几何与矩阵组装，并不构成对均匀收缩假设或完整热力学能量模型的实验验证。详细剖面、逐秒误差及守恒记录另行保存于验证结果目录。

@@ -1,0 +1,19 @@
+{
+  "protected_files_unchanged": 66,
+  "pdf_pages": 53,
+  "validation_pages": [
+    27,
+    28,
+    29
+  ],
+  "latex_overflow_or_missing_references": [],
+  "minute_field_shape": [
+    3051,
+    161
+  ],
+  "per_second_trace_shape": [
+    183001,
+    8
+  ],
+  "paper_sha256": "21edb42c14f4ab97b3c4a7fc90cc30642570c27d3f47b33c4ac32a06dec39dc3"
+}
