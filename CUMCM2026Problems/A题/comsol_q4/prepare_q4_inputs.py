@@ -1,4 +1,6 @@
 from pathlib import Path
+import json
+import math
 
 import numpy as np
 from openpyxl import load_workbook
@@ -29,12 +31,16 @@ def main() -> None:
     env = read_numeric_xlsx(ROOT / "附件" / "附件1.xlsx")
     radius = read_numeric_xlsx(ROOT / "附件" / "附件2.xlsx")
 
-    end_s = 183000.0
+    summary = json.loads((ROOT / "results" / "q4" / "summary.json").read_text(encoding="utf-8"))
+    end_s = math.ceil(float(summary["drying_time_s"]) / 600.0) * 600.0
     dense_t = np.arange(0.0, end_s + 60.0, 60.0)
+    # Represent the transition from the measured warm-up series to the stated
+    # 50 C / 0.05 constant-stage setpoints without smearing it over one minute.
+    dense_t = np.unique(np.r_[dense_t, env[-1, 0] + 1e-6])
     te_interp = PchipInterpolator(env[:, 0], env[:, 1], extrapolate=False)
     ce_interp = PchipInterpolator(env[:, 0], env[:, 2], extrapolate=False)
-    te = np.where(dense_t <= env[-1, 0], te_interp(np.minimum(dense_t, env[-1, 0])), env[-1, 1])
-    ce = np.where(dense_t <= env[-1, 0], ce_interp(np.minimum(dense_t, env[-1, 0])), env[-1, 2])
+    te = np.where(dense_t <= env[-1, 0], te_interp(np.minimum(dense_t, env[-1, 0])), 50.0)
+    ce = np.where(dense_t <= env[-1, 0], ce_interp(np.minimum(dense_t, env[-1, 0])), 0.05)
 
     monotone_radius_m = np.minimum.accumulate(radius[:, 1]) / 100.0
     r_interp = PchipInterpolator(radius[:, 0], monotone_radius_m, extrapolate=False)

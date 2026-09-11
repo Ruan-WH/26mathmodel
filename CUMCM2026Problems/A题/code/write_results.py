@@ -91,12 +91,17 @@ def write_fixed_workbook(
 
 
 def write_moving_workbook() -> dict:
+    fields = np.load(RESULTS_DIR / "q4" / "fields.npz")
+    numerics = json.loads((RESULTS_DIR / "q4" / "summary.json").read_text(encoding="utf-8"))["numerics"]
+    native_xi = 1.0 - (1.0 - np.linspace(0.0, 1.0, numerics["nodes"])) ** numerics["grid_power"]
+    if fields["xi"].shape != native_xi.shape or not np.allclose(fields["xi"], native_xi, rtol=0, atol=1e-14):
+        fields.close()
+        raise ValueError("Q4 output requires native calculation nodes; regenerate q4/fields.npz before exporting.")
     output_path = RESULTS_DIR / "result4.xlsx"
     shutil.copy2(TEMPLATE_DIR / "result4.xlsx", output_path)
     book = load_workbook(output_path)
     sheet = book[book.sheetnames[0]]
     reset_sheet(sheet)
-    fields = np.load(RESULTS_DIR / "q4" / "fields.npz")
     times = fields["times_s"]
     xi = fields["xi"]
     radii = fields["radii_m"]

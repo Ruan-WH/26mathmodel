@@ -88,7 +88,7 @@ def read(q):
         d = {k:z[k] for k in z.files}
     for key in ['temperature_c','moisture']:
         assert np.isfinite(d[key]).all()
-        assert d[key].shape == (len(d['times_s']), 21)
+        assert d[key].shape == (len(d['times_s']), len(d['xi'] if q == 'q4' else d['radius_m']))
     assert np.all(np.diff(d['times_s']) > 0)
     assert d['moisture'].min() >= 0
     assert np.max(np.diff(d['moisture'],axis=1)) < 2e-8
@@ -132,7 +132,7 @@ def surface(q,key,name,zlabel,cmap,limit,ticks):
     ax.set_ylabel('半径 / cm',labelpad=6)
     ax.set_zlabel('')
     fig.text(.10,.62,zlabel,rotation=90,va='center',ha='center',fontsize=8)
-    ax.view_init(elev=30,azim=-135)
+    ax.view_init(elev=30,azim=45 if q=='q2' else -135)
     ax.set_box_aspect((1.7,1,1.05))
     for axis in [ax.xaxis,ax.yaxis,ax.zaxis]:
         axis.pane.fill=False
@@ -186,7 +186,9 @@ def threshold_front():
     ax.annotate(f'中心首达 {t[-1]:.3f} h',xy=(t[-1],0),xytext=(42,.34),fontsize=8,
                 arrowprops=dict(arrowstyle='->',color=ACCENT_RED,lw=.8))
     ax.set(xlim=(0,t[-1]),ylim=(0,2),xlabel='时间 / h',ylabel='半径 / cm')
-    ax.set_xticks([0,12,24,36,48,57.169]); ax.set_xticklabels(['0','12','24','36','48','57.169'])
+    event_h = float(s["drying_time_h"])
+    ticks = [0, 12, 24, 36, 48, event_h]
+    ax.set_xticks(ticks); ax.set_xticklabels(['0', '12', '24', '36', '48', f'{event_h:.3f}'])
     ax.set_yticks([0,.5,1,1.5,2])
     METRICS['q3_drying_front']={'surface_crossing_h':float(ts),'center_crossing_h':float(t[-1]),'lag_h':float(t[-1]-ts),'radial_interpolation':'linear between 21 saved output nodes','time_samples':len(t)}
     np.savez_compressed(REPORT/'q3_front_data.npz',time_h=t,threshold_radius_cm=front)

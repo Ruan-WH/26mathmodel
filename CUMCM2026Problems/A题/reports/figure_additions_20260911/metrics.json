@@ -34,11 +34,11 @@
     "surface_end_1e9": 10.271842196013157
   },
   "q3_drying_front": {
-    "surface_crossing_h": 12.541400563990631,
-    "center_crossing_h": 57.16898866840205,
-    "lag_h": 44.627588104411416,
+    "surface_crossing_h": 12.552478884697173,
+    "center_crossing_h": 57.47190861869677,
+    "lag_h": 44.9194297339996,
     "radial_interpolation": "linear between 21 saved output nodes",
-    "time_samples": 3432
+    "time_samples": 3450
   },
   "q4_shrinking_field": {
     "snapshots": [
@@ -50,30 +50,30 @@
       {
         "time_h": 6.0,
         "radius_cm": 1.374,
-        "center_C": 1.7164339654622909
+        "center_C": 1.7187983845960535
       },
       {
         "time_h": 12.0,
         "radius_cm": 1.248,
-        "center_C": 0.7340561996748806
+        "center_C": 0.7373762199972342
       },
       {
         "time_h": 24.0,
         "radius_cm": 1.204,
-        "center_C": 0.2837033391199767
+        "center_C": 0.28507442200543404
       },
       {
         "time_h": 36.0,
         "radius_cm": 1.2,
-        "center_C": 0.19204069693952835
+        "center_C": 0.1928029476359344
       },
       {
-        "time_h": 50.8213345750398,
+        "time_h": 51.08769929956615,
         "radius_cm": 1.2,
         "center_C": 0.15
       }
     ],
-    "all_time_samples": 3051,
+    "all_time_samples": 3067,
     "method": "axisymmetric reconstruction of 1D radial solution, not independent 2D simulation"
   }
 }

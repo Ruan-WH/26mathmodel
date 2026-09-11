@@ -67,6 +67,7 @@ BLACK       = "#222222"
 
 HERE = Path(__file__).resolve().parent
 BASE = HERE.parent / "results" / "q4" / "fields.npz"
+from analyze_q4_comsol import baseline_profile, comparison_times
 OUT = HERE / "figures"
 OUT.mkdir(exist_ok=True)
 
@@ -119,8 +120,9 @@ def make_physical_plate(comsol):
     xi = comsol["x_ref_m"] / 0.02
     moisture = comsol["moisture"]
     radii = comsol["radii_m"] * 100
-    chosen = [0.0, 21600.0, 86400.0, 182956.80447014328]
-    titles = ["0 h", "6 h", "24 h", "50.82 h (终点)"]
+    event_time = json.loads(BASE.with_name("summary.json").read_text(encoding="utf-8"))["drying_time_s"]
+    chosen = [0.0, 21600.0, 86400.0, event_time]
+    titles = ["0 h", "6 h", "24 h", f"{event_time/3600:.2f} h (终点)"]
     cmap = LinearSegmentedColormap.from_list("moisture_blue", SEQUENTIAL, N=256)
     norm = LogNorm(vmin=0.05, vmax=2.55)
 
@@ -151,26 +153,24 @@ def make_validation_figure(comsol, baseline):
     cxi = comsol["x_ref_m"] / 0.02
     cm = comsol["moisture"]
     cr = comsol["radii_m"] * 100
-    bt, bxi, bm = baseline["times_s"], baseline["xi"], baseline["moisture"]
-    chosen = [21600.0, 86400.0, 182956.80447014328]
-    labels = ["6 h", "24 h", "50.82 h"]
+    bxi = baseline["xi"]
+    event_time = json.loads(BASE.with_name("summary.json").read_text(encoding="utf-8"))["drying_time_s"]
+    chosen = [21600.0, 86400.0, event_time]
+    labels = ["6 h", "24 h", f"{event_time/3600:.2f} h"]
     colors = [CATEGORICAL[0], CATEGORICAL[3], CATEGORICAL[1]]
 
     mm = 1 / 25.4
     fig, axes = plt.subplots(1, 3, figsize=(183*mm, 66*mm), gridspec_kw={"wspace": 0.38})
     fig.subplots_adjust(left=0.09, right=0.985, bottom=0.25, top=0.84)
     ax = axes[0]
-    parity_x, parity_y = [], []
     for target, label, color in zip(chosen, labels, colors):
-        ic, ib = nearest(ct, target), nearest(bt, target)
+        ic = nearest(ct, target)
         r_cm = cxi * cr[ic]
-        base_at_cxi = interp_profile(bxi, bm[ib], cxi)
+        base_at_cxi = interp_profile(bxi, baseline_profile(baseline, "moisture", target, event_time), cxi)
         ax.plot(r_cm, cm[ic], color=color, lw=1.5, label=label)
-        pick = np.arange(0, len(cxi), 10)
+        pick = np.unique(np.r_[np.arange(0, len(cxi), 10), len(cxi)-1-np.array([1, 2, 5])])
         ax.plot(r_cm[pick], base_at_cxi[pick], "o", ms=2.8, mfc="white",
                 mec=color, mew=0.7)
-        parity_x.extend(base_at_cxi)
-        parity_y.extend(cm[ic])
     ax.set_xlabel("Physical radius, $r$ (cm)")
     ax.set_ylabel("Moisture content, $C$ (kg kg$^{-1}$)")
     ax.set_xlim(0, 1.45)
@@ -179,6 +179,14 @@ def make_validation_figure(comsol, baseline):
             ha="center", va="top", fontsize=8)
 
     ax = axes[1]
+    # Match the six times reported in the numerical comparison and paper.
+    parity_x, parity_y = [], []
+    for target in comparison_times(event_time):
+        ic = nearest(ct, target)
+        if abs(ct[ic] - target) > 1e-6:
+            raise ValueError("Regenerate q4_comsol_fields.npz with exact study output times")
+        parity_x.extend(interp_profile(bxi, baseline_profile(baseline, "moisture", target, event_time), cxi))
+        parity_y.extend(cm[ic])
     parity_x, parity_y = np.asarray(parity_x), np.asarray(parity_y)
     lo, hi = 0.045, 1.82
     ax.plot([lo, hi], [lo, hi], color=GREY, ls="--", lw=0.7)
@@ -190,17 +198,17 @@ def make_validation_figure(comsol, baseline):
     ax.set_ylim(lo, hi)
     ax.set_aspect("equal", adjustable="box")
     err = np.max(np.abs(parity_y - parity_x))
-    ax.text(0.05, 0.92, f"$\\max|\\Delta C|={err:.4f}$", transform=ax.transAxes)
+    ax.text(0.05, 0.92, f"$\\max|\\Delta C|={err:.5f}$", transform=ax.transAxes)
     ax.text(0.5, -0.30, "（b）COMSOL 与基准模型逐点校核", transform=ax.transAxes,
             ha="center", va="top", fontsize=8)
 
     ax = axes[2]
     ax.plot(ct/3600, cr, color=CATEGORICAL[0], lw=1.5)
     ax.fill_between(ct/3600, cr, 2.02, color=CATEGORICAL[0], alpha=0.10)
-    event_h = 182956.80447014328/3600
+    event_h = event_time/3600
     ax.axvline(event_h, color=ACCENT_RED, ls=(0, (3, 2)), lw=1.0)
     ax.scatter([event_h], [1.2], color=ACCENT_RED, s=18, zorder=3)
-    ax.annotate("中心达到 0.15\n50.82 h", (event_h, 1.2), xytext=(-38, 18),
+    ax.annotate(f"主模型达标时刻\n{event_h:.2f} h", (event_h, 1.2), xytext=(-38, 18),
                 textcoords="offset points", arrowprops=dict(arrowstyle="-", lw=0.6),
                 ha="center", fontsize=7)
     ax.set_xlabel("Time, $t$ (h)")
@@ -213,11 +221,14 @@ def make_validation_figure(comsol, baseline):
     fig.suptitle("COMSOL 物理场剖面、独立数值校核与收缩历程", y=0.96)
     save_cns_figure(fig, OUT / "q4_comsol_profiles_validation")
     plt.close(fig)
+    return {"max_abs_moisture_difference": float(err), "comparison_points": len(parity_x),
+            "baseline_saved_nodes": len(bxi)}
 
 
 def main():
     comsol = np.load(HERE / "q4_comsol_fields.npz")
-    baseline = np.load(BASE)
+    with np.load(BASE) as archive:
+        baseline = {key: archive[key] for key in archive.files}
     make_physical_plate(comsol)
     make_validation_figure(comsol, baseline)
     print(json.dumps({"output": str(OUT), "figures": sorted(p.name for p in OUT.iterdir())}, ensure_ascii=False))

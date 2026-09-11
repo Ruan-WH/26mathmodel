@@ -33,6 +33,8 @@ GRID_POWER = 2.0
 INITIAL_T = 28.0
 INITIAL_C = 2.55
 THRESHOLD_C = 0.15
+TERMINAL_TEMPERATURE_C = 50.0
+TERMINAL_MOISTURE = 0.05
 
 
 @dataclass
@@ -53,8 +55,8 @@ class Environment:
         if time_s <= cutoff:
             return float(self.temp_interp(time_s)), float(self.moisture_interp(time_s))
         return (
-            float(self.temperature_c[-1] * terminal_temp_scale),
-            float(self.moisture[-1] * terminal_moisture_scale),
+            float(TERMINAL_TEMPERATURE_C * terminal_temp_scale),
+            float(TERMINAL_MOISTURE * terminal_moisture_scale),
         )
 
 
@@ -429,7 +431,8 @@ def simulate_moving(
     # Default: homogeneous solid shrinkage, material velocity equals mesh velocity.
     # True retains the former stationary-spatial scalar model for structural comparison.
     xi = radial_grid(NODES)
-    output_xi = np.linspace(0.0, 1.0, OUTPUT_NODES)
+    # Preserve native nodes; interpolate to physical positions only at export.
+    output_xi = xi.copy()
     temperature = np.full(NODES, INITIAL_T)
     moisture = np.full(NODES, INITIAL_C)
     times = [0.0]
@@ -643,6 +646,11 @@ def run_all(run_convergence: bool = True) -> None:
             float(np.min(environment.moisture)),
             float(np.max(environment.moisture)),
         ],
+        "terminal_boundary_after_14400_s": {
+            "temperature_c": TERMINAL_TEMPERATURE_C,
+            "moisture": TERMINAL_MOISTURE,
+            "basis": "constant-stage setpoints; final-hour attachment means are 49.9989 C and 0.049988",
+        },
         "radius_rows": len(radius_history.time_s),
         "radius_time_range_s": [radius_history.time_s[0], radius_history.time_s[-1]],
         "radius_range_cm": [
@@ -811,7 +819,7 @@ def run_all(run_convergence: bool = True) -> None:
         }
 
     for summary, simulation in [(q1_summary, q1), (q2_summary, q2), (q3_summary, q3), (q4_summary, q4)]:
-        summary['numerics'] = {'nodes': NODES, 'grid_power': GRID_POWER, 'dt_s': 1.0, 'output_nodes': OUTPUT_NODES}
+        summary['numerics'] = {'nodes': NODES, 'grid_power': GRID_POWER, 'dt_s': 1.0, 'output_nodes': simulation['moisture'].shape[1]}
         summary['balance'] = simulation['balance']
         summary['balance']['cumulative_mass_equation_residual'] = abs(sum(simulation['balance'][key] for key in ['moisture_change','boundary_loss','relative_transport']))
     q2_summary['output_end_s'] = q2['last_time_s']

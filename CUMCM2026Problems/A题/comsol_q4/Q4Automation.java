@@ -68,7 +68,7 @@ public class Q4Automation {
 
     model.study().create("std1");
     model.study("std1").create("time", "Transient");
-    model.study("std1").feature("time").set("tlist", "range(0,600,182400) 182956.80447014328 183000");
+    model.study("std1").feature("time").set("tlist", "range(0,600,183600) 183915.71747843814 184200");
     model.study("std1").feature("time").set("rtol", "1e-4");
     model.study("std1").run();
 
