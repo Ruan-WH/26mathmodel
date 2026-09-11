@@ -337,7 +337,7 @@
     },
     {
       "path": "E:\\26math model\\26mathmodel\\CUMCM2026Problems\\A题\\results\\result4.xlsx",
-      "file_size_bytes": 297479,
+      "file_size_bytes": 297647,
       "sheets": {
         "Sheet1": {
           "rows": 3051,
@@ -372,14 +372,14 @@
             0.1496,
             0.1486,
             0.1469,
-            0.1444,
+            0.1445,
             0.1412,
             0.1372,
             0.1321,
-            0.1258,
+            0.1259,
             0.1181,
-            0.1079,
-            0.093,
+            0.1081,
+            0.0936,
             0.0525,
             null,
             null,
@@ -396,8 +396,8 @@
       "pass": true,
       "source_value_mismatches": 0,
       "time_schedule_valid": true,
-      "source_fields_sha256": "b36855356d5709fee80f586e803a24ab877caaf3fa712eb9ef07672a61213c98",
-      "workbook_sha256": "6d7bbef34e64ffb817cbafab3fe89d3be0ef37ed5429a367c9e78b65571f3ee7"
+      "source_fields_sha256": "65c8471609982ecc95d2d9061b16dab15c0eaba906b36f0957176fe297645118",
+      "workbook_sha256": "b3ca1b76d5ef9f5a4ab8f06e800abf4ec64dfea90a06d22196896a3b7a1dcea7"
     }
   ],
   "attachment_files_unchanged": true

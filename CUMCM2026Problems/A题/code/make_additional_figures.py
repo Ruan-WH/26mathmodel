@@ -88,7 +88,7 @@ def read(q):
         d = {k:z[k] for k in z.files}
     for key in ['temperature_c','moisture']:
         assert np.isfinite(d[key]).all()
-        assert d[key].shape == (len(d['times_s']), 21)
+        assert d[key].shape == (len(d['times_s']), len(d['xi'] if q == 'q4' else d['radius_m']))
     assert np.all(np.diff(d['times_s']) > 0)
     assert d['moisture'].min() >= 0
     assert np.max(np.diff(d['moisture'],axis=1)) < 2e-8

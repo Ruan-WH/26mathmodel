@@ -429,7 +429,8 @@ def simulate_moving(
     # Default: homogeneous solid shrinkage, material velocity equals mesh velocity.
     # True retains the former stationary-spatial scalar model for structural comparison.
     xi = radial_grid(NODES)
-    output_xi = np.linspace(0.0, 1.0, OUTPUT_NODES)
+    # Preserve native nodes; interpolate to physical positions only at export.
+    output_xi = xi.copy()
     temperature = np.full(NODES, INITIAL_T)
     moisture = np.full(NODES, INITIAL_C)
     times = [0.0]
@@ -811,7 +812,7 @@ def run_all(run_convergence: bool = True) -> None:
         }
 
     for summary, simulation in [(q1_summary, q1), (q2_summary, q2), (q3_summary, q3), (q4_summary, q4)]:
-        summary['numerics'] = {'nodes': NODES, 'grid_power': GRID_POWER, 'dt_s': 1.0, 'output_nodes': OUTPUT_NODES}
+        summary['numerics'] = {'nodes': NODES, 'grid_power': GRID_POWER, 'dt_s': 1.0, 'output_nodes': simulation['moisture'].shape[1]}
         summary['balance'] = simulation['balance']
         summary['balance']['cumulative_mass_equation_residual'] = abs(sum(simulation['balance'][key] for key in ['moisture_change','boundary_loss','relative_transport']))
     q2_summary['output_end_s'] = q2['last_time_s']

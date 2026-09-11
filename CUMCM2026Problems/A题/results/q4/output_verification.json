@@ -1,0 +1,47 @@
+{
+  "native_saved_nodes": 161,
+  "moisture_shape": [
+    3051,
+    161
+  ],
+  "drying_time_h": 50.82133457503914,
+  "drying_time_change_s": 2.3865140974521637e-09,
+  "maximum_center_surface_change": 8.282263763703668e-14,
+  "maximum_difference_from_independent_saved_full_grid": 8.304468224196171e-14,
+  "coarse_archive_rejected": true,
+  "workbook_value_mismatches": 0,
+  "time_schedule_valid": true,
+  "examples": [
+    {
+      "time_s": 360.0,
+      "radius_cm": 1.9,
+      "old": 2.1622815581108643,
+      "corrected": 2.249068129889234
+    },
+    {
+      "time_s": 21600.0,
+      "radius_cm": 0.5,
+      "old": 1.5343433787389869,
+      "corrected": 1.5349486791196436
+    },
+    {
+      "time_s": 21600.0,
+      "radius_cm": 1.0,
+      "old": 1.020582520746429,
+      "corrected": 1.0212399410193533
+    },
+    {
+      "time_s": 86400.0,
+      "radius_cm": 1.0,
+      "old": 0.1779963940535278,
+      "corrected": 0.17830163384842662
+    }
+  ],
+  "elapsed_seconds": 142.43850380001822,
+  "independent_workbook_mismatches": 0,
+  "verified_data_cells": 64050,
+  "protected_files_unchanged": 42,
+  "paper_table_rows_verified": 9,
+  "workbook_format_preserved": true,
+  "figure_reader_accepts_native_grid": true
+}
