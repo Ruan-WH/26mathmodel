@@ -132,7 +132,7 @@ def surface(q,key,name,zlabel,cmap,limit,ticks):
     ax.set_ylabel('半径 / cm',labelpad=6)
     ax.set_zlabel('')
     fig.text(.10,.62,zlabel,rotation=90,va='center',ha='center',fontsize=8)
-    ax.view_init(elev=30,azim=-135)
+    ax.view_init(elev=30,azim=45 if q=='q2' else -135)
     ax.set_box_aspect((1.7,1,1.05))
     for axis in [ax.xaxis,ax.yaxis,ax.zaxis]:
         axis.pane.fill=False
