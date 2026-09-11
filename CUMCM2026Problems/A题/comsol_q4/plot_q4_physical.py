@@ -157,7 +157,8 @@ def make_validation_figure(comsol, baseline):
     colors = [CATEGORICAL[0], CATEGORICAL[3], CATEGORICAL[1]]
 
     mm = 1 / 25.4
-    fig, axes = plt.subplots(1, 3, figsize=(183*mm, 60*mm), gridspec_kw={"wspace": 0.38})
+    fig, axes = plt.subplots(1, 3, figsize=(183*mm, 66*mm), gridspec_kw={"wspace": 0.38})
+    fig.subplots_adjust(left=0.09, right=0.985, bottom=0.25, top=0.84)
     ax = axes[0]
     parity_x, parity_y = [], []
     for target, label, color in zip(chosen, labels, colors):
@@ -174,7 +175,8 @@ def make_validation_figure(comsol, baseline):
     ax.set_ylabel("Moisture content, $C$ (kg kg$^{-1}$)")
     ax.set_xlim(0, 1.45)
     ax.legend(title="干燥时间", loc="upper right", bbox_to_anchor=(1.17, 1.02))
-    ax.text(-0.16, 1.04, "a", transform=ax.transAxes, fontsize=9, fontweight="bold")
+    ax.text(0.5, -0.30, "（a）径向水分剖面", transform=ax.transAxes,
+            ha="center", va="top", fontsize=8)
 
     ax = axes[1]
     parity_x, parity_y = np.asarray(parity_x), np.asarray(parity_y)
@@ -189,7 +191,8 @@ def make_validation_figure(comsol, baseline):
     ax.set_aspect("equal", adjustable="box")
     err = np.max(np.abs(parity_y - parity_x))
     ax.text(0.05, 0.92, f"$\\max|\\Delta C|={err:.4f}$", transform=ax.transAxes)
-    ax.text(-0.16, 1.04, "b", transform=ax.transAxes, fontsize=9, fontweight="bold")
+    ax.text(0.5, -0.30, "（b）COMSOL 与基准模型逐点校核", transform=ax.transAxes,
+            ha="center", va="top", fontsize=8)
 
     ax = axes[2]
     ax.plot(ct/3600, cr, color=CATEGORICAL[0], lw=1.5)
@@ -204,9 +207,10 @@ def make_validation_figure(comsol, baseline):
     ax.set_ylabel("Herb radius, $R(t)$ (cm)")
     ax.set_xlim(0, 52)
     ax.set_ylim(1.15, 2.05)
-    ax.text(-0.16, 1.04, "c", transform=ax.transAxes, fontsize=9, fontweight="bold")
+    ax.text(0.5, -0.30, "（c）药材半径收缩历程", transform=ax.transAxes,
+            ha="center", va="top", fontsize=8)
 
-    fig.suptitle("COMSOL 物理场剖面、独立数值校核与收缩历程", y=1.01)
+    fig.suptitle("COMSOL 物理场剖面、独立数值校核与收缩历程", y=0.96)
     save_cns_figure(fig, OUT / "q4_comsol_profiles_validation")
     plt.close(fig)
 
