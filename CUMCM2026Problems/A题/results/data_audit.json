@@ -15,6 +15,11 @@
     0.01963,
     0.05025
   ],
+  "terminal_boundary_after_14400_s": {
+    "temperature_c": 50.0,
+    "moisture": 0.05,
+    "basis": "constant-stage setpoints; final-hour attachment means are 49.9989 C and 0.049988"
+  },
   "radius_rows": 145,
   "radius_time_range_s": [
     0.0,

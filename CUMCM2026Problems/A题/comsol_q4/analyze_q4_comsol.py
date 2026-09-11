@@ -25,7 +25,7 @@ def read_comsol_wide(path: Path):
         if not m:
             raise ValueError(names[j])
         times.append(float(m.group(1)))
-    # COMSOL rounds CSV time labels (182956.804... becomes 1.8296E5).
+    # COMSOL rounds long CSV time labels; recover exact values from the study schedule.
     # Recover the requested output times from the model's study definition.
     study = (path.parent / "Q4Automation.java").read_text(encoding="utf-8")
     schedule = re.search(r'\.set\("tlist", "range\(([^)]+)\) ([^"]+)"\)', study)

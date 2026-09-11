@@ -186,7 +186,9 @@ def threshold_front():
     ax.annotate(f'中心首达 {t[-1]:.3f} h',xy=(t[-1],0),xytext=(42,.34),fontsize=8,
                 arrowprops=dict(arrowstyle='->',color=ACCENT_RED,lw=.8))
     ax.set(xlim=(0,t[-1]),ylim=(0,2),xlabel='时间 / h',ylabel='半径 / cm')
-    ax.set_xticks([0,12,24,36,48,57.169]); ax.set_xticklabels(['0','12','24','36','48','57.169'])
+    event_h = float(s["drying_time_h"])
+    ticks = [0, 12, 24, 36, 48, event_h]
+    ax.set_xticks(ticks); ax.set_xticklabels(['0', '12', '24', '36', '48', f'{event_h:.3f}'])
     ax.set_yticks([0,.5,1,1.5,2])
     METRICS['q3_drying_front']={'surface_crossing_h':float(ts),'center_crossing_h':float(t[-1]),'lag_h':float(t[-1]-ts),'radial_interpolation':'linear between 21 saved output nodes','time_samples':len(t)}
     np.savez_compressed(REPORT/'q3_front_data.npz',time_h=t,threshold_radius_cm=front)

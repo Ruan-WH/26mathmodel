@@ -2,47 +2,47 @@
   "baseline": {
     "terminal_temperature_scale": 1.0,
     "terminal_moisture_scale": 1.0,
-    "q3_drying_time_h": 57.17683006070712,
-    "q4_drying_time_h": 50.827258357169946
+    "q3_drying_time_h": 57.47975705217536,
+    "q4_drying_time_h": 51.09362609638269
   },
   "temperature_minus_5pct": {
     "terminal_temperature_scale": 0.95,
     "terminal_moisture_scale": 1.0,
-    "q3_drying_time_h": 61.9879933246351,
-    "q4_drying_time_h": 55.044379438969614
+    "q3_drying_time_h": 62.309780296271704,
+    "q4_drying_time_h": 55.326984379130785
   },
   "temperature_plus_5pct": {
     "terminal_temperature_scale": 1.05,
     "terminal_moisture_scale": 1.0,
-    "q3_drying_time_h": 52.875688806670375,
-    "q4_drying_time_h": 47.05172873629487
+    "q3_drying_time_h": 53.16052023447145,
+    "q4_drying_time_h": 47.30249764170482
   },
   "ambient_moisture_minus_5pct": {
     "terminal_temperature_scale": 1.0,
     "terminal_moisture_scale": 0.95,
-    "q3_drying_time_h": 57.12930724182293,
-    "q4_drying_time_h": 50.77543655223591
+    "q3_drying_time_h": 57.43197485157427,
+    "q4_drying_time_h": 51.04129218393386
   },
   "ambient_moisture_plus_5pct": {
     "terminal_temperature_scale": 1.0,
     "terminal_moisture_scale": 1.05,
-    "q3_drying_time_h": 57.228958313368494,
-    "q4_drying_time_h": 50.88609886545044
+    "q3_drying_time_h": 57.53221847246029,
+    "q4_drying_time_h": 51.15308986670508
   },
   "definitions": {
-    "temperature_perturbation_c": 2.5082500000000003,
+    "temperature_perturbation_c": 2.5,
     "temperature_definition": "additive Celsius perturbation; dimensionless derivative normalized by Kelvin temperature",
     "dt_s": 10.0,
     "radius_history_fixed": true,
     "q3": {
-      "temperature_derivative_h_per_c": -1.816466563931969,
-      "temperature_kelvin_elasticity": -10.271483859705274,
-      "ambient_moisture_elasticity": 0.017428575777943926
+      "temperature_derivative_h_per_c": -1.829852012360051,
+      "temperature_kelvin_elasticity": -10.287389998141471,
+      "ambient_moisture_elasticity": 0.017439812905791018
     },
     "q4": {
-      "temperature_derivative_h_per_c": -1.5932723418069856,
-      "temperature_kelvin_elasticity": -10.13489343791566,
-      "ambient_moisture_elasticity": 0.02177223733707888
+      "temperature_derivative_h_per_c": -1.6048973474851933,
+      "temperature_kelvin_elasticity": -10.150435924463727,
+      "ambient_moisture_elasticity": 0.021880945102687354
     }
   }
 }

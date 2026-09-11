@@ -6,43 +6,43 @@
     "moisture": 1e-10,
     "max_iterations": 30
   },
-  "elapsed_seconds": 208.92129240000213,
-  "time_steps": 183000,
+  "elapsed_seconds": 158.46634819998872,
+  "time_steps": 183960,
   "picard_max": {
     "mapping": 5,
     "moving_mesh": 5
   },
   "picard_mean": {
-    "mapping": 4.148683060109289,
-    "moving_mesh": 4.148683060109289
+    "mapping": 4.1402696238312675,
+    "moving_mesh": 4.1402696238312675
   },
   "monotone_profiles": true,
   "balances": {
-    "water_change": -0.9535758011064177,
-    "water_loss": 0.9535758011064334,
+    "water_change": -0.953573814354124,
+    "water_loss": 0.9535738143541266,
     "maximum_step_water_residual": 8.029920098700256e-17,
-    "maximum_heat_residual": 3.09142279784416e-14,
+    "maximum_heat_residual": 3.0785376118744165e-14,
     "maximum_dry_cell_relative_drift": 1.648214897898015e-11,
     "maximum_gcl_residual": 5.4698096681001876e-18,
     "max_relative_mesh_speed": 0.0,
-    "cumulative_water_residual": 1.5654144647214707e-14
+    "cumulative_water_residual": 2.55351295663786e-15
   },
   "events": {
     "mapping": {
-      "time_s": 182956.80447014328,
-      "time_h": 50.8213345750398,
+      "time_s": 183915.71747843814,
+      "time_h": 51.08769929956615,
       "radius_m": 0.012
     },
     "moving_mesh": {
-      "time_s": 182956.8044702419,
-      "time_h": 50.8213345750672,
+      "time_s": 183915.71747854506,
+      "time_h": 51.08769929959585,
       "radius_m": 0.012
     }
   },
   "max_abs_moisture_field_difference": 2.6145752229922437e-13,
-  "max_abs_temperature_field_difference": 1.1452527814981295e-10,
-  "max_abs_center_moisture_difference": 8.931744233109384e-14,
-  "drying_time_abs_difference_s": 9.863288141787052e-08,
-  "drying_time_relative_difference": 5.391047449889541e-13,
+  "max_abs_temperature_field_difference": 1.1645795439108042e-10,
+  "max_abs_center_moisture_difference": 8.659739592076221e-14,
+  "drying_time_abs_difference_s": 1.0692747309803963e-07,
+  "drying_time_relative_difference": 5.813938828288319e-13,
   "event_comparison_note": "Own-event profiles and common mapping-event centre/surface values are distinguished; trajectories compare identical time levels."
 }

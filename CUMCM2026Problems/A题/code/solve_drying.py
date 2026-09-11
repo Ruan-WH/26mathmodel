@@ -33,6 +33,8 @@ GRID_POWER = 2.0
 INITIAL_T = 28.0
 INITIAL_C = 2.55
 THRESHOLD_C = 0.15
+TERMINAL_TEMPERATURE_C = 50.0
+TERMINAL_MOISTURE = 0.05
 
 
 @dataclass
@@ -53,8 +55,8 @@ class Environment:
         if time_s <= cutoff:
             return float(self.temp_interp(time_s)), float(self.moisture_interp(time_s))
         return (
-            float(self.temperature_c[-1] * terminal_temp_scale),
-            float(self.moisture[-1] * terminal_moisture_scale),
+            float(TERMINAL_TEMPERATURE_C * terminal_temp_scale),
+            float(TERMINAL_MOISTURE * terminal_moisture_scale),
         )
 
 
@@ -644,6 +646,11 @@ def run_all(run_convergence: bool = True) -> None:
             float(np.min(environment.moisture)),
             float(np.max(environment.moisture)),
         ],
+        "terminal_boundary_after_14400_s": {
+            "temperature_c": TERMINAL_TEMPERATURE_C,
+            "moisture": TERMINAL_MOISTURE,
+            "basis": "constant-stage setpoints; final-hour attachment means are 49.9989 C and 0.049988",
+        },
         "radius_rows": len(radius_history.time_s),
         "radius_time_range_s": [radius_history.time_s[0], radius_history.time_s[-1]],
         "radius_range_cm": [

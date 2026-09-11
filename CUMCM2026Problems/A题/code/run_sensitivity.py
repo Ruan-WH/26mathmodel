@@ -7,6 +7,7 @@ import sys
 
 from solve_drying import (
     RESULTS_DIR,
+    TERMINAL_TEMPERATURE_C,
     load_environment,
     load_radius_history,
     property_q23,
@@ -56,8 +57,8 @@ def run() -> None:
         }
 
     baseline = output['baseline']
-    delta_temperature_c = 0.05 * float(environment.temperature_c[-1])
-    baseline_temperature_k = float(environment.temperature_c[-1]) + 273.15
+    delta_temperature_c = 0.05 * TERMINAL_TEMPERATURE_C
+    baseline_temperature_k = TERMINAL_TEMPERATURE_C + 273.15
     output['definitions'] = {
         'temperature_perturbation_c': delta_temperature_c,
         'temperature_definition': 'additive Celsius perturbation; dimensionless derivative normalized by Kelvin temperature',

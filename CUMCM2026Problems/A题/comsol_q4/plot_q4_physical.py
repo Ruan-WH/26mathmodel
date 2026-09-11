@@ -120,8 +120,9 @@ def make_physical_plate(comsol):
     xi = comsol["x_ref_m"] / 0.02
     moisture = comsol["moisture"]
     radii = comsol["radii_m"] * 100
-    chosen = [0.0, 21600.0, 86400.0, 182956.80447014328]
-    titles = ["0 h", "6 h", "24 h", "50.82 h (终点)"]
+    event_time = json.loads(BASE.with_name("summary.json").read_text(encoding="utf-8"))["drying_time_s"]
+    chosen = [0.0, 21600.0, 86400.0, event_time]
+    titles = ["0 h", "6 h", "24 h", f"{event_time/3600:.2f} h (终点)"]
     cmap = LinearSegmentedColormap.from_list("moisture_blue", SEQUENTIAL, N=256)
     norm = LogNorm(vmin=0.05, vmax=2.55)
 
@@ -155,7 +156,7 @@ def make_validation_figure(comsol, baseline):
     bxi = baseline["xi"]
     event_time = json.loads(BASE.with_name("summary.json").read_text(encoding="utf-8"))["drying_time_s"]
     chosen = [21600.0, 86400.0, event_time]
-    labels = ["6 h", "24 h", "50.82 h"]
+    labels = ["6 h", "24 h", f"{event_time/3600:.2f} h"]
     colors = [CATEGORICAL[0], CATEGORICAL[3], CATEGORICAL[1]]
 
     mm = 1 / 25.4
@@ -207,7 +208,7 @@ def make_validation_figure(comsol, baseline):
     event_h = event_time/3600
     ax.axvline(event_h, color=ACCENT_RED, ls=(0, (3, 2)), lw=1.0)
     ax.scatter([event_h], [1.2], color=ACCENT_RED, s=18, zorder=3)
-    ax.annotate("主模型达标时刻\n50.82 h", (event_h, 1.2), xytext=(-38, 18),
+    ax.annotate(f"主模型达标时刻\n{event_h:.2f} h", (event_h, 1.2), xytext=(-38, 18),
                 textcoords="offset points", arrowprops=dict(arrowstyle="-", lw=0.6),
                 ha="center", fontsize=7)
     ax.set_xlabel("Time, $t$ (h)")

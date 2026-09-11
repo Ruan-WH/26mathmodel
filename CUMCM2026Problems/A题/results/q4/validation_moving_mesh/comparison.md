@@ -1,13 +1,13 @@
 | Metric | Unit | Fixed mapping | Physical moving mesh | Relative difference |
 |---|---|---:|---:|---:|
-| drying_time | h | 50.821334575 | 50.8213345751 | 5.3910e-13 |
-| 6h_center_moisture | kg/kg | 1.71643396546 | 1.71643396546 | 1.9534e-14 |
-| 6h_surface_moisture | kg/kg | 0.421517450456 | 0.421517450456 | 3.5913e-13 |
-| 24h_center_moisture | kg/kg | 0.28370333912 | 0.28370333912 | 1.5399e-13 |
-| 24h_surface_moisture | kg/kg | 0.0670908045557 | 0.0670908045557 | 3.8681e-14 |
-| 48h_center_moisture | kg/kg | 0.15561091362 | 0.15561091362 | 2.5774e-13 |
-| 48h_surface_moisture | kg/kg | 0.0528575288448 | 0.0528575288448 | 1.0568e-13 |
+| drying_time | h | 51.0876992996 | 51.0876992996 | 5.8139e-13 |
+| 6h_center_moisture | kg/kg | 1.7187983846 | 1.7187983846 | 1.6794e-14 |
+| 6h_surface_moisture | kg/kg | 0.420513844651 | 0.420513844651 | 2.9227e-13 |
+| 24h_center_moisture | kg/kg | 0.285074422005 | 0.285074422005 | 1.2891e-13 |
+| 24h_surface_moisture | kg/kg | 0.0673306736156 | 0.0673306736156 | 4.9055e-14 |
+| 48h_center_moisture | kg/kg | 0.156140474257 | 0.156140474257 | 2.8264e-13 |
+| 48h_surface_moisture | kg/kg | 0.0530141410161 | 0.0530141410161 | 1.1139e-13 |
 | own_event_center_moisture | kg/kg | 0.15 | 0.15 | 0.0000e+00 |
-| own_event_surface_moisture | kg/kg | 0.052496306759 | 0.0524963067589 | 1.5478e-13 |
-| common_event_center_moisture | kg/kg | 0.15 | 0.15 | 3.3973e-13 |
-| common_event_surface_moisture | kg/kg | 0.052496306759 | 0.052496306759 | 9.4376e-14 |
+| own_event_surface_moisture | kg/kg | 0.0526199623444 | 0.0526199623444 | 1.5138e-13 |
+| common_event_center_moisture | kg/kg | 0.15 | 0.15 | 3.6600e-13 |
+| common_event_surface_moisture | kg/kg | 0.0526199623444 | 0.0526199623444 | 8.6769e-14 |

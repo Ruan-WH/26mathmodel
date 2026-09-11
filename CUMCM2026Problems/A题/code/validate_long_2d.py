@@ -79,6 +79,7 @@ def run_case(question,nr,nz,dt):
         if steps%720==0:print('2D',question,nr,nz,'time h',t/3600,flush=True)
         if td2 is not None and td1 is not None:break
     return {'question':question,'nr':nr,'nz':nz,'dt_s':dt,'end_s':float(t),
+        'terminal_temperature_c':m.TERMINAL_TEMPERATURE_C,'terminal_moisture':m.TERMINAL_MOISTURE,
         'threshold_2d_h':None if td2 is None else td2/3600,'threshold_matched_1d_h':None if td1 is None else td1/3600,
         'relative_threshold_difference':None if td2 is None else abs(td2-td1)/td2,
         'global_control_r_z_m':max_location,'whole_run_midplane_max_temperature_difference':maxdiff_t,
@@ -90,9 +91,11 @@ def run_case(question,nr,nz,dt):
 
 def run():
     path=m.RESULTS_DIR/'long_2d_verification.json'
-    records=json.loads(path.read_text()) if path.exists() else []
-    for q,nr,nz,dt in [(1,41,21,10.),(3,41,21,30.),(4,41,21,30.),(3,81,41,30.),(4,81,41,30.)]:
-        if any((x['question'],x['nr'],x['nz'],x['dt_s'])==(q,nr,nz,dt) for x in records):continue
+    previous=json.loads(path.read_text()) if path.exists() else []
+    # Q1 ends before the terminal boundary begins and remains valid. Recompute
+    # every long-duration Q3/Q4 case whenever this script is run.
+    records=[x for x in previous if x['question']==1]
+    for q,nr,nz,dt in [(3,41,21,30.),(4,41,21,30.),(3,81,41,30.),(4,81,41,30.)]:
         record=run_case(q,nr,nz,dt);records.append(record)
         path.write_text(json.dumps(records,indent=2));print(record,flush=True)
 
