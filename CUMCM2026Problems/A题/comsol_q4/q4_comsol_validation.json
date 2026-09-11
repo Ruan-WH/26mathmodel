@@ -1,0 +1,73 @@
+{
+  "comsol_version": "6.3.0.290",
+  "formulation": "uniform material shrinkage in a fixed radial reference coordinate",
+  "output_times": 307,
+  "radial_sample_points": 101,
+  "comparison": [
+    {
+      "time_h": 6.0,
+      "radius_cm": 1.374,
+      "comsol_center_moisture": 1.7163892898881816,
+      "baseline_center_moisture": 1.7164339654622909,
+      "comsol_surface_moisture": 0.4214464042988516,
+      "baseline_surface_moisture": 0.42151745045637173,
+      "max_abs_temperature_difference_C": 0.0004178417850795313,
+      "max_abs_moisture_difference": 0.002147222385882497
+    },
+    {
+      "time_h": 12.0,
+      "radius_cm": 1.248,
+      "comsol_center_moisture": 0.7341030566785818,
+      "baseline_center_moisture": 0.7340561996748806,
+      "comsol_surface_moisture": 0.16592653838471697,
+      "baseline_surface_moisture": 0.1666006919082164,
+      "max_abs_temperature_difference_C": 1.382787218062731e-10,
+      "max_abs_moisture_difference": 0.003364652875932128
+    },
+    {
+      "time_h": 24.0,
+      "radius_cm": 1.204,
+      "comsol_center_moisture": 0.2836730181660957,
+      "baseline_center_moisture": 0.2837033391199767,
+      "comsol_surface_moisture": 0.06557465812088836,
+      "baseline_surface_moisture": 0.06709080455571406,
+      "max_abs_temperature_difference_C": 6.359357485052897e-12,
+      "max_abs_moisture_difference": 0.0043496682343595605
+    },
+    {
+      "time_h": 36.0,
+      "radius_cm": 1.2,
+      "comsol_center_moisture": 0.19204632801963445,
+      "baseline_center_moisture": 0.19204069693952835,
+      "comsol_surface_moisture": 0.05492085371008107,
+      "baseline_surface_moisture": 0.055788823694794494,
+      "max_abs_temperature_difference_C": 4.5787373892380856e-11,
+      "max_abs_moisture_difference": 0.0033109072394822275
+    },
+    {
+      "time_h": 48.0,
+      "radius_cm": 1.2,
+      "comsol_center_moisture": 0.1556121385209941,
+      "baseline_center_moisture": 0.15561091362025228,
+      "comsol_surface_moisture": 0.052365093271977796,
+      "baseline_surface_moisture": 0.05285752884480474,
+      "max_abs_temperature_difference_C": 4.61071181234729e-11,
+      "max_abs_moisture_difference": 0.0025557579957203452
+    },
+    {
+      "time_h": 50.8213345750398,
+      "radius_cm": 1.2,
+      "comsol_center_moisture": 0.14999537721348025,
+      "baseline_center_moisture": 0.15000868328197395,
+      "comsol_surface_moisture": 0.05206042082386312,
+      "baseline_surface_moisture": 0.05249684670085279,
+      "max_abs_temperature_difference_C": 4.8331116886402015e-11,
+      "max_abs_moisture_difference": 0.0024136083547364184
+    }
+  ],
+  "overall_max_abs_temperature_difference_C": 0.0004178417850795313,
+  "overall_max_abs_moisture_difference": 0.0043496682343595605,
+  "event_time_h": 50.8213345750398,
+  "event_comsol_center_moisture": 0.14999537721348025,
+  "event_comsol_surface_moisture": 0.05206042082386312
+}

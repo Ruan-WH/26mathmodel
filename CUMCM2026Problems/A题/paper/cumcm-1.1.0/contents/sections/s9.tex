@@ -7,7 +7,7 @@
 \begin{table}[!htbp]
 \centering
 \caption{问题四典型时刻的重构半径}\label{tab:q4radius}
-\begin{tabular}{rrrrrrrrrr}
+\begin{tabular}{cccccccccc}
 \toprule
 $t$/h&0&6&12&18&24&30&36&48&50.821\\
 \midrule
@@ -99,7 +99,7 @@ R(t_d)=1.2000~\mathrm{cm}.
 \begin{table}[!htbp]
 \centering
 \caption{问题四典型时刻水分浓度（kg/kg）}\label{tab:q4}
-\begin{tabular}{rrrrr}
+\begin{tabular}{ccccc}
 \toprule
 $t$/h&0 cm&0.5 cm&1.0 cm&动态表面\\
 \midrule
@@ -150,6 +150,16 @@ $t$/h&0 cm&0.5 cm&1.0 cm&动态表面\\
 \centering
 \includegraphics[width=0.96\textwidth]{q4_shrinking_field.pdf}
 \caption{问题四收缩材料域的水分时空场及等比例截面重建}\label{fig:q4field}
+\end{figure}
+
+\subsection{COMSOL 有限元复核}
+
+为排除主程序离散方式对结论的影响，进一步在 COMSOL 6.3 中建立收缩圆柱的热湿耦合有限元模型。模型沿用附件四状态物性、附件一环境边界和附件二半径历史，并在初始材料坐标上实现 $R_0/R(t)$ 引起的扩散与表面通量尺度变化。如\cref{fig:q4comsol}所示，图~(a)中 COMSOL 径向剖面与原有限体积结果在 6、24 和 50.82~h 基本重合；图~(b)的逐点比较紧贴等值线，六个校核时刻、101 个径向点上的最大含水率绝对差为 $0.00435~\mathrm{kg/kg}$；图~(c)则把实测半径收缩与中心达到 0.15 的终点对应起来。COMSOL 给出的终点中心含水率为 0.149995，半径为 1.200~cm，与主模型的 50.8213~h 判据一致，说明收缩映射、非线性物性及 Robin 边界在独立有限元实现中得到一致复现。
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.96\textwidth]{q4_comsol_profiles_validation.pdf}
+\caption{COMSOL 有限元剖面、原有限体积结果校核与半径收缩历程}\label{fig:q4comsol}
 \end{figure}
 
 \input{contents/sections/q4_moving_mesh_validation.tex}

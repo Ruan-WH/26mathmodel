@@ -1,0 +1,17 @@
+{
+  "source": "D:\\26mathmodel\\CUMCM2026Problems\\A题\\附件\\附件1.xlsx",
+  "interpolation": "PCHIP sampled each second; COMSOL uses linear interpolation",
+  "time_range_s": [
+    0,
+    1800
+  ],
+  "rows": 1801,
+  "initial": {
+    "temperature_c": 28.0,
+    "moisture": 0.01963
+  },
+  "final": {
+    "temperature_c": 41.513,
+    "moisture": 0.03307
+  }
+}
