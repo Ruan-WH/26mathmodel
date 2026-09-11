@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import hashlib
 import shutil
 import sys
 from pathlib import Path
@@ -51,6 +52,7 @@ def write_fixed_workbook(
     output_name: str,
     fields_path: Path,
     include_temperature: bool,
+    end_time_s: float | None = None,
 ) -> dict:
     output_path = RESULTS_DIR / output_name
     shutil.copy2(TEMPLATE_DIR / template_name, output_path)
@@ -59,7 +61,8 @@ def write_fixed_workbook(
     times = fields["times_s"]
     radii_cm = fields["radius_m"] * 100.0
     start = 1 if abs(times[0]) < 1e-12 else 0
-    written_rows = len(times) - start + 1
+    stop = len(times) if end_time_s is None else int(np.searchsorted(times, end_time_s, side="right"))
+    written_rows = stop - start + 1
     sheet_variables = (
         [("温度", "temperature_c"), ("水分浓度", "moisture")]
         if include_temperature
@@ -70,13 +73,15 @@ def write_fixed_workbook(
         reset_sheet(sheet)
         sheet.append(["时间/s"] + [round(float(radius), 1) for radius in radii_cm])
         values = fields[key]
-        for index in range(start, len(times)):
+        for index in range(start, stop):
             sheet.append(
                 [int(round(float(times[index])))]
                 + [round(float(value), 4) for value in values[index]]
             )
         style_sheet(sheet, written_rows, len(radii_cm) + 1)
     book.save(output_path)
+    book.close()
+    fields.close()
     return {
         "path": str(output_path),
         "rows_including_header": written_rows,
@@ -120,6 +125,8 @@ def write_moving_workbook() -> dict:
     columns = len(fixed_radii_cm) + 2
     style_sheet(sheet, rows, columns)
     book.save(output_path)
+    book.close()
+    fields.close()
     return {
         "path": str(output_path),
         "rows_including_header": rows,
@@ -172,6 +179,41 @@ def verify_workbook(item: dict) -> dict:
             for details in verification["sheets"].values()
         )
     )
+    question = int(path.stem[-1])
+    fields_path = RESULTS_DIR / f"q{question}" / "fields.npz"
+    with np.load(fields_path) as archive:
+        # Decode each compressed array once, rather than once per Excel row.
+        fields = {key: archive[key] for key in archive.files}
+    times = fields["times_s"]
+    end_time = {1: 1800.0, 2: 10800.0}.get(question, float(times[-1]))
+    indexes = np.flatnonzero((times > 0) & (times <= end_time))
+    interval = 1 if question <= 2 else 60
+    expected_times = np.arange(interval, end_time + 0.5, interval)
+    schedule_valid = np.array_equal(times[indexes], expected_times)
+    mismatches = 0
+    for sheet in book.worksheets:
+        key = "temperature_c" if sheet.title == "温度" else "moisture"
+        if sheet.max_row != len(indexes) + 1:
+            mismatches += 1
+        for index, row in zip(indexes, sheet.iter_rows(min_row=2, values_only=True)):
+            if row[0] != int(times[index]):
+                mismatches += 1
+            if question != 4:
+                values = np.interp(np.linspace(0, 0.02, 21), fields["radius_m"], fields[key][index])
+                expected = [round(float(v), 4) for v in values]
+            else:
+                radius = float(fields["radii_m"][index])
+                expected = [None if r > radius + 1e-12 else
+                            round(float(np.interp(r / radius, fields["xi"], fields["moisture"][index])), 4)
+                            for r in np.arange(20) * 0.001]
+                expected.append(round(float(fields["moisture"][index, -1]), 4))
+            mismatches += sum(actual != target for actual, target in zip(row[1:], expected))
+    verification["source_value_mismatches"] = mismatches
+    verification["time_schedule_valid"] = schedule_valid
+    verification["source_fields_sha256"] = hashlib.sha256(fields_path.read_bytes()).hexdigest()
+    verification["workbook_sha256"] = hashlib.sha256(path.read_bytes()).hexdigest()
+    verification["pass"] = verification["pass"] and schedule_valid and mismatches == 0
+    book.close()
     return verification
 
 
@@ -183,12 +225,14 @@ def main() -> None:
             "result1.xlsx",
             RESULTS_DIR / "q1" / "fields.npz",
             include_temperature=True,
+            end_time_s=1800.0,
         ),
         write_fixed_workbook(
             "result2.xlsx",
             "result2.xlsx",
             RESULTS_DIR / "q2" / "fields.npz",
             include_temperature=True,
+            end_time_s=10800.0,
         ),
         write_fixed_workbook(
             "result3.xlsx",
@@ -209,6 +253,8 @@ def main() -> None:
     }
     report_path = RESULTS_DIR / "workbook_verification.json"
     report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+    if not all(item["pass"] for item in report["verification"]):
+        raise RuntimeError("Workbook verification failed; see workbook_verification.json")
     print(json.dumps(report, ensure_ascii=False, indent=2))
 
 
