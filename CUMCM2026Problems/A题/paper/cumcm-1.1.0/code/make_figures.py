@@ -80,7 +80,14 @@ TIME_COLORS = ["#BFD7EA", "#6BAED6", "#2166AC", "#762A83", "#B2182B"]
 
 def require_fonts() -> None:
     font_manager.findfont("Times New Roman", fallback_to_default=False)
-    font_manager.findfont("SimSun", fallback_to_default=False)
+    for chinese_font in ("SimSun", "Songti SC", "STSong"):
+        try:
+            font_manager.findfont(chinese_font, fallback_to_default=False)
+        except ValueError:
+            continue
+        mpl.rcParams["font.family"] = ["Times New Roman", chinese_font]
+        return
+    raise RuntimeError("需要 SimSun、Songti SC 或 STSong 中至少一种中文字体")
 
 
 def load_summary(question: str) -> dict:
@@ -116,6 +123,7 @@ def plot_profiles(
     values: np.ndarray,
     labels: list[str],
     ylabel: str,
+    show_legend: bool = True,
 ) -> None:
     for index, (profile, label) in enumerate(zip(values, labels)):
         color = TIME_COLORS[index if len(values) == len(TIME_COLORS) else int(
@@ -134,13 +142,14 @@ def plot_profiles(
     axis.set_xlabel("到药材中心的距离 / cm")
     axis.set_ylabel(ylabel)
     axis.set_xlim(float(radius_cm[0]), float(radius_cm[-1]))
-    axis.legend(
-        loc="lower center",
-        bbox_to_anchor=(0.5, 1.01),
-        ncol=min(len(labels), 3),
-        columnspacing=0.9,
-        handlelength=1.8,
-    )
+    if show_legend:
+        axis.legend(
+            loc="lower center",
+            bbox_to_anchor=(0.5, 1.01),
+            ncol=min(len(labels), 3),
+            columnspacing=0.9,
+            handlelength=1.8,
+        )
     common_axis_style(axis)
 
 
@@ -154,8 +163,8 @@ def figure_q1() -> None:
     fig, axes = plt.subplots(
         1,
         2,
-        figsize=(183 * MM_TO_INCH, 72 * MM_TO_INCH),
-        gridspec_kw={"wspace": 0.34},
+        figsize=(183 * MM_TO_INCH, 68 * MM_TO_INCH),
+        gridspec_kw={"wspace": 0.22},
     )
     plot_profiles(
         axes[0],
@@ -163,16 +172,30 @@ def figure_q1() -> None:
         data["temperature_c"][indexes],
         labels,
         "温度 / °C",
+        show_legend=False,
     )
     plot_profiles(
         axes[1],
         radius_cm,
         data["moisture"][indexes],
         labels,
-        "水分浓度 / (kg·kg⁻¹)",
+        "水分浓度 C / (kg/kg)",
+        show_legend=False,
     )
     axes[1].set_ylim(1.4, 2.60)
-    fig.subplots_adjust(left=0.09, right=0.98, top=0.83, bottom=0.23, wspace=0.34)
+    handles, legend_labels = axes[0].get_legend_handles_labels()
+    fig.legend(
+        handles,
+        legend_labels,
+        loc="upper center",
+        bbox_to_anchor=(0.5, 0.975),
+        ncol=len(legend_labels),
+        columnspacing=1.2,
+        handlelength=1.8,
+        handletextpad=0.45,
+        borderaxespad=0.0,
+    )
+    fig.subplots_adjust(left=0.08, right=0.99, top=0.85, bottom=0.20, wspace=0.22)
     panel_labels(fig, list(axes))
     save_cns_figure(fig, str(FIGURES / "q1_preheat_profiles"))
     plt.close(fig)
