@@ -1,0 +1,283 @@
+{
+  "scope": "Independent invocation of current solver and read-only source/output audit",
+  "checks": {
+    "input": {
+      "last_time_s": 14400.0,
+      "last_temperature_c": 50.165,
+      "last_moisture": 0.04986,
+      "radius_adjustments": 0,
+      "model_sha256": "7016bf12f67710261eb0db124ed932a6e74692d919ca472df655976522fe572d"
+    },
+    "q1_archive": {
+      "shape": [
+        1801,
+        21
+      ],
+      "end_s": 1800.0,
+      "step_s": [
+        1.0
+      ],
+      "center_is_max": true,
+      "monotone": true,
+      "last_center_c": 2.5499918829928143,
+      "threshold_max": null
+    },
+    "q2_archive": {
+      "shape": [
+        206941,
+        21
+      ],
+      "end_s": 206940.0,
+      "step_s": [
+        1.0
+      ],
+      "center_is_max": true,
+      "monotone": true,
+      "last_center_c": 0.14998802138865747,
+      "threshold_max": 0.15
+    },
+    "q3_archive": {
+      "shape": [
+        3450,
+        21
+      ],
+      "end_s": 206940.0,
+      "step_s": [
+        60.0
+      ],
+      "center_is_max": true,
+      "monotone": true,
+      "last_center_c": 0.14998802138865747,
+      "threshold_max": 0.15
+    },
+    "q4_archive": {
+      "shape": [
+        3067,
+        161
+      ],
+      "end_s": 183960.0,
+      "step_s": [
+        60.0
+      ],
+      "center_is_max": true,
+      "monotone": true,
+      "last_center_c": 0.1499772669767069,
+      "threshold_max": 0.15
+    },
+    "q2_q3_shared": {
+      "times_s": true,
+      "temperature_c": true,
+      "moisture": true
+    },
+    "q1_workbook": {
+      "温度": {
+        "data_rows": 1800,
+        "last_time_s": 1800,
+        "mismatches_in_present_rows": 0,
+        "expected_last_time_s": 1800.0,
+        "covers_full_saved_trajectory": true
+      },
+      "水分浓度": {
+        "data_rows": 1800,
+        "last_time_s": 1800,
+        "mismatches_in_present_rows": 0,
+        "expected_last_time_s": 1800.0,
+        "covers_full_saved_trajectory": true
+      }
+    },
+    "q2_workbook": {
+      "温度": {
+        "data_rows": 10800,
+        "last_time_s": 10800,
+        "mismatches_in_present_rows": 0,
+        "expected_last_time_s": 206940.0,
+        "covers_full_saved_trajectory": false
+      },
+      "水分浓度": {
+        "data_rows": 10800,
+        "last_time_s": 10800,
+        "mismatches_in_present_rows": 0,
+        "expected_last_time_s": 206940.0,
+        "covers_full_saved_trajectory": false
+      }
+    },
+    "q3_workbook": {
+      "Sheet1": {
+        "data_rows": 3449,
+        "last_time_s": 206940,
+        "mismatches_in_present_rows": 0,
+        "expected_last_time_s": 206940.0,
+        "covers_full_saved_trajectory": true
+      }
+    },
+    "q4_workbook": {
+      "Sheet1": {
+        "data_rows": 3066,
+        "last_time_s": 183960,
+        "mismatches_in_present_rows": 0,
+        "expected_last_time_s": 183960.0,
+        "covers_full_saved_trajectory": true
+      }
+    },
+    "q1_rerun": {
+      "elapsed_s": 1.0017932000337169,
+      "max_temperature_difference": 2.83577605841856e-11,
+      "max_moisture_difference": 1.461053500406706e-13,
+      "times_equal": true,
+      "threshold_time_s": null,
+      "threshold_time_h": null,
+      "balance": {
+        "moisture_change": -0.10056238896515017,
+        "boundary_loss": 0.10056238896510608,
+        "relative_transport": 0.0,
+        "maximum_step_mass_residual": 1.9363168093162505e-16,
+        "maximum_step_heat_equation_residual": 1.4399826583167896e-15
+      }
+    },
+    "q2_rerun": {
+      "elapsed_s": 142.46078979998128,
+      "max_temperature_difference": 3.014122285094345e-11,
+      "max_moisture_difference": 1.9872992140790302e-13,
+      "times_equal": true,
+      "threshold_time_s": 206898.8710273097,
+      "threshold_time_h": 57.47190861869714,
+      "balance": {
+        "moisture_change": -0.951256975401026,
+        "boundary_loss": 0.9512569754003306,
+        "relative_transport": 0.0,
+        "maximum_step_mass_residual": 3.2393099132859844e-16,
+        "maximum_step_heat_equation_residual": 2.5882890954312375e-14
+      }
+    },
+    "q3_rerun": {
+      "elapsed_s": 1.3699987903237343e-05,
+      "max_temperature_difference": 2.275868382639601e-11,
+      "max_moisture_difference": 1.8385293287792592e-13,
+      "times_equal": true,
+      "threshold_time_s": 206898.8710273097,
+      "threshold_time_h": 57.47190861869714,
+      "balance": {
+        "moisture_change": -0.951256975401026,
+        "boundary_loss": 0.9512569754003306,
+        "relative_transport": 0.0,
+        "maximum_step_mass_residual": 3.2393099132859844e-16,
+        "maximum_step_heat_equation_residual": 2.5882890954312375e-14
+      }
+    },
+    "q4_rerun": {
+      "elapsed_s": 141.78676480002468,
+      "max_temperature_difference": 2.2303936475509545e-11,
+      "max_moisture_difference": 8.304468224196171e-14,
+      "times_equal": true,
+      "threshold_time_s": 183915.71747844346,
+      "threshold_time_h": 51.087699299567625,
+      "balance": {
+        "moisture_change": -0.9535738143541266,
+        "boundary_loss": 0.9535738143543002,
+        "relative_transport": 0.0,
+        "maximum_step_mass_residual": 7.392507833275504e-17,
+        "maximum_step_heat_equation_residual": 3.03257985926291e-14
+      }
+    },
+    "done": true
+  },
+  "table_checks": {
+    "q1t": {
+      "cells": 35,
+      "max_display_difference": 0.0,
+      "time_column": [
+        100.0,
+        300.0,
+        600.0,
+        900.0,
+        1200.0,
+        1500.0,
+        1800.0
+      ]
+    },
+    "q1c": {
+      "cells": 35,
+      "max_display_difference": 0.0,
+      "time_column": [
+        100.0,
+        300.0,
+        600.0,
+        900.0,
+        1200.0,
+        1500.0,
+        1800.0
+      ]
+    },
+    "q2t": {
+      "cells": 30,
+      "max_display_difference": 0.0,
+      "time_column": [
+        0.5,
+        1.0,
+        1.5,
+        2.0,
+        2.5,
+        3.0
+      ]
+    },
+    "q2c": {
+      "cells": 30,
+      "max_display_difference": 0.0,
+      "time_column": [
+        0.5,
+        1.0,
+        1.5,
+        2.0,
+        2.5,
+        3.0
+      ]
+    },
+    "q3": {
+      "cells": 50,
+      "max_display_difference": 0.0,
+      "time_column": [
+        6.0,
+        12.0,
+        18.0,
+        24.0,
+        30.0,
+        36.0,
+        42.0,
+        48.0,
+        54.0,
+        57.4719
+      ]
+    },
+    "q4": {
+      "cells": 36,
+      "max_display_difference": 0.0,
+      "time_column": [
+        6.0,
+        12.0,
+        18.0,
+        24.0,
+        30.0,
+        36.0,
+        42.0,
+        48.0,
+        51.0877
+      ]
+    }
+  },
+  "summary_field_checks": {
+    "q1": {
+      "temperature_c": 0.0,
+      "moisture": 0.0
+    },
+    "q2": {
+      "temperature_c": 0.0,
+      "moisture": 0.0
+    },
+    "q3": {
+      "moisture": 0.0
+    },
+    "q4": {
+      "moisture": 0.0
+    }
+  }
+}
