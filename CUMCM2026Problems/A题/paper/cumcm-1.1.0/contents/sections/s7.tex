@@ -4,7 +4,7 @@
 
 \subsubsection{非线性模型及耦合关系}
 
-问题二保持 $R=0.02$~m、$h_T=25~\mathrm{W/(m^2K)}$ 和 $h_m=8\times10^{-7}~\mathrm{m/s}$ 不变，将\cref{eq:prop23}代入\cref{eq:heat,eq:mass}。此时温度方程的储存项和扩散项都依赖 $C$，水分方程的扩散系数同时依赖 $T$ 和 $C$。若写成算子形式，可表示为
+问题二保持 $R=0.02$~m，并按表面交换假设沿用 $h_T=25~\mathrm{W/(m^2K)}$ 和 $h_m=8\times10^{-7}~\mathrm{m/s}$，将\cref{eq:prop23}代入\cref{eq:heat,eq:mass}。此时温度方程的储存项和扩散项都依赖 $C$，水分方程的扩散系数同时依赖 $T$ 和 $C$。若写成算子形式，可表示为
 \begin{equation}
 \mathcal H[T;C]=0,\qquad \mathcal M[C;T]=0,
 \label{eq:q2operator}
@@ -15,7 +15,7 @@
 
 \subsubsection{物性随状态的演化}
 
-为展示非线性系数的实际变化，将初态以及 3~h 的中心、表面状态代入\cref{eq:prop23}，结果见\cref{tab:q2prop}。随着水分降低，$\rho,c_p,k$ 均减小；这意味着单位体积储热能力降低，同时内部导热能力也有所下降。二者对升温速度具有相反影响，需要由完整能量方程共同决定。
+为展示非线性系数的实际变化，将初态以及 3~h 的中心、表面状态代入\cref{eq:prop23}，结果见\cref{tab:q2prop}。随着水分降低，$\rho,c_p,k$ 均减小；这意味着单位体积储热能力降低，同时内部导热能力也有所下降。二者对升温速度具有相反影响，需要由所采用的热方程共同决定。
 
 \begin{table}[!htbp]
 \centering

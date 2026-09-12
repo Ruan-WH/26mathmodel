@@ -27,19 +27,36 @@ $R$/cm&2.000&1.374&1.248&1.214&1.204&1.201&1.200&1.200&1.200\\
 
 \subsubsection{收缩模型方程}
 
-本问采用均匀径向收缩假设，材料速度与材料坐标网格速度相同。令
+移动边界模型需同时指定内部速度与边界运动\cite{shrinkage2019}。半径数据只能确定外边界，本问另假设长度不变、径向同比例收缩以闭合速度场，材料速度 $v_s$ 与网格速度 $w$ 相同，故
 \begin{equation}
-\xi=\frac{r}{R(t)},\qquad 0\leq\xi\leq1,
+v_s=w=\frac{\dot R}{R}r,\qquad
+D_t=\left.\frac{\partial}{\partial t}\right|_r
++v_s\frac{\partial}{\partial r}
+=\left.\frac{\partial}{\partial t}\right|_\xi.
 \label{eq:chainmoving}
 \end{equation}
-则相对输运速度为零，温度和水分方程均可写成材料坐标下的扩散方程
+其中 $D_t$ 为材料导数。令 $\rho_d$ 表示单位现体积的干骨架质量，它不同于题给物性中的 $\rho(C)$。干骨架连续性与干基含水率 $C$ 的水分平衡为
+\begin{align*}
+\frac{\partial\rho_d}{\partial t}
++\frac1r\frac{\partial}{\partial r}(r\rho_dv_s)&=0,\\
+\frac{\partial(\rho_dC)}{\partial t}
++\frac1r\frac{\partial}{\partial r}(r\rho_dCv_s)
+&=\frac1r\frac{\partial}{\partial r}
+\left(r\rho_dD\frac{\partial C}{\partial r}\right).
+\end{align*}
+截面内 $\rho_d$ 均匀时，第一式给出 $\rho_dR^2=\rho_{d0}R_0^2$；以其消去第二式的体积压缩项，再约去仅随时间变化的 $\rho_d$，得到材料坐标下的水分式。故收缩不直接使干基含水率增大，也无需另加相对对流项。温度沿用本文的热过程简化，以材料导数描述随材料运动的温度变化。记 $T,C$ 为映射后的场，两式写为
 \begin{equation}
-\frac{\partial\psi}{\partial t}
-=\frac{1}{R^2\xi}\frac{\partial}{\partial\xi}
-\left(\xi\Gamma\frac{\partial\psi}{\partial\xi}\right),
+\begin{aligned}
+\rho(C)c_p(C)\frac{\partial T}{\partial t}
+&=\frac{1}{R^2\xi}\frac{\partial}{\partial\xi}
+\left(\xi k(C)\frac{\partial T}{\partial\xi}\right),\\
+\frac{\partial C}{\partial t}
+&=\frac{1}{R^2\xi}\frac{\partial}{\partial\xi}
+\left(\xi D(T,C)\frac{\partial C}{\partial\xi}\right).
+\end{aligned}
 \label{eq:moving}
 \end{equation}
-水分取 $\psi=C,\Gamma=D$，温度取 $\psi=T,\Gamma=k$，温度方程左侧采用题给有效储热系数 $\rho c_p$。因此，收缩效应主要通过内部扩散项的 $R^{-2}$ 和表面交换项的 $R^{-1}$ 进入模型。收缩干燥的物质平衡需明确内部速度与边界通量\cite{shrinkage2019}；均匀收缩是本文的建模假设，实际材料的局部变形和裂纹未在本模型中考虑。
+温度式中 $\rho(C)c_p(C)$ 仅作为储热系数，未要求题给 $\rho(C)$ 满足上述干骨架连续性；该式不含蒸发潜热及水分迁移携带的焓，不能视为完整焓平衡。质量守恒推导说明水分方程与既定收缩闭合相容，不构成对均匀变形的实验验证。
 
 表面边界也必须同步变换。由 $\partial/\partial r=R^{-1}\partial/\partial\xi$ 得
 \begin{align}
