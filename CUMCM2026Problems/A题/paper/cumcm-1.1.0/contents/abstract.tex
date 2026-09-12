@@ -1,7 +1,7 @@
 \begin{abstract}
 针对圆柱形药材烘干中环境边界时变、内部温湿分布不均、物性非线性及几何收缩相互影响的问题，本文构建统一的变物性径向热湿有限体积框架。以 PCHIP 重构附件中的环境量和半径曲线，以 Fourier--Fick 方程描述内部传递，采用节点中心有限体积法与全隐式格式保证离散守恒和长时计算稳定，并通过 Picard 迭代处理状态相关物性；进一步以材料坐标下的固定域映射描述收缩边界，以全截面首达时间统一衡量干燥终点。
 
-\textbf{针对问题一：}在固定半径和给定物性下，建立恒定热物性 {\bfseries\boldmath Fourier--Fick 基准模型}，将时变环境量作为{\bfseries\boldmath 双 Robin 边界输入}并逐秒求解。利用中心圆盘控制体处理轴线边界，结合表面加密网格解析外层梯度。1800~s 时中心与表面温度分别为{\bfseries\boldmath $33.577~{}^\circ\mathrm C$ 和 $36.786~{}^\circ\mathrm C$}，水分浓度分别为 {\bfseries\boldmath $2.550$ 和 $1.510~\mathrm{kg/kg}$。}结果表明预热初期水分主要从表层逸出，内部水分浓度仍接近初值。
+\textbf{针对问题一：}在固定半径和给定物性下，建立{\bfseries\boldmath Fourier--Fick 基准模型}，将时变环境量作为{\bfseries\boldmath 双 Robin 边界输入}并逐秒求解。利用中心圆盘控制体处理轴线边界，结合表面加密网格解析外层梯度。1800~s 时中心与表面温度分别为{\bfseries\boldmath $33.577~{}^\circ\mathrm C$ 和 $36.786~{}^\circ\mathrm C$}，水分浓度分别为 {\bfseries\boldmath $2.550$ 和 $1.510~\mathrm{kg/kg}$。}结果表明预热初期水分主要从表层逸出，内部水分浓度仍接近初值。
 
 \textbf{针对问题二：}在基准模型上引入 $\rho(C),c_p(C),k(C)$ 与 $D(T,C)$，构造{\bfseries\boldmath 温度--水分状态耦合的非线性扩散模型}，每个时间层交替更新温度、扩散系数和水分场，以双重收敛判据保证物性与场量自洽，刻画升温促进扩散与失水抑制扩散的竞争。3~h 时中心与表面温度达到{\bfseries\boldmath $49.849~{}^\circ\mathrm C$ 和 $49.967~{}^\circ\mathrm C$}，水分浓度降至{\bfseries\boldmath $1.766$ 和 $1.008~\mathrm{kg/kg}$。}此时径向温差已很小，而水分梯度仍然明显，后续过程主要受内部传质控制。
 
