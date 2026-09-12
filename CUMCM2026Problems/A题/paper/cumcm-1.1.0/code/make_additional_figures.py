@@ -174,18 +174,21 @@ def diffusivity():
     d=read('q2'); m=d['times_s']<=10800
     t=d['times_s'][m]/3600; r=d['radius_m']*100
     z=property_q23(d['temperature_c'][m],d['moisture'][m])[-1]*1e9
-    fig,ax=plt.subplots(figsize=(183/25.4,83/25.4))
-    fig.subplots_adjust(left=.10,right=.84,bottom=.19,top=.92)
+    fig,ax=plt.subplots(figsize=(183/25.4,78/25.4))
+    fig.subplots_adjust(left=.10,right=.86,bottom=.20,top=.94)
     im=ax.pcolormesh(t,r,z.T,cmap='viridis',shading='auto',rasterized=True)
     cs=ax.contour(t,r,z.T,levels=[6,8,10,12],colors='white',linewidths=.8)
     labels=ax.clabel(cs,fmt='%g',fontsize=8,inline=True)
     import matplotlib.patheffects as pe
     for label in labels:
         label.set_path_effects([pe.withStroke(linewidth=1.5,foreground='#555555')])
-    ax.set(xlim=(0,3),ylim=(0,2),xlabel='时间 / h',ylabel='半径 / cm')
+    ax.set(xlim=(0,3),ylim=(0,2),xlabel='时间 / h',ylabel='到药材中心的距离 / cm')
+    ax.plot(t,np.zeros_like(t),color='#222222',lw=.8)
+    ax.plot(t,np.full_like(t,2),color='#222222',lw=.8,ls='--')
+    ax.set_xticks([0,1,2,3])
     ax.set_yticks([0,.5,1,1.5,2])
-    cb=fig.colorbar(im,cax=fig.add_axes([.88,.19,.023,.73]))
-    cb.set_label('扩散系数 D / (10⁻⁹ m²·s⁻¹)',labelpad=8)
+    cb=fig.colorbar(im,cax=fig.add_axes([.89,.20,.023,.74]))
+    cb.set_label(r'扩散系数 D / ($10^{-9}$ m$^2$·s$^{-1}$)',labelpad=8)
     METRICS['q2_diffusivity_map']={'shape':list(z.shape),'min_1e9':float(z.min()),'max_1e9':float(z.max()),'center_end_1e9':float(z[-1,0]),'surface_end_1e9':float(z[-1,-1])}
     save(fig,'q2_diffusivity_map')
 
@@ -270,7 +273,7 @@ def main():
         raise RuntimeError('需要 SimSun、Songti SC 或 STSong 中至少一种中文字体')
     surface_heatmap('q1','temperature_c','q1_temperature_surface','温度 / °C','plasma',1800,[29,31,33,35,37])
     print('Q1 surface saved',flush=True)
-    surface('q2','moisture','q2_moisture_surface','水分浓度 / (kg·kg⁻¹)',BLUE,10800,[1,1.5,2,2.55])
+    surface_heatmap('q2','moisture','q2_moisture_surface','水分浓度 C / (kg/kg)',BLUE,10800,[1,1.5,2,2.5])
     print('Q2 surface saved',flush=True)
     diffusivity();threshold_front();shrinking()
     (REPORT/'metrics.json').write_text(json.dumps(METRICS,ensure_ascii=False,indent=2),encoding='utf8')
