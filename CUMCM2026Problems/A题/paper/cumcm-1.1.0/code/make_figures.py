@@ -211,8 +211,8 @@ def figure_q2() -> None:
     fig, axes = plt.subplots(
         1,
         2,
-        figsize=(183 * MM_TO_INCH, 72 * MM_TO_INCH),
-        gridspec_kw={"wspace": 0.34},
+        figsize=(183 * MM_TO_INCH, 68 * MM_TO_INCH),
+        gridspec_kw={"wspace": 0.22},
     )
     plot_profiles(
         axes[0],
@@ -220,15 +220,29 @@ def figure_q2() -> None:
         data["temperature_c"][indexes],
         labels,
         "温度 / °C",
+        show_legend=False,
     )
     plot_profiles(
         axes[1],
         radius_cm,
         data["moisture"][indexes],
         labels,
-        "水分浓度 / (kg·kg⁻¹)",
+        "水分浓度 C / (kg/kg)",
+        show_legend=False,
     )
-    fig.subplots_adjust(left=0.09, right=0.98, top=0.83, bottom=0.23, wspace=0.34)
+    handles, legend_labels = axes[0].get_legend_handles_labels()
+    fig.legend(
+        handles,
+        legend_labels,
+        loc="upper center",
+        bbox_to_anchor=(0.5, 0.975),
+        ncol=len(legend_labels),
+        columnspacing=1.2,
+        handlelength=1.8,
+        handletextpad=0.45,
+        borderaxespad=0.0,
+    )
+    fig.subplots_adjust(left=0.08, right=0.99, top=0.85, bottom=0.20, wspace=0.22)
     panel_labels(fig, list(axes))
     save_cns_figure(fig, str(FIGURES / "q2_coupled_profiles"))
     plt.close(fig)

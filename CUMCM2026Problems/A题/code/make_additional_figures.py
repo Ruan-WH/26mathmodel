@@ -67,6 +67,7 @@ import json
 import shutil
 import sys
 from pathlib import Path
+import matplotlib.patheffects as pe
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap, Normalize
@@ -142,6 +143,31 @@ def surface(q,key,name,zlabel,cmap,limit,ticks):
     cb.set_label(zlabel,labelpad=8)
     fig.text(.44,.03,'实线：中心边界    虚线：表面边界',ha='center',fontsize=8)
     METRICS[name]={'shape':list(v.shape),'min':float(v.min()),'max':float(v.max()),'time_range_s':[0,limit]}
+    save(fig,name)
+
+def surface_heatmap(q,key,name,zlabel,cmap,limit,ticks):
+    d=read(q)
+    mask=d['times_s']<=limit
+    t=d['times_s'][mask]/(60 if q=='q1' else 3600)
+    r=d['radius_m']*100
+    v=d[key][mask]
+    fig,ax=plt.subplots(figsize=(183/25.4,82/25.4))
+    fig.subplots_adjust(left=.10,right=.86,bottom=.20,top=.93)
+    norm=Normalize(float(v.min()),float(v.max()))
+    im=ax.pcolormesh(t,r,v.T,cmap=cmap,norm=norm,shading='auto',rasterized=True)
+    cs=ax.contour(t,r,v.T,levels=ticks,colors='white',linewidths=.75)
+    labels=ax.clabel(cs,fmt='%g',fontsize=7,inline=True)
+    for label in labels:
+        label.set_path_effects([pe.withStroke(linewidth=1.4,foreground='#555555')])
+    ax.plot(t,np.zeros_like(t),color='#222222',lw=.85)
+    ax.plot(t,np.full_like(t,2),color='#222222',lw=.85,ls='--')
+    ax.set(xlim=(t[0],t[-1]),ylim=(0,2),xlabel='时间 / '+('min' if q=='q1' else 'h'),ylabel='到药材中心的距离 / cm')
+    ax.set_xticks([0,10,20,30] if q=='q1' else [0,1,2,3])
+    ax.set_yticks([0,.5,1,1.5,2])
+    cb=fig.colorbar(im,cax=fig.add_axes([.89,.20,.023,.73]))
+    cb.set_label(zlabel,labelpad=8)
+    fig.text(.47,.035,'实线：中心    虚线：表面',ha='center',fontsize=8)
+    METRICS[name]={'shape':list(v.shape),'min':float(v.min()),'max':float(v.max()),'time_range_s':[0,limit], 'plot':'2D heatmap with contour lines'}
     save(fig,name)
 
 def diffusivity():
@@ -232,9 +258,17 @@ def shrinking():
 
 def main():
     sys.stdout.reconfigure(encoding='utf8')
-    for font in ['Times New Roman','SimSun']:
-        font_manager.findfont(font,fallback_to_default=False)
-    surface('q1','temperature_c','q1_temperature_surface','温度 / °C','plasma',1800,[28,31,34,37])
+    font_manager.findfont('Times New Roman',fallback_to_default=False)
+    for chinese_font in ('SimSun','Songti SC','STSong'):
+        try:
+            font_manager.findfont(chinese_font,fallback_to_default=False)
+        except ValueError:
+            continue
+        mpl.rcParams['font.family']=['Times New Roman',chinese_font]
+        break
+    else:
+        raise RuntimeError('需要 SimSun、Songti SC 或 STSong 中至少一种中文字体')
+    surface_heatmap('q1','temperature_c','q1_temperature_surface','温度 / °C','plasma',1800,[29,31,33,35,37])
     print('Q1 surface saved',flush=True)
     surface('q2','moisture','q2_moisture_surface','水分浓度 / (kg·kg⁻¹)',BLUE,10800,[1,1.5,2,2.55])
     print('Q2 surface saved',flush=True)
