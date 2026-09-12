@@ -258,7 +258,7 @@ def figure_q3() -> None:
         1,
         2,
         figsize=(183 * MM_TO_INCH, 76 * MM_TO_INCH),
-        gridspec_kw={"wspace": 0.36},
+        gridspec_kw={"wspace": 0.28},
     )
     axes[0].plot(time_h, data["moisture"][:, 0], color=CATEGORICAL[0], linewidth=1.4, label="中心")
     axes[0].plot(
@@ -279,7 +279,7 @@ def figure_q3() -> None:
         fontsize=7,
     )
     axes[0].set_xlabel("时间 / h")
-    axes[0].set_ylabel("水分浓度 / (kg·kg⁻¹)")
+    axes[0].set_ylabel("水分浓度 / (kg/kg)")
     axes[0].set_xlim(0, max(time_h))
     axes[0].set_ylim(0, 2.65)
     axes[0].legend(loc="upper right")
@@ -293,11 +293,24 @@ def figure_q3() -> None:
         radius_cm,
         data["moisture"][indexes],
         labels,
-        "水分浓度 / (kg·kg⁻¹)",
+        "水分浓度 / (kg/kg)",
+        show_legend=False,
     )
     axes[1].axhline(0.15, color=ACCENT_RED, linewidth=0.8, linestyle=":")
     axes[1].set_ylim(0, 1.10)
-    fig.subplots_adjust(left=0.09, right=0.98, top=0.83, bottom=0.22, wspace=0.36)
+    handles, legend_labels = axes[1].get_legend_handles_labels()
+    fig.legend(
+        handles,
+        legend_labels,
+        loc="upper center",
+        bbox_to_anchor=(0.67, 0.975),
+        ncol=len(legend_labels),
+        columnspacing=1.0,
+        handlelength=1.8,
+        handletextpad=0.45,
+        borderaxespad=0.0,
+    )
+    fig.subplots_adjust(left=0.09, right=0.98, top=0.86, bottom=0.22, wspace=0.28)
     panel_labels(fig, list(axes))
     save_cns_figure(fig, str(FIGURES / "q3_threshold_diagnostics"))
     plt.close(fig)

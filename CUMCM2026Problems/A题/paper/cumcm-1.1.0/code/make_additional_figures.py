@@ -207,12 +207,12 @@ def threshold_front():
     ts=np.interp(.15,c[start-1:start+1,-1][::-1],t[start-1:start+1][::-1])
     ax.plot(t[start:],front[start:],color=ACCENT_RED,lw=1.8)
     ax.scatter([ts,t[-1]],[2,0],s=24,color=ACCENT_RED,zorder=6,clip_on=False)
-    ax.text(14,.42,'未达标核心\nC > 0.15 kg/kg',ha='center',fontsize=10,color='#17466B')
-    ax.text(43,1.55,'已达标外层\nC ≤ 0.15 kg/kg',ha='center',fontsize=10,
-            bbox=dict(facecolor='white',edgecolor='none',alpha=.92,pad=4))
-    ax.annotate(f'表面首达 {ts:.3f} h',xy=(ts,2),xytext=(ts+2,2.15),fontsize=8,
+    ax.text(14,.42,'未达标区域\nC > 0.15 kg/kg',ha='center',fontsize=9,color='#17466B')
+    ax.text(43,1.55,'已达标区域\nC ≤ 0.15 kg/kg',ha='center',fontsize=9,
+            bbox=dict(facecolor='white',edgecolor='none',alpha=.92,pad=3))
+    ax.annotate(f'表面首达 {ts:.3f} h',xy=(ts,2),xytext=(ts+2,2.13),fontsize=8,
                 arrowprops=dict(arrowstyle='-',color=GREY,lw=.7),annotation_clip=False)
-    ax.annotate(f'中心首达 {t[-1]:.3f} h',xy=(t[-1],0),xytext=(42,.34),fontsize=8,
+    ax.annotate(f'中心首达 {t[-1]:.3f} h',xy=(t[-1],0),xytext=(42,.32),fontsize=8,
                 arrowprops=dict(arrowstyle='->',color=ACCENT_RED,lw=.8))
     ax.set(xlim=(0,t[-1]),ylim=(0,2),xlabel='时间 / h',ylabel='半径 / cm')
     event_h = float(s["drying_time_h"])
