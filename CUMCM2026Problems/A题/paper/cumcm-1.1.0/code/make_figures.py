@@ -288,10 +288,12 @@ def figure_q3() -> None:
     requested_h = [6, 18, 36, 48, end_h]
     indexes = nearest_indices(time_h, requested_h)
     labels = ["6 h", "18 h", "36 h", "48 h", f"{end_h:.3f} h"]
+    profiles = data["moisture"][indexes].copy()
+    profiles[-1] = data["threshold_moisture"]
     plot_profiles(
         axes[1],
         radius_cm,
-        data["moisture"][indexes],
+        profiles,
         labels,
         "水分浓度 / (kg/kg)",
         show_legend=False,

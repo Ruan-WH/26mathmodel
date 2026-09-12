@@ -188,7 +188,7 @@ def diffusivity():
     ax.set_xticks([0,1,2,3])
     ax.set_yticks([0,.5,1,1.5,2])
     cb=fig.colorbar(im,cax=fig.add_axes([.89,.20,.023,.74]))
-    cb.set_label(r'扩散系数 D / ($10^{-9}$ m$^2$·s$^{-1}$)',labelpad=8)
+    cb.set_label('扩散系数 D / (10⁻⁹ m²·s⁻¹)',labelpad=8)
     METRICS['q2_diffusivity_map']={'shape':list(z.shape),'min_1e9':float(z.min()),'max_1e9':float(z.max()),'center_end_1e9':float(z[-1,0]),'surface_end_1e9':float(z[-1,-1])}
     save(fig,'q2_diffusivity_map')
 

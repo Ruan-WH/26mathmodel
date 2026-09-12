@@ -1,6 +1,6 @@
-\section{问题一：常物性预热过程模型的建立与求解}
+\section{问题一：恒定热物性预热过程模型的建立与求解}
 
-\subsection{常物性预热过程模型}
+\subsection{恒定热物性预热过程模型}
 
 \subsubsection{模型特化与特征尺度判断}
 
@@ -21,7 +21,7 @@ D_0=7.0\times10^{-9}\exp(-0.89/2.55)
 \tau_C=\frac{R_0^2}{D_0}=8.101\times10^4~\mathrm{s}.
 \label{eq:timescale1}
 \end{equation}
-两者相差约 34 倍，预示 1800~s 内温度扰动能够明显进入中心，而水分变化主要局限在外层。
+水分扩散特征时间约为热扩散特征时间的 34 倍，预示 1800~s 内温度扰动能够明显进入中心，而水分变化主要局限在外层。
 
 进一步计算热、质 Biot 数
 \begin{equation}
@@ -39,7 +39,7 @@ Bi_C=\frac{h_mR_0}{D_0}=3.240.
 \[
 r_i=R_0\left[1-\left(1-\frac{i}{N}\right)^2\right],\qquad i=0,\ldots,N,
 \]
-其中 $N=160$，共 161 个节点。相邻节点中点作为控制体界面，中心与表面界面分别取 0 和 $R_0$。按单位轴向长度计算，第 $i$ 个控制体体积为 $V_i=\pi(r_{i+1/2}^2-r_{i-1/2}^2)$。该划分在中心形成圆盘、在表面形成半环形控制体，可直接处理轴对称边界而无需引入负半径虚拟点。
+其中 $N=160$，共 161 个节点。相邻节点中点作为控制体界面，中心与表面界面分别取 0 和 $R_0$。按单位轴向长度计算，第 $i$ 个控制体体积为 $V_i=\pi(r_{i+1/2}^2-r_{i-1/2}^2)$。中心控制体呈圆盘形，表面控制体覆盖最外侧半个径向网格区间；该划分可直接处理轴对称边界而无需引入负半径虚拟点。
 
 取 $\Delta t=1$~s，将预热区间 $[0,1800]$~s 划分为 1800 个时间步。各步环境量由附件一的 PCHIP 插值在 $t_{n+1}$ 处求得。计算网格与题目要求的取值位置分开设置，温湿场求出后线性插值至 $0,0.1,\ldots,2.0$~cm 的 21 个位置。
 
@@ -155,12 +155,12 @@ $t$/s & $T(R,t)-T(0,t)$/℃ & $C(0,t)-C(R,t)$/（kg/kg）\\
 
 \subsubsection{预热温度的连续时空演化}
 
-\cref{fig:q1surface}展示 0--30~min 的温度时空曲面，热量由表面逐渐传向中心。
+\cref{fig:q1surface}展示 0--30~min 的温度时空分布及等温线，热量由表面逐渐传向中心。
 
 \begin{figure}[!htbp]
 \centering
 \includegraphics[width=0.78\textwidth]{q1_temperature_surface.pdf}
-\caption{问题一预热温度的三维时空曲面（0--30 min）}\label{fig:q1surface}
+\caption{问题一预热温度的时空分布及等温线（0--30 min）}\label{fig:q1surface}
 \end{figure}
 
 \subsubsection{二维轴对称检验}
