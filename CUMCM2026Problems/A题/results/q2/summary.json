@@ -103,7 +103,7 @@
     ]
   ],
   "picard_max": 5,
-  "picard_mean": 4.384266006023511,
+  "picard_mean": 4.380313134241809,
   "monotone_profiles": true,
   "center_is_max": true,
   "numerics": {
@@ -113,13 +113,13 @@
     "output_nodes": 21
   },
   "balance": {
-    "moisture_change": -0.9512583517571942,
-    "boundary_loss": 0.9512583517565065,
+    "moisture_change": -0.9512569754010264,
+    "boundary_loss": 0.9512569754003312,
     "relative_transport": 0.0,
     "maximum_step_mass_residual": 4.0257811534847824e-16,
-    "maximum_step_heat_equation_residual": 2.8848769089893886e-14,
-    "cumulative_mass_equation_residual": 6.87672141452822e-13
+    "maximum_step_heat_equation_residual": 2.876711825797739e-14,
+    "cumulative_mass_equation_residual": 6.95221658020273e-13
   },
-  "output_end_s": 205860.0,
-  "drying_time_h": 57.16898866840205
+  "output_end_s": 206940.0,
+  "drying_time_h": 57.47190861869677
 }
