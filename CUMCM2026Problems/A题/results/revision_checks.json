@@ -2,16 +2,16 @@
   "q2_q3_exact_shared_trajectory": true,
   "short_term_refinement_161_to_321_dt1": {
     "q1": {
-      "maximum_output_temperature_difference_c": 9.346920143826765e-05,
-      "maximum_output_moisture_difference": 5.100812949487832e-05
+      "maximum_output_temperature_difference_c": 9.346930230691441e-05,
+      "maximum_output_moisture_difference": 5.1008129873686414e-05
     },
     "q2": {
-      "maximum_output_temperature_difference_c": 9.79438162218571e-05,
-      "maximum_output_moisture_difference": 4.426328523976508e-05
+      "maximum_output_temperature_difference_c": 9.794381757899373e-05,
+      "maximum_output_moisture_difference": 4.4263285316148426e-05
     }
   },
-  "uniform_material_field_temperature_error": 1.220001877300092e-11,
-  "uniform_material_field_moisture_error": 3.108624468950438e-14,
+  "uniform_material_field_temperature_error": 4.604316927725449e-12,
+  "uniform_material_field_moisture_error": 4.063416270128073e-14,
   "production_balances": {
     "q1": {
       "moisture_change": -0.10056238896514966,
@@ -22,35 +22,35 @@
       "cumulative_mass_equation_residual": 4.368727601899991e-14
     },
     "q2": {
-      "moisture_change": -0.9512583517571942,
-      "boundary_loss": 0.9512583517565065,
+      "moisture_change": -0.9512569754010264,
+      "boundary_loss": 0.9512569754003312,
       "relative_transport": 0.0,
       "maximum_step_mass_residual": 4.0257811534847824e-16,
-      "maximum_step_heat_equation_residual": 2.8848769089893886e-14,
-      "cumulative_mass_equation_residual": 6.87672141452822e-13
+      "maximum_step_heat_equation_residual": 2.876711825797739e-14,
+      "cumulative_mass_equation_residual": 6.95221658020273e-13
     },
     "q3": {
-      "moisture_change": -0.9512583517571942,
-      "boundary_loss": 0.9512583517565065,
+      "moisture_change": -0.9512569754010264,
+      "boundary_loss": 0.9512569754003312,
       "relative_transport": 0.0,
       "maximum_step_mass_residual": 4.0257811534847824e-16,
-      "maximum_step_heat_equation_residual": 2.8848769089893886e-14,
-      "cumulative_mass_equation_residual": 6.87672141452822e-13
+      "maximum_step_heat_equation_residual": 2.876711825797739e-14,
+      "cumulative_mass_equation_residual": 6.95221658020273e-13
     },
     "q4": {
-      "moisture_change": -0.9535758011064243,
-      "boundary_loss": 0.9535758011066011,
+      "moisture_change": -0.9535738143541223,
+      "boundary_loss": 0.9535738143542996,
       "relative_transport": 0.0,
       "maximum_step_mass_residual": 8.463709252111618e-17,
-      "maximum_step_heat_equation_residual": 3.376288863479249e-14,
-      "cumulative_mass_equation_residual": 1.7685852782278744e-13
+      "maximum_step_heat_equation_residual": 3.2055952454524943e-14,
+      "cumulative_mass_equation_residual": 1.773026170326375e-13
     }
   },
   "scope": "Mass balance of implemented dry-reference equation; effective heat equation, not total enthalpy.",
   "source_sha256": {
-    "solve_drying.py": "e108f2eb96f527322fe3ad20ae1d086ad5cc606f00f643b7065391877da16179",
-    "validate_long_2d.py": "3270e84d76baedaa188bae7c2cd36893ca3714314a26a7bffa27c9176465242b",
-    "run_sensitivity.py": "908ee56d4b7ae8d8a93e166a1af26bf9467530e0e708f88a224b646b581a2e72"
+    "solve_drying.py": "7016bf12f67710261eb0db124ed932a6e74692d919ca472df655976522fe572d",
+    "validate_long_2d.py": "d66cdde8bf216c97002bf542a2a311133059f50cbccd0af5679cdd85879f6c04",
+    "run_sensitivity.py": "0f500a0263edd6f9c9b8f9b6c55e9f248493ec9b777b3bd6f416b59ed6e6dd58"
   },
   "pass": true
 }
