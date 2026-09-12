@@ -168,11 +168,12 @@ def make_validation_figure(comsol, baseline):
         r_cm = cxi * cr[ic]
         base_at_cxi = interp_profile(bxi, baseline_profile(baseline, "moisture", target, event_time), cxi)
         ax.plot(r_cm, cm[ic], color=color, lw=1.5, label=label)
-        pick = np.unique(np.r_[np.arange(0, len(cxi), 10), len(cxi)-1-np.array([1, 2, 5])])
+        stride = max(1, (len(cxi)-1)//10)
+        pick = np.unique(np.r_[np.arange(0, len(cxi), stride), len(cxi)-1-np.array([0, 1, 2, 5])])
         ax.plot(r_cm[pick], base_at_cxi[pick], "o", ms=2.8, mfc="white",
                 mec=color, mew=0.7)
-    ax.set_xlabel("Physical radius, $r$ (cm)")
-    ax.set_ylabel("Moisture content, $C$ (kg kg$^{-1}$)")
+    ax.set_xlabel("实际半径 r / cm")
+    ax.set_ylabel("水分浓度 C / (kg/kg)")
     ax.set_xlim(0, 1.45)
     ax.legend(title="干燥时间", loc="upper right", bbox_to_anchor=(1.17, 1.02))
     ax.text(0.5, -0.30, "（a）径向水分剖面", transform=ax.transAxes,
@@ -192,13 +193,14 @@ def make_validation_figure(comsol, baseline):
     ax.plot([lo, hi], [lo, hi], color=GREY, ls="--", lw=0.7)
     ax.scatter(parity_x, parity_y, s=8, color=CATEGORICAL[0], alpha=0.7,
                edgecolors="none", rasterized=True)
-    ax.set_xlabel("Reference moisture content")
-    ax.set_ylabel("COMSOL moisture content")
+    ax.set_xlabel("有限体积水分浓度 / (kg/kg)")
+    ax.set_ylabel("COMSOL 水分浓度 / (kg/kg)")
     ax.set_xlim(lo, hi)
     ax.set_ylim(lo, hi)
     ax.set_aspect("equal", adjustable="box")
     err = np.max(np.abs(parity_y - parity_x))
-    ax.text(0.05, 0.92, f"$\\max|\\Delta C|={err:.5f}$", transform=ax.transAxes)
+    exponent = int(np.floor(np.log10(err)))
+    ax.text(0.05, 0.92, rf"$\max|\Delta C|={err/10**exponent:.2f}\times10^{{{exponent}}}$", transform=ax.transAxes)
     ax.text(0.5, -0.30, "（b）COMSOL 与基准模型逐点校核", transform=ax.transAxes,
             ha="center", va="top", fontsize=8)
 
@@ -211,8 +213,8 @@ def make_validation_figure(comsol, baseline):
     ax.annotate(f"主模型达标时刻\n{event_h:.2f} h", (event_h, 1.2), xytext=(-38, 18),
                 textcoords="offset points", arrowprops=dict(arrowstyle="-", lw=0.6),
                 ha="center", fontsize=7)
-    ax.set_xlabel("Time, $t$ (h)")
-    ax.set_ylabel("Herb radius, $R(t)$ (cm)")
+    ax.set_xlabel("时间 t / h")
+    ax.set_ylabel("药材半径 R(t) / cm")
     ax.set_xlim(0, 52)
     ax.set_ylim(1.15, 2.05)
     ax.text(0.5, -0.30, "（c）药材半径收缩历程", transform=ax.transAxes,
@@ -226,6 +228,24 @@ def make_validation_figure(comsol, baseline):
 
 
 def main():
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--refined', action='store_true', help='Use the completed 320-element, 1e-7 COMSOL validation run')
+    args = parser.parse_args()
+    if args.refined:
+        global OUT
+        from analyze_q4_comsol import read_comsol_wide
+        _, data, times = read_comsol_wide(HERE / 'near_surface_check/graded320_tight/q4_comsol_profiles.csv')
+        comsol = {'times_s': times, 'x_ref_m': data[:, 0], 'moisture': data[:, 3::4].T,
+                  'radii_m': data[0, 5::4]}
+        OUT = HERE / 'near_surface_check/figures'
+        OUT.mkdir(exist_ok=True)
+        with np.load(BASE) as archive:
+            baseline = {key: archive[key] for key in archive.files}
+        stats = make_validation_figure(comsol, baseline)
+        (OUT / 'figure_statistics.json').write_text(json.dumps(stats, indent=2), encoding='utf-8')
+        print(json.dumps(stats))
+        return
     comsol = np.load(HERE / "q4_comsol_fields.npz")
     with np.load(BASE) as archive:
         baseline = {key: archive[key] for key in archive.files}

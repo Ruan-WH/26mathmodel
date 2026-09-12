@@ -1,0 +1,186 @@
+{
+  "scope": "6 specified times and 1001 common reference radii; original input interpolation retained",
+  "cases": [
+    {
+      "case": "original_dense",
+      "radial_elements": "original_auto3",
+      "rtol": "1e-4",
+      "max_moisture_difference": 0.011729210836043905,
+      "at_time_h": 24.0,
+      "at_xi": 0.9880000000000001,
+      "max_center_difference": 0.00011923134438207583,
+      "max_surface_difference": 0.001509020717700052,
+      "max_outer_10pct_difference": 0.011729210836043905,
+      "max_temperature_difference": 1.10793888481453e-05,
+      "center_C_at_FVM_event": 0.1499959780894708,
+      "surface_C_at_FVM_event": 0.052188985757435746,
+      "estimated_COMSOL_event_h": 51.08553285268073,
+      "event_estimation_scope": "linear interpolation of saved output; not solver event detection",
+      "per_time_max_difference": [
+        0.0009166758066881942,
+        0.004077096506261979,
+        0.011729210836043905,
+        0.00933948393371846,
+        0.006810170773221325,
+        0.006295345594880208
+      ]
+    },
+    {
+      "case": "original_tight",
+      "radial_elements": "original_auto3",
+      "rtol": "1e-6",
+      "max_moisture_difference": 0.011735149476170104,
+      "at_time_h": 24.0,
+      "at_xi": 0.9880000000000001,
+      "max_center_difference": 2.8977507756433596e-05,
+      "max_surface_difference": 0.0015126265194022048,
+      "max_outer_10pct_difference": 0.011735149476170104,
+      "max_temperature_difference": 4.2692239716757285e-06,
+      "center_C_at_FVM_event": 0.15001284274681198,
+      "surface_C_at_FVM_event": 0.05218980161020322,
+      "estimated_COMSOL_event_h": 51.09465778046009,
+      "event_estimation_scope": "linear interpolation of saved output; not solver event detection",
+      "per_time_max_difference": [
+        0.0011091900370023278,
+        0.004088768568015988,
+        0.011735149476170104,
+        0.009339399330259332,
+        0.006809335259486682,
+        0.00629311992681305
+      ]
+    },
+    {
+      "case": "graded80",
+      "radial_elements": 80,
+      "rtol": "1e-6",
+      "max_moisture_difference": 4.5173551237454035e-05,
+      "at_time_h": 6.0,
+      "at_xi": 0.006000000000000001,
+      "max_center_difference": 2.336707442196495e-05,
+      "max_surface_difference": 2.364764127543717e-06,
+      "max_outer_10pct_difference": 2.6241083829675604e-05,
+      "max_temperature_difference": 4.0696372138882e-06,
+      "center_C_at_FVM_event": 0.14999852809123,
+      "surface_C_at_FVM_event": 0.05261994295187105,
+      "estimated_COMSOL_event_h": 51.086904632256,
+      "event_estimation_scope": "linear interpolation of saved output; not solver event detection",
+      "per_time_max_difference": [
+        4.5173551237454035e-05,
+        2.336707442196495e-05,
+        2.6241083829675604e-05,
+        2.4750646350935046e-05,
+        1.617252349661591e-05,
+        1.4746666849967116e-05
+      ]
+    },
+    {
+      "case": "graded160",
+      "radial_elements": 160,
+      "rtol": "1e-6",
+      "max_moisture_difference": 4.532374858112753e-05,
+      "at_time_h": 6.0,
+      "at_xi": 0.006000000000000001,
+      "max_center_difference": 2.2076990658037587e-05,
+      "max_surface_difference": 2.5151258511435515e-06,
+      "max_outer_10pct_difference": 2.1727502156121403e-05,
+      "max_temperature_difference": 4.132434142434249e-06,
+      "center_C_at_FVM_event": 0.14999888249631532,
+      "surface_C_at_FVM_event": 0.05261996121536604,
+      "estimated_COMSOL_event_h": 51.087095945856845,
+      "event_estimation_scope": "linear interpolation of saved output; not solver event detection",
+      "per_time_max_difference": [
+        4.532374858112753e-05,
+        2.2076990658037587e-05,
+        2.1727502156121403e-05,
+        1.9352723875057376e-05,
+        1.4262876973827887e-05,
+        1.3140349586694688e-05
+      ]
+    },
+    {
+      "case": "graded320",
+      "radial_elements": 320,
+      "rtol": "1e-6",
+      "max_moisture_difference": 4.188195865362232e-05,
+      "at_time_h": 6.0,
+      "at_xi": 0.006000000000000001,
+      "max_center_difference": 2.3154325429985967e-05,
+      "max_surface_difference": 2.1663721926357127e-06,
+      "max_outer_10pct_difference": 2.120427640421585e-05,
+      "max_temperature_difference": 4.129312976886013e-06,
+      "center_C_at_FVM_event": 0.14999880919035807,
+      "surface_C_at_FVM_event": 0.05261995936721189,
+      "estimated_COMSOL_event_h": 51.08705639681632,
+      "event_estimation_scope": "linear interpolation of saved output; not solver event detection",
+      "per_time_max_difference": [
+        4.188195865362232e-05,
+        2.3154325429985967e-05,
+        2.120427640421585e-05,
+        1.8876029264161542e-05,
+        1.3901141640057513e-05,
+        1.2790351802141608e-05
+      ]
+    },
+    {
+      "case": "graded320_tight",
+      "radial_elements": 320,
+      "rtol": "1e-7",
+      "max_moisture_difference": 4.544533736350331e-05,
+      "at_time_h": 6.0,
+      "at_xi": 0.006000000000000001,
+      "max_center_difference": 2.201769195542269e-05,
+      "max_surface_difference": 2.1163065687113125e-06,
+      "max_outer_10pct_difference": 2.1321031300730597e-05,
+      "max_temperature_difference": 4.176552323542637e-06,
+      "center_C_at_FVM_event": 0.14999887993182268,
+      "surface_C_at_FVM_event": 0.052619962379573844,
+      "estimated_COMSOL_event_h": 51.087094593046885,
+      "event_estimation_scope": "linear interpolation of saved output; not solver event detection",
+      "per_time_max_difference": [
+        4.544533736350331e-05,
+        2.201769195542269e-05,
+        2.1321031300730597e-05,
+        1.8885681117228326e-05,
+        1.3906888304118792e-05,
+        1.2799327565059249e-05
+      ]
+    }
+  ],
+  "successive_comparisons": [
+    {
+      "a": "original_dense",
+      "b": "original_tight",
+      "max_moisture_difference": 0.000327691891528481,
+      "max_temperature_difference": 1.534835966765513e-05
+    },
+    {
+      "a": "original_tight",
+      "b": "graded80",
+      "max_moisture_difference": 0.011754514664835986,
+      "max_temperature_difference": 1.99596975392069e-07
+    },
+    {
+      "a": "graded80",
+      "b": "graded160",
+      "max_moisture_difference": 1.0579502130028673e-05,
+      "max_temperature_difference": 6.279692854604946e-08
+    },
+    {
+      "a": "graded160",
+      "b": "graded320",
+      "max_moisture_difference": 3.441927505010156e-06,
+      "max_temperature_difference": 3.1212081808007497e-09
+    },
+    {
+      "a": "graded320",
+      "b": "graded320_tight",
+      "max_moisture_difference": 3.5636164885666233e-06,
+      "max_temperature_difference": 4.723934665662455e-08
+    }
+  ],
+  "protected_files_unchanged": {
+    "comsol_q4\\Q4Automation.java": true,
+    "results\\q4\\fields.npz": true,
+    "paper\\cumcm-1.1.0\\main.pdf": true
+  }
+}

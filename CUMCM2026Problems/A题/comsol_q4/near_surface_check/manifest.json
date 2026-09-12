@@ -1,0 +1,40 @@
+{
+  "cases": [
+    [
+      "original_dense",
+      0,
+      "1e-4"
+    ],
+    [
+      "original_tight",
+      0,
+      "1e-6"
+    ],
+    [
+      "graded80",
+      80,
+      "1e-6"
+    ],
+    [
+      "graded160",
+      160,
+      "1e-6"
+    ],
+    [
+      "graded320",
+      320,
+      "1e-6"
+    ],
+    [
+      "graded320_tight",
+      320,
+      "1e-7"
+    ]
+  ],
+  "sampling": "1001 equally spaced reference radii; same 309 output times",
+  "source_sha256": {
+    "comsol_q4\\Q4Automation.java": "f5a94c0ea6b40c9de7a2b4fdf00730d810c18bbb768f66d13f85b4942a0f377a",
+    "results\\q4\\fields.npz": "ec26dda9a41ad47a13259710c913fd40a8a283fe5c64d84cce93ed203d0a53cd",
+    "paper\\cumcm-1.1.0\\main.pdf": "205201602360b8aff7b72e7c4ab01a09caa7f6e345fdba87a2c487fb11b798d7"
+  }
+}

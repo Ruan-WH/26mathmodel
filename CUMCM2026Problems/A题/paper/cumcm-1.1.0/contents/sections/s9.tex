@@ -195,12 +195,22 @@ $t$/h&0 cm&0.5 cm&1.0 cm&动态表面\\
 
 \subsubsection{COMSOL 有限元复核}
 
-COMSOL 采用相同物性、环境与半径历史，并设置轴向均匀、端面绝热。\cref{fig:q4comsol}(a)比较径向剖面，(b)给出六时刻的采样点对照，(c)展示半径历程。最大水分差为 $0.01162~\mathrm{kg/kg}$，位于近表层；最大温差为 $6.93\times10^{-5}~{}^\circ\mathrm C$。主模型首达时刻 51.0877~h 对应 COMSOL 中心水分 0.150036，支持整体趋势；该值不是 COMSOL 独立首达时间，近表层偏差仍需网格检验。
+COMSOL 沿用主模型物性与边界历史，设置轴向均匀、端面绝热。初始自动网格由 COMSOL 自动网格尺寸等级 3 生成，共 492 个域单元，未单独设置近表层局部加密。后续改用映射四边形网格，径向分别划分 80、160、320 个单元，轴向均为 4 个单元，径向节点按余弦分布在轴线及表层附近加密。表中加密方案标注的是径向单元数，对应域单元总数为 320、640、1280。
+
+初始与加密方案同时改变网格生成方式和分布，逐级收敛检验则在三档映射网格之间进行，并另作相对求解容差对照。各方案在 6、12、24、36、48~h 及主模型达标时刻，以 1001 个共同径向位置比较，结果见\cref{tab:q4comsolmesh}；有限体积参考值由全部 161 个计算节点插值得到。
+
+\input{contents/sections/q4_comsol_mesh_table.tex}
+
+收紧原网格容差后，水分差仍约为 $0.0117~\mathrm{kg/kg}$；表层加密后降至 $4.5\times10^{-5}~\mathrm{kg/kg}$ 量级，说明原偏差主要与网格分辨不足有关。80 至 160、160 至 320 单元的有限元场量最大变化分别为 $1.06\times10^{-5}$、$3.44\times10^{-6}~\mathrm{kg/kg}$，支持网格收敛；最细网格进一步收紧容差引起的变化为 $3.56\times10^{-6}~\mathrm{kg/kg}$。两法之差还包含有限体积离散与插值误差，不要求随有限元加密严格单调下降。
+
+\begin{samepage}
+\cref{fig:q4comsol}采用 320 单元、$10^{-7}$ 容差结果：(a)为径向剖面，实线表示 COMSOL、圆点表示有限体积结果；(b)为六时刻共 6006 点对照；(c)为半径历程。最大水分差为 $4.54\times10^{-5}~\mathrm{kg/kg}$，最大温差为 $4.18\times10^{-6}~{}^\circ\mathrm C$。主模型达标时刻的 COMSOL 中心水分为 $0.14999888~\mathrm{kg/kg}$，支持既定模型的数值一致性；该比较不替代物理假设的实验验证。
+\par\end{samepage}
 
 \begin{figure}[!htbp]
 \centering
-\includegraphics[width=0.96\textwidth]{q4_comsol_profiles_validation.pdf}
-\caption{COMSOL 有限元剖面、原有限体积结果校核与半径收缩历程}\label{fig:q4comsol}
+\includegraphics[width=0.96\textwidth]{q4_comsol_refined_validation.pdf}
+\caption{加密 COMSOL 有限元剖面、有限体积结果校核与半径收缩历程}\label{fig:q4comsol}
 \end{figure}
 
 \input{contents/sections/q4_moving_mesh_validation.tex}

@@ -1,0 +1,16 @@
+\begin{table}[!htbp]
+\centering
+\caption{COMSOL 网格与求解容差检验}\label{tab:q4comsolmesh}
+\begin{tabular}{lcc}
+\toprule
+网格设置 & 相对求解容差 & 最大水分差（kg/kg）\\
+\midrule
+初始自动网格 & $1.00\times10^{-4}$ & $1.17\times10^{-2}$\\
+初始自动网格，收紧容差 & $1.00\times10^{-6}$ & $1.17\times10^{-2}$\\
+表层加密，80 单元 & $1.00\times10^{-6}$ & $4.52\times10^{-5}$\\
+表层加密，160 单元 & $1.00\times10^{-6}$ & $4.53\times10^{-5}$\\
+表层加密，320 单元 & $1.00\times10^{-6}$ & $4.19\times10^{-5}$\\
+320 单元，收紧容差 & $1.00\times10^{-7}$ & $4.54\times10^{-5}$\\
+\bottomrule
+\end{tabular}
+\end{table}
