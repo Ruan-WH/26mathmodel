@@ -1,0 +1,83 @@
+{
+  "scope": "Read-only correspondence review of the current paper, canonical solver and export rules; numerical reproduction is recorded separately in model_audit_recompute.json.",
+  "solver": "code/solve_drying.py",
+  "source_sha256_at_recompute_start": "93609143157003e52347ca0b988596eafce937c958935414a1b6e85adea210e6",
+  "overall_model_code_correspondence": "CONSISTENT_UNDER_STATED_ASSUMPTIONS",
+  "checks": [
+    {
+      "item": "Geometry and initial conditions",
+      "status": "consistent",
+      "paper": ["contents/sections/s5.tex:5", "contents/sections/s5.tex:7", "contents/sections/s5.tex:9"],
+      "code": ["code/solve_drying.py:29", "code/solve_drying.py:33", "code/solve_drying.py:34", "code/solve_drying.py:162"],
+      "finding": "Fixed radius 0.02 m, initial temperature 28 C and dry-basis moisture 2.55. The main solver is radial; cylinder length cancels from the per-unit-length radial balance and is used separately in 2D end-face checks."
+    },
+    {
+      "item": "All three property sets",
+      "status": "consistent",
+      "paper": ["contents/sections/s5.tex:74", "contents/sections/s5.tex:81", "contents/sections/s5.tex:88"],
+      "code": ["code/solve_drying.py:121", "code/solve_drying.py:131", "code/solve_drying.py:144"],
+      "finding": "Q1 constants 820,2600,0.36 and D=7e-9 exp(-0.89/C); Q2/Q3 and Q4 density, heat capacity, conductivity and diffusivity formulas agree coefficient by coefficient, including Kelvin conversion T+273.15. Code uses max(C,1e-8) only to guard the singular formulas; the actual results stay strictly above this cutoff."
+    },
+    {
+      "item": "Environment and radius reconstruction",
+      "status": "consistent",
+      "paper": ["contents/sections/s3.tex:11", "contents/sections/s5.tex:24", "contents/sections/s5.tex:43", "contents/sections/s9.tex:7"],
+      "code": ["code/solve_drying.py:47", "code/solve_drying.py:71", "code/solve_drying.py:87", "code/solve_drying.py:103"],
+      "finding": "Environment uses observed PCHIP values through 14400 s, then the assumed 50 C and 0.05 values. Radius is read from attachment 2, converted cm to m, monotonized by cumulative minimum and interpolated by PCHIP. These inputs are conditional boundary histories, not predictions of future room conditions or a fitted shrinkage law."
+    },
+    {
+      "item": "Heat and mass boundary conditions",
+      "status": "consistent",
+      "paper": ["contents/sections/s3.tex:9", "contents/sections/s5.tex:62", "contents/sections/s5.tex:69", "contents/sections/s5.tex:71", "contents/sections/s9.tex:61"],
+      "code": ["code/solve_drying.py:27", "code/solve_drying.py:28", "code/solve_drying.py:205", "code/solve_drying.py:253", "code/solve_drying.py:267"],
+      "finding": "h_T=25 and h_m=8e-7 are used throughout. Zero axis flux and outward Robin surface flux have matching signs. Moving-domain surface conductance scales as 1/R. The code directly uses attachment moisture as C_e, matching the explicitly stated equivalent-boundary mapping assumption; it does not independently establish a dry-air/material equilibrium conversion."
+    },
+    {
+      "item": "Discrete heat/moisture equations and iteration",
+      "status": "consistent",
+      "paper": ["contents/sections/s5.tex:47", "contents/sections/s5.tex:100", "contents/sections/s5.tex:120", "contents/sections/s5.tex:141"],
+      "code": ["code/solve_drying.py:157", "code/solve_drying.py:168", "code/solve_drying.py:177", "code/solve_drying.py:222"],
+      "finding": "Node-centred annular finite volumes, arithmetic face coefficients, fully implicit time stepping and tridiagonal solution agree. Heat storage is rho(C) cp(C); moisture storage is unity in the chosen dry-basis equation. Picard updates temperature and then moisture, retaining the previous time-level right hand side, with tolerances 1e-8 C and 1e-10 kg/kg and a 30-iteration cap. No latent-heat or moisture-enthalpy term is implemented, consistent with the paper's stated thermal simplification."
+    },
+    {
+      "item": "Uniform material shrinkage and dry-basis conservation",
+      "status": "consistent",
+      "paper": ["contents/sections/s3.tex:12", "contents/sections/s9.tex:30", "contents/sections/s9.tex:38", "contents/sections/s9.tex:47", "contents/sections/s9.tex:59"],
+      "code": ["code/solve_drying.py:240", "code/solve_drying.py:429", "code/solve_drying.py:431", "code/solve_drying.py:463", "code/solve_drying.py:534"],
+      "finding": "Default include_advection=False sets only the radius-rate argument of relative advection to zero while the actual radius continues to change. This implements v_s=w, retains 1/R^2 diffusion and 1/R surface exchange, and matches the dry-skeleton continuity cancellation in the paper. rho_d is not numerically evolved because its spatially uniform factor cancels. The stored heat residual checks the effective temperature equation, not a complete thermodynamic enthalpy balance."
+    },
+    {
+      "item": "Grid resolution versus saved/output resolution",
+      "status": "consistent",
+      "paper": ["contents/sections/s5.tex:100", "contents/sections/s5.tex:155", "contents/sections/s9.tex:75", "contents/sections/s9.tex:89"],
+      "code": ["code/solve_drying.py:30", "code/solve_drying.py:31", "code/solve_drying.py:32", "code/solve_drying.py:162", "code/solve_drying.py:334", "code/solve_drying.py:434", "code/solve_drying.py:665", "code/solve_drying.py:701", "code/solve_drying.py:744"],
+      "finding": "All principal solves use 161 nodes and 1 s integration. Grid xi_i=1-(1-i/160)^2 agrees. Q1-Q3 saved profile arrays contain 21 requested physical radii after interpolation; this is output resolution, not a 21-node numerical solve. Q4 preserves all 161 material nodes for subsequent physical-position interpolation."
+    },
+    {
+      "item": "Shared Q2/Q3 trajectory and Q2 workbook scope",
+      "status": "consistent",
+      "paper": ["contents/sections/s5.tex:155", "contents/sections/s7.tex:37", "contents/sections/s8.tex:35"],
+      "code": ["code/solve_drying.py:701", "code/solve_drying.py:723", "code/write_results.py:235"],
+      "finding": "Q2 and Q3 intentionally share the same complete 1 s trajectory to the long-time event; Q3 stores every 60th row. Per the user's explicit requirement, result2.xlsx exports only 1..10800 s. Long q2/fields.npz storage is not a workbook-scope defect and is needed to verify shared trajectory consistency."
+    },
+    {
+      "item": "Global first-passage event and minute output",
+      "status": "consistent",
+      "paper": ["contents/sections/s8.tex:7", "contents/sections/s8.tex:19", "contents/sections/s8.tex:37", "contents/sections/s8.tex:50", "contents/sections/s9.tex:102"],
+      "code": ["code/solve_drying.py:377", "code/solve_drying.py:383", "code/solve_drying.py:395", "code/solve_drying.py:493", "code/solve_drying.py:500", "code/solve_drying.py:517"],
+      "finding": "Each internal step computes the maximum over all native nodes, checks radial monotonicity and centre control, and interpolates the first transition from max(C)>0.15 to max(C)<=0.15. The interpolated event profile is distinct from the last exported minute. Integration continues to ceil(event_time/60)*60 for the Q3/Q4 regular output grids; this does not change the reported first-passage time. Native 1 s crossing evidence is recorded separately by the audit wrapper."
+    },
+    {
+      "item": "Four result export rules",
+      "status": "consistent_at_source_level",
+      "paper": ["contents/sections/s9.tex:87", "contents/sections/s9.tex:94"],
+      "code": ["code/write_results.py:63", "code/write_results.py:74", "code/write_results.py:109", "code/write_results.py:120", "code/write_results.py:227"],
+      "finding": "Q1 exports each second through 1800 s; Q2 each second through 10800 s; Q3 and Q4 each 60 s through the first regular minute after the event. Fixed-domain sheets use radii 0..2 cm at 0.1 cm spacing. Q4 uses fixed positions 0..1.9 cm, blanks positions outside the current radius, and appends the moving surface as the last column. Values are rounded to four decimals. A separate agent performs full workbook-cell read-back checks."
+    }
+  ],
+  "scope_limits": [
+    "This review verifies correspondence and numerical reproduction under the chosen model, not experimental validity of latent-heat omission, environmental moisture mapping, isotropy or uniform shrinkage.",
+    "First-passage checks are for the computed native-node time trajectory and linear event interpolation; four-decimal Excel rounding is not used to decide attainment.",
+    "No canonical code, results, paper or workbook is modified by this audit."
+  ]
+}

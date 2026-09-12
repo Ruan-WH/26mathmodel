@@ -1,29 +1,36 @@
 \section{支撑材料文件列表}
 
-\begin{table}[!htbp]
-\centering
+\begingroup
 \small
-\caption{支撑材料及作用}
-\begin{tabular}{p{0.28\textwidth}p{0.62\textwidth}}
+\renewcommand{\arraystretch}{1.18}
+\setlength{\tabcolsep}{5pt}
+\begin{longtable}{>{\centering\arraybackslash}m{0.48\textwidth}>{\centering\arraybackslash}m{0.45\textwidth}}
+\caption{支撑材料及作用}\\
 \toprule
-文件 & 作用\\
+文件（相对项目目录） & 作用\\
 \midrule
-\texttt{solve\_drying.py} & 四问有限体积求解、首达判定、移动边界与步长检验主程序\\
-\texttt{write\_results.py} & 四份提交工作簿的生成、格式处理和回读核验\\
-\texttt{validate\_2d.py} & 二维轴对称端面效应独立核验\\
-\texttt{run\_sensitivity.py} & 环境温度及水分浓度的灵敏度分析\\
-\texttt{make\_figures.py} & 论文科研图的可复现绘制与矢量导出\\
-\texttt{make\_additional\_figures.py} & 新增三维曲面、物性云图、达标区域与收缩截面绘制\\
-\texttt{result1.xlsx} & 问题一每 1~s、0.1~cm 的温度和水分结果\\
-\texttt{result2.xlsx} & 问题二每 1~s、0.1~cm 的温度和水分结果\\
-\texttt{result3.xlsx} & 问题三每 60~s、0.1~cm 的水分结果\\
-\texttt{result4.xlsx} & 问题四每 60~s、固定位置及动态表面结果\\
-\texttt{drawio/*.drawio} & 总体技术路线与移动边界求解流程图源文件\\
-\texttt{AI\_USAGE.md} & AI 工具、使用环节、用途及人工核验记录\\
-\texttt{VERIFY\_REPORT.md} & 数值、工作簿、图形和论文最终验收记录\\
+\endfirsthead
+\multicolumn{2}{c}{表\thetable\quad 支撑材料及作用（续）}\\
+\toprule
+文件（相对项目目录） & 作用\\
+\midrule
+\endhead
+\midrule
+\multicolumn{2}{c}{续下页}\\
+\endfoot
 \bottomrule
-\end{tabular}
-\normalsize
-\end{table}
-
-复现时先运行 \texttt{solve\_drying.py} 生成四问终算场，再运行工作簿、二维核验、灵敏度和绘图脚本。全部程序采用确定性数值计算，不含随机过程；论文附录 B 嵌入的主程序与实际运行文件一致。
+\endlastfoot
+\path{code/solve_drying.py} & 四问热湿迁移求解、首达判定及收缩模型\\
+\path{code/run_q4_counterfactual.py} & 同物性固定半径反事实计算\\
+\path{code/make_figures.py} & 四问主要数值结果图绘制\\
+\path{code/make_additional_figures.py} & 时空场、扩散系数和收缩截面图绘制\\
+\path{code/plot_moving_mesh_validation.py} & 移动网格与固定域结果对照图绘制\\
+\path{code/make_geometry_diagram.py} & 药材几何与坐标示意图绘制\\
+\path{comsol_q4/plot_q4_physical.py} & 有限元物理剖面和水分场绘制\\
+\path{results/result1.xlsx} & 问题一前1800秒，每1秒、0.1厘米的温度和水分结果\\
+\path{results/result2.xlsx} & 问题二前3小时，每1秒、0.1厘米的温度和水分结果\\
+\path{results/result3.xlsx} & 问题三至达标，每60秒、0.1厘米的水分结果\\
+\path{results/result4.xlsx} & 问题四至达标，每60秒的固定物理位置及动态表面水分\\
+AI工具使用详情.pdf & AI工具名称、使用环节及人工核验说明\\
+\end{longtable}
+\endgroup

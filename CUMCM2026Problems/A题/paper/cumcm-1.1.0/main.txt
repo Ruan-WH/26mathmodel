@@ -37,7 +37,9 @@ Fourier–Fick 模型
 热湿耦合
 移动边界
 1
-一、问题重述
+
+
+一、问题重述
 1 . 1 问题背景
 药材烘干过程同时包含内部传热和水分迁移。外部温度变化首先作用于药材表面，
 热量向内部传递；水分则在浓度梯度和表面传质作用下由内部向外迁移。由于热扩散和
@@ -67,7 +69,9 @@ Fourier–Fick 模型
 并分析扩散距离缩短对烘干效率的影响；同时采用独立移动网格计算以及COMSOL 物
 理仿真对移动边界结果进行交叉验证。
 2
-二、问题分析
+
+
+二、问题分析
 四问共享“附件数据重构—内部热湿传递—表面对流交换—数值求解—结果验证”
 的主链条，但各问新增困难不同。问题一解决基础的时变边界扩散；问题二处理系数随
 解变化引起的非线性；问题三引入全域阈值首达事件；问题四再处理随时间收缩的空间
@@ -105,7 +109,9 @@ D(T, C)，形成温度场与水分场相互影响的非线性耦合模型。由�
 问题三要求所有位置的水分浓度均不超过0.15 kg/kg，因此表面浓度或截面平均浓
 度都不能作为停机依据。本文在问题二模型上延长计算时间，以全域最大水分浓度的首
 3
-次达标作为事件判据；通过全过程剖面检查确定控制位置，并在阈值附近进行时间插值，
+
+
+次达标作为事件判据；通过全过程剖面检查确定控制位置，并在阈值附近进行时间插值，
 以提高达标时间的定位精度。
 2 . 4 问题四的分析
 问题四中药材半径随时间变化，固定空间区域和固定网格不能直接描述材料边界的
@@ -136,7 +142,9 @@ hm = 8 × 10−7 m/s，后续三问假设沿用。将附件环境水分量的数
 0。这是由给定半径历史构造内部运动的
 简化闭合；ρd 与热方程采用的题给ρ(C) 分别定义。
 4
-四、符号说明
+
+
+四、符号说明
 本文主要符号及其单位见表1。温度函数中的绝对温度统一写为TK = T + 273.15，
 其余温差仍可直接用摄氏度计算。
 表1
@@ -214,7 +222,9 @@ T(r, 0) = 28 ◦C,
 C(r, 0) = 2.55 kg/kg.
 (1)
 5
-初始中截面至端面的距离L/2 为半径的6.25 倍，较长的轴向传递路径为中部径向
+
+
+初始中截面至端面的距离L/2 为半径的6.25 倍，较长的轴向传递路径为中部径向
 近似提供几何依据。后文保持相同物性和表面交换条件，以含端面传递的二维模型检查
 达标时间及控制位置；该对照检验降维误差，均匀、各向同性仍是依据题给标量物性采
 用的等效化假设。
@@ -266,24 +276,17 @@ PCHIP，区间外取0.05
 0–259200 s
 1800 s
 单调PCHIP 并同步求导
-对任一相邻数据点(tj, yj)、(tj+1, yj+1)，令ϑ = (t −tj)/(tj+1 −tj)，PCHIP 在区间
-内写为
-y(t) = h00(ϑ)yj + h10(ϑ)∆tjdj + h01(ϑ)yj+1 + h11(ϑ)∆tjdj+1,
-(2)
+采用分段三次Hermite 保形插值（PCHIP），节点斜率按相邻割线斜率确定，使单调
+数据区间不产生新的极值[3]。该方法避免半径在快速收缩段出现非物理回弹，并保持
+一阶连续，便于稳定求取问题四所需的˙R(t)。
 6
-其中
-h00 = 2ϑ3 −3ϑ2 + 1,
-h10 = ϑ3 −2ϑ2 + ϑ,
-h01 = −2ϑ3 + 3ϑ2,
-h11 = ϑ3 −ϑ2.
-节点斜率dj 按相邻割线斜率的保形规则确定，使单调数据区间不产生新的极值[3]。相
-较普通三次样条，该处理可避免半径在快速收缩段出现非物理回弹；相较分段线性插值，
-其一阶连续性又能稳定给出问题四所需的˙R(t)。
+
+
 附件一存在小幅波动，故环境量保留实测序列的PCHIP 重构，不强制单调化。最
 后1 h 的温度和环境水分均值分别为49.9989 ◦C 和0.049988 kg/kg，据此假设14400 s 后
 工况保持为50.000 ◦C 与0.05000 kg/kg，避免无限沿用末个采样点的波动。末段稳定性
-支持这一情景的选取，但不能确定后续数十小时的实际边界；表11 进一步量化环境偏
-离设定值对达标时间的影响。
+支持这一情景的选取，但不能确定后续数十小时的实际边界；后文第8 . 3 . 5 节进一步量
+化环境偏离设定值对达标时间的影响。
 5 . 3 径向热湿控制方程
 基于Fourier 导热定律和Fick 扩散定律[1]，固定半径域内的控制方程为
 ρ(C)cp(C)∂T
@@ -296,7 +299,7 @@ rk(C)∂T
 ∂r
 
 ,
-(3)
+(2)
 ∂C
 ∂t = 1
 r
@@ -307,7 +310,7 @@ rD(T, C)∂C
 ∂r
 
 .
-(4)
+(3)
 式中ρcp 是单位体积热容量，决定温度对净热通量的响应速度；D 是以题设浓度变量定
 义的等效扩散系数。问题一中除D(C) 外各物性为常数，问题二至四中的密度、比热容、
 导热系数和水分扩散系数均随状态更新。
@@ -322,37 +325,39 @@ r=0
 
 r=0
 = 0.
-(5)
+(4)
 侧表面采用“向外法向通量等于表面对流通量”的约定：
 −k ∂T
 ∂r
 
 r=R
 = hT[T(R, t) −Te(t)],
-(6)
+(5)
 −D ∂C
 ∂r
 
 r=R
 = hm[C(R, t) −Ce(t)].
-(7)
-当Te > T(R, t) 时，(6) 给出向内热流；当C(R, t) > Ce 时，(7) 给出向外水分通量。附
+(6)
+当Te > T(R, t) 时，(5) 给出向内热流；当C(R, t) > Ce 时，(6) 给出向外水分通量。附
 录2 给出了问题一的交换系数，后续附录仅更新材料物性。本文假设同一烘房内后续过
 程仍可沿用这组系数；问题四显式更新面积和几何尺度，系数本身的流动及几何依赖不
 另行标定。
-7
-C 为药材水质量与干物质质量之比。附件环境水分量虽也以kg/kg 表示，但题面未
-明确其质量基准及与材料平衡含水率的转换关系。为闭合(7)，本文假设附件数值可直
+C 为药材水质量与干物质质量之比。附件环境水分量虽也以kg/kg 表示，但题面未
+明确其质量基准及与材料平衡含水率的转换关系。为闭合(6)，本文假设附件数值可直
 接用作材料侧的等效环境边界值Ce，hm 则作为该变量下的有效交换系数。若原始环境
 量以干空气质量为基准，须结合吸湿平衡关系重新换算；现有预测以这一等效映射成立
 为条件，环境水分扰动检验不能替代该映射的标定。
+7
+
+
 5 . 4 物性关系及耦合路径
 问题一采用题面附录2 给出的热物性常数与水分扩散系数公式
 ρ = 820,
 cp = 2600,
 k = 0.36,
 D = 7.0 × 10−9 exp(−0.89/C).
-(8)
+(7)
 问题二、三采用题面附录3 给出的物性关系
 ρ = 650 + 128C,
 cp = 1450 + 2736
@@ -362,7 +367,7 @@ k = 0.21 + 0.38
 C
 C + 1,
 D = 2.4 × 10−3 exp(−0.45/C) exp[−3850/(T + 273.15)].
-(9)
+(8)
 问题四采用题面附录4 给出的物性关系
 ρ = 760 + 90C,
 cp = 1850 + 2150
@@ -372,8 +377,8 @@ k = 0.12 + 0.20
 C
 C + 1,
 D = 4.2 × 10−4 exp(−0.30/C) exp[−3850/(T + 273.15)].
-(10)
-由(9) 和(10) 可知，水分影响储热与导热，温度和水分共同影响D，由此形成状态
+(9)
+由(8) 和(9) 可知，水分影响储热与导热，温度和水分共同影响D，由此形成状态
 相关物性耦合。采用题给函数可在统一口径下比较四问的温湿迁移，但这一耦合不包含
 蒸发耗热；例如，COMSOL 湿多孔介质热湿模型将有效热物性与蒸发潜热源分别处理
 [6]。本文未建立液汽相分配及局部汽化速率关系，也未完成潜热与输入热量的量级对
@@ -387,9 +392,8 @@ Vi = π(r2
 i+1/2 −r2
 i−1/2),
 Ai+1/2 = 2πri+1/2.
-(11)
-8
-中心控制体下边界直接取0，表面控制体上边界取R。这种几何构造自动消除了连续方
+(10)
+中心控制体下边界直接取0，表面控制体上边界取R。这种几何构造自动消除了连续方
 程在r = 0 处形式上的1/r 奇点。
 以ϕ 统一表示T 或C，储存系数记为s，扩散系数记为Γ。在时间层n + 1 采用全
 隐式格式，内部节点守恒式为
@@ -404,7 +408,10 @@ i
 i
 −ϕn+1
 i−1 ),
-(12)
+(11)
+8
+
+
 其中
 Gi+1/2 = Ai+1/2Γi+1/2
 ri+1 −ri
@@ -412,14 +419,14 @@ ri+1 −ri
 Γi+1/2 = Γi + Γi+1
 2
 .
-(13)
-温度场取s = ρcp, Γ = k，水分场取s = 1, Γ = D。将(12) 整理为
+(12)
+温度场取s = ρcp, Γ = k，水分场取s = 1, Γ = D。将(11) 整理为
 −aWϕn+1
 i−1 + aPϕn+1
 i
 −aEϕn+1
 i+1 = bi,
-(14)
+(13)
 其中
 aW = Gi−1/2,
 aE = Gi+1/2,
@@ -435,7 +442,7 @@ i .
 aP ←aP + ARh,
 bN ←bN + ARhϕe,
 AR = 2πR,
-(15)
+(14)
 其中热场取(h, ϕe) = (hT, Te)，水分场取(hm, Ce)。最终每一场只需求解一个三对角线
 性系统，计算量随径向节点数线性增长。
 5 . 6 非线性Picard 迭代与输出控制
@@ -451,7 +458,9 @@ AR = 2πR,
 Picard 收敛及方程平衡残差；阈值跨越时另存插值得到的首达剖面。空间网格、时间步
 长与输出采样分别检验，四位小数仅表示结果展示精度。
 9
-六、问题一：固定几何与给定热物性的预热模型建立与求解
+
+
+六、问题一：固定几何与给定热物性的预热模型建立与求解
 6 . 1 恒定热物性预热过程模型
 6 . 1 . 1 模型特化与特征尺度判断
 问题一中半径固定为R0 = 0.02 m，密度、比热容和导热系数分别为820 kg/m3、
@@ -459,10 +468,10 @@ Picard 收敛及方程平衡残差；阈值跨越时另存插值得到的首达�
 α = k
 ρcp
 = 1.689 × 10−7 m2/s.
-(16)
-初始水分浓度下，由(8) 得到
+(15)
+初始水分浓度下，由(7) 得到
 D0 = 7.0 × 10−9 exp(−0.89/2.55) = 4.938 × 10−9 m2/s.
-(17)
+(16)
 据此可估计径向热、质扩散特征时间
 τT = R2
 0
@@ -471,7 +480,7 @@ D0 = 7.0 × 10−9 exp(−0.89/2.55) = 4.938 × 10−9 m2/s.
 0
 D0
 = 8.101 × 104 s.
-(18)
+(17)
 水分扩散特征时间约为热扩散特征时间的34 倍，预示1800 s 内温度扰动能够明显进入
 中心，而水分变化主要局限在外层。
 进一步计算热、质Biot 数
@@ -481,76 +490,27 @@ k
 BiC = hmR0
 D0
 = 3.240.
-(19)
+(18)
 二者均明显大于集中参数法通常要求的0.1，说明内部阻力不可忽略。尤其BiC > BiT，
 表面对流传质并非唯一瓶颈，水分到达表面前必须克服更显著的内部扩散阻力。因此，
 本问不能只解两个平均状态常微分方程，而必须保留径向偏微分方程。
 6 . 2 模型的求解
-6 . 2 . 1 径向网格与时间步长的选取
-表层水分梯度较大，采用向表面加密的径向网格
-ri = R0
-"
-1 −
-
-1 −i
-N
-2#
-,
-i = 0, . . . , N,
-其中N = 160，共161 个节点。相邻节点中点作为控制体界面，中心与表面界面分别取
-0 和R0。按单位轴向长度计算，第i 个控制体体积为Vi = π(r2
-i+1/2 −r2
-i−1/2)。中心控制
-体呈圆盘形，表面控制体覆盖最外侧半个径向网格区间；该划分可直接处理轴对称边界
+采用第五节的统一有限体积方法，以161 个表面加密节点和1 s 步长计算[0, 1800] s
+的预热过程。控制体、界面导通系数及三对角系统分别按(10)、(12) 和(13) 构造，中
+心零通量和表面Robin 通量按(14) 处理。
+初始场取(1)，每步环境量由PCHIP 在tn+1 处求值。温度方程为线性，水分扩散系
+数D(C) 仍需Picard 更新；迭代右端的历史状态始终固定为上一时间层。沿用第五节的
+双重容差及30 次迭代上限，本问实际最多4 次迭代即收敛。
+每步检查水分范围、径向单调性和通量平衡，完成1800 个时间步后结束。温湿场
+线性插值至0, 0.1, . . . , 2.0 cm 的21 个规定物理位置，计算网格与输出位置分别设置。
 10
-而无需引入负半径虚拟点。
-取∆t = 1 s，将预热区间[0, 1800] s 划分为1800 个时间步。各步环境量由附件一的
-PCHIP 插值在tn+1 处求得。计算网格与题目要求的取值位置分开设置，温湿场求出后
-线性插值至0, 0.1, . . . , 2.0 cm 的21 个位置。
-6 . 2 . 2 全隐式控制体方程与边界处理
-用ϕ 统一表示温度或水分，令温度方程的储热系数s = ρcp、传导系数a = k，水分
-方程对应s = 1、a = D。相邻节点间的导通系数取
-Gi+1/2 = 2πri+1/2
-ri+1 −ri
-ai + ai+1
-2
-.
-在一个Picard 迭代内固定物性，内部节点的全隐式方程为
-−Gi−1/2ϕn+1
-i−1 +
-siVi
-∆t + Gi−1/2 + Gi+1/2
-
-ϕn+1
-i
-−Gi+1/2ϕn+1
-i+1 = siVi
-∆t ϕn
-i .
-(20)
-中心内侧通量为零，首行去掉G−1/2；表面末行去掉外侧内部通量，并在主对角元加入
-B = 2πR0h、右端加入Bϕe。其中温度取h = hT、ϕe = Te，水分取h = hm、ϕe = Ce。
-所得系统均为三对角矩阵，可用带状线性求解器直接求解。
-6 . 2 . 3 逐时推进与迭代终止
-初始全域取T 0
-i = 28 ◦C、C0
-i = 2.55 kg/kg。每个时间步依次执行：
-Step 1 初始化：令T (0) = T n、C(0) = Cn，确定当前步环境温度和水分浓度。
-Step 2 更新温度：将常数ρ, cp, k 代入(20)，施加表面对流边界，求解温度场。
-Step 3 更新水分：由当前C(m) 计算D(C(m))，更新界面导通系数，求得C(m+1)。各
-次迭代的右端历史状态始终取上一时间层Cn。
-Step 4 收敛判断：同时满足∥T (m+1) −T (m)∥∞< 10−8 ◦C 和∥C(m+1) −C(m)∥∞<
-10−10 kg/kg 时接受新时间层，否则继续迭代，最多允许30 次。
-Step 5 推进与结束：检查水分范围、径向单调性及通量平衡后进入下一步；达到
-1800 s 时结束预热计算。
-本问温度方程为线性，迭代主要用于水分扩散系数的更新；实际各时间层最多4 次
-迭代即满足容差。
-11
-6 . 3 结果的分析和验证
+
+
+6 . 3 结果的分析和验证
 6 . 3 . 1 温度场计算结果与分析
-问题一典型时刻的温度结果见表3，完整径向曲线见图3(a)。100 s 时热扰动尚集中
-在表面附近，中心温度只比初值高6.4 × 10−5 ◦C；随着热量持续输入，600 s 后整个截面
-开始明显升温。到1800 s，中心与表面分别达到33.5770 ◦C 和36.7865 ◦C。
+问题一典型时刻的温度结果见表3。100 s 时热扰动尚集中在表面附近，中心温度只
+比初值高6.4 × 10−5 ◦C；随着热量持续输入，600 s 后整个截面开始明显升温。到1800 s，
+中心与表面分别达到33.5770 ◦C 和36.7865 ◦C。
 表3
 问题一典型时刻温度分布（◦C）
 t/s
@@ -604,9 +564,9 @@ t/s
 温度剖面由中心向表面平滑升高，1800 s 时表面—中心温差为3.2095 ◦C，与中心升
 温滞后的预期一致。
 6 . 3 . 2 水分场计算结果与分析
-典型时刻水分浓度列于表4，其空间曲线见图3(b)。100 s 时表面水分已由2.55 降
-至2.2475 kg/kg，而r ≤1.0 cm 区域在四位小数精度下仍保持初值。到1800 s，表面进
-一步降至1.5104 kg/kg，中心仍为2.5500 kg/kg，形成1.0396 kg/kg 的中心—表面差。
+典型时刻水分浓度列于表4。100 s 时表面水分已由2.55 降至2.2475 kg/kg，而
+r ≤1.0 cm 区域在四位小数精度下仍保持初值。到1800 s，表面进一步降至1.5104 kg/kg，
+中心仍为2.5500 kg/kg，形成1.0396 kg/kg 的中心—表面差。
 表4
 问题一典型时刻水分浓度（kg/kg）
 t/s
@@ -657,8 +617,10 @@ t/s
 2.5383
 2.3755
 1.5104
-12
-温度和水分的中心—表面差见表5，预热阶段两者均增大。
+11
+
+
+温度和水分的中心—表面差见表5，预热阶段两者均增大。
 表5
 问题一中心—表面差的演化
 t/s
@@ -685,7 +647,8 @@ C(0, t) −C(R, t)/（kg/kg）
 1800
 3.2095
 1.0396
-表层失水使D(C) 降低，内部水分迁移较慢，因此表面水分不能代表中心状态。
+图3(a)、(b) 分别给出温度和水分径向剖面。表层失水使D(C) 降低，内部水分迁移
+较慢，因此表面水分不能代表中心状态。
 0.00
 0.25
 0.50
@@ -728,16 +691,18 @@ C(0, t) −C(R, t)/（kg/kg）
 1800 s
 图3
 问题一温度与水分径向剖面
-6 . 3 . 3 预热温度的连续时空演化
-图4 展示0–30 min 的温度时空分布及等温线，热量由表面逐渐传向中心。
-6 . 3 . 4 二维轴对称检验
+6 . 3 . 3 二维轴对称检验
 为检验端面传递对中截面结果的影响，另建立半长圆柱轴对称有限体积模型。检验
 坐标取z = 0 为中截面、z = L/2 为端面，轴线与中截面零通量，侧表面和端面均施加热、
 质Robin 边界。在41 个径向、21 个半轴向节点及10 s 步长下计算至1800 s，与配对一维
 结果比较，全时段中截面最大温差为7.49 × 10−7 ◦C、最大水分差为7.35 × 10−14 kg/kg，
 支持本问预热阶段的中截面径向简化。
-13
-0
+6 . 3 . 4 预热温度的连续时空演化
+图4 展示0–30 min 的温度时空分布及等温线，热量由表面逐渐传向中心。
+12
+
+
+0
 10
 20
 30
@@ -761,29 +726,17 @@ C(0, t) −C(R, t)/（kg/kg）
 实线：中心    虚线：表面
 图4
 问题一预热温度的时空分布及等温线（0–30 min）
-6 . 3 . 5 本问结论与分析
-预热1800 s 后中心显著升温，但水分仍接近初值；数值剖面满足中心对称、温度内
-低外高和水分内高外低的特征。
 七、问题二：变物性热湿迁移模型的建立与求解
 7 . 1 变物性热湿迁移模型
 7 . 1 . 1 非线性模型及耦合关系
 问题二保持R = 0.02 m，并按表面交换假设沿用hT = 25 W/(m2K) 和hm = 8 ×
-10−7 m/s，将(9) 代入(3) 和(4)。此时温度方程的储存项和扩散项都依赖C，水分方程
-的扩散系数同时依赖T 和C。若写成算子形式，可表示为
-H[T; C] = 0,
-M[C; T] = 0,
-(21)
-其中两个算子通过状态相关系数双向联系。该耦合不要求在一个大矩阵中同时求解全部
-未知量：在每次Picard 迭代内，先固定C 解H，再用更新后的T 解M，即可逐步逼近
-同一时间层的自洽状态。
-与问题一相比，问题二初始状态下的物性参数与题面附录2 给出的常数不同。将
-T = 28 ◦C, C = 2.55 kg/kg 代入题面附录3 的物性关系，得到初始密度976.4 kg/m3、比
-热容3415.3 J/(kgK)、导热系数0.4830 W/(mK) 和扩散系数5.642×10−9 m2/s。因此，两
-问在相同几何和表面对流系数下仍会呈现不同响应，不能把问题一的1800 s 结果直接
-作为问题二的初段结果。
-14
-7 . 1 . 2 物性随状态的演化
-为展示非线性系数的实际变化，将初态以及3 h 的中心、表面状态代入(9)，结果
+10−7 m/s，将(8) 代入(2) 和(3)。温度方程的储存项和扩散项依赖C，水分扩散系数同
+时依赖T, C，形成双向耦合；每次Picard 迭代先解温度、再更新水分，求得同一时间层
+的自洽状态。
+初始物性见表6，与问题一所用常数不同，故相同几何和表面交换系数下仍有不同
+响应；两问的初段解不能混用。
+7 . 1 . 2 物性随状态的演化
+为展示非线性系数的实际变化，将初态以及3 h 的中心、表面状态代入(8)，结果
 见表6。随着水分降低，ρ, cp, k 均减小；这意味着单位体积储热能力降低，同时内部导
 热能力也有所下降。二者对升温速度具有相反影响，需要由所采用的热方程共同决定。
 表6
@@ -810,27 +763,18 @@ D/（m2/s）
 1.027 × 10−8
 扩散系数同时受温度和水分影响。升温使Arrhenius 因子exp[−3850/(T + 273.15)]
 增大，促进水分扩散；干燥使exp(−0.45/C) 减小，抑制扩散。3 h 时两种效应叠加后，
+13
+
+
 中心和表面D 都高于初值；尽管表面温度略高，其扩散系数D 却小于中心值。这说明
 低含水表层已开始形成扩散阻力，水分迁移并非随温度升高而无限加速。
 7 . 2 模型的求解
-7 . 2 . 1 计算网格与非线性系数更新
-沿用问题一的161 个表面加密节点和1 s 时间步，但重新从T 0
-i = 28 ◦C、C0
-i =
-2.55 kg/kg 出发，采用题面附录3 的物性公式计算，不能以问题一的预热结果代替初段
-解。前3 h 用于本问温湿场分析，随后沿同一轨迹继续积分，为问题三确定达标时间。
-对每个时间层，以T (0) = T n, C(0) = Cn 为迭代初值。第m 次迭代先由C(m) 更新
-ρ, cp, k，再以s(m)
-i
-= ρ(m)
-i
-c(m)
-p,i 和k(m)
-i
-组装温度方程。界面系数采用相邻节点算术平均，
-中心零通量与表面对流条件按问题一的方法进入矩阵。
-7 . 2 . 2 温湿场交替求解
-将(20) 分别用于温度、水分，记对应三对角矩阵为AT, AC。一次交替迭代可写为
+7 . 2 . 1 变物性迭代与轨迹衔接
+沿用161 个表面加密节点和1 s 步长，从(1) 重新出发，采用附录3 物性，不能以
+问题一的预热结果替代初段解。前3 h 用于本问分析，随后沿同一轨迹继续积分，为问
+题三确定达标时间；4 h 后采用第五节的常值环境延拓。
+按(13) 分别组装温度、水分三对角矩阵AT, AC，界面平均及边界处理沿用第五节。
+以T (0) = T n, C(0) = Cn 为初值，一次交替迭代为
 AT(C(m))T (m+1) = diag
  
 ρ(m)c(m)
@@ -844,29 +788,20 @@ AC(T (m+1), C(m))C(m+1) = diag
 ∆t
 
 Cn + bC.
-其中bT, bC 为表面环境交换项。水分方程使用新温度与当前水分估计更新扩散系数，温
-度相关指数统一采用开尔文温度。两式右端的历史状态分别保持为T n, Cn，只在迭代收
-15
-敛后推进时间。
-具体步骤如下：
-Step 1 更新边界：在tn+1 读取PCHIP 环境值；超过14400 s 后采用50 ◦C、0.05 kg/kg
-的长期边界。
-Step 2 求解温度：按当前水分估计更新储热系数和导热系数，求解温度三对角系统。
-Step 3 求解水分：以新温度和当前水分估计更新扩散系数，求解水分三对角系统。
-Step 4 判断收敛：采用问题一的温度10−8、水分10−10 双重无穷范数容差；未满足
-时返回物性更新，满足后接受该时间层。
-7 . 2 . 3 步长选取与计算检查
-全隐式处理避免显式扩散格式对最小网格宽度的严格步长限制，但步长仍影响时间
-精度。采用1 s 可解析附件一60 s 采样间隔内的边界变化；长期达标时间的2 s 与1 s 对
-照相对差为1.52 × 10−5，网格检验见后文。每步检查状态有限性、0 ≤C ≤2.55 和径向
-单调性，并将控制体累积变化与表面通量核对。实际最多5 次Picard 迭代即收敛，未触
-及30 次上限。
+其中bT, bC 为环境交换项。先由当前水分更新热物性，再以新温度和当前水分更新D，
+温度指数统一采用开尔文温度；历史状态T n, Cn 保持不变，迭代收敛后才推进时间。
+7 . 2 . 2 精度与计算检查
+采用第五节的双重容差和逐步检查，实际最多5 次Picard 迭代即收敛，未触及30
+次上限。全隐式格式减轻稳定性限制，离散精度由问题三的长期收敛检验统一评估（第
+8 . 3 . 3 节）。
 7 . 3 结果的分析和验证
-7 . 3 . 1 温度结果及其空间演化
-典型时刻温度见表7，空间曲线见图5(a)。0.5 h 时中心和表面分别为32.1911 ◦C、
-35.4141 ◦C，仍有3.2230 ◦C 的明显差异；1.5 h 时，温差降为1.2928 ◦C；到3 h 仅剩
-0.1173 ◦C。这表明温度先经历表面快速升温和内部滞后，随后在环境逐渐稳定时趋于径
-向均匀。
+7 . 3 . 1 温湿分布及内部迁移特征
+典型时刻温度见表7。0.5 h 时中心和表面分别为32.1911 ◦C、35.4141 ◦C，仍有
+3.2230 ◦C 的明显差异；1.5 h 时，温差降为1.2928 ◦C；到3 h 仅剩0.1173 ◦C。这表明温
+度先经历表面快速升温和内部滞后，随后在环境逐渐稳定时趋于径向均匀。
+14
+
+
 表7
 问题二温度分布（◦C）
 t/h
@@ -911,11 +846,9 @@ t/h
 49.8746
 49.9100
 49.9666
-16
-7 . 3 . 2 水分结果及控制机制
-水分结果见表8 和图5(b)。0.5 h 时中心仍为2.5499 kg/kg，表面已降至1.6487 kg/kg；
-3 h 时中心和表面分别降至1.7662 和1.0081 kg/kg。中心—表面差由0.5 h 的0.9012 降
-至3 h 的0.7581 kg/kg，说明水分扰动已经传播到中心，但内部尚未达到近似均匀状态。
+水分结果见表8。0.5 h 时中心仍为2.5499 kg/kg，表面已降至1.6487 kg/kg；3 h 时
+中心和表面分别降至1.7662 和1.0081 kg/kg。中心—表面差由0.5 h 的0.9012 降至3 h
+的0.7581 kg/kg，说明水分扰动已经传播到中心，但内部尚未达到近似均匀状态。
 表8
 问题二水分浓度分布（kg/kg）
 t/h
@@ -960,8 +893,8 @@ t/h
 1.5702
 1.3333
 1.0081
-3 h 时温度已接近均匀，而中心水分仍为表面的约1.75 倍，说明温度趋于均匀不能
-作为烘干结束的依据。
+图5(a)、(b) 分别给出温度和水分径向剖面。3 h 时温度已接近均匀，而中心水分仍
+为表面的约1.75 倍，说明温度趋于均匀不能作为烘干结束的依据。
 0.00
 0.25
 0.50
@@ -1006,11 +939,12 @@ t/h
 3.0 h
 图5
 问题二变物性温度与水分剖面
-7 . 3 . 3 水分迁移与扩散系数的时空证据
+15
+
+
+7 . 3 . 2 水分迁移与扩散系数的时空证据
 图6 展示前3 h 水分时空分布，失水影响由表面向中心传播。
-图7 展示D(T, C) 的时空变化：升温增强扩散，但表层失水使其扩散系数低于内部。
-17
-0
+0
 1
 2
 3
@@ -1032,6 +966,7 @@ t/h
 实线：中心    虚线：表面
 图6
 问题二前3 h 水分浓度的时空分布及等浓度线
+图7 展示D(T, C) 的时空变化：升温增强扩散，但表层失水使其扩散系数低于内部。
 0
 1
 2
@@ -1053,15 +988,14 @@ t/h
 扩散系数 D / (10⁻⁹ m²·s⁻¹)
 图7
 问题二状态相关扩散系数的时空云图及等值线
-7 . 3 . 4 共享轨迹一致性检验
+7 . 3 . 3 共享轨迹一致性检验
 问题二、三采用相同物性、网格和边界连续计算。第二问逐秒温湿场按60 s 抽取
-后，与第三问全部共同时间层逐元素一致，最大差为零；长期网格与时间步检验见问题
-三。这一检查确认短期温湿响应与长期达标预测采用相同数值轨迹。
-7 . 3 . 5 本问结论与分析
-各时间层最多5 次Picard 迭代即收敛，温湿剖面保持平滑。3 h 时中心—表面温差
-为0.1173 ◦C、水分差为0.7581 kg/kg，后续干燥由内部水分迁移控制。
-18
-八、问题三：全截面达标时间模型的建立与求解
+后，与第三问全部共同时间层逐元素一致，最大差为零。这一检查确认短期温湿响应与
+长期达标预测采用相同数值轨迹。
+16
+
+
+八、问题三：全截面达标时间模型的建立与求解
 8 . 1 全截面达标时间模型
 8 . 1 . 1 全域首达判据
 问题三要求“所有位置”的水分浓度均不超过0.15 kg/kg，因此不能用截面平均值
@@ -1069,10 +1003,10 @@ t/h
 M(t) =
 max
 0≤r≤R0 C(r, t),
-(22)
+(19)
 则烘干完成时刻是集合约束的首次满足时间
 td = inf{t ≥0 : M(t) ≤0.15}.
-(23)
+(20)
 该定义包含两个必要条件：一是td 时全空间均达标，二是在任何t < td 时至少存在一
 个未达标位置。因而它比“取第一个离散输出时刻”更严格，也能避免输出间隔改变时
 答案随之改变。
@@ -1083,54 +1017,42 @@ Cn
 i −Cn
 i+1 ≥−2 × 10−9,
 i = 0, 1, . . . , N −1,
-(24)
+(21)
 全部时间层均通过。因此
 M(t) = C(0, t),
-(25)
+(22)
 即轴线是本问的控制位置。这里并非预先假定中心最大，而是先保留全域最大值判据，
 再由计算结果确认其可化为中心事件。
 8 . 2 模型的求解
-8 . 2 . 1 长期积分与首达区间搜索
-沿用问题二的网格、1 s 步长及题面附录3 的物性，从初始状态连续推进，不在
-3 h 处重新初始化。附件一时间范围内采用PCHIP 环境值，超过4 h 后取Te = 50 ◦C、
-Ce = 0.05 kg/kg。每步先完成温湿场Picard 迭代，再计算全部径向节点中的最大水分
-Mn+1。
-Step 1 初始化判据：令t0 = 0、M0 = 2.55，标记尚未达到阈值。
-Step 2 推进状态：按问题二交替求解温度和水分，并检查(24)。
-19
-Step 3 寻找跨越：若Mn+1 > 0.15，令n ←n + 1 继续积分；第一次出现Mn > 0.15
-且Mn+1 ≤0.15 时，确定首达区间[tn, tn+1]。
-搜索使用全域最大值，中心控制仅在径向单调性检验通过后得到确认。如此可同时
-满足“全域均达标”与“首次达标”的要求。
-8 . 2 . 2 阈值事件定位方法
-长期积分使用∆t = 1 s。设第n 层尚未达标而第n + 1 层已经达标，即
-Mn > 0.15,
-M n+1 ≤0.15.
-在这两个相邻时间层间定义
+8 . 2 . 1 长期积分与阈值事件定位
+沿用问题二的161 节点网格、1 s 步长及附录3 物性，从初态连续推进，不在3 h 处
+重新初始化。附件区间内采用PCHIP 环境值，4 h 后取Te = 50 ◦C、Ce = 0.05 kg/kg。每
+步完成Picard 迭代并检查(21)，以全域最大水分搜索首达区间。
+首次出现Mn > 0.15 且Mn+1 ≤0.15 时，在相邻时间层间定义
 λ = 0.15 −Mn
 Mn+1 −Mn,
 td = tn + λ∆t,
-(26)
+(23)
+17
+
+
 并同步插值得到达标剖面
 C(r, td) = Cn(r) + λ[Cn+1(r) −Cn(r)].
-(27)
-由于0 ≤λ ≤1，所得时刻位于数值解跨越阈值的1 s 区间内。时间精度由积分步长和事
-件插值决定，题目要求的60 s 取值间隔只用于结果展示。
-8 . 2 . 3 达标剖面与数值精度核验
-确定td 后，使用同一插值权重计算温度、水分剖面，核对最大水分等于阈值且其余
-位置不超过阈值。每60 s 的径向分布由同一连续轨迹取值；若首达时间不是整分钟，则
-继续推进到其后的首个整分钟，以覆盖题目要求的时间序列。
-终算采用161 节点、1 s 步长，网格与时间步加密对照见表10。
+(24)
+由于0 ≤λ ≤1，所得时刻位于跨越阈值的1 s 区间内。时间精度由积分步长和事件插值
+决定，60 s 取值间隔只用于结果展示。
+8 . 2 . 2 达标剖面与输出核验
+以同一权重插值温湿剖面，核对最大水分等于阈值、其余位置均达标。每60 s 的分
+布由同一轨迹取值；若首达时刻不是整分钟，则继续推进至其后的首个整分钟。
 8 . 3 结果的分析和验证
 8 . 3 . 1 干燥时间与径向分布
-由(26) 得到
+由(23) 得到
 td = 206898.8710 s = 57.4719 h.
-(28)
+(25)
 典型时刻及达标瞬间的水分浓度见表9。中心从6 h 的1.0170 降至12 h 的0.4562，随后
 下降速度逐渐减慢；达标时中心恰为0.1500，而表面已降至0.0527 kg/kg，接近模型采
 用的稳定环境边界值。
-20
-表9
+表9
 问题三每6 h 及达标时的水分浓度（kg/kg）
 t/h
 0 cm
@@ -1200,6 +1122,9 @@ t/h
 0.0527
 中心、表面轨迹及径向剖面见图8。左图用水平虚线标出全域达标阈值，右图给出
 6、18、36、48 h 及达标瞬间的径向剖面。表面于12.5525 h 达标，比中心提前44.9194 h，
+18
+
+
 应以内部最大水分决定停机时刻。
 0
 10
@@ -1250,8 +1175,7 @@ t/h
 8 . 3 . 2 达标区域由表面向中心的推进
 图9 显示已达标区域由表面向中心推进，未达标核心最终于57.472 h 消失。红线为
 浓度阈值等值线，不是相变界面。
-21
-0
+0
 12
 24
 36
@@ -1272,6 +1196,9 @@ C ≤ 0.15 kg/kg
 中心首达 57.472 h
 图9
 问题三已达标区域与未达标区域的演化；红线为含水率阈值边界
+19
+
+
 8 . 3 . 3 空间网格与时间步长检验
 先固定10 s 步长，比较41、81、161、321 个径向节点，再固定161 个节点将步长
 由2 s 减为1 s，结果见表10。空间与时间加密的达标时间相对变化分别为1.65 × 10−5、
@@ -1300,12 +1227,24 @@ C ≤ 0.15 kg/kg
 3.84 × 10−5。两种网格的最大水分均位于轴线与中截面交点。
 41×21 网格下，中截面最大温差为0.001775 ◦C，最大水分差为2.41 × 10−5 kg/kg；
 端面与中截面最大水分差约为0.970 kg/kg。因此中部径向模型能够描述控制达标的位
-22
-置，但不能代替端面局部状态。二维检验步长与1 s 终算不同，其时长不用于替换主模
+置，但不能代替端面局部状态。二维检验步长与1 s 终算不同，其时长不用于替换主模
 型答案。
 8 . 3 . 5 环境边界灵敏度分析
 保持前4 h 实测边界不变，对后续Te,∞= 50 ◦C 施加±2.5 ◦C 扰动，对Ce,∞=
 0.05 kg/kg 施加±5% 扰动。所有方案采用161 节点、10 s 步长，结果见表11。
+用温度对称差分导数与水分弹性衡量影响：
+KT = td(Te + δT) −td(Te −δT)
+2δT
+,
+SC = td(1.05Ce) −td(0.95Ce)
+0.10td(Ce)
+.
+(26)
+得到KT = −1.8299 h/◦C、SC = 0.0174；以开尔文温度定义ST = (Te,K/td)KT，得
+ST = −10.2874。在所设扰动下，升温缩短干燥时间，提高环境水分则延长时间，且温
+20
+
+
 表11
 问题三环境边界扰动下的干燥时长（h）
 情形
@@ -1320,25 +1259,11 @@ C ≤ 0.15 kg/kg
 57.4320
 恒温阶段环境水分+5%
 57.5322
-用温度对称差分导数与水分弹性衡量影响：
-KT = td(Te + δT) −td(Te −δT)
-2δT
-,
-SC = td(1.05Ce) −td(0.95Ce)
-0.10td(Ce)
-.
-(29)
-得到KT = −1.8299 h/◦C、SC = 0.0174；以开尔文温度定义ST = (Te,K/td)KT，得
-ST = −10.2874。在所设扰动下，升温缩短干燥时间，提高环境水分则延长时间，且温
 度影响更明显。
 上述温度扰动对应的时长为53.16–62.31 h，说明常值延拓是预测的重要条件；该范
 围是给定边界扰动下的情景结果，不是统计置信区间。因而数值离散变化很小，并不意
 味着实际干燥时长也具有同等确定性。
-8 . 3 . 6 本问结论与分析
-时间步与空间网格加密所得达标时间相对差均小于2 × 10−5，全部剖面通过径向单
-调性检查，支持上述首达时间的数值稳定性。
-23
-九、问题四：收缩移动边界模型的建立与求解
+九、问题四：收缩移动边界模型的建立与求解
 9 . 1 收缩移动边界模型
 9 . 1 . 1 半径数据重构与固定域映射
 附件二给出的半径由初始2 cm 持续减小至1.2 cm。经单调PCHIP 重构后，在本问
@@ -1373,9 +1298,12 @@ R/cm
 r
 R(t),
 0 ≤ξ ≤1,
-(30)
+(27)
 并令ψ(ξ, t) = ϕ(r, t)。半径收缩时，固定ξ 的节点随材料截面同步向内移动，始终保留
 161 个表面加密计算节点，不需要改变矩阵维数。
+21
+
+
 9 . 1 . 2 收缩模型方程
 移动边界模型需同时指定内部速度与边界运动[5]。半径数据只能确定外边界，本
 问另假设长度不变、径向同比例收缩以闭合速度场，材料速度vs 与网格速度w 相同，故
@@ -1393,7 +1321,7 @@ r
 
 ξ
 .
-(31)
+(28)
 其中Dt 为材料导数。令ρd 表示单位现体积的干骨架质量，它不同于题给物性中的ρ(C)。
 干骨架连续性与干基含水率C 的水分平衡为
 ∂ρd
@@ -1418,8 +1346,7 @@ rρdD∂C
 截面内ρd 均匀时，第一式给出ρdR2 = ρd0R2
 0；以其消去第二式的体积压缩项，再约去
 仅随时间变化的ρd，得到材料坐标下的水分式。故收缩不直接使干基含水率增大，也无
-24
-需另加相对对流项。温度沿用本文的热过程简化，以材料导数描述随材料运动的温度变
+需另加相对对流项。温度沿用本文的热过程简化，以材料导数描述随材料运动的温度变
 化。记T, C 为映射后的场，两式写为
 ρ(C)cp(C)∂T
 ∂t =
@@ -1443,7 +1370,7 @@ R2ξ
 ∂ξ
 
 .
-(32)
+(29)
 温度式中ρ(C)cp(C) 仅作为储热系数，未要求题给ρ(C) 满足上述干骨架连续性；该式
 不含蒸发潜热及水分迁移携带的焓，不能视为完整焓平衡。质量守恒推导说明水分方程
 与既定收缩闭合相容，不构成对均匀变形的实验验证。
@@ -1455,7 +1382,7 @@ R
 
 ξ=1
 = hT(Ts −Te),
-(33)
+(30)
 −D
 R
 ∂C
@@ -1463,28 +1390,19 @@ R
 
 ξ=1
 = hm(Cs −Ce).
-(34)
+(31)
 因此在无量纲控制体方程中，内部扩散导通系数乘R−2，表面对流导通系数乘R−1。若
 只缩放网格而遗漏这些尺度因子，模型将不能正确反映半径变化带来的通量放大。
+22
+
+
 9 . 2 模型的求解
 9 . 2 . 1 材料坐标离散与迭代流程
 在ξi = 1 −(1 −i/160)2 上采用161 个表面加密节点，时间步长取1 s。每个时间层
 先由PCHIP 更新半径和环境边界，再更新R−2 内部扩散项及R−1 表面交换项；随后采
 用Picard 迭代依次求解温度场和水分场。全域最大水分浓度首次低于0.15 kg/kg 时停止，
 并对相邻时间层线性插值定位达标时刻。计算流程见图10。
-为分离几何收缩作用，另保持题面附录4 的物性和环境不变，将半径固定为2 cm，
-按相同步长与首达判据求解对照方案。
-9 . 2 . 2 物理位置输出规则
-计算解首先定义在固定材料坐标ξ 上，而题目模板给出的列对应固定物理位置rj =
-0, 0.1, . . . , 1.9 cm。对任一时刻，仅当rj ≤R(t) 时计算
-C(rj, t) = Iξ[C(ξ, t)]
-
-ξ=rj/R(t),
-(35)
-其中Iξ 直接使用全部161 个计算节点作线性插值；当rj > R(t) 时，该位置已经处于药
-材外部，单元格留空而不是填0。最后一列始终记录C(ξ = 1, t)，即随半径移动的实时
-25
-否
+否
 是
 否
 是
@@ -1502,24 +1420,31 @@ max C ≤ 0.15?
 输出结果与误差核验
 图10
 问题四移动边界全隐式迭代流程
+为分离几何收缩作用，另保持题面附录4 的物性和环境不变，将半径固定为2 cm，
+23
+
+
+按相同步长与首达判据求解对照方案。
+9 . 2 . 2 物理位置输出规则
+计算解首先定义在固定材料坐标ξ 上，而题目模板给出的列对应固定物理位置rj =
+0, 0.1, . . . , 1.9 cm。对任一时刻，仅当rj ≤R(t) 时计算
+C(rj, t) = Iξ[C(ξ, t)]
+
+ξ=rj/R(t),
+(32)
+其中Iξ 直接使用全部161 个计算节点作线性插值；当rj > R(t) 时，该位置已经处于药
+材外部，单元格留空而不是填0。最后一列始终记录C(ξ = 1, t)，即随半径移动的实时
 表面。
 该规则区分固定物理位置和随材料移动的表面位置，避免将药材外部的环境量误认
 为材料状态。
-9 . 2 . 3 坐标实现的交叉验证
-为检验固定材料坐标实现的可靠性，另在物理坐标中建立移动控制体模型。两种方
-法使用相同物性、环境、时间步长和首达判据独立计算，所得水分轨迹和达标时间在图
-26
-示精度下重合。该检验针对坐标离散实现的一致性，详细对照见表15 and 图14。
 9 . 3 结果的分析和验证
 9 . 3 . 1 达标时间与浓度分布
 问题四继续以全域最大水分浓度作为终止量。全部剖面保持中心最大，故事件定位
-仍可用(26) 和(27)。计算得到
+仍可用(23) 和(24)。计算得到
 td = 183915.7175 s = 51.0877 h,
 R(td) = 1.2000 cm.
-(36)
-典型时刻的固定物理位置与动态表面水分见表13。6 h 时中心水分仍为1.7188，动态表
-面已降至0.4205 kg/kg；24 h 时中心为0.2851，表面只有0.0673；达标时中心为0.1500，
-表面为0.0526。
+(33)
+典型时刻的固定物理位置与动态表面水分见表13。
 表13
 问题四典型时刻水分浓度（kg/kg）
 t/h
@@ -1572,6 +1497,11 @@ t/h
 0.1413
 0.1081
 0.0526
+24
+
+
+6 h 时中心水分仍为1.7188，动态表面已降至0.4205 kg/kg；24 h 时中心为0.2851，
+表面只有0.0673；达标时中心为0.1500，表面为0.0526。
 动态表面在12.7848 h 已达到0.15，而中心需要51.0877 h，两者仍相差38.3029 h。
 收缩虽然显著缩短了内部扩散距离，却没有消除“外干内湿”的过程特征，因此实际控
 制仍应关注中心或内部代理量。
@@ -1580,15 +1510,14 @@ t/h
 归因于收缩。为保持物性和环境相同，另作两组对照：
 1. 使用题面附录4 的物性和相同环境，但保持R = 2 cm，得到固定半径反事实时长
 129.8445 h；
-27
-2. 保留真实R(t)，采用原固定空间标量方程，在ξ 坐标下保留系数为−˙Rξ/R 的对流
+2. 保留真实R(t)，采用原固定空间标量方程，在ξ 坐标下保留系数为−˙Rξ/R 的对流
 项，得到52.6375 h，仅用作模型结构比较。
 第一组在本文材料收缩闭合下给出
 ∆tR = 129.8445 −51.0877 = 78.7568 h,
 ηR =
 ∆tR
 129.8445 = 60.65%.
-(37)
+(34)
 第二组与材料模型相差1.5498 h，表明速度描述影响长期预测。该差异不能解释为独立
 “坐标移动效应”，也不能据此认定任一方程已被实验验证。固定半径与均匀收缩模型的
 中心水分轨迹及半径变化见图11。
@@ -1631,18 +1560,10 @@ t/h
 9 . 3 . 3 收缩材料域与截面水分的联合展示
 图12(a) 给出收缩边界与水分场；(b) 为径向解的轴对称截面重建，各截面共用长度
 比例和色标。几何收缩先于深部水分达标，重建截面不属于独立二维计算。
-9 . 3 . 4 COMSOL 有限元复核
-COMSOL 采用相同物性、环境与半径历史，并设置轴向均匀、端面绝热。在6、12、
-24、36、48 h 及主模型首达时刻，分别取1001 个共同径向位置，将有限元解与由原始161
-节点线性插值得到的有限体积解比较。表14 统一列出这一采样口径下的网格与容差检
-验，表中加密单元数指径向单元数。初始自动网格下最大水分差约为1.17 × 10−2 kg/kg；
-径向加密至320 单元、相对求解容差收紧至10−7 后，六个对照时刻的最大水分差为
-4.54 × 10−5 kg/kg。图13 采用该加密设置，展示径向剖面、采样点对照及半径历程。
-主模型首达时刻51.0877 h 对应的COMSOL 中心水分为0.14999888 kg/kg，该值不是
-COMSOL 独立首达时间。上述检验支持既定模型的数值一致性，不替代对物理假设的
-实验验证。
-28
-0
+25
+
+
+0
 12
 24
 36
@@ -1680,6 +1601,19 @@ R = 1.200 cm
 (b) 等比例圆截面重建；虚线为初始外轮廓，共用上方水分色标
 图12
 问题四收缩材料域的水分时空场及等比例截面重建
+9 . 3 . 4 COMSOL 有限元复核
+COMSOL 采用相同物性、环境与半径历史，并设置轴向均匀、端面绝热。在6、12、
+24、36、48 h 及主模型首达时刻，分别取1001 个共同径向位置，将有限元解与由原始161
+节点线性插值得到的有限体积解比较。表14 统一列出这一采样口径下的网格与容差检
+验，表中加密单元数指径向单元数。初始自动网格下最大水分差约为1.17 × 10−2 kg/kg；
+径向加密至320 单元、相对求解容差收紧至10−7 后，六个对照时刻的最大水分差为
+4.54 × 10−5 kg/kg。图13 采用该加密设置，展示径向剖面、采样点对照及半径历程。
+主模型首达时刻51.0877 h 对应的COMSOL 中心水分为0.14999888 kg/kg，该值不是
+COMSOL 独立首达时间。上述检验支持既定模型的数值一致性，不替代对物理假设的
+实验验证。
+26
+
+
 表14
 COMSOL 网格与求解容差检验
 网格设置
@@ -1703,14 +1637,7 @@ COMSOL 网格与求解容差检验
 320 单元，收紧容差
 1.00 × 10−7
 4.54 × 10−5
-9 . 3 . 5 移动网格独立验证
-按前述移动控制体方法独立计算，比较结果见表15 和图14。
-两法达标时间相对差为5.81 × 10−13，全水分场最大差为2.61 × 10−13 kg/kg、温度
-场最大差为1.16 × 10−10 ◦C，并通过几何守恒检查。
-两种坐标实现的差异处于浮点舍入量级，支持程序实现的一致性；该比较不替代对
-收缩假设的实验验证。
-29
-0.0
+0.0
 0.5
 1.0
 实际半径 r / cm
@@ -1751,6 +1678,12 @@ max|ΔC|=4.54×10
 COMSOL 物理场剖面、独立数值校核与收缩历程
 图13
 加密COMSOL 有限元与有限体积解的剖面对照及半径收缩历程
+9 . 3 . 5 移动网格独立验证
+另在物理坐标中建立移动控制体模型，以相同物性、环境、时间步长和首达判据独
+立计算，与固定材料坐标解比较，结果见表15 和图14。
+27
+
+
 表15
 移动网格与固定域映射的数值比较
 指标
@@ -1798,6 +1731,8 @@ d
 0.052619962
 8.68 × 10−14
 水分单位为kg/kg；相对差以固定域结果为分母。末两行为同一固定域达标时刻的比较。
+两法达标时间相对差为5.81 × 10−13，全水分场最大差为2.61 × 10−13 kg/kg、温度
+场最大差为1.16 × 10−10 ◦C，并通过几何守恒检查。
 0
 12
 24
@@ -1836,12 +1771,16 @@ C=0.15
 图14
 两种坐标实现的中心水分轨迹及物理半径剖面对比；曲线在图示精度下重合，圆
 点仅用于区分移动网格曲线
-30
-9 . 3 . 6 空间网格与时间步长检验
+两种坐标实现的差异处于浮点舍入量级，支持程序实现的一致性；该比较不替代对
+收缩假设的实验验证。
+9 . 3 . 6 空间网格与时间步长检验
 按问题三的加密方案对收缩模型复算，结果见表16。该检验用于评估主模型的空
 间和时间离散稳定性；161 至321 节点的达标时间相对变化为5.77 × 10−7，2 s 至1 s 的
 变化为1.29 × 10−5，满足预设容差。累计归一化水分方程残差为1.77 × 10−13，有效热
 方程最大单步残差为3.21 × 10−14；后者仅针对不含蒸发潜热的既定温度方程。
+28
+
+
 表16
 问题四网格与步长收敛检验：达标时间（h）
 计算设置
@@ -1866,11 +1805,7 @@ C=0.15
 全二维最大水分均位于轴线与中截面交点。41×21 网格下，全过程中截面最大温
 差为0.000108 ◦C，最大水分差为1.38 × 10−6 kg/kg；最大端面与中截面水分差约为
 1.707 kg/kg。该检验支持当前端面条件下的中心控制，主模型仍采用1 s 终算时长。
-9 . 3 . 8 本问结论与分析
-时间步与空间网格加密的达标时间相对差均小于1.3 × 10−5；结合移动网格与有限
-元复核，数值结果支持收缩缩短扩散距离、加快整体干燥的判断。
-31
-十、模型的评价与推广
+十、模型的评价与推广
 10 . 1 模型的评价
 模型的优点：
 1. 四问采用统一的热湿迁移框架，依次引入状态相关物性、全域首达判据与材料收缩，
@@ -1884,6 +1819,9 @@ C=0.15
 响尚未量化；既有数值验证不能替代对这些物理简化的检验。
 2. 环境水分采用等效映射，交换系数沿用题给值，长期边界取常值延拓；实际应用需
 标定浓度转换与表面交换关系，并将后续工况变化纳入预测范围。
+29
+
+
 3. 收缩模型以给定半径历史和均匀径向缩放闭合内部运动。水分守恒和坐标实现对照
 支持这一闭合的数值自洽性，实际局部变形、长度变化及完整能量平衡仍需另行验
 证。
@@ -1899,8 +1837,7 @@ AI 工具使用声明
 具体使用情况见支撑材料。
 参考文献
 [1] Crank J. The Mathematics of Diffusion[M]. 2nd ed. Oxford: Clarendon Press, 1975.
-32
-[2] Patankar S V. Numerical Heat Transfer and Fluid Flow[M]. Washington, DC: Hemisphere,
+[2] Patankar S V. Numerical Heat Transfer and Fluid Flow[M]. Washington, DC: Hemisphere,
 1980.
 [3] Fritsch F N, Carlson R E. Monotone piecewise cubic interpolation[J]. SIAM Journal on
 Numerical Analysis, 1980, 17(2): 238–246. DOI: 10.1137/0717021.
@@ -1914,51 +1851,54 @@ boundary model[J]. Chemical Engineering Transactions, 2019, 74:
 Transport Interface[EB/OL]. COMSOL Multiphysics 6.4 Documentation[2026-09-12].
 https://doc.comsol.com/6.4/doc/com.comsol.help.heat/heat_ug_theory.07.
 090.html.
-33
-附录A
+30
+
+
+附录A
 支撑材料文件列表
 表17
 支撑材料及作用
-文件
+文件（相对项目目录）
 作用
+code/solve_drying.py
+四问热湿迁移求解、首达判定及收缩模型
+code/run_q4_counterfactual.py
+同物性固定半径反事实计算
+code/make_figures.py
+四问主要数值结果图绘制
+code/make_additional_figures.py
+时空场、扩散系数和收缩截面图绘制
+code/plot_moving_mesh_validation.py
+移动网格与固定域结果对照图绘制
+code/make_geometry_diagram.py
+药材几何与坐标示意图绘制
+comsol_q4/plot_q4_physical.py
+有限元物理剖面和水分场绘制
+results/result1.xlsx
+问题一前1800 秒，每1 秒、0.1 厘米的温度和水分
+结果
+results/result2.xlsx
+问题二前3 小时，每1 秒、0.1 厘米的温度和水分结
+果
+results/result3.xlsx
+问题三至达标，每60 秒、0.1 厘米的水分结果
+results/result4.xlsx
+问题四至达标，每60 秒的固定物理位置及动态表面
+水分
+AI 工具使用详情.pdf
+AI 工具名称、使用环节及人工核验说明
+31
+
+
+附录B
+核心求解与绘图源程序
+2 . 1
 solve_drying.py
-四问有限体积求解、首达判定、移动边界与步长检验主程序
-write_results.py
-四份提交工作簿的生成、格式处理和回读核验
-validate_2d.py
-二维轴对称端面效应独立核验
-run_sensitivity.py
-环境温度及水分浓度的灵敏度分析
-make_figures.py
-论文科研图的可复现绘制与矢量导出
-make_additional_figures.py
-新增三维曲面、物性云图、达标区域与收缩截面绘制
-result1.xlsx
-问题一每1 s、0.1 cm 的温度和水分结果
-result2.xlsx
-问题二每1 s、0.1 cm 的温度和水分结果
-result3.xlsx
-问题三每60 s、0.1 cm 的水分结果
-result4.xlsx
-问题四每60 s、固定位置及动态表面结果
-drawio/*.drawio
-总体技术路线与移动边界求解流程图源文件
-AI_USAGE.md
-AI 工具、使用环节、用途及人工核验记录
-VERIFY_REPORT.md
-数值、工作簿、图形和论文最终验收记录
-复现时先运行solve_drying.py 生成四问终算场，再运行工作簿、二维核验、灵敏
-度和绘图脚本。全部程序采用确定性数值计算，不含随机过程；论文附录B 嵌入的主程
-序与实际运行文件一致。
-34
-附录B
-完整源程序
-以下为实际运行的四问核心求解程序全文，按源文件顺序单栏连续排版；电子支撑
-材料中另提供原始Python 文件。
+# File: code/solve_drying.py
 """Numerical solution for CUMCM 2026 Problem A.
-The model uses a node-centred finite-volume discretisation in the radial
+The model uses a node−centred finite−volume discretisation in the radial
 coordinate, fully implicit diffusion, Picard iteration for nonlinear
-properties, and an ALE-style fixed-domain transform for shrinkage.
+properties, and an ALE−style fixed−domain transform for shrinkage.
 """
 from __future__ import annotations
 import argparse
@@ -1976,7 +1916,7 @@ ROOT = Path(__file__).resolve().parents[1]
 INPUT_DIR = ROOT / "附件"
 RESULTS_DIR = ROOT / "results"
 H_T = 25.0
-H_M = 8.0e-7
+H_M = 8.0e−7
 R_FIXED = 0.02
 NODES = 161
 OUTPUT_NODES = 21
@@ -1988,9 +1928,11 @@ TERMINAL_TEMPERATURE_C = 50.0
 TERMINAL_MOISTURE = 0.05
 @dataclass
 class Environment:
+32
+
+
 time_s: np.ndarray
-35
-temperature_c: np.ndarray
+temperature_c: np.ndarray
 moisture: np.ndarray
 temp_interp: PchipInterpolator
 moisture_interp: PchipInterpolator
@@ -1999,8 +1941,8 @@ self,
 time_s: float,
 terminal_temp_scale: float = 1.0,
 terminal_moisture_scale: float = 1.0,
-) -> tuple[float, float]:
-cutoff = float(self.time_s[-1])
+) −> tuple[float, float]:
+cutoff = float(self.time_s[−1])
 if time_s <= cutoff:
 return float(self.temp_interp(time_s)), float(self.moisture_interp(time_s))
 return (
@@ -2014,10 +1956,10 @@ radius_m: np.ndarray
 interp: PchipInterpolator
 derivative: PchipInterpolator
 monotone_adjustments: int
-def values(self, time_s: float) -> tuple[float, float]:
-bounded = min(max(time_s, float(self.time_s[0])), float(self.time_s[-1]))
+def values(self, time_s: float) −> tuple[float, float]:
+bounded = min(max(time_s, float(self.time_s[0])), float(self.time_s[−1]))
 return float(self.interp(bounded)), float(self.derivative(bounded))
-def _read_numeric_sheet(path: Path) -> np.ndarray:
+def _read_numeric_sheet(path: Path) −> np.ndarray:
 book = load_workbook(path, read_only=True, data_only=True)
 sheet = book.active
 rows: list[list[float]] = []
@@ -2026,11 +1968,13 @@ if row[0] is None:
 continue
 rows.append([float(value) for value in row])
 return np.asarray(rows, dtype=float)
-def load_environment() -> Environment:
+def load_environment() −> Environment:
 data = _read_numeric_sheet(INPUT_DIR / "附件1.xlsx")
+33
+
+
 time_s, temperature_c, moisture = data.T
-36
-if not np.all(np.diff(time_s) > 0):
+if not np.all(np.diff(time_s) > 0):
 raise ValueError("附件1时间列不是严格递增。")
 if not np.all(np.isfinite(data)):
 raise ValueError("附件1含非有限数。")
@@ -2041,14 +1985,14 @@ moisture=moisture,
 temp_interp=PchipInterpolator(time_s, temperature_c),
 moisture_interp=PchipInterpolator(time_s, moisture),
 )
-def load_radius_history() -> RadiusHistory:
+def load_radius_history() −> RadiusHistory:
 data = _read_numeric_sheet(INPUT_DIR / "附件2.xlsx")
 time_s = data[:, 0]
 raw_radius_m = data[:, 1] / 100.0
 if not np.all(np.diff(time_s) > 0):
 raise ValueError("附件2时间列不是严格递增。")
 monotone_radius_m = np.minimum.accumulate(raw_radius_m)
-adjustments = int(np.count_nonzero(np.abs(monotone_radius_m - raw_radius_m) > 1e-12))
+adjustments = int(np.count_nonzero(np.abs(monotone_radius_m −raw_radius_m) > 1e−12))
 interp = PchipInterpolator(time_s, monotone_radius_m, extrapolate=False)
 return RadiusHistory(
 time_s=time_s,
@@ -2057,89 +2001,95 @@ interp=interp,
 derivative=interp.derivative(),
 monotone_adjustments=adjustments,
 )
-def property_q1(temperature_c: np.ndarray, moisture: np.ndarray) -> tuple[np.ndarray, ...]:
+def property_q1(temperature_c: np.ndarray, moisture: np.ndarray) −> tuple[np.ndarray, ...]:
 del temperature_c
 rho = np.full_like(moisture, 820.0)
 cp = np.full_like(moisture, 2600.0)
 k = np.full_like(moisture, 0.36)
-safe_c = np.maximum(moisture, 1e-8)
-diffusivity = 7.0e-9 * np.exp(-0.89 / safe_c)
+safe_c = np.maximum(moisture, 1e−8)
+diffusivity = 7.0e−9 * np.exp(−0.89 / safe_c)
 return rho, cp, k, diffusivity
-def property_q23(temperature_c: np.ndarray, moisture: np.ndarray) -> tuple[np.ndarray, ...]:
-safe_c = np.maximum(moisture, 1e-8)
+def property_q23(temperature_c: np.ndarray, moisture: np.ndarray) −> tuple[np.ndarray,
+...]:
+safe_c = np.maximum(moisture, 1e−8)
 rho = 650.0 + 128.0 * safe_c
 cp = 1450.0 + 2736.0 * safe_c / (safe_c + 1.0)
+34
+
+
 k = 0.21 + 0.38 * safe_c / (safe_c + 1.0)
 diffusivity = (
-37
-2.4e-3
-* np.exp(-0.45 / safe_c)
-* np.exp(-3850.0 / (temperature_c + 273.15))
+2.4e−3
+* np.exp(−0.45 / safe_c)
+* np.exp(−3850.0 / (temperature_c + 273.15))
 )
 return rho, cp, k, diffusivity
-def property_q4(temperature_c: np.ndarray, moisture: np.ndarray) -> tuple[np.ndarray, ...]:
-safe_c = np.maximum(moisture, 1e-8)
+def property_q4(temperature_c: np.ndarray, moisture: np.ndarray) −> tuple[np.ndarray, ...]:
+safe_c = np.maximum(moisture, 1e−8)
 rho = 760.0 + 90.0 * safe_c
 cp = 1850.0 + 2150.0 * safe_c / (safe_c + 1.0)
 k = 0.12 + 0.20 * safe_c / (safe_c + 1.0)
 diffusivity = (
-4.2e-4
-* np.exp(-0.30 / safe_c)
-* np.exp(-3850.0 / (temperature_c + 273.15))
+4.2e−4
+* np.exp(−0.30 / safe_c)
+* np.exp(−3850.0 / (temperature_c + 273.15))
 )
 return rho, cp, k, diffusivity
-def face_interpolate(left: np.ndarray, right: np.ndarray) -> np.ndarray:
-"""Linear face interpolation for a smooth state-dependent coefficient."""
+def face_interpolate(left: np.ndarray, right: np.ndarray) −> np.ndarray:
+"""Linear face interpolation for a smooth state−dependent coefficient."""
 return 0.5 * (left + right)
-def radial_grid(count: int, radius: float = 1.0) -> np.ndarray:
-"""Surface-refined computational mesh; output positions are independent."""
+def radial_grid(count: int, radius: float = 1.0) −> np.ndarray:
+"""Surface−refined computational mesh; output positions are independent."""
 s = np.linspace(0.0, 1.0, count)
-return radius * (1.0 - (1.0 - s) ** GRID_POWER)
-def node_control_volumes(coordinate: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+return radius * (1.0 −(1.0 −s) ** GRID_POWER)
+def node_control_volumes(coordinate: np.ndarray) −> tuple[np.ndarray, np.ndarray]:
 """Return dimensionless/physical radial CV volumes and internal face radii."""
-faces = 0.5 * (coordinate[:-1] + coordinate[1:])
+faces = 0.5 * (coordinate[:−1] + coordinate[1:])
 lower = np.concatenate(([0.0], faces))
-upper = np.concatenate((faces, [coordinate[-1]]))
-volumes = math.pi * (upper**2 - lower**2)
+upper = np.concatenate((faces, [coordinate[−1]]))
+volumes = math.pi * (upper**2 −lower**2)
 return volumes, faces
 def implicit_radial_step(
 old: np.ndarray,
 storage: np.ndarray,
 conductivity: np.ndarray,
 dt: float,
+35
+
+
 coordinate: np.ndarray,
 diffusion_scale: float,
-38
-boundary_conductance: float,
+boundary_conductance: float,
 boundary_value: float,
 advection_velocity: np.ndarray | None = None,
-) -> np.ndarray:
-"""One implicit node-centred radial FVM step on coordinate [0, 1] or [0, R]."""
+) −> np.ndarray:
+"""One implicit node−centred radial FVM step on coordinate [0, 1] or [0, R]."""
 count = len(old)
 volumes, faces = node_control_volumes(coordinate)
 delta = np.diff(coordinate)
-face_property = face_interpolate(conductivity[:-1], conductivity[1:])
+face_property = face_interpolate(conductivity[:−1], conductivity[1:])
 conductance = 2.0 * math.pi * faces * face_property * diffusion_scale / delta
 capacity = storage * volumes / dt
 diagonal = capacity.copy()
-lower = np.zeros(count - 1)
-upper = np.zeros(count - 1)
+lower = np.zeros(count −1)
+upper = np.zeros(count −1)
 rhs = capacity * old
-diagonal[:-1] += conductance
+diagonal[:−1] += conductance
 diagonal[1:] += conductance
-upper -= conductance
-lower -= conductance
-diagonal[-1] += boundary_conductance
-rhs[-1] += boundary_conductance * boundary_value
+upper −= conductance
+lower −= conductance
+diagonal[−1] += boundary_conductance
+rhs[−1] += boundary_conductance * boundary_value
 if advection_velocity is not None:
 # PDE form: phi_t + u(xi) phi_xi = diffusion; u >= 0 under shrinkage.
-advective = storage[1:] * volumes[1:] * np.maximum(advection_velocity[1:], 0.0) / delta
+advective = storage[1:] * volumes[1:] * np.maximum(advection_velocity[1:], 0.0) /
+delta
 diagonal[1:] += advective
-lower -= advective
+lower −= advective
 matrix = np.zeros((3, count))
 matrix[0, 1:] = upper
 matrix[1, :] = diagonal
-matrix[2, :-1] = lower
+matrix[2, :−1] = lower
 return solve_banded((1, 1), matrix, rhs, check_finite=False)
 def advance_coupled(
 temperature_old: np.ndarray,
@@ -2147,23 +2097,25 @@ moisture_old: np.ndarray,
 dt: float,
 radius_m: float,
 radius_rate_m_s: float,
+36
+
+
 ambient_temperature_c: float,
 ambient_moisture: float,
 property_model: Callable[[np.ndarray, np.ndarray], tuple[np.ndarray, ...]],
-39
-moving_domain: bool,
-tolerance_temperature: float = 1e-8,
-tolerance_moisture: float = 1e-10,
+moving_domain: bool,
+tolerance_temperature: float = 1e−8,
+tolerance_moisture: float = 1e−10,
 max_iterations: int = 30,
 balance: dict | None = None,
-) -> tuple[np.ndarray, np.ndarray, int]:
+) −> tuple[np.ndarray, np.ndarray, int]:
 temperature = temperature_old.copy()
 moisture = moisture_old.copy()
 if moving_domain:
 coordinate = radial_grid(len(temperature_old))
 diffusion_scale = 1.0 / radius_m**2
 boundary_scale = 1.0 / radius_m
-shrink_velocity = -(radius_rate_m_s / radius_m) * coordinate
+shrink_velocity = −(radius_rate_m_s / radius_m) * coordinate
 else:
 coordinate = radial_grid(len(temperature_old), radius_m)
 diffusion_scale = 1.0
@@ -2172,7 +2124,7 @@ shrink_velocity = None
 for iteration in range(1, max_iterations + 1):
 rho, cp, k, _ = property_model(temperature, moisture)
 heat_storage = rho * cp
-heat_boundary = 2.0 * math.pi * coordinate[-1] * H_T * boundary_scale
+heat_boundary = 2.0 * math.pi * coordinate[−1] * H_T * boundary_scale
 next_temperature = implicit_radial_step(
 old=temperature_old,
 storage=heat_storage,
@@ -2185,7 +2137,7 @@ boundary_value=ambient_temperature_c,
 advection_velocity=shrink_velocity,
 )
 _, _, _, diffusivity = property_model(next_temperature, moisture)
-mass_boundary = 2.0 * math.pi * coordinate[-1] * H_M * boundary_scale
+mass_boundary = 2.0 * math.pi * coordinate[−1] * H_M * boundary_scale
 next_moisture = implicit_radial_step(
 old=moisture_old,
 storage=np.ones_like(moisture),
@@ -2193,13 +2145,15 @@ conductivity=diffusivity,
 dt=dt,
 coordinate=coordinate,
 diffusion_scale=diffusion_scale,
+37
+
+
 boundary_conductance=mass_boundary,
 boundary_value=ambient_moisture,
 advection_velocity=shrink_velocity,
-40
-)
-error_t = float(np.max(np.abs(next_temperature - temperature)))
-error_c = float(np.max(np.abs(next_moisture - moisture)))
+)
+error_t = float(np.max(np.abs(next_temperature −temperature)))
+error_c = float(np.max(np.abs(next_moisture −moisture)))
 temperature = next_temperature
 moisture = next_moisture
 if error_t < tolerance_temperature and error_c < tolerance_moisture:
@@ -2209,18 +2163,19 @@ raise RuntimeError(
 f"Picard iteration failed: dT={error_t:.3e}, dC={error_c:.3e}, dt={dt}"
 )
 if not np.all(np.isfinite(temperature)) or not np.all(np.isfinite(moisture)):
-raise FloatingPointError("Non-finite state generated.")
-if np.min(moisture) < -1e-10 or np.max(moisture) > INITIAL_C + 1e-8:
+raise FloatingPointError("Non−finite state generated.")
+if np.min(moisture) < −1e−10 or np.max(moisture) > INITIAL_C + 1e−8:
 raise FloatingPointError("Moisture left physical bounds.")
 if balance is not None:
 volumes, _ = node_control_volumes(coordinate)
 adv_c = adv_t = 0.0
 if shrink_velocity is not None:
-weight = volumes[1:] * np.maximum(shrink_velocity[1:], 0.0) / np.diff(coordinate)
+weight = volumes[1:] * np.maximum(shrink_velocity[1:], 0.0) / np.diff(
+coordinate)
 adv_c = dt * float(np.dot(weight, np.diff(moisture)))
 adv_t = dt * float(np.dot(weight * heat_storage[1:], np.diff(temperature)))
-change = float(np.dot(volumes, moisture - moisture_old))
-flux = dt * mass_boundary * (float(moisture[-1]) - ambient_moisture)
+change = float(np.dot(volumes, moisture −moisture_old))
+flux = dt * mass_boundary * (float(moisture[−1]) −ambient_moisture)
 reference = INITIAL_C * float(volumes.sum())
 balance['moisture_change'] += change / reference
 balance['boundary_loss'] += flux / reference
@@ -2228,18 +2183,20 @@ balance['relative_transport'] += adv_c / reference
 residual = change + flux + adv_c
 balance['maximum_step_mass_residual'] = max(balance['maximum_step_mass_residual'],
 abs(residual) / reference)
-heat_change = float(np.dot(heat_storage * volumes, temperature - temperature_old))
-heat_flux = dt * heat_boundary * (float(temperature[-1]) - ambient_temperature_c)
+heat_change = float(np.dot(heat_storage * volumes, temperature −temperature_old))
+heat_flux = dt * heat_boundary * (float(temperature[−1]) −ambient_temperature_c)
 heat_reference = INITIAL_T * float(np.dot(heat_storage, volumes))
 heat_residual = (heat_change + heat_flux + adv_t) / heat_reference
-balance['maximum_step_heat_equation_residual'] =
-max(balance['maximum_step_heat_equation_residual'], abs(heat_residual))
+balance['maximum_step_heat_equation_residual'] = max(balance['
+maximum_step_heat_equation_residual'], abs(heat_residual))
 return temperature, moisture, iteration
-def new_balance() -> dict:
+def new_balance() −> dict:
+38
+
+
 return dict(moisture_change=0.0, boundary_loss=0.0, relative_transport=0.0,
 maximum_step_mass_residual=0.0, maximum_step_heat_equation_residual=0.0)
-41
-def simulate_fixed(
+def simulate_fixed(
 environment: Environment,
 property_model: Callable[[np.ndarray, np.ndarray], tuple[np.ndarray, ...]],
 end_time_s: float | None,
@@ -2249,7 +2206,7 @@ stop_at_threshold: bool,
 terminal_temp_scale: float = 1.0,
 terminal_moisture_scale: float = 1.0,
 stop_interval_s: float | None = None,
-) -> dict[str, np.ndarray | float | int | bool]:
+) −> dict[str, np.ndarray | float | int | bool]:
 temperature = np.full(NODES, INITIAL_T)
 moisture = np.full(NODES, INITIAL_C)
 radial_m = radial_grid(NODES, R_FIXED)
@@ -2270,8 +2227,8 @@ balance = new_balance()
 time_s = 0.0
 next_output = output_interval_s
 maximum_time = float(end_time_s if end_time_s is not None else 10.0 * 24.0 * 3600.0)
-while time_s < maximum_time - 1e-9:
-step = min(dt_s, maximum_time - time_s, next_output - time_s)
+while time_s < maximum_time −1e−9:
+step = min(dt_s, maximum_time −time_s, next_output −time_s)
 new_time = time_s + step
 temperature_before = temperature.copy()
 moisture_before = moisture.copy()
@@ -2281,12 +2238,14 @@ new_time, terminal_temp_scale, terminal_moisture_scale
 temperature, moisture, count = advance_coupled(
 temperature,
 moisture,
+39
+
+
 step,
 R_FIXED,
 0.0,
 ambient_t,
-42
-ambient_c,
+ambient_c,
 property_model,
 moving_domain=False,
 balance=balance,
@@ -2294,25 +2253,27 @@ balance=balance,
 iterations.append(count)
 time_s = new_time
 current_max = float(np.max(moisture))
-monotone_profiles = monotone_profiles and bool(np.all(np.diff(moisture) <= 2e-9))
+monotone_profiles = monotone_profiles and bool(np.all(np.diff(moisture) <= 2e−9))
 center_is_max = center_is_max and bool(
-moisture[0] >= float(np.max(moisture)) - 1e-9
+moisture[0] >= float(np.max(moisture)) −1e−9
 )
 if previous_max > THRESHOLD_C >= current_max and math.isnan(threshold_time):
-fraction = (previous_max - THRESHOLD_C) / max(previous_max - current_max, 1e-15)
+fraction = (previous_max −THRESHOLD_C) / max(previous_max −current_max, 1e
+−15)
 threshold_time = previous_time + fraction * step
 threshold_temperature = (
-temperature_before + fraction * (temperature - temperature_before)
+temperature_before + fraction * (temperature −temperature_before)
 )
-threshold_moisture = moisture_before + fraction * (moisture - moisture_before)
-stop_spacing = output_interval_s if stop_interval_s is None else stop_interval_s
+threshold_moisture = moisture_before + fraction * (moisture −moisture_before)
+stop_spacing = output_interval_s if stop_interval_s is None else
+stop_interval_s
 stop_output_time = math.ceil(threshold_time / stop_spacing) * stop_spacing
-if time_s + 1e-8 >= next_output:
+if time_s + 1e−8 >= next_output:
 times.append(time_s)
 temperatures.append(np.interp(output_r, radial_m, temperature))
 moistures.append(np.interp(output_r, radial_m, moisture))
 next_output += output_interval_s
-if stop_at_threshold and time_s + 1e-8 >= stop_output_time:
+if stop_at_threshold and time_s + 1e−8 >= stop_output_time:
 break
 previous_max = current_max
 previous_time = time_s
@@ -2322,15 +2283,17 @@ return {
 "temperature_c": np.asarray(temperatures),
 "moisture": np.asarray(moistures),
 "threshold_time_s": threshold_time,
-"threshold_temperature_c": None if threshold_temperature is None else
-np.interp(output_r, radial_m, threshold_temperature),
+"threshold_temperature_c": None if threshold_temperature is None else np.interp(
+40
+
+
+output_r, radial_m, threshold_temperature),
 "threshold_moisture": None if threshold_moisture is None else np.interp(output_r,
 radial_m, threshold_moisture),
 "last_time_s": time_s,
 "picard_max": int(max(iterations, default=0)),
 "picard_mean": float(np.mean(iterations) if iterations else 0.0),
-43
-"monotone_profiles": monotone_profiles,
+"monotone_profiles": monotone_profiles,
 "center_is_max": center_is_max,
 "balance": balance,
 }
@@ -2343,9 +2306,9 @@ stop_at_threshold: bool = True,
 terminal_temp_scale: float = 1.0,
 terminal_moisture_scale: float = 1.0,
 include_advection: bool = False,
-) -> dict[str, np.ndarray | float | int | bool]:
+) −> dict[str, np.ndarray | float | int | bool]:
 # Default: homogeneous solid shrinkage, material velocity equals mesh velocity.
-# True retains the former stationary-spatial scalar model for structural comparison.
+# True retains the former stationary−spatial scalar model for structural comparison.
 xi = radial_grid(NODES)
 # Preserve native nodes; interpolate to physical positions only at export.
 output_xi = xi.copy()
@@ -2365,17 +2328,19 @@ threshold_radius_m = math.nan
 stop_output_time = math.inf
 time_s = 0.0
 next_output = output_interval_s
-maximum_time = float(radius_history.time_s[-1])
+maximum_time = float(radius_history.time_s[−1])
 monotone_profiles = True
 center_is_max = True
 maximum_cfl = 0.0
+41
+
+
 balance = new_balance()
-while time_s < maximum_time - 1e-9:
-step = min(dt_s, maximum_time - time_s, next_output - time_s)
+while time_s < maximum_time −1e−9:
+step = min(dt_s, maximum_time −time_s, next_output −time_s)
 new_time = time_s + step
 temperature_before = temperature.copy()
-44
-moisture_before = moisture.copy()
+moisture_before = moisture.copy()
 radius_m, radius_rate_m_s = radius_history.values(new_time)
 if not include_advection:
 radius_rate_m_s = 0.0
@@ -2401,29 +2366,32 @@ maximum_cfl = max(
 maximum_cfl,
 float(np.max(abs(radius_rate_m_s / radius_m) * xi[1:] * step / np.diff(xi))),
 )
-monotone_profiles = monotone_profiles and bool(np.all(np.diff(moisture) <= 2e-9))
+monotone_profiles = monotone_profiles and bool(np.all(np.diff(moisture) <= 2e−9))
 center_is_max = center_is_max and bool(
-moisture[0] >= float(np.max(moisture)) - 1e-9
+moisture[0] >= float(np.max(moisture)) −1e−9
 )
 if previous_max > THRESHOLD_C >= current_max and math.isnan(threshold_time):
-fraction = (previous_max - THRESHOLD_C) / max(previous_max - current_max, 1e-15)
+fraction = (previous_max −THRESHOLD_C) / max(previous_max −current_max, 1e
+−15)
 threshold_time = previous_time + fraction * step
 threshold_temperature = (
-temperature_before + fraction * (temperature - temperature_before)
+temperature_before + fraction * (temperature −temperature_before)
 )
-threshold_moisture = moisture_before + fraction * (moisture - moisture_before)
+threshold_moisture = moisture_before + fraction * (moisture −moisture_before)
 threshold_radius_m = radius_history.values(threshold_time)[0]
 stop_output_time = (
+42
+
+
 math.ceil(threshold_time / output_interval_s) * output_interval_s
 )
-if time_s + 1e-8 >= next_output:
+if time_s + 1e−8 >= next_output:
 times.append(time_s)
 radii.append(radius_m)
 temperatures.append(np.interp(output_xi, xi, temperature))
-45
-moistures.append(np.interp(output_xi, xi, moisture))
+moistures.append(np.interp(output_xi, xi, moisture))
 next_output += output_interval_s
-if stop_at_threshold and time_s + 1e-8 >= stop_output_time:
+if stop_at_threshold and time_s + 1e−8 >= stop_output_time:
 break
 previous_max = current_max
 previous_time = time_s
@@ -2434,10 +2402,10 @@ return {
 "temperature_c": np.asarray(temperatures),
 "moisture": np.asarray(moistures),
 "threshold_time_s": threshold_time,
-"threshold_temperature_c": None if threshold_temperature is None else
-np.interp(output_xi, xi, threshold_temperature),
-"threshold_moisture": None if threshold_moisture is None else np.interp(output_xi, xi,
-threshold_moisture),
+"threshold_temperature_c": None if threshold_temperature is None else np.interp(
+output_xi, xi, threshold_temperature),
+"threshold_moisture": None if threshold_moisture is None else np.interp(output_xi,
+xi, threshold_moisture),
 "threshold_radius_m": threshold_radius_m,
 "last_time_s": time_s,
 "picard_max": int(max(iterations, default=0)),
@@ -2446,34 +2414,37 @@ threshold_moisture),
 "center_is_max": center_is_max,
 "maximum_advection_cfl": maximum_cfl,
 "balance": balance,
-"velocity_model": "stationary_spatial_comparison" if include_advection else
-"uniform_material_shrinkage",
+"velocity_model": "stationary_spatial_comparison" if include_advection else "
+uniform_material_shrinkage",
 }
 def extract_fixed_table(
 simulation: dict[str, np.ndarray | float | int | bool],
 requested_times_s: list[float],
 requested_radii_cm: list[float],
 variable: str,
-) -> list[list[float]]:
+) −> list[list[float]]:
 times = np.asarray(simulation["times_s"])
 radii_m = np.asarray(simulation["radius_m"])
+43
+
+
 values = np.asarray(simulation[variable])
 table: list[list[float]] = []
 for requested_time in requested_times_s:
 threshold_time = float(simulation.get("threshold_time_s", math.nan))
 threshold_key = (
-"threshold_temperature_c" if variable == "temperature_c" else "threshold_moisture"
+"threshold_temperature_c" if variable == "temperature_c" else "
+threshold_moisture"
 )
-46
-threshold_profile = simulation.get(threshold_key)
+threshold_profile = simulation.get(threshold_key)
 if (
 threshold_profile is not None
 and math.isfinite(threshold_time)
-and abs(requested_time - threshold_time) < 1e-5
+and abs(requested_time −threshold_time) < 1e−5
 ):
 profile = np.asarray(threshold_profile)
 else:
-time_index = int(np.argmin(np.abs(times - requested_time)))
+time_index = int(np.argmin(np.abs(times −requested_time)))
 profile = values[time_index]
 row = [
 float(np.interp(radius_cm / 100.0, radii_m, profile))
@@ -2485,7 +2456,7 @@ def extract_moving_profile(
 simulation: dict[str, np.ndarray | float | int | bool],
 requested_time_s: float,
 requested_radii_cm: list[float],
-) -> list[float | None]:
+) −> list[float | None]:
 times = np.asarray(simulation["times_s"])
 xi = np.asarray(simulation["xi"])
 radii_m = np.asarray(simulation["radii_m"])
@@ -2495,26 +2466,29 @@ threshold_profile = simulation.get("threshold_moisture")
 if (
 threshold_profile is not None
 and math.isfinite(threshold_time)
-and abs(requested_time_s - threshold_time) < 1e-5
+and abs(requested_time_s −threshold_time) < 1e−5
 ):
 profile = np.asarray(threshold_profile)
 radius = float(simulation["threshold_radius_m"])
 else:
-index = int(np.argmin(np.abs(times - requested_time_s)))
+index = int(np.argmin(np.abs(times −requested_time_s)))
 profile = moisture[index]
+44
+
+
 radius = float(radii_m[index])
 values: list[float | None] = []
 for radius_cm in requested_radii_cm:
 position_m = radius_cm / 100.0
-if position_m > radius + 1e-12:
+if position_m > radius + 1e−12:
 values.append(None)
 else:
 values.append(float(np.interp(position_m / radius, xi, profile)))
-47
-values.append(float(profile[-1]))
+values.append(float(profile[−1]))
 return values
-def save_npz(path: Path, simulation: dict[str, np.ndarray | float | int | bool]) -> None:
-arrays = {key: value for key, value in simulation.items() if isinstance(value, np.ndarray)}
+def save_npz(path: Path, simulation: dict[str, np.ndarray | float | int | bool]) −> None:
+arrays = {key: value for key, value in simulation.items() if isinstance(value, np.
+ndarray)}
 np.savez_compressed(path, **arrays)
 def json_ready(value):
 if isinstance(value, np.ndarray):
@@ -2528,20 +2502,23 @@ return {key: json_ready(item) for key, item in value.items()}
 if isinstance(value, (list, tuple)):
 return [json_ready(item) for item in value]
 return value
-def write_summary(path: Path, payload: dict) -> None:
+def write_summary(path: Path, payload: dict) −> None:
 path.write_text(
 json.dumps(json_ready(payload), ensure_ascii=False, indent=2),
-encoding="utf-8",
+encoding="utf−8",
 )
-def run_all(run_convergence: bool = True) -> None:
+def run_all(run_convergence: bool = True) −> None:
 RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 for name in ("q1", "q2", "q3", "q4"):
 (RESULTS_DIR / name).mkdir(parents=True, exist_ok=True)
 environment = load_environment()
 radius_history = load_radius_history()
 data_audit = {
+45
+
+
 "environment_rows": len(environment.time_s),
-"environment_time_range_s": [environment.time_s[0], environment.time_s[-1]],
+"environment_time_range_s": [environment.time_s[0], environment.time_s[−1]],
 "environment_sampling_s": np.unique(np.diff(environment.time_s)),
 "temperature_range_c": [
 float(np.min(environment.temperature_c)),
@@ -2549,17 +2526,16 @@ float(np.max(environment.temperature_c)),
 ],
 "ambient_moisture_range": [
 float(np.min(environment.moisture)),
-48
-float(np.max(environment.moisture)),
+float(np.max(environment.moisture)),
 ],
 "terminal_boundary_after_14400_s": {
 "temperature_c": TERMINAL_TEMPERATURE_C,
 "moisture": TERMINAL_MOISTURE,
-"basis": "constant-stage setpoints; final-hour attachment means are 49.9989 C and
-0.049988",
+"basis": "constant−stage setpoints; final−hour attachment means are 49.9989 C
+and 0.049988",
 },
 "radius_rows": len(radius_history.time_s),
-"radius_time_range_s": [radius_history.time_s[0], radius_history.time_s[-1]],
+"radius_time_range_s": [radius_history.time_s[0], radius_history.time_s[−1]],
 "radius_range_cm": [
 float(np.min(radius_history.radius_m) * 100.0),
 float(np.max(radius_history.radius_m) * 100.0),
@@ -2581,11 +2557,15 @@ table_radii = [0.0, 0.5, 1.0, 1.5, 2.0]
 q1_summary = {
 "table_times_s": q1_times,
 "table_radii_cm": table_radii,
-"temperature_table_c": extract_fixed_table(q1, q1_times, table_radii, "temperature_c"),
+"temperature_table_c": extract_fixed_table(q1, q1_times, table_radii, "
+temperature_c"),
 "moisture_table": extract_fixed_table(q1, q1_times, table_radii, "moisture"),
 "biot_heat": H_T * R_FIXED / 0.36,
 "initial_diffusivity_m2_s": float(property_q1(
 np.array([INITIAL_T]), np.array([INITIAL_C])
+46
+
+
 )[3][0]),
 "biot_mass_initial": H_M * R_FIXED / float(property_q1(
 np.array([INITIAL_T]), np.array([INITIAL_C])
@@ -2596,8 +2576,7 @@ np.array([INITIAL_T]), np.array([INITIAL_C])
 float(np.min(q1["temperature_c"])),
 float(np.max(q1["temperature_c"])),
 ],
-49
-"moisture_bounds": [
+"moisture_bounds": [
 float(np.min(q1["moisture"])),
 float(np.max(q1["moisture"])),
 ],
@@ -2617,7 +2596,8 @@ q2_times = [1800, 3600, 5400, 7200, 9000, 10800]
 q2_summary = {
 "table_times_h": [time / 3600.0 for time in q2_times],
 "table_radii_cm": table_radii,
-"temperature_table_c": extract_fixed_table(q2, q2_times, table_radii, "temperature_c"),
+"temperature_table_c": extract_fixed_table(q2, q2_times, table_radii, "
+temperature_c"),
 "moisture_table": extract_fixed_table(q2, q2_times, table_radii, "moisture"),
 "picard_max": q2["picard_max"],
 "picard_mean": q2["picard_mean"],
@@ -2630,9 +2610,12 @@ for key in ("times_s", "temperature_c", "moisture"):
 q3[key] = q2[key][::60].copy()
 save_npz(RESULTS_DIR / "q3" / "fields.npz", q3)
 q3_end = float(q3["threshold_time_s"])
-q3_report_times = list(np.arange(6 * 3600, math.floor(q3_end / (6 * 3600)) * 6 * 3600 + 1,
-6 * 3600))
-if not q3_report_times or abs(q3_report_times[-1] - q3_end) > 1e-6:
+q3_report_times = list(np.arange(6 * 3600, math.floor(q3_end / (6 * 3600)) * 6 * 3600
+47
+
+
++ 1, 6 * 3600))
+if not q3_report_times or abs(q3_report_times[−1] −q3_end) > 1e−6:
 q3_report_times.append(q3_end)
 q3_summary = {
 "drying_time_s": q3_end,
@@ -2640,10 +2623,10 @@ q3_summary = {
 "output_end_s": q3["last_time_s"],
 "table_times_h": [time / 3600.0 for time in q3_report_times],
 "table_radii_cm": table_radii,
-"moisture_table": extract_fixed_table(q3, q3_report_times, table_radii, "moisture"),
+"moisture_table": extract_fixed_table(q3, q3_report_times, table_radii, "moisture")
+,
 "center_is_max": q3["center_is_max"],
-50
-"monotone_profiles": q3["monotone_profiles"],
+"monotone_profiles": q3["monotone_profiles"],
 "picard_max": q3["picard_max"],
 "picard_mean": q3["picard_mean"],
 }
@@ -2656,9 +2639,9 @@ stop_at_threshold=True,
 )
 save_npz(RESULTS_DIR / "q4" / "fields.npz", q4)
 q4_end = float(q4["threshold_time_s"])
-q4_report_times = list(np.arange(6 * 3600, math.floor(q4_end / (6 * 3600)) * 6 * 3600 + 1,
-6 * 3600))
-if not q4_report_times or abs(q4_report_times[-1] - q4_end) > 1e-6:
+q4_report_times = list(np.arange(6 * 3600, math.floor(q4_end / (6 * 3600)) * 6 * 3600
++ 1, 6 * 3600))
+if not q4_report_times or abs(q4_report_times[−1] −q4_end) > 1e−6:
 q4_report_times.append(q4_end)
 q4_table_radii = [0.0, 0.5, 1.0]
 q4_summary = {
@@ -2677,6 +2660,9 @@ extract_moving_profile(q4, time, q4_table_radii) for time in q4_report_times
 "maximum_advection_cfl": q4["maximum_advection_cfl"],
 "picard_max": q4["picard_max"],
 "picard_mean": q4["picard_mean"],
+48
+
+
 }
 if run_convergence:
 q3_dt2 = simulate_fixed(
@@ -2688,8 +2674,7 @@ output_interval_s=60.0,
 stop_at_threshold=True,
 )
 q4_dt2 = simulate_moving(
-51
-environment,
+environment,
 radius_history,
 dt_s=2.0,
 output_interval_s=60.0,
@@ -2707,36 +2692,38 @@ q3_summary["time_step_check"] = {
 "dt1_s_time_h": q3_end / 3600.0,
 "dt2_s_time_h": float(q3_dt2["threshold_time_s"]) / 3600.0,
 "relative_difference": abs(
-float(q3_dt2["threshold_time_s"]) - q3_end
+float(q3_dt2["threshold_time_s"]) −q3_end
 ) / float(q3_dt2["threshold_time_s"]),
 }
 q4_summary["time_step_check"] = {
 "dt1_s_time_h": q4_end / 3600.0,
 "dt2_s_time_h": float(q4_dt2["threshold_time_s"]) / 3600.0,
 "relative_difference": abs(
-float(q4_dt2["threshold_time_s"]) - q4_end
+float(q4_dt2["threshold_time_s"]) −q4_end
 ) / float(q4_dt2["threshold_time_s"]),
 }
 q4_summary["moving_term_comparison"] = {
 "material_model_h": q4_end / 3600.0,
-"stationary_spatial_model_h": float(q4_stationary["threshold_time_s"]) / 3600.0,
+"stationary_spatial_model_h": float(q4_stationary["threshold_time_s"]) /
+3600.0,
 "difference_h": (
-float(q4_stationary["threshold_time_s"]) - q4_end
+float(q4_stationary["threshold_time_s"]) −q4_end
 ) / 3600.0,
+49
+
+
 }
-for summary, simulation in [(q1_summary, q1), (q2_summary, q2), (q3_summary, q3),
-(q4_summary, q4)]:
-summary['numerics'] = {'nodes': NODES, 'grid_power': GRID_POWER, 'dt_s': 1.0,
-'output_nodes': simulation['moisture'].shape[1]}
+for summary, simulation in [(q1_summary, q1), (q2_summary, q2), (q3_summary, q3), (
+q4_summary, q4)]:
+summary['numerics'] = {'nodes': NODES, 'grid_power': GRID_POWER, 'dt_s': 1.0, '
+output_nodes': simulation['moisture'].shape[1]}
 summary['balance'] = simulation['balance']
-summary['balance']['cumulative_mass_equation_residual'] =
-abs(sum(simulation['balance'][key] for key in
-['moisture_change','boundary_loss','relative_transport']))
+summary['balance']['cumulative_mass_equation_residual'] = abs(sum(simulation['
+balance'][key] for key in ['moisture_change','boundary_loss','relative_transport']))
 q2_summary['output_end_s'] = q2['last_time_s']
 q2_summary['drying_time_h'] = q2['threshold_time_s'] / 3600.0
-q3_summary['shared_trajectory_with_q2'] = bool(np.array_equal(q3['moisture'],
-52
-q2['moisture'][::60]))
+q3_summary['shared_trajectory_with_q2'] = bool(np.array_equal(q3['moisture'], q2['
+moisture'][::60]))
 q4_summary['velocity_model'] = q4['velocity_model']
 write_summary(RESULTS_DIR / "q1" / "summary.json", q1_summary)
 write_summary(RESULTS_DIR / "q2" / "summary.json", q2_summary)
@@ -2744,10 +2731,10 @@ write_summary(RESULTS_DIR / "q3" / "summary.json", q3_summary)
 write_summary(RESULTS_DIR / "q4" / "summary.json", q4_summary)
 print(json.dumps(
 {
-"q1_surface_temperature_1800_c": q1_summary["temperature_table_c"][-1][-1],
-"q1_center_moisture_1800": q1_summary["moisture_table"][-1][0],
-"q2_center_temperature_3h_c": q2_summary["temperature_table_c"][-1][0],
-"q2_center_moisture_3h": q2_summary["moisture_table"][-1][0],
+"q1_surface_temperature_1800_c": q1_summary["temperature_table_c"][−1][−1],
+"q1_center_moisture_1800": q1_summary["moisture_table"][−1][0],
+"q2_center_temperature_3h_c": q2_summary["temperature_table_c"][−1][0],
+"q2_center_moisture_3h": q2_summary["moisture_table"][−1][0],
 "q3_drying_time_h": q3_summary["drying_time_h"],
 "q4_drying_time_h": q4_summary["drying_time_h"],
 "q4_radius_at_end_cm": q4_summary["radius_at_end_cm"],
@@ -2755,12 +2742,1276 @@ print(json.dumps(
 ensure_ascii=False,
 indent=2,
 ))
-def main() -> None:
-sys.stdout.reconfigure(encoding="utf-8")
+def main() −> None:
+sys.stdout.reconfigure(encoding="utf−8")
 parser = argparse.ArgumentParser()
-parser.add_argument("--skip-convergence", action="store_true")
+parser.add_argument("−−skip−convergence", action="store_true")
 args = parser.parse_args()
 run_all(run_convergence=not args.skip_convergence)
 if __name__ == "__main__":
 main()
+50
+
+
+2 . 2
+run_q4_counterfactual.py
+# File: code/run_q4_counterfactual.py
+"""Counterfactual Q4 run using Appendix−4 properties but a fixed radius."""
+from __future__ import annotations
+import json
+import sys
+from solve_drying import (
+RESULTS_DIR,
+load_environment,
+property_q4,
+save_npz,
+simulate_fixed,
+)
+def main() −> None:
+environment = load_environment()
+simulation = simulate_fixed(
+environment,
+property_q4,
+end_time_s=None,
+dt_s=1.0,
+output_interval_s=60.0,
+stop_at_threshold=True,
+)
+save_npz(RESULTS_DIR / "q4" / "fixed_radius_counterfactual.npz", simulation)
+summary_path = RESULTS_DIR / "q4" / "summary.json"
+summary = json.loads(summary_path.read_text(encoding="utf−8"))
+fixed_time_h = float(simulation["threshold_time_s"]) / 3600.0
+moving_time_h = float(summary["drying_time_h"])
+summary["fixed_radius_counterfactual"] = {
+"same_appendix4_properties_time_h": fixed_time_h,
+"moving_radius_time_h": moving_time_h,
+"time_reduction_h": fixed_time_h −moving_time_h,
+"relative_reduction": (fixed_time_h −moving_time_h) / fixed_time_h,
+}
+summary_path.write_text(
+json.dumps(summary, ensure_ascii=False, indent=2),
+encoding="utf−8",
+)
+print(json.dumps(summary["fixed_radius_counterfactual"], ensure_ascii=False, indent=2))
+51
+
+
+if __name__ == "__main__":
+sys.stdout.reconfigure(encoding="utf−8")
+main()
+2 . 3
+make_figures.py
+# File: code/make_figures.py
+# Academic Figure Skill Asset Confirmation (verified against assets/figures/)
+# (a) LineTrend →assets/figures/LineTrend/plot_sweep.py →param inherit
+# (b) LineTrend →assets/figures/LineTrend/plot_sweep.py →param inherit
+# RULE: "native run" = load pre−rendered PNG via Image.open().ax.imshow().
+#
+"param inherit" = drawing function below that copies Class A/B/C values.
+#
+The production asset's data semantics differ, so only its clean line/marker
+structure is inherited.
+# Academic Figure Skill Typography Baseline — COPY VERBATIM, place at TOP of script
+import matplotlib as mpl
+mpl.rcParams.update({
+"font.family": "sans−serif",
+"font.sans−serif": ["Arial", "Helvetica", "Liberation Sans"],
+"font.size": 8,
+"axes.titlesize": 8,
+"axes.labelsize": 8,
+"xtick.labelsize": 7,
+"ytick.labelsize": 7,
+"legend.fontsize": 8,
+"figure.titlesize": 9,
+"axes.spines.top": False,
+"axes.spines.right": False,
+"axes.linewidth": 0.6,
+"xtick.direction": "out",
+"ytick.direction": "out",
+"xtick.major.width": 0.6,
+"ytick.major.width": 0.6,
+"legend.frameon": False,
+})
+mpl.rcParams.update({
+"font.family": ["Times New Roman", "SimSun"],
+"mathtext.fontset": "custom",
+"mathtext.rm": "Times New Roman",
+"mathtext.it": "Times New Roman:italic",
+"mathtext.bf": "Times New Roman:bold",
+"mathtext.sf": "Times New Roman",
+})
+52
+
+
+# Academic Figure Skill Nature/Cell/Science Color Palette −−COPY VERBATIM
+CATEGORICAL = ["#2166AC", "#B2182B", "#1B7837", "#F1A340", "#762A83", "#666666"]
+CATEGORICAL_EXTENDED = [
+"#2166AC", "#B2182B", "#1B7837", "#F1A340", "#762A83", "#666666",
+"#4393C3", "#D6604D", "#5AAE61", "#B35806", "#9970AB", "#999999",
+]
+DIVERGING
+= ["#2166AC", "#F7F7F7", "#B2182B"]
+SEQUENTIAL
+= ["#F7FBFF", "#6BAED6", "#08306B"]
+ACCENT_RED
+= "#B2182B"
+GREY
+= "#999999"
+BLACK
+= "#222222"
+# Academic Figure Skill Export Baseline — COPY VERBATIM
+mpl.rcParams.update({
+"pdf.fonttype": 42,
+# TrueType font embedding
+"svg.fonttype": "none",
+# editable text in SVG
+"savefig.bbox": "tight",
+# trim whitespace
+"savefig.dpi": 300,
+})
+def save_cns_figure(fig, filename):
+"""Standard Academic Figure Skill export: vector PDF + 300dpi PNG preview."""
+fig.savefig(f"{filename}.pdf", bbox_inches="tight", dpi=300)
+fig.savefig(f"{filename}.png", bbox_inches="tight", dpi=300)
+import json
+import sys
+from pathlib import Path
+import matplotlib.pyplot as plt
+import numpy as np
+from matplotlib import font_manager
+ROOT = Path(__file__).resolve().parents[1]
+RESULTS = ROOT / "results"
+FIGURES = ROOT / "figures"
+MM_TO_INCH = 1.0 / 25.4
+TIME_COLORS = ["#BFD7EA", "#6BAED6", "#2166AC", "#762A83", "#B2182B"]
+def require_fonts() −> None:
+font_manager.findfont("Times New Roman", fallback_to_default=False)
+for chinese_font in ("SimSun", "Songti SC", "STSong"):
+try:
 53
+
+
+font_manager.findfont(chinese_font, fallback_to_default=False)
+except ValueError:
+continue
+mpl.rcParams["font.family"] = ["Times New Roman", chinese_font]
+return
+raise RuntimeError("需要SimSun、Songti SC 或STSong 中至少一种中文字体")
+def load_summary(question: str) −> dict:
+return json.loads((RESULTS / question / "summary.json").read_text(encoding="utf−8"))
+def nearest_indices(times: np.ndarray, requested: list[float]) −> list[int]:
+return [int(np.argmin(np.abs(times −value))) for value in requested]
+def panel_labels(fig, axes: list[plt.Axes], labels: str = "ab") −> None:
+for label, axis in zip(labels, axes):
+box = axis.get_position()
+fig.text(
+0.5 * (box.x0 + box.x1),
+0.035,
+f"({label})",
+ha="center",
+va="bottom",
+fontsize=8,
+fontweight="bold",
+)
+def common_axis_style(axis: plt.Axes) −> None:
+axis.tick_params(length=3.0, width=0.6)
+axis.grid(False)
+def plot_profiles(
+axis: plt.Axes,
+radius_cm: np.ndarray,
+values: np.ndarray,
+labels: list[str],
+ylabel: str,
+show_legend: bool = True,
+) −> None:
+for index, (profile, label) in enumerate(zip(values, labels)):
+color = TIME_COLORS[index if len(values) == len(TIME_COLORS) else int(
+round(index * (len(TIME_COLORS) −1) / max(len(values) −1, 1))
+)]
+54
+
+
+axis.plot(
+radius_cm,
+profile,
+color=color,
+linewidth=1.3,
+marker="o",
+markersize=2.3,
+markevery=4,
+label=label,
+)
+axis.set_xlabel("到药材中心的距离/ cm")
+axis.set_ylabel(ylabel)
+axis.set_xlim(float(radius_cm[0]), float(radius_cm[−1]))
+if show_legend:
+axis.legend(
+loc="lower center",
+bbox_to_anchor=(0.5, 1.01),
+ncol=min(len(labels), 3),
+columnspacing=0.9,
+handlelength=1.8,
+)
+common_axis_style(axis)
+def figure_q1() −> None:
+data = np.load(RESULTS / "q1" / "fields.npz")
+times = data["times_s"]
+radius_cm = data["radius_m"] * 100.0
+requested = [100, 600, 1200, 1800]
+indexes = nearest_indices(times, requested)
+labels = [f"{time:d} s" for time in requested]
+fig, axes = plt.subplots(
+1,
+2,
+figsize=(183 * MM_TO_INCH, 68 * MM_TO_INCH),
+gridspec_kw={"wspace": 0.22},
+)
+plot_profiles(
+axes[0],
+radius_cm,
+data["temperature_c"][indexes],
+labels,
+"温度/ °C",
+show_legend=False,
+)
+plot_profiles(
+axes[1],
+55
+
+
+radius_cm,
+data["moisture"][indexes],
+labels,
+"水分浓度C / (kg/kg)",
+show_legend=False,
+)
+axes[1].set_ylim(1.4, 2.60)
+handles, legend_labels = axes[0].get_legend_handles_labels()
+fig.legend(
+handles,
+legend_labels,
+loc="upper center",
+bbox_to_anchor=(0.5, 0.975),
+ncol=len(legend_labels),
+columnspacing=1.2,
+handlelength=1.8,
+handletextpad=0.45,
+borderaxespad=0.0,
+)
+fig.subplots_adjust(left=0.08, right=0.99, top=0.85, bottom=0.20, wspace=0.22)
+panel_labels(fig, list(axes))
+save_cns_figure(fig, str(FIGURES / "q1_preheat_profiles"))
+plt.close(fig)
+def figure_q2() −> None:
+data = np.load(RESULTS / "q2" / "fields.npz")
+times = data["times_s"]
+radius_cm = data["radius_m"] * 100.0
+requested = [1800, 5400, 10800]
+indexes = nearest_indices(times, requested)
+labels = ["0.5 h", "1.5 h", "3.0 h"]
+fig, axes = plt.subplots(
+1,
+2,
+figsize=(183 * MM_TO_INCH, 68 * MM_TO_INCH),
+gridspec_kw={"wspace": 0.22},
+)
+plot_profiles(
+axes[0],
+radius_cm,
+data["temperature_c"][indexes],
+labels,
+"温度/ °C",
+show_legend=False,
+)
+plot_profiles(
+56
+
+
+axes[1],
+radius_cm,
+data["moisture"][indexes],
+labels,
+"水分浓度C / (kg/kg)",
+show_legend=False,
+)
+handles, legend_labels = axes[0].get_legend_handles_labels()
+fig.legend(
+handles,
+legend_labels,
+loc="upper center",
+bbox_to_anchor=(0.5, 0.975),
+ncol=len(legend_labels),
+columnspacing=1.2,
+handlelength=1.8,
+handletextpad=0.45,
+borderaxespad=0.0,
+)
+fig.subplots_adjust(left=0.08, right=0.99, top=0.85, bottom=0.20, wspace=0.22)
+panel_labels(fig, list(axes))
+save_cns_figure(fig, str(FIGURES / "q2_coupled_profiles"))
+plt.close(fig)
+def figure_q3() −> None:
+data = np.load(RESULTS / "q3" / "fields.npz")
+summary = load_summary("q3")
+time_h = data["times_s"] / 3600.0
+radius_cm = data["radius_m"] * 100.0
+end_h = float(summary["drying_time_h"])
+fig, axes = plt.subplots(
+1,
+2,
+figsize=(183 * MM_TO_INCH, 76 * MM_TO_INCH),
+gridspec_kw={"wspace": 0.28},
+)
+axes[0].plot(time_h, data["moisture"][:, 0], color=CATEGORICAL[0], linewidth=1.4, label
+="中心")
+axes[0].plot(
+time_h,
+data["moisture"][:, −1],
+color=CATEGORICAL[3],
+linewidth=1.2,
+linestyle="−−",
+label="表面",
+)
+57
+
+
+axes[0].axhline(0.15, color=ACCENT_RED, linewidth=0.8, linestyle=":", label="阈值0.15")
+axes[0].axvline(end_h, color=GREY, linewidth=0.7, linestyle="−−")
+axes[0].annotate(
+f"{end_h:.3f} h",
+xy=(end_h, 0.15),
+xytext=(end_h −16, 0.42),
+arrowprops={"arrowstyle": "−>", "lw": 0.7, "color": BLACK},
+fontsize=7,
+)
+axes[0].set_xlabel("时间/ h")
+axes[0].set_ylabel("水分浓度/ (kg/kg)")
+axes[0].set_xlim(0, max(time_h))
+axes[0].set_ylim(0, 2.65)
+axes[0].legend(loc="upper right")
+common_axis_style(axes[0])
+requested_h = [6, 18, 36, 48, end_h]
+indexes = nearest_indices(time_h, requested_h)
+labels = ["6 h", "18 h", "36 h", "48 h", f"{end_h:.3f} h"]
+profiles = data["moisture"][indexes].copy()
+profiles[−1] = data["threshold_moisture"]
+plot_profiles(
+axes[1],
+radius_cm,
+profiles,
+labels,
+"水分浓度/ (kg/kg)",
+show_legend=False,
+)
+axes[1].axhline(0.15, color=ACCENT_RED, linewidth=0.8, linestyle=":")
+axes[1].set_ylim(0, 1.10)
+handles, legend_labels = axes[1].get_legend_handles_labels()
+fig.legend(
+handles,
+legend_labels,
+loc="upper center",
+bbox_to_anchor=(0.67, 0.975),
+ncol=len(legend_labels),
+columnspacing=1.0,
+handlelength=1.8,
+handletextpad=0.45,
+borderaxespad=0.0,
+)
+fig.subplots_adjust(left=0.09, right=0.98, top=0.86, bottom=0.22, wspace=0.28)
+panel_labels(fig, list(axes))
+save_cns_figure(fig, str(FIGURES / "q3_threshold_diagnostics"))
+plt.close(fig)
+58
+
+
+def figure_q4() −> None:
+fixed = np.load(RESULTS / "q4" / "fixed_radius_counterfactual.npz")
+q4 = np.load(RESULTS / "q4" / "fields.npz")
+summary4 = load_summary("q4")
+time_fixed_h = fixed["times_s"] / 3600.0
+time4_h = q4["times_s"] / 3600.0
+end_fixed_h = float(
+summary4["fixed_radius_counterfactual"]["same_appendix4_properties_time_h"]
+)
+end4_h = float(summary4["drying_time_h"])
+fig, axes = plt.subplots(
+1,
+2,
+figsize=(183 * MM_TO_INCH, 74 * MM_TO_INCH),
+gridspec_kw={"width_ratios": [1.35, 1.0], "wspace": 0.34},
+)
+axes[0].plot(
+time_fixed_h,
+fixed["moisture"][:, 0],
+color=CATEGORICAL[0],
+linewidth=1.3,
+linestyle="−−",
+label="固定半径对照（附录4 物性）",
+)
+axes[0].plot(
+time4_h,
+q4["moisture"][:, 0],
+color=ACCENT_RED,
+linewidth=1.5,
+label="收缩模型（问题4）",
+)
+axes[0].axhline(0.15, color=GREY, linewidth=0.8, linestyle=":")
+axes[0].scatter(
+[end_fixed_h, end4_h],
+[0.15, 0.15],
+color=[CATEGORICAL[0], ACCENT_RED],
+s=18,
+zorder=4,
+)
+axes[0].annotate(
+f"{end4_h:.3f} h",
+xy=(end4_h, 0.15),
+xytext=(end4_h −15, 0.43),
+arrowprops={"arrowstyle": "−>", "lw": 0.7, "color": ACCENT_RED},
+color=ACCENT_RED,
+59
+
+
+fontsize=7,
+)
+axes[0].set_xlabel("时间/ h")
+axes[0].set_ylabel("中心水分浓度/ (kg·kg⁻¹)")
+axes[0].set_xlim(0, max(time_fixed_h))
+axes[0].set_ylim(0, 2.65)
+axes[0].legend(loc="upper right")
+common_axis_style(axes[0])
+axes[1].plot(
+time4_h,
+q4["radii_m"] * 100.0,
+color=CATEGORICAL[4],
+linewidth=1.4,
+marker="o",
+markersize=2.2,
+markevery=max(1, len(time4_h) // 12),
+)
+axes[1].scatter([end4_h], [summary4["radius_at_end_cm"]], color=ACCENT_RED, s=18,
+zorder=4)
+axes[1].annotate(
+f"{summary4['radius_at_end_cm']:.3f} cm",
+xy=(end4_h, summary4["radius_at_end_cm"]),
+xytext=(end4_h −17, 1.33),
+arrowprops={"arrowstyle": "−>", "lw": 0.7, "color": BLACK},
+fontsize=7,
+)
+axes[1].set_xlabel("时间/ h")
+axes[1].set_ylabel("药材半径/ cm")
+axes[1].set_xlim(0, max(time4_h))
+axes[1].set_ylim(1.12, 2.05)
+common_axis_style(axes[1])
+fig.subplots_adjust(left=0.09, right=0.98, top=0.84, bottom=0.23, wspace=0.34)
+panel_labels(fig, list(axes))
+save_cns_figure(fig, str(FIGURES / "q4_shrinkage_comparison"))
+plt.close(fig)
+def main() −> None:
+sys.stdout.reconfigure(encoding="utf−8")
+require_fonts()
+FIGURES.mkdir(parents=True, exist_ok=True)
+figure_q1()
+figure_q2()
+figure_q3()
+figure_q4()
+print("Generated q1−−q4 PDF and PNG figures.")
+60
+
+
+if __name__ == "__main__":
+main()
+2 . 4
+make_additional_figures.py
+# File: code/make_additional_figures.py
+# Academic Figure Skill Asset Confirmation (verified against assets/figures/)
+# q1/q2 surfaces −> no continuous PDE surface asset −> cross−type inherit
+# q2 map −> heatmap/plot_composition.py −> param inherit (continuous field, not counts)
+# q3 threshold region −> no semantic match −> cross−type inherit
+# q4 field / disks −> heatmap shared quantitative scale −> param inherit
+# Baseline is copied below from the existing verified make_figures.py.
+# Academic Figure Skill Typography Baseline — COPY VERBATIM, place at TOP of script
+import matplotlib as mpl
+mpl.rcParams.update({
+"font.family": "sans−serif",
+"font.sans−serif": ["Arial", "Helvetica", "Liberation Sans"],
+"font.size": 8,
+"axes.titlesize": 8,
+"axes.labelsize": 8,
+"xtick.labelsize": 7,
+"ytick.labelsize": 7,
+"legend.fontsize": 8,
+"figure.titlesize": 9,
+"axes.spines.top": False,
+"axes.spines.right": False,
+"axes.linewidth": 0.6,
+"xtick.direction": "out",
+"ytick.direction": "out",
+"xtick.major.width": 0.6,
+"ytick.major.width": 0.6,
+"legend.frameon": False,
+})
+mpl.rcParams.update({
+"font.family": ["Times New Roman", "SimSun"],
+"mathtext.fontset": "custom",
+"mathtext.rm": "Times New Roman",
+"mathtext.it": "Times New Roman:italic",
+"mathtext.bf": "Times New Roman:bold",
+"mathtext.sf": "Times New Roman",
+})
+61
+
+
+# Academic Figure Skill Nature/Cell/Science Color Palette −−COPY VERBATIM
+CATEGORICAL = ["#2166AC", "#B2182B", "#1B7837", "#F1A340", "#762A83", "#666666"]
+CATEGORICAL_EXTENDED = [
+"#2166AC", "#B2182B", "#1B7837", "#F1A340", "#762A83", "#666666",
+"#4393C3", "#D6604D", "#5AAE61", "#B35806", "#9970AB", "#999999",
+]
+DIVERGING
+= ["#2166AC", "#F7F7F7", "#B2182B"]
+SEQUENTIAL
+= ["#F7FBFF", "#6BAED6", "#08306B"]
+ACCENT_RED
+= "#B2182B"
+GREY
+= "#999999"
+BLACK
+= "#222222"
+# Academic Figure Skill Export Baseline — COPY VERBATIM
+mpl.rcParams.update({
+"pdf.fonttype": 42,
+# TrueType font embedding
+"svg.fonttype": "none",
+# editable text in SVG
+"savefig.bbox": "tight",
+# trim whitespace
+"savefig.dpi": 300,
+})
+def save_cns_figure(fig, filename):
+"""Standard Academic Figure Skill export: vector PDF + 300dpi PNG preview."""
+fig.savefig(f"{filename}.pdf", bbox_inches="tight", dpi=300)
+fig.savefig(f"{filename}.png", bbox_inches="tight", dpi=300)
+import json
+import shutil
+import sys
+from pathlib import Path
+import matplotlib.patheffects as pe
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.colors import LinearSegmentedColormap, Normalize
+from matplotlib.patches import Circle
+from matplotlib import font_manager
+sys.dont_write_bytecode = True
+from solve_drying import property_q23
+ROOT = Path(__file__).resolve().parents[1]
+OUT = ROOT / 'figures'
+PAPER = ROOT / 'paper/cumcm−1.1.0/figures'
+REPORT = ROOT / 'reports/figure_additions_20260911'
+BLUE = LinearSegmentedColormap.from_list('moisture', SEQUENTIAL)
+NORM_C = Normalize(0, 2.55)
+62
+
+
+METRICS = {}
+def read(q):
+with np.load(ROOT / 'results' / q / 'fields.npz') as z:
+d = {k:z[k] for k in z.files}
+for key in ['temperature_c','moisture']:
+assert np.isfinite(d[key]).all()
+assert d[key].shape == (len(d['times_s']), len(d['xi'] if q == 'q4' else d['
+radius_m']))
+assert np.all(np.diff(d['times_s']) > 0)
+assert d['moisture'].min() >= 0
+assert np.max(np.diff(d['moisture'],axis=1)) < 2e−8
+return d
+def summary(q):
+return json.loads((ROOT/'results'/q/'summary.json').read_text(encoding='utf8'))
+def event_data(q):
+d=read(q); s=summary(q); end=s['drying_time_s']
+keep=d['times_s'] < end
+t=np.r_[d['times_s'][keep],end]/3600
+c=np.vstack([d['moisture'][keep],d['threshold_moisture']])
+assert abs(c[−1].max()−.15)<1e−9
+return d,s,t,c,keep
+def save(fig,name):
+save_cns_figure(fig,str(OUT/name))
+shutil.copy2(OUT/f'{name}.pdf',PAPER/f'{name}.pdf')
+plt.close(fig)
+def surface(q,key,name,zlabel,cmap,limit,ticks):
+d=read(q)
+mask=d['times_s']<=limit
+t=d['times_s'][mask]/(60 if q=='q1' else 3600)
+r=d['radius_m']*100
+v=d[key][mask]
+x,y=np.meshgrid(t,r,indexing='ij')
+fig=plt.figure(figsize=(183/25.4,108/25.4))
+ax=fig.add_axes([.04,.10,.76,.88],projection='3d')
+norm=Normalize(float(v.min()),float(v.max()))
+ax.plot_surface(x,y,v,cmap=cmap,norm=norm,rstride=1,cstride=1,
+linewidth=0,antialiased=False,shade=False,rasterized=True)
+# Outline the two physical boundaries; all surface cells remain represented.
+ax.plot(t,np.zeros_like(t),v[:,0],color='#222222',lw=.9)
+ax.plot(t,np.full_like(t,2),v[:,−1],color='#222222',lw=.9,ls='−−')
+ax.set(xlim=(t[0],t[−1]),ylim=(0,2),zlim=(ticks[0],ticks[−1]))
+ax.set_xticks([0,10,20,30] if q=='q1' else [0,1,2,3])
+63
+
+
+ax.set_yticks([0,1,2]); ax.set_zticks(ticks)
+ax.set_xlabel('时间/ '+('min' if q=='q1' else 'h'),labelpad=7)
+ax.set_ylabel('半径/ cm',labelpad=6)
+ax.set_zlabel('')
+fig.text(.10,.62,zlabel,rotation=90,va='center',ha='center',fontsize=8)
+ax.view_init(elev=30,azim=45 if q=='q2' else −135)
+ax.set_box_aspect((1.7,1,1.05))
+for axis in [ax.xaxis,ax.yaxis,ax.zaxis]:
+axis.pane.fill=False
+axis.pane.set_edgecolor('#DDDDDD')
+axis._axinfo['grid'].update(color='#E3E3E3',linewidth=.35)
+cb=fig.colorbar(mpl.cm.ScalarMappable(norm=norm,cmap=cmap),cax=fig.add_axes
+([.82,.28,.022,.48]))
+cb.set_label(zlabel,labelpad=8)
+fig.text(.44,.03,'实线：中心边界
+虚线：表面边界',ha='center',fontsize=8)
+METRICS[name]={'shape':list(v.shape),'min':float(v.min()),'max':float(v.max()),'
+time_range_s':[0,limit]}
+save(fig,name)
+def surface_heatmap(q,key,name,zlabel,cmap,limit,ticks):
+d=read(q)
+mask=d['times_s']<=limit
+t=d['times_s'][mask]/(60 if q=='q1' else 3600)
+r=d['radius_m']*100
+v=d[key][mask]
+fig,ax=plt.subplots(figsize=(183/25.4,82/25.4))
+fig.subplots_adjust(left=.10,right=.86,bottom=.20,top=.93)
+norm=Normalize(float(v.min()),float(v.max()))
+im=ax.pcolormesh(t,r,v.T,cmap=cmap,norm=norm,shading='auto',rasterized=True)
+cs=ax.contour(t,r,v.T,levels=ticks,colors='white',linewidths=.75)
+labels=ax.clabel(cs,fmt='%g',fontsize=7,inline=True)
+for label in labels:
+label.set_path_effects([pe.withStroke(linewidth=1.4,foreground='#555555')])
+ax.plot(t,np.zeros_like(t),color='#222222',lw=.85)
+ax.plot(t,np.full_like(t,2),color='#222222',lw=.85,ls='−−')
+ax.set(xlim=(t[0],t[−1]),ylim=(0,2),xlabel='时间/ '+('min' if q=='q1' else 'h'),ylabel=
+'到药材中心的距离/ cm')
+ax.set_xticks([0,10,20,30] if q=='q1' else [0,1,2,3])
+ax.set_yticks([0,.5,1,1.5,2])
+cb=fig.colorbar(im,cax=fig.add_axes([.89,.20,.023,.73]))
+cb.set_label(zlabel,labelpad=8)
+fig.text(.47,.035,'实线：中心
+虚线：表面',ha='center',fontsize=8)
+METRICS[name]={'shape':list(v.shape),'min':float(v.min()),'max':float(v.max()),'
+time_range_s':[0,limit], 'plot':'2D heatmap with contour lines'}
+save(fig,name)
+def diffusivity():
+64
+
+
+d=read('q2'); m=d['times_s']<=10800
+t=d['times_s'][m]/3600; r=d['radius_m']*100
+z=property_q23(d['temperature_c'][m],d['moisture'][m])[−1]*1e9
+fig,ax=plt.subplots(figsize=(183/25.4,78/25.4))
+fig.subplots_adjust(left=.10,right=.86,bottom=.20,top=.94)
+im=ax.pcolormesh(t,r,z.T,cmap='viridis',shading='auto',rasterized=True)
+cs=ax.contour(t,r,z.T,levels=[6,8,10,12],colors='white',linewidths=.8)
+labels=ax.clabel(cs,fmt='%g',fontsize=8,inline=True)
+import matplotlib.patheffects as pe
+for label in labels:
+label.set_path_effects([pe.withStroke(linewidth=1.5,foreground='#555555')])
+ax.set(xlim=(0,3),ylim=(0,2),xlabel='时间/ h',ylabel='到药材中心的距离/ cm')
+ax.plot(t,np.zeros_like(t),color='#222222',lw=.8)
+ax.plot(t,np.full_like(t,2),color='#222222',lw=.8,ls='−−')
+ax.set_xticks([0,1,2,3])
+ax.set_yticks([0,.5,1,1.5,2])
+cb=fig.colorbar(im,cax=fig.add_axes([.89,.20,.023,.74]))
+cb.set_label('扩散系数D / (10⁻⁹ m²·s⁻¹)',labelpad=8)
+METRICS['q2_diffusivity_map']={'shape':list(z.shape),'min_1e9':float(z.min()),'max_1e9'
+:float(z.max()),'center_end_1e9':float(z[−1,0]),'surface_end_1e9':float(z[−1,−1])}
+save(fig,'q2_diffusivity_map')
+def threshold_front():
+d,s,t,c,keep=event_data('q3'); r=d['radius_m']*100
+front=np.empty(len(t))
+for i,row in enumerate(c):
+if row[−1]>.15: front[i]=2
+elif row[0]<=.15+1e−12: front[i]=0
+else: front[i]=np.interp(.15,row[::−1],r[::−1])
+fig,ax=plt.subplots(figsize=(183/25.4,85/25.4))
+fig.subplots_adjust(left=.10,right=.97,bottom=.19,top=.90)
+ax.fill_between(t,0,front,facecolor='#BFD7EA',edgecolor='none')
+ax.fill_between(t,front,2,facecolor='#F5F5F5',edgecolor='#D2D2D2',hatch='///',linewidth
+=0)
+start=np.argmax(c[:,−1]<=.15)
+ts=np.interp(.15,c[start−1:start+1,−1][::−1],t[start−1:start+1][::−1])
+ax.plot(t[start:],front[start:],color=ACCENT_RED,lw=1.8)
+ax.scatter([ts,t[−1]],[2,0],s=24,color=ACCENT_RED,zorder=6,clip_on=False)
+ax.text(14,.42,'未达标区域\nC > 0.15 kg/kg',ha='center',fontsize=9,color='#17466B')
+ax.text(43,1.55,'已达标区域\nC ≤0.15 kg/kg',ha='center',fontsize=9,
+bbox=dict(facecolor='white',edgecolor='none',alpha=.92,pad=3))
+ax.annotate(f'表面首达{ts:.3f} h',xy=(ts,2),xytext=(ts+2,2.13),fontsize=8,
+arrowprops=dict(arrowstyle='−',color=GREY,lw=.7),annotation_clip=False)
+ax.annotate(f'中心首达{t[−1]:.3f} h',xy=(t[−1],0),xytext=(42,.32),fontsize=8,
+arrowprops=dict(arrowstyle='−>',color=ACCENT_RED,lw=.8))
+ax.set(xlim=(0,t[−1]),ylim=(0,2),xlabel='时间/ h',ylabel='半径/ cm')
+event_h = float(s["drying_time_h"])
+65
+
+
+ticks = [0, 12, 24, 36, 48, event_h]
+ax.set_xticks(ticks); ax.set_xticklabels(['0', '12', '24', '36', '48', f'{event_h:.3f}'
+])
+ax.set_yticks([0,.5,1,1.5,2])
+METRICS['q3_drying_front']={'surface_crossing_h':float(ts),'center_crossing_h':float(t
+[−1]),'lag_h':float(t[−1]−ts),'radial_interpolation':'linear between 21 saved output
+nodes','time_samples':len(t)}
+np.savez_compressed(REPORT/'q3_front_data.npz',time_h=t,threshold_radius_cm=front)
+save(fig,'q3_drying_front')
+def shrinking():
+d,s,t,c,keep=event_data('q4')
+radii=np.r_[d['radii_m'][keep]*100,s['radius_at_end_cm']]
+xi=d['xi']; xx=np.broadcast_to(t[:,None],c.shape); yy=radii[:,None]*xi
+fig=plt.figure(figsize=(183/25.4,139/25.4))
+ax=fig.add_axes([.095,.48,.74,.46])
+im=ax.pcolormesh(xx,yy,c,cmap=BLUE,norm=NORM_C,shading='gouraud',rasterized=True)
+ax.plot(t,radii,color=BLACK,lw=1.2)
+con=ax.contour(xx,yy,c,levels=[.15],colors=ACCENT_RED,linewidths=1.2)
+ax.clabel(con,fmt={.15:'0.15'},fontsize=8,inline=True)
+ax.text(27,1.73,'材料域外（留白）',ha='center',fontsize=9,color='#666666')
+ax.annotate('实时表面R(t)',xy=(6,radii[np.argmin(abs(t−6))]),xytext=(10,1.75),
+arrowprops=dict(arrowstyle='−>',color=BLACK,lw=.7),fontsize=8)
+ax.set(xlim=(0,t[−1]),ylim=(0,2.08),xlabel='时间/ h',ylabel='物理半径/ cm')
+ax.set_xticks([0,12,24,36,48]); ax.set_yticks([0,.5,1,1.5,2])
+cb=fig.colorbar(im,cax=fig.add_axes([.89,.48,.021,.46]));cb.set_label('水分浓度/ (
+kg·kg⁻¹)',labelpad=7)
+fig.text(.465,.38,'(a) 收缩材料域中的水分时空场',ha='center',fontsize=8)
+requested=[0,6,12,24,36,float(t[−1])]
+theta=np.linspace(0,2*np.pi,181)
+details=[]
+for j,h in enumerate(requested):
+i=int(np.argmin(abs(t−h))); rad=radii[i]
+a=fig.add_axes([.035+j*.16,.08,.145,.25])
+rr,tt=np.meshgrid(xi*rad,theta)
+zz=np.broadcast_to(c[i],rr.shape)
+a.pcolormesh(rr*np.cos(tt),rr*np.sin(tt),zz,cmap=BLUE,norm=NORM_C,shading='gouraud'
+,rasterized=True)
+a.add_patch(Circle((0,0),rad,fill=False,ec=BLACK,lw=.65))
+a.add_patch(Circle((0,0),2,fill=False,ec='#BBBBBB',lw=.55,ls='−−'))
+a.set(xlim=(−2.15,2.15),ylim=(−2.15,2.15),aspect='equal');a.axis('off')
+a.text(.5,1.07,f'{h:.2f} h' if j==5 else f'{h:g} h',transform=a.transAxes,ha='
+center',fontsize=8)
+a.text(.5,−.07,f'R = {rad:.3f} cm',transform=a.transAxes,ha='center',fontsize=7)
+details.append({'time_h':float(t[i]),'radius_cm':float(rad),'center_C':float(c[i
+,0])})
+fig.text(.50,.035,'(b) 等比例圆截面重建；虚线为初始外轮廓，共用上方水分色标',ha='center',
+66
+
+
+fontsize=8)
+METRICS['q4_shrinking_field']={'snapshots':details,'all_time_samples':len(t),'method':'
+axisymmetric reconstruction of 1D radial solution, not independent 2D simulation'}
+save(fig,'q4_shrinking_field')
+def main():
+sys.stdout.reconfigure(encoding='utf8')
+font_manager.findfont('Times New Roman',fallback_to_default=False)
+for chinese_font in ('SimSun','Songti SC','STSong'):
+try:
+font_manager.findfont(chinese_font,fallback_to_default=False)
+except ValueError:
+continue
+mpl.rcParams['font.family']=['Times New Roman',chinese_font]
+break
+else:
+raise RuntimeError('需要SimSun、Songti SC 或STSong 中至少一种中文字体')
+surface_heatmap('q1','temperature_c','q1_temperature_surface','温度/ °C','plasma'
+,1800,[29,31,33,35,37])
+print('Q1 surface saved',flush=True)
+surface_heatmap('q2','moisture','q2_moisture_surface','水分浓度C / (kg/kg)',BLUE
+,10800,[1,1.5,2,2.5])
+print('Q2 surface saved',flush=True)
+diffusivity();threshold_front();shrinking()
+(REPORT/'metrics.json').write_text(json.dumps(METRICS,ensure_ascii=False,indent=2),
+encoding='utf8')
+print(json.dumps(METRICS,ensure_ascii=False,indent=2))
+if __name__=='__main__':
+main()
+2 . 5
+plot_moving_mesh_validation.py
+# File: code/plot_moving_mesh_validation.py
+"""Render real Q4 validation data and generate the manuscript result table.
+Asset confirmation: academic−figure−skill assets/figures/LineTrend/plot_sweep.py
+was inspected; inherit open axes and overlaid line encoding, not example data.
+Reuse the project's verified typography/palette/export baseline by import.
+"""
+import sys
+sys.dont_write_bytecode = True
+import csv
+import json
+import shutil
+67
+
+
+from pathlib import Path
+import numpy as np
+import matplotlib
+matplotlib.use('Agg')
+from make_additional_figures import save_cns_figure, CATEGORICAL
+import matplotlib.pyplot as plt
+from validate_moving_mesh import OUT, ROOT, write_comparisons, check_preservation
+def main():
+arrays=np.load(OUT/'fields.npz')
+report=json.loads((OUT/'summary.json').read_text(encoding='utf8'))
+report['event_comparison_note']='Own−event profiles and common mapping−event centre/
+surface values are distinguished; trajectories compare identical time levels.'
+(OUT/'summary.json').write_text(json.dumps(report,indent=2),encoding='utf8')
+write_comparisons(arrays,report)
+tr=arrays['step_trace']; hours=tr[:,0]/3600
+fig,axes=plt.subplots(1,2,figsize=(7.2,2.75))
+fig.subplots_adjust(left=.085,right=.98,bottom=.25,top=.96,wspace=.36)
+ax=axes[0]
+ax.plot(hours,tr[:,1],color=CATEGORICAL[0],lw=1.65,label='固定域映射法')
+ax.plot(hours,tr[:,2],color=CATEGORICAL[1],lw=1.0,ls=(0,(5,3)),label='直接移动网格法')
+ax.axhline(.15,color='#666666',ls=':',lw=.8)
+ax.text(5,.20,r'$C=0.15$',fontsize=7,color='#555555')
+ax.set(xlim=(0,52),ylim=(0,2.65),xlabel='时间/ h',ylabel='中心水分浓度/ (kg/kg)')
+ax.set_xticks([0,12,24,36,48]);ax.legend(loc='upper right',fontsize=7)
+ax.text(.5,−.30,'(a) 中心水分轨迹',transform=ax.transAxes,ha='center',fontsize=8)
+ax=axes[1]
+for h,color in [(24,CATEGORICAL[0]),(48,CATEGORICAL[4])]:
+i=int(np.flatnonzero(arrays['times_s']==h*3600)[0])
+r=100*arrays['radii_m'][i]*arrays['xi']
+ax.plot(r,arrays['mapping_moisture'][i],color=color,lw=1.65,label=f'{h} h，固定域')
+ax.plot(r,arrays['moving_moisture'][i],color=color,lw=.85,ls='−−',
+marker='o',mfc='white',mew=.65,ms=2.5,markevery=20,label=f'{h} h，移动网格')
+ax.set(xlim=(0,1.24),ylim=(.04,.30),xlabel='物理半径/ cm',ylabel='水分浓度/ (kg/kg)')
+ax.set_xticks([0,.3,.6,.9,1.2]);ax.legend(loc='lower left',fontsize=6.6)
+ax.text(.5,−.30,'(b) 完整径向剖面',transform=ax.transAxes,ha='center',fontsize=8)
+save_cns_figure(fig,OUT/'q4_moving_mesh_validation');plt.close(fig)
+shutil.copy2(OUT/'q4_moving_mesh_validation.pdf',ROOT/'paper/cumcm−1.1.0/figures/
+q4_moving_mesh_validation.pdf')
+fig,axes=plt.subplots(1,2,figsize=(7.2,2.65))
+fig.subplots_adjust(left=.10,right=.98,bottom=.21,top=.88,wspace=.42)
+for ax,column,label,color in [(axes[0],5,'水分场最大绝对差/ (kg/kg)',CATEGORICAL[0]),
+(axes[1],6,'温度场最大绝对差/ ℃',CATEGORICAL[1])]:
+ax.plot(hours,tr[:,column],lw=.6,color=color,rasterized=True)
+ax.set(xlim=(0,52),ylim=(0,None),xlabel='时间/ h',ylabel=label)
+68
+
+
+ax.set_xticks([0,12,24,36,48]);ax.ticklabel_format(axis='y',style='sci',scilimits
+=(0,0))
+save_cns_figure(fig,OUT/'q4_moving_mesh_errors');plt.close(fig)
+rows=list(csv.DictReader((OUT/'comparison.csv').open(encoding='utf−8−sig')))
+labels={'drying_time':r'$t_d$/h'}
+for time,caption in [('6h','6 h'),('24h','24 h'),('48h','48 h'),('common_event',r'$t_d
+^{\rm map}$')]:
+for point,cn in [('center','中心'),('surface','动态表面')]:
+labels[f'{time}_{point}_moisture']=f'{caption}，{cn}'
+tex=[r'\begin{table}[H]',r'\centering',r'\caption{移动网格与固定域映射的数值比较}\label{
+tab:q4movingvalidation}',
+r'\begin{tabular}{lrrr}',r'\toprule',r'指标& 固定域映射法& 移动网格法& 相对差\\',r
+'\midrule']
+md='| 指标| 固定域映射法| 移动网格法| 相对差|\n|−−−|−−−:|−−−:|−−−:|\n'
+for row in rows:
+if row['metric'] not in labels: continue
+a,b,d=map(float,[row['mapping'],row['moving_mesh'],row['relative_difference']])
+mant,exponent=f'{d:.2e}'.split('e')
+diff=rf'${mant}\times10^{{{int(exponent)}}}$' if d else '$0$'
+label=labels[row['metric']]
+tex.append(f'{label} & {a:.9f} & {b:.9f} & {diff}'+r'\\')
+md+=f'| {label} | {a:.12g} | {b:.12g} | {d:.3e} |\n'
+tex += [r'\bottomrule',r'\end{tabular}',r'\par\smallskip',
+r'{\footnotesize 水分单位为kg/kg；相对差以固定域结果为分母。末两行为同一固定域达标时
+刻的比较。}',r'\end{table}']
+(ROOT/'paper/cumcm−1.1.0/contents/sections/q4_moving_mesh_table.tex').write_text('\n'.
+join(tex)+'\n',encoding='utf8')
+(OUT/'comparison_table_zh.md').write_text(md,encoding='utf8')
+count=check_preservation(json.loads((OUT/'protected_files_sha256.json').read_text(
+encoding='utf8')))
+print(f'Figures and table generated; {count} original files unchanged.')
+if __name__=='__main__':
+main()
+2 . 6
+make_geometry_diagram.py
+# File: code/make_geometry_diagram.py
+"""Build an editable DrawIO cylinder / cylindrical−coordinate schematic."""
+from pathlib import Path
+import xml.etree.ElementTree as ET
+ROOT=Path(__file__).resolve().parents[1]
+69
+
+
+doc=ET.Element('mxfile',host='app.diagrams.net')
+diagram=ET.SubElement(doc,'diagram',name='药材几何与径向计算域',id='geometry')
+model=ET.SubElement(diagram,'mxGraphModel',dx='1000',dy='720',grid='0',page='0',math='0',
+shadow='0')
+tree=ET.SubElement(model,'root')
+ET.SubElement(tree,'mxCell',id='0')
+ET.SubElement(tree,'mxCell',id='1',parent='0')
+count=1
+def ident():
+global count
+count+=1
+return str(count)
+def cell(x,y,w,h,style,value=''):
+el=ET.SubElement(tree,'mxCell',id=ident(),value=value,style=style,vertex='1',parent='1'
+)
+ET.SubElement(el,'mxGeometry',x=str(x),y=str(y),width=str(w),height=str(h),attrib={'as'
+:'geometry'})
+return el
+def label(x,y,w,h,text,size=24):
+html=f'<div style="font−family:Times New Roman;font−size:{size}px;color:#111111;">{text
+}</div>'
+return cell(x,y,w,h,f'text;html=1;strokeColor=none;fillColor=none;align=center;
+verticalAlign=middle;whiteSpace=wrap;fontSize={size};fontFamily=Times New Roman;',html)
+def zh(s):return f'<span style="font−family:SimSun;">{s}</span>'
+def ellipse(x,y,w,h,fill='none',dash=False,width=2.5):
+return cell(x,y,w,h,f'ellipse;html=1;fillColor={fill};strokeColor=#111111;strokeWidth={
+width};dashed={int(dash)};')
+def line(x1,y1,x2,y2,arrow='none',start='none',dash=False,color='#111111',width=2.5,points=
+None):
+el=ET.SubElement(tree,'mxCell',id=ident(),edge='1',parent='1',style=f'edgeStyle=none;
+html=1;rounded=0;strokeColor={color};strokeWidth={width};endArrow={arrow};startArrow={
+start};endFill=1;startFill=1;dashed={int(dash)};')
+g=ET.SubElement(el,'mxGeometry',relative='1',attrib={'as':'geometry'})
+ET.SubElement(g,'mxPoint',x=str(x1),y=str(y1),attrib={'as':'sourcePoint'})
+ET.SubElement(g,'mxPoint',x=str(x2),y=str(y2),attrib={'as':'targetPoint'})
+if points:
+arr=ET.SubElement(g,'Array',attrib={'as':'points'})
+for x,y in points: ET.SubElement(arr,'mxPoint',x=str(x),y=str(y))
+# Projection: the axial length is 625 units, transverse diameter 100 units,
+# preserving L/(2 R0)=6.25 before oblique projection of the circular ends.
+ellipse(753,130,44,100,fill='#F2F2F2')
+70
+
+
+cell(150,130,625,100,'fillColor=#F2F2F2;strokeColor=none;')
+line(150,130,775,130);line(150,230,775,230)
+ellipse(440.5,130,44,100,fill='#FFFFFF',dash=True,width=2)
+ellipse(128,130,44,100,fill='#FFFFFF')
+# Cartesian reference frame at the left−end centre, z along the cylinder axis.
+line(150,180,860,180,arrow='block',dash=True,width=2)
+line(150,180,87,235,arrow='block',width=2)
+line(150,180,150,62,arrow='block',width=2)
+label(111,179,25,30,'<i>O</i>')
+label(71,226,25,30,'<i>x</i>')
+label(133,30,34,30,'<i>y</i>')
+label(860,163,30,30,'<i>z</i>')
+# Initial radius and cylinder length.
+line(150,180,150,130,arrow='classic',start='classic',width=2)
+label(8,110,115,62,'<i>R</i><sub>0</sub> = 2 cm')
+line(120,143,145,155,color='#666666',width=1.5)
+line(150,244,150,292,color='#666666',width=1.5)
+line(775,244,775,292,color='#666666',width=1.5)
+line(150,278,775,278,arrow='classic',start='classic',width=2)
+label(365,284,200,34,'<i>L</i> = 25 cm')
+label(403,232,180,35,'<i>z</i> = <i>L</i>/2')
+# Early−stage exchange directions (not universal sign assumptions).
+line(344,66,344,120,arrow='block')
+label(235,24,215,35,zh('预热热量传入'))
+line(645,121,645,67,arrow='block')
+label(555,24,190,35,zh('水分向外迁移'))
+label(310,323,340,32,'(a) '+zh('初始圆柱几何与坐标系'))
+# Enlarged midsection: the local origin is Om, not the end−centre O.
+ellipse(144,407,206,206,fill='#F2F2F2')
+line(247,510,386,510,arrow='block',width=2)
+line(247,510,247,377,arrow='block',width=2)
+label(385,499,30,30,'<i>x</i>');label(232,346,30,30,'<i>y</i>')
+label(207,508,40,35,'<i>O</i><sub>m</sub>')
+# A radial ray at 35 degrees, terminating on the circular boundary.
+line(247,510,331.37,450.92,arrow='classic',width=2.5)
+label(273,453,30,30,'<i>r</i>')
+# Theta arc approximated by a short polyline, preserving editability.
+import math
+arc=[(247+42*math.cos(a),510−42*math.sin(a)) for a in [i*math.pi/180 for i in range
+(0,36,5)]]
+line(*arc[0],*arc[−1],arrow='classic',width=1.8,points=arc[1:−1])
+label(294,480,30,30,'<i>θ</i>')
+label(125,622,245,35,zh('中截面放大：')+'<i>z</i> = <i>L</i>/2')
+71
+
+
+# The one−dimensional radial domain retains spatial gradients.
+line(425,511,509,511,arrow='block',width=2.5)
+label(411,443,128,48,zh('轴对称降维'))
+line(554,510,833,510,width=3)
+ellipse(548,504,12,12,fill='#111111',width=2)
+ellipse(827,504,12,12,fill='#FFFFFF',width=2)
+label(521,536,66,32,'<i>r</i> = 0')
+label(773,536,122,32,'<i>r</i> = <i>R</i>(<i>t</i>)')
+label(528,577,112,34,zh('中心对称'))
+label(747,577,175,34,zh('表面对流交换'))
+label(582,447,237,38,'<i>T</i>(<i>r</i>,<i>t</i>),
+<i>C</i>(<i>r</i>,<i>t</i>)')
+label(546,623,306,35,'0 ≤<i>r</i> ≤<i>R</i>(<i>t</i>)')
+label(188,680,608,34,'(b) '+zh('中截面圆柱坐标与一维径向计算域'))
+out=ROOT/'drawio/geometry_coordinates.drawio'
+ET.ElementTree(doc).write(out,encoding='utf−8',xml_declaration=True)
+print(out)
+2 . 7
+plot_q4_physical.py
+# File: comsol_q4/plot_q4_physical.py
+# Academic Figure Skill Typography Baseline — COPY VERBATIM, place at TOP of script
+import matplotlib as mpl
+mpl.rcParams.update({
+"font.family": "sans−serif",
+"font.sans−serif": ["Arial", "Helvetica", "Liberation Sans"],
+"font.size": 8,
+"axes.titlesize": 8,
+"axes.labelsize": 8,
+"xtick.labelsize": 7,
+"ytick.labelsize": 7,
+"legend.fontsize": 8,
+"figure.titlesize": 9,
+"axes.spines.top": False,
+"axes.spines.right": False,
+"axes.linewidth": 0.6,
+"xtick.direction": "out",
+"ytick.direction": "out",
+"xtick.major.width": 0.6,
+"ytick.major.width": 0.6,
+"legend.frameon": False,
+})
+mpl.rcParams.update({
+72
+
+
+"font.family": ["Times New Roman", "SimSun"],
+"mathtext.fontset": "custom",
+"mathtext.rm": "Times New Roman",
+"mathtext.it": "Times New Roman:italic",
+"mathtext.bf": "Times New Roman:bold",
+"mathtext.sf": "Times New Roman",
+})
+# Academic Figure Skill Export Baseline — COPY VERBATIM
+mpl.rcParams.update({
+"pdf.fonttype": 42,
+"svg.fonttype": "none",
+"savefig.bbox": "tight",
+"savefig.dpi": 300,
+})
+def save_cns_figure(fig, filename):
+"""Standard Academic Figure Skill export: vector PDF + 300dpi PNG preview."""
+fig.savefig(f"{filename}.pdf", bbox_inches="tight", dpi=300)
+fig.savefig(f"{filename}.png", bbox_inches="tight", dpi=300)
+from pathlib import Path
+import json
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.colors import LinearSegmentedColormap, LogNorm
+from matplotlib.lines import Line2D
+# Academic Figure Skill Nature/Cell/Science Color Palette −−COPY VERBATIM
+CATEGORICAL = ["#2166AC", "#B2182B", "#1B7837", "#F1A340", "#762A83", "#666666"]
+CATEGORICAL_EXTENDED = [
+"#2166AC", "#B2182B", "#1B7837", "#F1A340", "#762A83", "#666666",
+"#4393C3", "#D6604D", "#5AAE61", "#B35806", "#9970AB", "#999999",
+]
+DIVERGING
+= ["#2166AC", "#F7F7F7", "#B2182B"]
+SEQUENTIAL
+= ["#F7FBFF", "#6BAED6", "#08306B"]
+ACCENT_RED
+= "#B2182B"
+GREY
+= "#999999"
+BLACK
+= "#222222"
+HERE = Path(__file__).resolve().parent
+BASE = HERE.parent / "results" / "q4" / "fields.npz"
+from analyze_q4_comsol import baseline_profile, comparison_times
+73
+
+
+OUT = HERE / "figures"
+OUT.mkdir(exist_ok=True)
+# Asset confirmation: assets/figures was checked; no cylindrical physical−field asset
+exists.
+# Cross−type inheritance: use the Q4 COMSOL field arrays and measured radius history
+directly.
+def nearest(a, value):
+return int(np.argmin(np.abs(a −value)))
+def interp_profile(xi_source, values, xi_target):
+return np.interp(xi_target, xi_source, values)
+def draw_cylinder(ax, radius_cm, length_cm, xi, moisture, norm, cmap, title, initial_radius
+=2.0):
+# Side surface carries the local surface value; front face exposes the radial solution.
+theta = np.linspace(0, 2*np.pi, 120)
+z = np.linspace(0, length_cm, 55)
+th, zz = np.meshgrid(theta, z)
+xx = radius_cm * np.cos(th)
+yy = radius_cm * np.sin(th)
+side_color = cmap(norm(np.full_like(xx, moisture[−1])))
+ax.plot_surface(zz, xx, yy, facecolors=side_color, shade=True,
+linewidth=0, antialiased=True, alpha=0.72)
+rr = np.linspace(0, radius_cm, 90)
+th2, rr2 = np.meshgrid(theta, rr)
+xf = rr2 * np.cos(th2)
+yf = rr2 * np.sin(th2)
+cf = interp_profile(xi, moisture, np.clip(rr2 / radius_cm, 0, 1))
+ax.plot_surface(np.zeros_like(xf), xf, yf, facecolors=cmap(norm(cf)),
+shade=False, linewidth=0, antialiased=True)
+# Initial outline makes the magnitude of shrinkage readable in every panel.
+ax.plot(np.zeros_like(theta), initial_radius*np.cos(theta), initial_radius*np.sin(theta
+),
+color=GREY, ls=(0, (2, 2)), lw=0.8, alpha=0.8)
+ax.plot([0, length_cm], [0, 0], [0, 0], color=BLACK, lw=0.45, alpha=0.6)
+ax.set_title(title, pad=1.5)
+ax.set_xlim(−0.4, length_cm + 0.4)
+ax.set_ylim(−2.15, 2.15)
+ax.set_zlim(−2.15, 2.15)
+ax.set_box_aspect((length_cm + 0.8, 4.3, 4.3))
+74
+
+
+ax.view_init(elev=20, azim=−63)
+ax.set_axis_off()
+def make_physical_plate(comsol):
+times = comsol["times_s"]
+xi = comsol["x_ref_m"] / 0.02
+moisture = comsol["moisture"]
+radii = comsol["radii_m"] * 100
+event_time = json.loads(BASE.with_name("summary.json").read_text(encoding="utf−8"))["
+drying_time_s"]
+chosen = [0.0, 21600.0, 86400.0, event_time]
+titles = ["0 h", "6 h", "24 h", f"{event_time/3600:.2f} h (终点)"]
+cmap = LinearSegmentedColormap.from_list("moisture_blue", SEQUENTIAL, N=256)
+norm = LogNorm(vmin=0.05, vmax=2.55)
+mm = 1 / 25.4
+fig = plt.figure(figsize=(183*mm, 58*mm))
+gs = fig.add_gridspec(1, 5, width_ratios=[1, 1, 1, 1, 0.055], wspace=0.03)
+for k, (target, title) in enumerate(zip(chosen, titles)):
+i = nearest(times, target)
+ax = fig.add_subplot(gs[0, k], projection="3d")
+draw_cylinder(ax, float(radii[i]), 6.0, xi, moisture[i], norm, cmap,
+f"{title}\n$R={radii[i]:.3f}$ cm")
+ax.text2D(0.01, 0.95, chr(ord('a') + k), transform=ax.transAxes,
+fontsize=9, fontweight="bold", color=BLACK)
+cax = fig.add_subplot(gs[0, 4])
+sm = mpl.cm.ScalarMappable(norm=norm, cmap=cmap)
+cb = fig.colorbar(sm, cax=cax)
+cb.set_label("Moisture content, $C$ (kg kg$^{−1}$)")
+cb.set_ticks([0.05, 0.1, 0.2, 0.5, 1, 2.55])
+cb.set_ticklabels(["0.05", "0.10", "0.20", "0.50", "1.0", "2.55"])
+cb.outline.set_linewidth(0.5)
+fig.suptitle("第四问：收缩圆柱药材内部水分场（COMSOL 轴对称解重构）", y=0.995)
+save_cns_figure(fig, OUT / "q4_comsol_physical_moisture_field")
+plt.close(fig)
+def make_validation_figure(comsol, baseline):
+ct = comsol["times_s"]
+cxi = comsol["x_ref_m"] / 0.02
+cm = comsol["moisture"]
+cr = comsol["radii_m"] * 100
+bxi = baseline["xi"]
+event_time = json.loads(BASE.with_name("summary.json").read_text(encoding="utf−8"))["
+drying_time_s"]
+chosen = [21600.0, 86400.0, event_time]
+75
+
+
+labels = ["6 h", "24 h", f"{event_time/3600:.2f} h"]
+colors = [CATEGORICAL[0], CATEGORICAL[3], CATEGORICAL[1]]
+mm = 1 / 25.4
+fig, axes = plt.subplots(1, 3, figsize=(183*mm, 66*mm), gridspec_kw={"wspace": 0.38})
+fig.subplots_adjust(left=0.09, right=0.985, bottom=0.25, top=0.84)
+ax = axes[0]
+for target, label, color in zip(chosen, labels, colors):
+ic = nearest(ct, target)
+r_cm = cxi * cr[ic]
+base_at_cxi = interp_profile(bxi, baseline_profile(baseline, "moisture", target,
+event_time), cxi)
+ax.plot(r_cm, cm[ic], color=color, lw=1.5, label=label)
+stride = max(1, (len(cxi)−1)//10)
+pick = np.unique(np.r_[np.arange(0, len(cxi), stride), len(cxi)−1−np.array([0, 1,
+2, 5])])
+ax.plot(r_cm[pick], base_at_cxi[pick], "o", ms=2.8, mfc="white",
+mec=color, mew=0.7)
+ax.set_xlabel("实际半径r / cm")
+ax.set_ylabel("水分浓度C / (kg/kg)")
+ax.set_xlim(0, 1.45)
+ax.legend(title="干燥时间", loc="upper right", bbox_to_anchor=(1.17, 1.02))
+ax.text(0.5, −0.30, "（a）径向水分剖面", transform=ax.transAxes,
+ha="center", va="top", fontsize=8)
+ax = axes[1]
+# Match the six times reported in the numerical comparison and paper.
+parity_x, parity_y = [], []
+for target in comparison_times(event_time):
+ic = nearest(ct, target)
+if abs(ct[ic] −target) > 1e−6:
+raise ValueError("Regenerate q4_comsol_fields.npz with exact study output times
+")
+parity_x.extend(interp_profile(bxi, baseline_profile(baseline, "moisture", target,
+event_time), cxi))
+parity_y.extend(cm[ic])
+parity_x, parity_y = np.asarray(parity_x), np.asarray(parity_y)
+lo, hi = 0.045, 1.82
+ax.plot([lo, hi], [lo, hi], color=GREY, ls="−−", lw=0.7)
+ax.scatter(parity_x, parity_y, s=8, color=CATEGORICAL[0], alpha=0.7,
+edgecolors="none", rasterized=True)
+ax.set_xlabel("有限体积水分浓度/ (kg/kg)")
+ax.set_ylabel("COMSOL 水分浓度/ (kg/kg)")
+ax.set_xlim(lo, hi)
+ax.set_ylim(lo, hi)
+ax.set_aspect("equal", adjustable="box")
+err = np.max(np.abs(parity_y −parity_x))
+76
+
+
+exponent = int(np.floor(np.log10(err)))
+ax.text(0.05, 0.92, rf"$\max|\Delta C|={err/10**exponent:.2f}\times10^{{{exponent}}}$",
+transform=ax.transAxes)
+ax.text(0.5, −0.30, "（b）COMSOL 与基准模型逐点校核", transform=ax.transAxes,
+ha="center", va="top", fontsize=8)
+ax = axes[2]
+ax.plot(ct/3600, cr, color=CATEGORICAL[0], lw=1.5)
+ax.fill_between(ct/3600, cr, 2.02, color=CATEGORICAL[0], alpha=0.10)
+event_h = event_time/3600
+ax.axvline(event_h, color=ACCENT_RED, ls=(0, (3, 2)), lw=1.0)
+ax.scatter([event_h], [1.2], color=ACCENT_RED, s=18, zorder=3)
+ax.annotate(f"主模型达标时刻\n{event_h:.2f} h", (event_h, 1.2), xytext=(−38, 18),
+textcoords="offset points", arrowprops=dict(arrowstyle="−", lw=0.6),
+ha="center", fontsize=7)
+ax.set_xlabel("时间t / h")
+ax.set_ylabel("药材半径R(t) / cm")
+ax.set_xlim(0, 52)
+ax.set_ylim(1.15, 2.05)
+ax.text(0.5, −0.30, "（c）药材半径收缩历程", transform=ax.transAxes,
+ha="center", va="top", fontsize=8)
+fig.suptitle("COMSOL 物理场剖面、独立数值校核与收缩历程", y=0.96)
+save_cns_figure(fig, OUT / "q4_comsol_profiles_validation")
+plt.close(fig)
+return {"max_abs_moisture_difference": float(err), "comparison_points": len(parity_x),
+"baseline_saved_nodes": len(bxi)}
+def main():
+import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument('−−refined', action='store_true', help='Use the completed 320−
+element, 1e−7 COMSOL validation run')
+args = parser.parse_args()
+if args.refined:
+global OUT
+from analyze_q4_comsol import read_comsol_wide
+_, data, times = read_comsol_wide(HERE / 'near_surface_check/graded320_tight/
+q4_comsol_profiles.csv')
+comsol = {'times_s': times, 'x_ref_m': data[:, 0], 'moisture': data[:, 3::4].T,
+'radii_m': data[0, 5::4]}
+OUT = HERE / 'near_surface_check/figures'
+OUT.mkdir(exist_ok=True)
+with np.load(BASE) as archive:
+baseline = {key: archive[key] for key in archive.files}
+stats = make_validation_figure(comsol, baseline)
+77
+
+
+(OUT / 'figure_statistics.json').write_text(json.dumps(stats, indent=2), encoding='
+utf−8')
+print(json.dumps(stats))
+return
+comsol = np.load(HERE / "q4_comsol_fields.npz")
+with np.load(BASE) as archive:
+baseline = {key: archive[key] for key in archive.files}
+make_physical_plate(comsol)
+make_validation_figure(comsol, baseline)
+print(json.dumps({"output": str(OUT), "figures": sorted(p.name for p in OUT.iterdir())
+}, ensure_ascii=False))
+if __name__ == "__main__":
+main()
+78

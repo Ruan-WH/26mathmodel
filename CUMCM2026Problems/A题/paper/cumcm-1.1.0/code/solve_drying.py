@@ -1,3 +1,4 @@
+# File: code/solve_drying.py
 """Numerical solution for CUMCM 2026 Problem A.
 
 The model uses a node-centred finite-volume discretisation in the radial

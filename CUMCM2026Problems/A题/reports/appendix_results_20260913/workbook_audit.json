@@ -1,0 +1,670 @@
+{
+  "audit_time_local": "2026-09-13T01:24:07",
+  "method": "Fresh openpyxl read-only iteration of every used cell; independent field mapping; no calls to exporter; no workbook writes.",
+  "scope": "Q2 user-confirmed 3 h: 1--10800 s. Q1 1--1800 s. Q3/Q4 every 60 s through the first whole minute after the interpolated threshold event.",
+  "problem_source": "A题.pdf, all 4 pages read in this audit",
+  "exporter_sha256": "b9d5f55c9efb8811e7bdf1a2b76de907f09b964a081cfeb61beec8834250e562",
+  "workbooks": [
+    {
+      "question": 1,
+      "path": "results\\result1.xlsx",
+      "sha256_before": {
+        "workbook": "7c772029f4c973190a9c2746a12ced0db038c4a68f86f150610443e093651b5e",
+        "fields": "9330e7249efc81d66a4cab40c600f3721076c2d2d66a238ca1b828cc23417192",
+        "template": "23b261b295c1b787d000eebbca6521c37075107b6fcf78724f8d395ce1798ff4"
+      },
+      "template_sheets": [
+        "温度",
+        "水分浓度"
+      ],
+      "template_first_rows": {
+        "温度": [
+          "时间\\到药材中心的距离",
+          0,
+          0.1,
+          0.2,
+          "…",
+          2
+        ],
+        "水分浓度": [
+          "时间\\到药材中心的距离",
+          0,
+          0.1,
+          0.2,
+          "…",
+          2
+        ]
+      },
+      "sheet_names_match_template": true,
+      "header_note": "A1 changed from template's distance/time descriptor to 时间/s; first-row numeric positions retain cm as defined by the problem.",
+      "time_start_s": 1,
+      "time_end_s": 1800,
+      "interval_s": 1,
+      "expected_data_rows_per_sheet": 1800,
+      "source_schedule_ok": true,
+      "sheets": {
+        "温度": {
+          "rows_including_header": 1801,
+          "columns": 22,
+          "header_matches_expanded_template": true,
+          "shape_matches": true,
+          "data_cells_compared": 37800,
+          "numeric_value_cells": 37800,
+          "expected_outside_blank_cells": 0,
+          "value_mismatches": 0,
+          "time_mismatches": 0,
+          "number_format_mismatches": 0,
+          "non_numeric_data_cells": 0,
+          "formula_or_error_cells": 0,
+          "rounding_mismatches": 0,
+          "examples": [],
+          "first_data_row": [
+            1,
+            28,
+            28,
+            28,
+            28,
+            28,
+            28,
+            28,
+            28,
+            28,
+            28,
+            28,
+            28,
+            28,
+            28,
+            28,
+            28,
+            28,
+            28,
+            28,
+            28,
+            28.0002
+          ],
+          "last_data_row": [
+            1800,
+            33.577,
+            33.5849,
+            33.6085,
+            33.6478,
+            33.7028,
+            33.7736,
+            33.8601,
+            33.9625,
+            34.0808,
+            34.2151,
+            34.3654,
+            34.5319,
+            34.7147,
+            34.9141,
+            35.1302,
+            35.3631,
+            35.6132,
+            35.8804,
+            36.165,
+            36.467,
+            36.7865
+          ],
+          "pass": true
+        },
+        "水分浓度": {
+          "rows_including_header": 1801,
+          "columns": 22,
+          "header_matches_expanded_template": true,
+          "shape_matches": true,
+          "data_cells_compared": 37800,
+          "numeric_value_cells": 37800,
+          "expected_outside_blank_cells": 0,
+          "value_mismatches": 0,
+          "time_mismatches": 0,
+          "number_format_mismatches": 0,
+          "non_numeric_data_cells": 0,
+          "formula_or_error_cells": 0,
+          "rounding_mismatches": 0,
+          "examples": [],
+          "first_data_row": [
+            1,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.5215
+          ],
+          "last_data_row": [
+            1800,
+            2.55,
+            2.55,
+            2.55,
+            2.5499,
+            2.5499,
+            2.5497,
+            2.5494,
+            2.5486,
+            2.547,
+            2.544,
+            2.5383,
+            2.5281,
+            2.5109,
+            2.4829,
+            2.4396,
+            2.3755,
+            2.2841,
+            2.1592,
+            1.9938,
+            1.7808,
+            1.5104
+          ],
+          "pass": true
+        }
+      },
+      "field_grid_matches_export_rule": true,
+      "files_unchanged_during_audit": true,
+      "pass": true
+    },
+    {
+      "question": 2,
+      "path": "results\\result2.xlsx",
+      "sha256_before": {
+        "workbook": "a62b843b4668743da2cf870651843f476cf3f7005638c698d7930220c46ec562",
+        "fields": "864e4d90d2a0b22f3eae37f34cae3fcea093dfb9f63bd4d0f2214f149209ab6b",
+        "template": "23b261b295c1b787d000eebbca6521c37075107b6fcf78724f8d395ce1798ff4"
+      },
+      "template_sheets": [
+        "温度",
+        "水分浓度"
+      ],
+      "template_first_rows": {
+        "温度": [
+          "时间\\到药材中心的距离",
+          0,
+          0.1,
+          0.2,
+          "…",
+          2
+        ],
+        "水分浓度": [
+          "时间\\到药材中心的距离",
+          0,
+          0.1,
+          0.2,
+          "…",
+          2
+        ]
+      },
+      "sheet_names_match_template": true,
+      "header_note": "A1 changed from template's distance/time descriptor to 时间/s; first-row numeric positions retain cm as defined by the problem.",
+      "time_start_s": 1,
+      "time_end_s": 10800,
+      "interval_s": 1,
+      "expected_data_rows_per_sheet": 10800,
+      "source_schedule_ok": true,
+      "sheets": {
+        "温度": {
+          "rows_including_header": 10801,
+          "columns": 22,
+          "header_matches_expanded_template": true,
+          "shape_matches": true,
+          "data_cells_compared": 226800,
+          "numeric_value_cells": 226800,
+          "expected_outside_blank_cells": 0,
+          "value_mismatches": 0,
+          "time_mismatches": 0,
+          "number_format_mismatches": 0,
+          "non_numeric_data_cells": 0,
+          "formula_or_error_cells": 0,
+          "rounding_mismatches": 0,
+          "examples": [],
+          "first_data_row": [
+            1,
+            28,
+            28,
+            28,
+            28,
+            28,
+            28,
+            28,
+            28,
+            28,
+            28,
+            28,
+            28,
+            28,
+            28,
+            28,
+            28,
+            28,
+            28,
+            28,
+            28,
+            28.0001
+          ],
+          "last_data_row": [
+            10800,
+            49.8493,
+            49.8496,
+            49.8502,
+            49.8514,
+            49.8531,
+            49.8552,
+            49.8579,
+            49.8612,
+            49.865,
+            49.8695,
+            49.8746,
+            49.8803,
+            49.8867,
+            49.8938,
+            49.9015,
+            49.91,
+            49.9193,
+            49.9295,
+            49.9407,
+            49.953,
+            49.9666
+          ],
+          "pass": true
+        },
+        "水分浓度": {
+          "rows_including_header": 10801,
+          "columns": 22,
+          "header_matches_expanded_template": true,
+          "shape_matches": true,
+          "data_cells_compared": 226800,
+          "numeric_value_cells": 226800,
+          "expected_outside_blank_cells": 0,
+          "value_mismatches": 0,
+          "time_mismatches": 0,
+          "number_format_mismatches": 0,
+          "non_numeric_data_cells": 0,
+          "formula_or_error_cells": 0,
+          "rounding_mismatches": 0,
+          "examples": [],
+          "first_data_row": [
+            1,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.5233
+          ],
+          "last_data_row": [
+            10800,
+            1.7662,
+            1.7642,
+            1.7582,
+            1.7483,
+            1.7344,
+            1.7165,
+            1.6948,
+            1.6693,
+            1.64,
+            1.6069,
+            1.5702,
+            1.5299,
+            1.486,
+            1.4385,
+            1.3876,
+            1.3333,
+            1.2755,
+            1.2141,
+            1.1493,
+            1.0807,
+            1.0081
+          ],
+          "pass": true
+        }
+      },
+      "field_grid_matches_export_rule": true,
+      "files_unchanged_during_audit": true,
+      "pass": true
+    },
+    {
+      "question": 3,
+      "path": "results\\result3.xlsx",
+      "sha256_before": {
+        "workbook": "0a5440ae41a36cf8048279d01afda1563e9df8b39cea8fd75e01dfe97f384bc0",
+        "fields": "1f1869a3a04c0627a5c738288aa028002b158803e526668baf339d17cb83c278",
+        "template": "07e4793d620a7f899804c0298d49a16a197960440fd47f8bb780c57ec27e2859"
+      },
+      "template_sheets": [
+        "Sheet1"
+      ],
+      "template_first_rows": {
+        "Sheet1": [
+          "时间\\到药材中心的距离",
+          0,
+          0.1,
+          0.2,
+          "…",
+          2
+        ]
+      },
+      "sheet_names_match_template": true,
+      "header_note": "A1 changed from template's distance/time descriptor to 时间/s; first-row numeric positions retain cm as defined by the problem.",
+      "time_start_s": 60,
+      "time_end_s": 206940,
+      "interval_s": 60,
+      "expected_data_rows_per_sheet": 3449,
+      "source_schedule_ok": true,
+      "sheets": {
+        "Sheet1": {
+          "rows_including_header": 3450,
+          "columns": 22,
+          "header_matches_expanded_template": true,
+          "shape_matches": true,
+          "data_cells_compared": 72429,
+          "numeric_value_cells": 72429,
+          "expected_outside_blank_cells": 0,
+          "value_mismatches": 0,
+          "time_mismatches": 0,
+          "number_format_mismatches": 0,
+          "non_numeric_data_cells": 0,
+          "formula_or_error_cells": 0,
+          "rounding_mismatches": 0,
+          "examples": [],
+          "first_data_row": [
+            60,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.5484,
+            2.5184,
+            2.3276
+          ],
+          "last_data_row": [
+            206940,
+            0.15,
+            0.1499,
+            0.1496,
+            0.1492,
+            0.1485,
+            0.1477,
+            0.1466,
+            0.1454,
+            0.1439,
+            0.1422,
+            0.1402,
+            0.1379,
+            0.1353,
+            0.1323,
+            0.1289,
+            0.1249,
+            0.1202,
+            0.1143,
+            0.1068,
+            0.0956,
+            0.0527
+          ],
+          "pass": true
+        }
+      },
+      "field_grid_matches_export_rule": true,
+      "files_unchanged_during_audit": true,
+      "pass": true
+    },
+    {
+      "question": 4,
+      "path": "results\\result4.xlsx",
+      "sha256_before": {
+        "workbook": "2099593de507cb61f5e879b55812cb5b2e2c57dada9be59e05cd2e057b06a779",
+        "fields": "ec26dda9a41ad47a13259710c913fd40a8a283fe5c64d84cce93ed203d0a53cd",
+        "template": "86e9300ffa3d30c43de895ea6723da943e85b8740b137bcae5af7107f076eeac"
+      },
+      "template_sheets": [
+        "Sheet1"
+      ],
+      "template_first_rows": {
+        "Sheet1": [
+          "时间\\到药材中心的距离",
+          0,
+          0.1,
+          0.2,
+          "…",
+          "药材表面"
+        ]
+      },
+      "sheet_names_match_template": true,
+      "header_note": "A1 changed from template's distance/time descriptor to 时间/s; first-row numeric positions retain cm as defined by the problem.",
+      "time_start_s": 60,
+      "time_end_s": 183960,
+      "interval_s": 60,
+      "expected_data_rows_per_sheet": 3066,
+      "source_schedule_ok": true,
+      "sheets": {
+        "Sheet1": {
+          "rows_including_header": 3067,
+          "columns": 22,
+          "header_matches_expanded_template": true,
+          "shape_matches": true,
+          "data_cells_compared": 64386,
+          "numeric_value_cells": 44285,
+          "expected_outside_blank_cells": 20101,
+          "value_mismatches": 0,
+          "time_mismatches": 0,
+          "number_format_mismatches": 0,
+          "non_numeric_data_cells": 0,
+          "formula_or_error_cells": 0,
+          "rounding_mismatches": 0,
+          "examples": [],
+          "first_data_row": [
+            60,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.55,
+            2.5483,
+            2.0808
+          ],
+          "last_data_row": [
+            183960,
+            0.15,
+            0.1496,
+            0.1486,
+            0.1469,
+            0.1445,
+            0.1412,
+            0.1372,
+            0.1321,
+            0.1259,
+            0.1181,
+            0.1081,
+            0.0936,
+            0.0526,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            0.0526
+          ],
+          "pass": true
+        }
+      },
+      "field_grid_matches_export_rule": true,
+      "files_unchanged_during_audit": true,
+      "pass": true
+    }
+  ],
+  "q2_q3_shared_trajectory": {
+    "temperature_c": {
+      "max_abs_difference": 0.0,
+      "exactly_equal": true
+    },
+    "moisture": {
+      "max_abs_difference": 0.0,
+      "exactly_equal": true
+    }
+  },
+  "field_checks": {
+    "q1": {
+      "all_temperature_and_moisture_finite": true,
+      "stored_moisture_bounds": [
+        1.5103538609537452,
+        2.5500000000000003
+      ],
+      "radial_monotonicity_violation_max": 1.7763568394002505e-15,
+      "all_stored_profiles_center_is_max_within_2e_9": true,
+      "stored_time_interval_s": [
+        1.0
+      ],
+      "stored_grid_nodes": 21
+    },
+    "q2": {
+      "all_temperature_and_moisture_finite": true,
+      "stored_moisture_bounds": [
+        0.052658501848900065,
+        2.550000000000004
+      ],
+      "radial_monotonicity_violation_max": 3.552713678800501e-15,
+      "all_stored_profiles_center_is_max_within_2e_9": true,
+      "stored_time_interval_s": [
+        1.0
+      ],
+      "stored_grid_nodes": 21
+    },
+    "q3": {
+      "all_temperature_and_moisture_finite": true,
+      "stored_moisture_bounds": [
+        0.052658501848900065,
+        2.550000000000003
+      ],
+      "radial_monotonicity_violation_max": 3.1086244689504383e-15,
+      "all_stored_profiles_center_is_max_within_2e_9": true,
+      "stored_time_interval_s": [
+        60.0
+      ],
+      "stored_grid_nodes": 21
+    },
+    "q4": {
+      "all_temperature_and_moisture_finite": true,
+      "stored_moisture_bounds": [
+        0.05261855762480569,
+        2.550000000000025
+      ],
+      "radial_monotonicity_violation_max": 5.773159728050814e-15,
+      "all_stored_profiles_center_is_max_within_2e_9": true,
+      "stored_time_interval_s": [
+        60.0
+      ],
+      "stored_grid_nodes": 161
+    }
+  },
+  "threshold_checks": {
+    "q3": {
+      "reported_crossing_s": 206898.87102730837,
+      "reported_crossing_h": 57.47190861869677,
+      "first_stored_sample_strictly_below_threshold_s": 206940.0,
+      "previous_stored_sample_s": 206880.0,
+      "previous_stored_max_moisture": 0.15000549761576631,
+      "first_below_stored_max_moisture": 0.14998802138865747,
+      "all_prior_stored_samples_have_somewhere_above_threshold": true,
+      "threshold_profile_max": 0.15,
+      "threshold_profile_max_equals_0_15_within_1e_12": true,
+      "reported_event_within_stored_bracket": true,
+      "export_end_is_first_minute_at_or_after_event": true,
+      "rounding_note": "Threshold uses unrounded values. Four-decimal 0.1500 does not distinguish exactly equal from slightly below.",
+      "independent_1s_bracket": {
+        "before_s": 206898.0,
+        "after_s": 206899.0,
+        "before_max": 0.1500002537314416,
+        "after_max": 0.1499999624300792,
+        "reconstructed_crossing_s": 206898.87102730837,
+        "reported_time_abs_difference_s": 0.0,
+        "threshold_profile_max_abs_difference": 2.7755575615628914e-17,
+        "all_prior_second_samples_above": true
+      }
+    },
+    "q4": {
+      "reported_crossing_s": 183915.71747843814,
+      "reported_crossing_h": 51.08769929956615,
+      "first_stored_sample_strictly_below_threshold_s": 183960.0,
+      "previous_stored_sample_s": 183900.0,
+      "previous_stored_max_moisture": 0.15000807183454237,
+      "first_below_stored_max_moisture": 0.1499772669767069,
+      "all_prior_stored_samples_have_somewhere_above_threshold": true,
+      "threshold_profile_max": 0.15,
+      "threshold_profile_max_equals_0_15_within_1e_12": true,
+      "reported_event_within_stored_bracket": true,
+      "export_end_is_first_minute_at_or_after_event": true,
+      "rounding_note": "Threshold uses unrounded values. Four-decimal 0.1500 does not distinguish exactly equal from slightly below.",
+      "independent_1s_bracket": "Not stored in existing q4 fields (60 s sampling); checked 60 s bracket and saved native-grid threshold profile. Fresh solver rerun is a separate audit.",
+      "radius_at_export_end_cm": 1.2,
+      "radii_are_nonincreasing": true
+    }
+  },
+  "limitations": [
+    "Q2 range is 3 h as explicitly confirmed by the user; longer stored q2 trajectory is not required in result2.xlsx.",
+    "Results are conditional model predictions; this audit checks files and stored numerical outputs, not experimental/physical validity.",
+    "Q4 outside-radius blanks are an explicit export convention (outside material, not zero or missing computation); final column uses current radius surface.",
+    "The continuous threshold crossing is reported at max(C)=0.15; strict below holds immediately after crossing and at the final minute sample. Four-decimal rounding can display 0.1500 even when the underlying value is below.",
+    "Q3 stored fixed-grid outputs have 21 radial positions; Q4 stores all 161 native radial nodes. This workbook audit does not independently reconstruct unarchived internal solver states.",
+    "Q3/Q4 long-time predictions depend on constant continuation of environmental input after 4 h and the paper's heat/mass and shrinkage assumptions."
+  ],
+  "workbook_export_pass": true,
+  "status": "PASS"
+}

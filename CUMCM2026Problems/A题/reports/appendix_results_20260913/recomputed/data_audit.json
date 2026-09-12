@@ -1,0 +1,33 @@
+{
+  "environment_rows": 241,
+  "environment_time_range_s": [
+    0.0,
+    14400.0
+  ],
+  "environment_sampling_s": [
+    60.0
+  ],
+  "temperature_range_c": [
+    28.0,
+    50.246
+  ],
+  "ambient_moisture_range": [
+    0.01963,
+    0.05025
+  ],
+  "terminal_boundary_after_14400_s": {
+    "temperature_c": 50.0,
+    "moisture": 0.05,
+    "basis": "constant-stage setpoints; final-hour attachment means are 49.9989 C and 0.049988"
+  },
+  "radius_rows": 145,
+  "radius_time_range_s": [
+    0.0,
+    259200.0
+  ],
+  "radius_range_cm": [
+    1.198,
+    2.0
+  ],
+  "radius_monotone_adjustments": 0
+}

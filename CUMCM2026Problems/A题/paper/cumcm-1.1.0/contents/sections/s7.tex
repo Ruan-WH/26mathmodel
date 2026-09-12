@@ -4,14 +4,9 @@
 
 \subsubsection{非线性模型及耦合关系}
 
-问题二保持 $R=0.02$~m，并按表面交换假设沿用 $h_T=25~\mathrm{W/(m^2K)}$ 和 $h_m=8\times10^{-7}~\mathrm{m/s}$，将\cref{eq:prop23}代入\cref{eq:heat,eq:mass}。此时温度方程的储存项和扩散项都依赖 $C$，水分方程的扩散系数同时依赖 $T$ 和 $C$。若写成算子形式，可表示为
-\begin{equation}
-\mathcal H[T;C]=0,\qquad \mathcal M[C;T]=0,
-\label{eq:q2operator}
-\end{equation}
-其中两个算子通过状态相关系数双向联系。该耦合不要求在一个大矩阵中同时求解全部未知量：在每次 Picard 迭代内，先固定 $C$ 解 $\mathcal H$，再用更新后的 $T$ 解 $\mathcal M$，即可逐步逼近同一时间层的自洽状态。
+问题二保持 $R=0.02$~m，并按表面交换假设沿用 $h_T=25~\mathrm{W/(m^2K)}$ 和 $h_m=8\times10^{-7}~\mathrm{m/s}$，将\cref{eq:prop23}代入\cref{eq:heat,eq:mass}。温度方程的储存项和扩散项依赖 $C$，水分扩散系数同时依赖 $T,C$，形成双向耦合；每次 Picard 迭代先解温度、再更新水分，求得同一时间层的自洽状态。
 
-与问题一相比，问题二初始状态下的物性参数与题面附录2给出的常数不同。将 $T=28~{}^\circ\mathrm C,C=2.55~\mathrm{kg/kg}$ 代入题面附录3的物性关系，得到初始密度 $976.4~\mathrm{kg/m^3}$、比热容 $3415.3~\mathrm{J/(kgK)}$、导热系数 $0.4830~\mathrm{W/(mK)}$ 和扩散系数 $5.642\times10^{-9}~\mathrm{m^2/s}$。因此，两问在相同几何和表面对流系数下仍会呈现不同响应，不能把问题一的 1800~s 结果直接作为问题二的初段结果。
+初始物性见\cref{tab:q2prop}，与问题一所用常数不同，故相同几何和表面交换系数下仍有不同响应；两问的初段解不能混用。
 
 \subsubsection{物性随状态的演化}
 
@@ -35,47 +30,30 @@
 
 \subsection{模型的求解}
 
-\subsubsection{计算网格与非线性系数更新}
+\subsubsection{变物性迭代与轨迹衔接}
 
-沿用问题一的 161 个表面加密节点和 1~s 时间步，但重新从 $T_i^0=28~{}^\circ\mathrm C$、$C_i^0=2.55~\mathrm{kg/kg}$ 出发，采用题面附录3的物性公式计算，不能以问题一的预热结果代替初段解。前 3~h 用于本问温湿场分析，随后沿同一轨迹继续积分，为问题三确定达标时间。
+沿用 161 个表面加密节点和 1~s 步长，从\cref{eq:initial}重新出发，采用附录3物性，不能以问题一的预热结果替代初段解。前 3~h 用于本问分析，随后沿同一轨迹继续积分，为问题三确定达标时间；4~h 后采用第五节的常值环境延拓。
 
-对每个时间层，以 $T^{(0)}=T^n,C^{(0)}=C^n$ 为迭代初值。第 $m$ 次迭代先由 $C^{(m)}$ 更新 $\rho,c_p,k$，再以 $s_i^{(m)}=\rho_i^{(m)}c_{p,i}^{(m)}$ 和 $k_i^{(m)}$ 组装温度方程。界面系数采用相邻节点算术平均，中心零通量与表面对流条件按问题一的方法进入矩阵。
-
-\subsubsection{温湿场交替求解}
-
-将\cref{eq:q1implicitdetail}分别用于温度、水分，记对应三对角矩阵为 $A_T,A_C$。一次交替迭代可写为
+按\cref{eq:tridiag}分别组装温度、水分三对角矩阵 $A_T,A_C$，界面平均及边界处理沿用第五节。以 $T^{(0)}=T^n,C^{(0)}=C^n$ 为初值，一次交替迭代为
 \begin{align*}
 A_T(C^{(m)})T^{(m+1)}
 &=\operatorname{diag}\!\left(\frac{\rho^{(m)}c_p^{(m)}V}{\Delta t}\right)T^n+b_T,\\
 A_C(T^{(m+1)},C^{(m)})C^{(m+1)}
 &=\operatorname{diag}\!\left(\frac{V}{\Delta t}\right)C^n+b_C.
 \end{align*}
-其中 $b_T,b_C$ 为表面环境交换项。水分方程使用新温度与当前水分估计更新扩散系数，温度相关指数统一采用开尔文温度。两式右端的历史状态分别保持为 $T^n,C^n$，只在迭代收敛后推进时间。
+其中 $b_T,b_C$ 为环境交换项。先由当前水分更新热物性，再以新温度和当前水分更新 $D$，温度指数统一采用开尔文温度；历史状态 $T^n,C^n$ 保持不变，迭代收敛后才推进时间。
 
-具体步骤如下：
+\subsubsection{精度与计算检查}
 
-
-\textbf{Step 1 更新边界：}在 $t_{n+1}$ 读取 PCHIP 环境值；超过 14400~s 后采用 $50~{}^\circ\mathrm C$、$0.05~\mathrm{kg/kg}$ 的长期边界。
-
-\textbf{Step 2 求解温度：}按当前水分估计更新储热系数和导热系数，求解温度三对角系统。
-
-\textbf{Step 3 求解水分：}以新温度和当前水分估计更新扩散系数，求解水分三对角系统。
-
-\textbf{Step 4 判断收敛：}采用问题一的温度 $10^{-8}$、水分 $10^{-10}$ 双重无穷范数容差；未满足时返回物性更新，满足后接受该时间层。
-
-
-
-\subsubsection{步长选取与计算检查}
-
-全隐式处理避免显式扩散格式对最小网格宽度的严格步长限制，但步长仍影响时间精度。采用 1~s 可解析附件一 60~s 采样间隔内的边界变化；长期达标时间的 2~s 与 1~s 对照相对差为 $1.52\times10^{-5}$，网格检验见后文。每步检查状态有限性、$0\le C\le2.55$ 和径向单调性，并将控制体累积变化与表面通量核对。实际最多 5 次 Picard 迭代即收敛，未触及 30 次上限。
+采用第五节的双重容差和逐步检查，实际最多 5 次 Picard 迭代即收敛，未触及 30 次上限。全隐式格式减轻稳定性限制，离散精度由问题三的长期收敛检验统一评估（第\ref{sec:q3convergence}节）。
 
 \subsection{结果的分析和验证}
 
-\subsubsection{温度结果及其空间演化}
+\subsubsection{温湿分布及内部迁移特征}
 
-典型时刻温度见\cref{tab:q2t}，空间曲线见\cref{fig:q2}(a)。0.5~h 时中心和表面分别为 $32.1911~{}^\circ\mathrm C$、$35.4141~{}^\circ\mathrm C$，仍有 $3.2230~{}^\circ\mathrm C$ 的明显差异；1.5~h 时，温差降为 $1.2928~{}^\circ\mathrm C$；到 3~h 仅剩 $0.1173~{}^\circ\mathrm C$。这表明温度先经历表面快速升温和内部滞后，随后在环境逐渐稳定时趋于径向均匀。
+典型时刻温度见\cref{tab:q2t}。0.5~h 时中心和表面分别为 $32.1911~{}^\circ\mathrm C$、$35.4141~{}^\circ\mathrm C$，仍有 $3.2230~{}^\circ\mathrm C$ 的明显差异；1.5~h 时，温差降为 $1.2928~{}^\circ\mathrm C$；到 3~h 仅剩 $0.1173~{}^\circ\mathrm C$。这表明温度先经历表面快速升温和内部滞后，随后在环境逐渐稳定时趋于径向均匀。
 
-\begin{table}[!htbp]
+\begin{table}[H]
 \centering
 \caption{问题二温度分布（$^\circ$C）}\label{tab:q2t}
 \begin{tabular}{cccccc}
@@ -92,11 +70,9 @@ $t$/h&0 cm&0.5 cm&1.0 cm&1.5 cm&2.0 cm\\
 \end{tabular}
 \end{table}
 
-\subsubsection{水分结果及控制机制}
+水分结果见\cref{tab:q2c}。0.5~h 时中心仍为 $2.5499~\mathrm{kg/kg}$，表面已降至 $1.6487~\mathrm{kg/kg}$；3~h 时中心和表面分别降至 $1.7662$ 和 $1.0081~\mathrm{kg/kg}$。中心—表面差由 0.5~h 的 0.9012 降至 3~h 的 $0.7581~\mathrm{kg/kg}$，说明水分扰动已经传播到中心，但内部尚未达到近似均匀状态。
 
-水分结果见\cref{tab:q2c}和\cref{fig:q2}(b)。0.5~h 时中心仍为 $2.5499~\mathrm{kg/kg}$，表面已降至 $1.6487~\mathrm{kg/kg}$；3~h 时中心和表面分别降至 $1.7662$ 和 $1.0081~\mathrm{kg/kg}$。中心—表面差由 0.5~h 的 0.9012 降至 3~h 的 $0.7581~\mathrm{kg/kg}$，说明水分扰动已经传播到中心，但内部尚未达到近似均匀状态。
-
-\begin{table}[!htbp]
+\begin{table}[H]
 \centering
 \caption{问题二水分浓度分布（kg/kg）}\label{tab:q2c}
 \begin{tabular}{cccccc}
@@ -113,38 +89,37 @@ $t$/h&0 cm&0.5 cm&1.0 cm&1.5 cm&2.0 cm\\
 \end{tabular}
 \end{table}
 
-3~h 时温度已接近均匀，而中心水分仍为表面的约 1.75 倍，说明温度趋于均匀不能作为烘干结束的依据。
+\cref{fig:q2}(a)、(b)分别给出温度和水分径向剖面。3~h 时温度已接近均匀，而中心水分仍为表面的约 1.75 倍，说明温度趋于均匀不能作为烘干结束的依据。
 
-\begin{figure}[!htbp]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.92\textwidth]{q2_coupled_profiles.pdf}
 \caption{问题二变物性温度与水分剖面}\label{fig:q2}
 \end{figure}
 
+\newpage
 \subsubsection{水分迁移与扩散系数的时空证据}
 
 \cref{fig:q2surface}展示前 3~h 水分时空分布，失水影响由表面向中心传播。
 
-\begin{figure}[!htbp]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.96\textwidth]{q2_moisture_surface.pdf}
 \caption{问题二前 3 h 水分浓度的时空分布及等浓度线}\label{fig:q2surface}
 \end{figure}
 
+\begin{samepage}
 \cref{fig:q2diffusivity}展示 $D(T,C)$ 的时空变化：升温增强扩散，但表层失水使其扩散系数低于内部。
 
-\begin{figure}[!htbp]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.96\textwidth]{q2_diffusivity_map.pdf}
 \caption{问题二状态相关扩散系数的时空云图及等值线}\label{fig:q2diffusivity}
 \end{figure}
+\par\end{samepage}
 
 \begin{samepage}
 \subsubsection{共享轨迹一致性检验}
 
-问题二、三采用相同物性、网格和边界连续计算。第二问逐秒温湿场按 60~s 抽取后，与第三问全部共同时间层逐元素一致，最大差为零；长期网格与时间步检验见问题三。这一检查确认短期温湿响应与长期达标预测采用相同数值轨迹。
+问题二、三采用相同物性、网格和边界连续计算。第二问逐秒温湿场按 60~s 抽取后，与第三问全部共同时间层逐元素一致，最大差为零。这一检查确认短期温湿响应与长期达标预测采用相同数值轨迹。
 \par\end{samepage}
-
-\subsubsection{本问结论与分析}
-
-各时间层最多 5 次 Picard 迭代即收敛，温湿剖面保持平滑。3~h 时中心—表面温差为 $0.1173~{}^\circ\mathrm C$、水分差为 $0.7581~\mathrm{kg/kg}$，后续干燥由内部水分迁移控制。

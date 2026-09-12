@@ -1,0 +1,14 @@
+{
+  "code\\solve_drying.py": "93609143157003e52347ca0b988596eafce937c958935414a1b6e85adea210e6",
+  "附件\\附件1.xlsx": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7",
+  "附件\\附件2.xlsx": "5563acbfa4b4afb10cc6c03e2207e5369bf39da27576672aff14cc5c32e704af",
+  "results\\q1\\fields.npz": "9330e7249efc81d66a4cab40c600f3721076c2d2d66a238ca1b828cc23417192",
+  "results\\q1\\summary.json": "5ee2d254c12320ab193a6e7b519e7bcdc86750fee84898d5073f5a77fedbb225",
+  "results\\q2\\fields.npz": "864e4d90d2a0b22f3eae37f34cae3fcea093dfb9f63bd4d0f2214f149209ab6b",
+  "results\\q2\\summary.json": "50e944799e9441d5dd4979d3fd2a3f3cca0276e6efaa2516408ea67ff3b7fb0a",
+  "results\\q3\\fields.npz": "1f1869a3a04c0627a5c738288aa028002b158803e526668baf339d17cb83c278",
+  "results\\q3\\summary.json": "f9db8dc65c06725c2439513804ab449109e781a604a3c3a5c3603dfb4bc6a622",
+  "results\\q4\\fields.npz": "ec26dda9a41ad47a13259710c913fd40a8a283fe5c64d84cce93ed203d0a53cd",
+  "results\\q4\\summary.json": "8e9e15a59063fe34c775da0a069da66776fd37f825533cb5f5e9f9bb744a8425",
+  "results\\q4\\fixed_radius_counterfactual.npz": "95b4070c4f49c551b7cde0be5bfd0d76b650363fea654726a7ea1a0a090fcf6f"
+}

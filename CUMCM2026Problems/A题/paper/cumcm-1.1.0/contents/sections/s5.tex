@@ -38,22 +38,9 @@ T(r,0)=28~{}^\circ\mathrm C,\qquad C(r,0)=2.55~\mathrm{kg/kg}.
 \end{tabular}
 \end{table}
 
-对任一相邻数据点 $(t_j,y_j)$、$(t_{j+1},y_{j+1})$，令 $\vartheta=(t-t_j)/(t_{j+1}-t_j)$，PCHIP 在区间内写为
-\begin{equation}
-y(t)=h_{00}(\vartheta)y_j+h_{10}(\vartheta)\Delta t_jd_j
-     +h_{01}(\vartheta)y_{j+1}+h_{11}(\vartheta)\Delta t_jd_{j+1},
-\label{eq:pchip}
-\end{equation}
-其中
-\[
-h_{00}=2\vartheta^3-3\vartheta^2+1,\quad h_{10}=\vartheta^3-2\vartheta^2+\vartheta,
-\]
-\[
-h_{01}=-2\vartheta^3+3\vartheta^2,\quad h_{11}=\vartheta^3-\vartheta^2.
-\]
-节点斜率 $d_j$ 按相邻割线斜率的保形规则确定，使单调数据区间不产生新的极值\cite{fritsch1980}。相较普通三次样条，该处理可避免半径在快速收缩段出现非物理回弹；相较分段线性插值，其一阶连续性又能稳定给出问题四所需的 $\dot R(t)$。
+采用分段三次 Hermite 保形插值（PCHIP），节点斜率按相邻割线斜率确定，使单调数据区间不产生新的极值\cite{fritsch1980}。该方法避免半径在快速收缩段出现非物理回弹，并保持一阶连续，便于稳定求取问题四所需的 $\dot R(t)$。
 
-附件一存在小幅波动，故环境量保留实测序列的 PCHIP 重构，不强制单调化。最后 1~h 的温度和环境水分均值分别为 $49.9989~{}^\circ\mathrm C$ 和 0.049988~kg/kg，据此假设 14400~s 后工况保持为 $50.000~{}^\circ\mathrm C$ 与 $0.05000~\mathrm{kg/kg}$，避免无限沿用末个采样点的波动。末段稳定性支持这一情景的选取，但不能确定后续数十小时的实际边界；\cref{tab:sens}进一步量化环境偏离设定值对达标时间的影响。
+附件一存在小幅波动，故环境量保留实测序列的 PCHIP 重构，不强制单调化。最后 1~h 的温度和环境水分均值分别为 $49.9989~{}^\circ\mathrm C$ 和 0.049988~kg/kg，据此假设 14400~s 后工况保持为 $50.000~{}^\circ\mathrm C$ 与 $0.05000~\mathrm{kg/kg}$，避免无限沿用末个采样点的波动。末段稳定性支持这一情景的选取，但不能确定后续数十小时的实际边界；后文第\ref{sec:boundarysensitivity}节进一步量化环境偏离设定值对达标时间的影响。
 
 \subsection{径向热湿控制方程}
 

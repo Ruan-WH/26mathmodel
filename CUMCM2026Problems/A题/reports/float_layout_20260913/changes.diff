@@ -1,0 +1,290 @@
+--- before/contents/sections/q4_comsol_mesh_table.tex
++++ contents/sections/q4_comsol_mesh_table.tex
+@@ -1,4 +1,4 @@
+-\begin{table}[!htbp]
++\begin{table}[H]
+ \centering
+ \caption{COMSOL 网格与求解容差检验}\label{tab:q4comsolmesh}
+ \begin{tabular}{lcc}
+
+--- before/contents/sections/q4_moving_mesh_table.tex
++++ contents/sections/q4_moving_mesh_table.tex
+@@ -1,4 +1,4 @@
+-\begin{table}[!htbp]
++\begin{table}[H]
+ \centering
+ \caption{移动网格与固定域映射的数值比较}\label{tab:q4movingvalidation}
+ \begin{tabular}{lrrr}
+
+--- before/contents/sections/q4_moving_mesh_validation.tex
++++ contents/sections/q4_moving_mesh_validation.tex
+@@ -6,7 +6,7 @@
+ 
+ 两法达标时间相对差为 $5.81\times10^{-13}$，全水分场最大差为 $2.61\times10^{-13}$~kg/kg、温度场最大差为 $1.16\times10^{-10}~{}^\circ\mathrm C$，并通过几何守恒检查。
+ 
+-\begin{figure}[!htbp]
++\begin{figure}[H]
+ \centering
+ \includegraphics[width=0.96\textwidth]{q4_moving_mesh_validation.pdf}
+ \caption{两种坐标实现的中心水分轨迹及物理半径剖面对比；曲线在图示精度下重合，圆点仅用于区分移动网格曲线}\label{fig:q4movingvalidation}
+
+--- before/contents/sections/s5.tex
++++ contents/sections/s5.tex
+@@ -40,7 +40,7 @@
+ 
+ 采用分段三次 Hermite 保形插值（PCHIP），节点斜率按相邻割线斜率确定，使单调数据区间不产生新的极值\cite{fritsch1980}。该方法避免半径在快速收缩段出现非物理回弹，并保持一阶连续，便于稳定求取问题四所需的 $\dot R(t)$。
+ 
+-附件一存在小幅波动，故环境量保留实测序列的 PCHIP 重构，不强制单调化。最后 1~h 的温度和环境水分均值分别为 $49.9989~{}^\circ\mathrm C$ 和 0.049988~kg/kg，据此假设 14400~s 后工况保持为 $50.000~{}^\circ\mathrm C$ 与 $0.05000~\mathrm{kg/kg}$，避免无限沿用末个采样点的波动。末段稳定性支持这一情景的选取，但不能确定后续数十小时的实际边界；\cref{tab:sens}进一步量化环境偏离设定值对达标时间的影响。
++附件一存在小幅波动，故环境量保留实测序列的 PCHIP 重构，不强制单调化。最后 1~h 的温度和环境水分均值分别为 $49.9989~{}^\circ\mathrm C$ 和 0.049988~kg/kg，据此假设 14400~s 后工况保持为 $50.000~{}^\circ\mathrm C$ 与 $0.05000~\mathrm{kg/kg}$，避免无限沿用末个采样点的波动。末段稳定性支持这一情景的选取，但不能确定后续数十小时的实际边界；后文第\ref{sec:boundarysensitivity}节进一步量化环境偏离设定值对达标时间的影响。
+ 
+ \subsection{径向热湿控制方程}
+ 
+
+--- before/contents/sections/s6.tex
++++ contents/sections/s6.tex
+@@ -43,7 +43,7 @@
+ 
+ \subsubsection{温度场计算结果与分析}
+ 
+-问题一典型时刻的温度结果见\cref{tab:q1t}，完整径向曲线见\cref{fig:q1}(a)。100~s 时热扰动尚集中在表面附近，中心温度只比初值高 $6.4\times10^{-5}~{}^\circ\mathrm C$；随着热量持续输入，600~s 后整个截面开始明显升温。到 1800~s，中心与表面分别达到 $33.5770~{}^\circ\mathrm C$ 和 $36.7865~{}^\circ\mathrm C$。
++问题一典型时刻的温度结果见\cref{tab:q1t}。100~s 时热扰动尚集中在表面附近，中心温度只比初值高 $6.4\times10^{-5}~{}^\circ\mathrm C$；随着热量持续输入，600~s 后整个截面开始明显升温。到 1800~s，中心与表面分别达到 $33.5770~{}^\circ\mathrm C$ 和 $36.7865~{}^\circ\mathrm C$。
+ 
+ \begin{table}[!htbp]
+ \centering
+@@ -67,7 +67,7 @@
+ 
+ \subsubsection{水分场计算结果与分析}
+ 
+-典型时刻水分浓度列于\cref{tab:q1c}，其空间曲线见\cref{fig:q1}(b)。100~s 时表面水分已由 2.55 降至 $2.2475~\mathrm{kg/kg}$，而 $r\le1.0$~cm 区域在四位小数精度下仍保持初值。到 1800~s，表面进一步降至 $1.5104~\mathrm{kg/kg}$，中心仍为 $2.5500~\mathrm{kg/kg}$，形成 $1.0396~\mathrm{kg/kg}$ 的中心—表面差。
++典型时刻水分浓度列于\cref{tab:q1c}。100~s 时表面水分已由 2.55 降至 $2.2475~\mathrm{kg/kg}$，而 $r\le1.0$~cm 区域在四位小数精度下仍保持初值。到 1800~s，表面进一步降至 $1.5104~\mathrm{kg/kg}$，中心仍为 $2.5500~\mathrm{kg/kg}$，形成 $1.0396~\mathrm{kg/kg}$ 的中心—表面差。
+ 
+ \begin{table}[!htbp]
+ \centering
+@@ -107,13 +107,17 @@
+ \end{tabular}
+ \end{table}
+ 
+-表层失水使 $D(C)$ 降低，内部水分迁移较慢，因此表面水分不能代表中心状态。
++\cref{fig:q1}(a)、(b)分别给出温度和水分径向剖面。表层失水使 $D(C)$ 降低，内部水分迁移较慢，因此表面水分不能代表中心状态。
+ 
+ \begin{figure}[!htbp]
+ \centering
+ \includegraphics[width=0.92\textwidth]{q1_preheat_profiles.pdf}
+ \caption{问题一温度与水分径向剖面}\label{fig:q1}
+ \end{figure}
++
++\subsubsection{二维轴对称检验}
++
++为检验端面传递对中截面结果的影响，另建立半长圆柱轴对称有限体积模型。检验坐标取 $z=0$ 为中截面、$z=L/2$ 为端面，轴线与中截面零通量，侧表面和端面均施加热、质 Robin 边界。在 41 个径向、21 个半轴向节点及 10~s 步长下计算至 1800~s，与配对一维结果比较，全时段中截面最大温差为 $7.49\times10^{-7}~{}^\circ\mathrm C$、最大水分差为 $7.35\times10^{-14}~\mathrm{kg/kg}$，支持本问预热阶段的中截面径向简化。
+ 
+ \subsubsection{预热温度的连续时空演化}
+ 
+@@ -124,11 +128,3 @@
+ \includegraphics[width=0.78\textwidth]{q1_temperature_surface.pdf}
+ \caption{问题一预热温度的时空分布及等温线（0--30 min）}\label{fig:q1surface}
+ \end{figure}
+-
+-\subsubsection{二维轴对称检验}
+-
+-为检验端面传递对中截面结果的影响，另建立半长圆柱轴对称有限体积模型。检验坐标取 $z=0$ 为中截面、$z=L/2$ 为端面，轴线与中截面零通量，侧表面和端面均施加热、质 Robin 边界。在 41 个径向、21 个半轴向节点及 10~s 步长下计算至 1800~s，与配对一维结果比较，全时段中截面最大温差为 $7.49\times10^{-7}~{}^\circ\mathrm C$、最大水分差为 $7.35\times10^{-14}~\mathrm{kg/kg}$，支持本问预热阶段的中截面径向简化。
+-
+-\subsubsection{本问结论与分析}
+-
+-预热 1800~s 后中心显著升温，但水分仍接近初值；数值剖面满足中心对称、温度内低外高和水分内高外低的特征。
+
+--- before/contents/sections/s7.tex
++++ contents/sections/s7.tex
+@@ -45,15 +45,15 @@
+ 
+ \subsubsection{精度与计算检查}
+ 
+-采用第五节的双重容差和逐步检查，实际最多 5 次 Picard 迭代即收敛，未触及 30 次上限。全隐式格式减轻稳定性限制，但仍需检验时间精度；长期达标时间的 2~s 与 1~s 对照相对差为 $1.52\times10^{-5}$，完整网格与步长结果见\cref{tab:verify}。
++采用第五节的双重容差和逐步检查，实际最多 5 次 Picard 迭代即收敛，未触及 30 次上限。全隐式格式减轻稳定性限制，离散精度由问题三的长期收敛检验统一评估（第\ref{sec:q3convergence}节）。
+ 
+ \subsection{结果的分析和验证}
+ 
+-\subsubsection{温度结果及其空间演化}
++\subsubsection{温湿分布及内部迁移特征}
+ 
+-典型时刻温度见\cref{tab:q2t}，空间曲线见\cref{fig:q2}(a)。0.5~h 时中心和表面分别为 $32.1911~{}^\circ\mathrm C$、$35.4141~{}^\circ\mathrm C$，仍有 $3.2230~{}^\circ\mathrm C$ 的明显差异；1.5~h 时，温差降为 $1.2928~{}^\circ\mathrm C$；到 3~h 仅剩 $0.1173~{}^\circ\mathrm C$。这表明温度先经历表面快速升温和内部滞后，随后在环境逐渐稳定时趋于径向均匀。
++典型时刻温度见\cref{tab:q2t}。0.5~h 时中心和表面分别为 $32.1911~{}^\circ\mathrm C$、$35.4141~{}^\circ\mathrm C$，仍有 $3.2230~{}^\circ\mathrm C$ 的明显差异；1.5~h 时，温差降为 $1.2928~{}^\circ\mathrm C$；到 3~h 仅剩 $0.1173~{}^\circ\mathrm C$。这表明温度先经历表面快速升温和内部滞后，随后在环境逐渐稳定时趋于径向均匀。
+ 
+-\begin{table}[!htbp]
++\begin{table}[H]
+ \centering
+ \caption{问题二温度分布（$^\circ$C）}\label{tab:q2t}
+ \begin{tabular}{cccccc}
+@@ -70,11 +70,9 @@
+ \end{tabular}
+ \end{table}
+ 
+-\subsubsection{水分结果及控制机制}
++水分结果见\cref{tab:q2c}。0.5~h 时中心仍为 $2.5499~\mathrm{kg/kg}$，表面已降至 $1.6487~\mathrm{kg/kg}$；3~h 时中心和表面分别降至 $1.7662$ 和 $1.0081~\mathrm{kg/kg}$。中心—表面差由 0.5~h 的 0.9012 降至 3~h 的 $0.7581~\mathrm{kg/kg}$，说明水分扰动已经传播到中心，但内部尚未达到近似均匀状态。
+ 
+-水分结果见\cref{tab:q2c}和\cref{fig:q2}(b)。0.5~h 时中心仍为 $2.5499~\mathrm{kg/kg}$，表面已降至 $1.6487~\mathrm{kg/kg}$；3~h 时中心和表面分别降至 $1.7662$ 和 $1.0081~\mathrm{kg/kg}$。中心—表面差由 0.5~h 的 0.9012 降至 3~h 的 $0.7581~\mathrm{kg/kg}$，说明水分扰动已经传播到中心，但内部尚未达到近似均匀状态。
+-
+-\begin{table}[!htbp]
++\begin{table}[H]
+ \centering
+ \caption{问题二水分浓度分布（kg/kg）}\label{tab:q2c}
+ \begin{tabular}{cccccc}
+@@ -91,38 +89,37 @@
+ \end{tabular}
+ \end{table}
+ 
+-3~h 时温度已接近均匀，而中心水分仍为表面的约 1.75 倍，说明温度趋于均匀不能作为烘干结束的依据。
++\cref{fig:q2}(a)、(b)分别给出温度和水分径向剖面。3~h 时温度已接近均匀，而中心水分仍为表面的约 1.75 倍，说明温度趋于均匀不能作为烘干结束的依据。
+ 
+-\begin{figure}[!htbp]
++\begin{figure}[H]
+ \centering
+ \includegraphics[width=0.92\textwidth]{q2_coupled_profiles.pdf}
+ \caption{问题二变物性温度与水分剖面}\label{fig:q2}
+ \end{figure}
+ 
++\newpage
+ \subsubsection{水分迁移与扩散系数的时空证据}
+ 
+ \cref{fig:q2surface}展示前 3~h 水分时空分布，失水影响由表面向中心传播。
+ 
+-\begin{figure}[!htbp]
++\begin{figure}[H]
+ \centering
+ \includegraphics[width=0.96\textwidth]{q2_moisture_surface.pdf}
+ \caption{问题二前 3 h 水分浓度的时空分布及等浓度线}\label{fig:q2surface}
+ \end{figure}
+ 
++\begin{samepage}
+ \cref{fig:q2diffusivity}展示 $D(T,C)$ 的时空变化：升温增强扩散，但表层失水使其扩散系数低于内部。
+ 
+-\begin{figure}[!htbp]
++\begin{figure}[H]
+ \centering
+ \includegraphics[width=0.96\textwidth]{q2_diffusivity_map.pdf}
+ \caption{问题二状态相关扩散系数的时空云图及等值线}\label{fig:q2diffusivity}
+ \end{figure}
++\par\end{samepage}
+ 
+ \begin{samepage}
+ \subsubsection{共享轨迹一致性检验}
+ 
+-问题二、三采用相同物性、网格和边界连续计算。第二问逐秒温湿场按 60~s 抽取后，与第三问全部共同时间层逐元素一致，最大差为零；长期网格与时间步检验见问题三。这一检查确认短期温湿响应与长期达标预测采用相同数值轨迹。
++问题二、三采用相同物性、网格和边界连续计算。第二问逐秒温湿场按 60~s 抽取后，与第三问全部共同时间层逐元素一致，最大差为零。这一检查确认短期温湿响应与长期达标预测采用相同数值轨迹。
+ \par\end{samepage}
+-
+-\subsubsection{本问结论与分析}
+-
+-各时间层最多 5 次 Picard 迭代即收敛，温湿剖面保持平滑。3~h 时中心—表面温差为 $0.1173~{}^\circ\mathrm C$、水分差为 $0.7581~\mathrm{kg/kg}$，后续干燥由内部水分迁移控制。
+
+--- before/contents/sections/s8.tex
++++ contents/sections/s8.tex
+@@ -49,7 +49,7 @@
+ 
+ \subsubsection{达标剖面与输出核验}
+ 
+-以同一权重插值温湿剖面，核对最大水分等于阈值、其余位置均达标。每 60~s 的分布由同一轨迹取值；若首达时刻不是整分钟，则继续推进至其后的首个整分钟。空间与时间加密结果见\cref{tab:verify}。
++以同一权重插值温湿剖面，核对最大水分等于阈值、其余位置均达标。每 60~s 的分布由同一轨迹取值；若首达时刻不是整分钟，则继续推进至其后的首个整分钟。
+ 
+ \subsection{结果的分析和验证}
+ 
+@@ -103,11 +103,12 @@
+ \caption{问题三已达标区域与未达标区域的演化；红线为含水率阈值边界}\label{fig:q3front}
+ \end{figure}
+ 
+-\subsubsection{空间网格与时间步长检验}
++\begin{samepage}
++\subsubsection{空间网格与时间步长检验}\label{sec:q3convergence}
+ 
+ 先固定 10~s 步长，比较 41、81、161、321 个径向节点，再固定 161 个节点将步长由 2~s 减为 1~s，结果见\cref{tab:verify}。空间与时间加密的达标时间相对变化分别为 $1.65\times10^{-5}$、$1.52\times10^{-5}$，均小于预设空间 $10^{-3}$、时间 $10^{-4}$ 的相对容差。这些差值表示离散加密的经验变化量，不是严格误差上界。
+ 
+-\begin{table}[!htbp]
++\begin{table}[H]
+ \centering
+ \caption{问题三网格与步长收敛检验：达标时间（h）}\label{tab:verify}
+ \begin{tabular}{lc}
+@@ -123,6 +124,7 @@
+ \bottomrule
+ \end{tabular}
+ \end{table}
++\par\end{samepage}
+ 
+ \subsubsection{端面影响的二维检验}
+ 
+@@ -130,7 +132,7 @@
+ 
+ 41$\times$21 网格下，中截面最大温差为 $0.001775~{}^\circ\mathrm C$，最大水分差为 $2.41\times10^{-5}~\mathrm{kg/kg}$；端面与中截面最大水分差约为 $0.970~\mathrm{kg/kg}$。因此中部径向模型能够描述控制达标的位置，但不能代替端面局部状态。二维检验步长与 1~s 终算不同，其时长不用于替换主模型答案。
+ 
+-\subsubsection{环境边界灵敏度分析}
++\subsubsection{环境边界灵敏度分析}\label{sec:boundarysensitivity}
+ 
+ 保持前 4~h 实测边界不变，对后续 $T_{e,\infty}=50~{}^\circ\mathrm C$ 施加 $\pm2.5~{}^\circ\mathrm C$ 扰动，对 $C_{e,\infty}=0.05~\mathrm{kg/kg}$ 施加 $\pm5\%$ 扰动。所有方案采用 161 节点、10~s 步长，结果见\cref{tab:sens}。
+ 
+@@ -159,7 +161,3 @@
+ 得到 $K_T=-1.8299$~h/$^\circ$C、$S_C=0.0174$；以开尔文温度定义 $S_T=(T_{e,K}/t_d)K_T$，得 $S_T=-10.2874$。在所设扰动下，升温缩短干燥时间，提高环境水分则延长时间，且温度影响更明显。
+ 
+ 上述温度扰动对应的时长为 53.16--62.31~h，说明常值延拓是预测的重要条件；该范围是给定边界扰动下的情景结果，不是统计置信区间。因而数值离散变化很小，并不意味着实际干燥时长也具有同等确定性。
+-
+-\subsubsection{本问结论与分析}
+-
+-时间步与空间网格加密所得达标时间相对差均小于 $2\times10^{-5}$，全部剖面通过径向单调性检查，支持上述首达时间的数值稳定性。
+
+--- before/contents/sections/s9.tex
++++ contents/sections/s9.tex
+@@ -74,7 +74,7 @@
+ 
+ 在 $\xi_i=1-(1-i/160)^2$ 上采用 161 个表面加密节点，时间步长取 $1$~s。每个时间层先由 PCHIP 更新半径和环境边界，再更新 $R^{-2}$ 内部扩散项及 $R^{-1}$ 表面交换项；随后采用 Picard 迭代依次求解温度场和水分场。全域最大水分浓度首次低于 $0.15$~kg/kg 时停止，并对相邻时间层线性插值定位达标时刻。计算流程见\cref{fig:moving}。
+ 
+-\begin{figure}[!htbp]
++\begin{figure}[!htb]
+ \centering
+ \includegraphics[height=0.72\textheight]{moving_boundary_solver.pdf}
+ \caption{问题四移动边界全隐式迭代流程}\label{fig:moving}
+@@ -105,9 +105,9 @@
+ R(t_d)=1.2000~\mathrm{cm}.
+ \label{eq:q4time}
+ \end{equation}
+-典型时刻的固定物理位置与动态表面水分见\cref{tab:q4}。6~h 时中心水分仍为 1.7188，动态表面已降至 $0.4205~\mathrm{kg/kg}$；24~h 时中心为 0.2851，表面只有 0.0673；达标时中心为 0.1500，表面为 0.0526。
+-
+-\begin{table}[!htbp]
++典型时刻的固定物理位置与动态表面水分见\cref{tab:q4}。
++
++\begin{table}[H]
+ \centering
+ \caption{问题四典型时刻水分浓度（kg/kg）}\label{tab:q4}
+ \begin{tabular}{ccccc}
+@@ -127,6 +127,8 @@
+ \end{tabular}
+ \end{table}
+ 
++6~h 时中心水分仍为 1.7188，动态表面已降至 $0.4205~\mathrm{kg/kg}$；24~h 时中心为 0.2851，表面只有 0.0673；达标时中心为 0.1500，表面为 0.0526。
++
+ 动态表面在 $12.7848$~h 已达到 0.15，而中心需要 $51.0877$~h，两者仍相差 $38.3029$~h。收缩虽然显著缩短了内部扩散距离，却没有消除“外干内湿”的过程特征，因此实际控制仍应关注中心或内部代理量。
+ 
+ \subsubsection{收缩效应的反事实分解}
+@@ -145,7 +147,7 @@
+ \end{equation}
+ 第二组与材料模型相差 $1.5498$~h，表明速度描述影响长期预测。该差异不能解释为独立“坐标移动效应”，也不能据此认定任一方程已被实验验证。固定半径与均匀收缩模型的中心水分轨迹及半径变化见\cref{fig:q4}。
+ 
+-\begin{figure}[!htbp]
++\begin{figure}[H]
+ \centering
+ \includegraphics[width=0.92\textwidth]{q4_shrinkage_comparison.pdf}
+ \caption{问题四收缩与固定半径反事实比较}\label{fig:q4}
+@@ -155,7 +157,7 @@
+ 
+ \cref{fig:q4field}(a)给出收缩边界与水分场；(b)为径向解的轴对称截面重建，各截面共用长度比例和色标。几何收缩先于深部水分达标，重建截面不属于独立二维计算。
+ 
+-\begin{figure}[!htbp]
++\begin{figure}[H]
+ \centering
+ \includegraphics[width=0.96\textwidth]{q4_shrinking_field.pdf}
+ \caption{问题四收缩材料域的水分时空场及等比例截面重建}\label{fig:q4field}
+@@ -167,7 +169,7 @@
+ 
+ \input{contents/sections/q4_comsol_mesh_table.tex}
+ 
+-\begin{figure}[!htbp]
++\begin{figure}[H]
+ \centering
+ \includegraphics[width=0.96\textwidth]{q4_comsol_refined_validation.pdf}
+ \caption{加密 COMSOL 有限元与有限体积解的剖面对照及半径收缩历程}\label{fig:q4comsol}

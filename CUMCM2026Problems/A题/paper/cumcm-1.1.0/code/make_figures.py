@@ -1,3 +1,4 @@
+# File: code/make_figures.py
 # Academic Figure Skill Asset Confirmation (verified against assets/figures/)
 # (a) LineTrend → assets/figures/LineTrend/plot_sweep.py → param inherit
 # (b) LineTrend → assets/figures/LineTrend/plot_sweep.py → param inherit

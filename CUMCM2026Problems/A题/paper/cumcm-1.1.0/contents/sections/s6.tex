@@ -33,55 +33,17 @@ Bi_C=\frac{h_mR_0}{D_0}=3.240.
 
 \subsection{模型的求解}
 
-\subsubsection{径向网格与时间步长的选取}
+采用第五节的统一有限体积方法，以 161 个表面加密节点和 1~s 步长计算 $[0,1800]$~s 的预热过程。控制体、界面导通系数及三对角系统分别按\cref{eq:cv}、\cref{eq:conductance}和\cref{eq:tridiag}构造，中心零通量和表面 Robin 通量按\cref{eq:robindiscrete}处理。
 
-表层水分梯度较大，采用向表面加密的径向网格
-\[
-r_i=R_0\left[1-\left(1-\frac{i}{N}\right)^2\right],\qquad i=0,\ldots,N,
-\]
-其中 $N=160$，共 161 个节点。相邻节点中点作为控制体界面，中心与表面界面分别取 0 和 $R_0$。按单位轴向长度计算，第 $i$ 个控制体体积为 $V_i=\pi(r_{i+1/2}^2-r_{i-1/2}^2)$。中心控制体呈圆盘形，表面控制体覆盖最外侧半个径向网格区间；该划分可直接处理轴对称边界而无需引入负半径虚拟点。
+初始场取\cref{eq:initial}，每步环境量由 PCHIP 在 $t_{n+1}$ 处求值。温度方程为线性，水分扩散系数 $D(C)$ 仍需 Picard 更新；迭代右端的历史状态始终固定为上一时间层。沿用第五节的双重容差及 30 次迭代上限，本问实际最多 4 次迭代即收敛。
 
-取 $\Delta t=1$~s，将预热区间 $[0,1800]$~s 划分为 1800 个时间步。各步环境量由附件一的 PCHIP 插值在 $t_{n+1}$ 处求得。计算网格与题目要求的取值位置分开设置，温湿场求出后线性插值至 $0,0.1,\ldots,2.0$~cm 的 21 个位置。
-
-\subsubsection{全隐式控制体方程与边界处理}
-
-用 $\phi$ 统一表示温度或水分，令温度方程的储热系数 $s=\rho c_p$、传导系数 $a=k$，水分方程对应 $s=1$、$a=D$。相邻节点间的导通系数取
-\[
-G_{i+1/2}=\frac{2\pi r_{i+1/2}}{r_{i+1}-r_i}\frac{a_i+a_{i+1}}{2}.
-\]
-在一个 Picard 迭代内固定物性，内部节点的全隐式方程为
-\begin{equation}
--G_{i-1/2}\phi_{i-1}^{n+1}
-+\left(\frac{s_iV_i}{\Delta t}+G_{i-1/2}+G_{i+1/2}\right)\phi_i^{n+1}
--G_{i+1/2}\phi_{i+1}^{n+1}
-=\frac{s_iV_i}{\Delta t}\phi_i^n.
-\label{eq:q1implicitdetail}
-\end{equation}
-中心内侧通量为零，首行去掉 $G_{-1/2}$；表面末行去掉外侧内部通量，并在主对角元加入 $B=2\pi R_0h$、右端加入 $B\phi_e$。其中温度取 $h=h_T$、$\phi_e=T_e$，水分取 $h=h_m$、$\phi_e=C_e$。所得系统均为三对角矩阵，可用带状线性求解器直接求解。
-
-\subsubsection{逐时推进与迭代终止}
-
-初始全域取 $T_i^0=28~{}^\circ\mathrm C$、$C_i^0=2.55~\mathrm{kg/kg}$。每个时间步依次执行：
-
-
-\textbf{Step 1 初始化：}令 $T^{(0)}=T^n$、$C^{(0)}=C^n$，确定当前步环境温度和水分浓度。
-
-\textbf{Step 2 更新温度：}将常数 $\rho,c_p,k$ 代入\cref{eq:q1implicitdetail}，施加表面对流边界，求解温度场。
-
-\textbf{Step 3 更新水分：}由当前 $C^{(m)}$ 计算 $D(C^{(m)})$，更新界面导通系数，求得 $C^{(m+1)}$。各次迭代的右端历史状态始终取上一时间层 $C^n$。
-
-\textbf{Step 4 收敛判断：}同时满足 $\|T^{(m+1)}-T^{(m)}\|_\infty<10^{-8}~{}^\circ\mathrm C$ 和 $\|C^{(m+1)}-C^{(m)}\|_\infty<10^{-10}~\mathrm{kg/kg}$ 时接受新时间层，否则继续迭代，最多允许 30 次。
-
-\textbf{Step 5 推进与结束：}检查水分范围、径向单调性及通量平衡后进入下一步；达到 1800~s 时结束预热计算。
-
-
-本问温度方程为线性，迭代主要用于水分扩散系数的更新；实际各时间层最多 4 次迭代即满足容差。
+每步检查水分范围、径向单调性和通量平衡，完成 1800 个时间步后结束。温湿场线性插值至 $0,0.1,\ldots,2.0$~cm 的 21 个规定物理位置，计算网格与输出位置分别设置。
 
 \subsection{结果的分析和验证}
 
 \subsubsection{温度场计算结果与分析}
 
-问题一典型时刻的温度结果见\cref{tab:q1t}，完整径向曲线见\cref{fig:q1}(a)。100~s 时热扰动尚集中在表面附近，中心温度只比初值高 $6.4\times10^{-5}~{}^\circ\mathrm C$；随着热量持续输入，600~s 后整个截面开始明显升温。到 1800~s，中心与表面分别达到 $33.5770~{}^\circ\mathrm C$ 和 $36.7865~{}^\circ\mathrm C$。
+问题一典型时刻的温度结果见\cref{tab:q1t}。100~s 时热扰动尚集中在表面附近，中心温度只比初值高 $6.4\times10^{-5}~{}^\circ\mathrm C$；随着热量持续输入，600~s 后整个截面开始明显升温。到 1800~s，中心与表面分别达到 $33.5770~{}^\circ\mathrm C$ 和 $36.7865~{}^\circ\mathrm C$。
 
 \begin{table}[!htbp]
 \centering
@@ -105,7 +67,7 @@ $t$/s & 0 cm & 0.5 cm & 1.0 cm & 1.5 cm & 2.0 cm\\
 
 \subsubsection{水分场计算结果与分析}
 
-典型时刻水分浓度列于\cref{tab:q1c}，其空间曲线见\cref{fig:q1}(b)。100~s 时表面水分已由 2.55 降至 $2.2475~\mathrm{kg/kg}$，而 $r\le1.0$~cm 区域在四位小数精度下仍保持初值。到 1800~s，表面进一步降至 $1.5104~\mathrm{kg/kg}$，中心仍为 $2.5500~\mathrm{kg/kg}$，形成 $1.0396~\mathrm{kg/kg}$ 的中心—表面差。
+典型时刻水分浓度列于\cref{tab:q1c}。100~s 时表面水分已由 2.55 降至 $2.2475~\mathrm{kg/kg}$，而 $r\le1.0$~cm 区域在四位小数精度下仍保持初值。到 1800~s，表面进一步降至 $1.5104~\mathrm{kg/kg}$，中心仍为 $2.5500~\mathrm{kg/kg}$，形成 $1.0396~\mathrm{kg/kg}$ 的中心—表面差。
 
 \begin{table}[!htbp]
 \centering
@@ -145,13 +107,17 @@ $t$/s & $T(R,t)-T(0,t)$/℃ & $C(0,t)-C(R,t)$/（kg/kg）\\
 \end{tabular}
 \end{table}
 
-表层失水使 $D(C)$ 降低，内部水分迁移较慢，因此表面水分不能代表中心状态。
+\cref{fig:q1}(a)、(b)分别给出温度和水分径向剖面。表层失水使 $D(C)$ 降低，内部水分迁移较慢，因此表面水分不能代表中心状态。
 
 \begin{figure}[!htbp]
 \centering
 \includegraphics[width=0.92\textwidth]{q1_preheat_profiles.pdf}
 \caption{问题一温度与水分径向剖面}\label{fig:q1}
 \end{figure}
+
+\subsubsection{二维轴对称检验}
+
+为检验端面传递对中截面结果的影响，另建立半长圆柱轴对称有限体积模型。检验坐标取 $z=0$ 为中截面、$z=L/2$ 为端面，轴线与中截面零通量，侧表面和端面均施加热、质 Robin 边界。在 41 个径向、21 个半轴向节点及 10~s 步长下计算至 1800~s，与配对一维结果比较，全时段中截面最大温差为 $7.49\times10^{-7}~{}^\circ\mathrm C$、最大水分差为 $7.35\times10^{-14}~\mathrm{kg/kg}$，支持本问预热阶段的中截面径向简化。
 
 \subsubsection{预热温度的连续时空演化}
 
@@ -162,11 +128,3 @@ $t$/s & $T(R,t)-T(0,t)$/℃ & $C(0,t)-C(R,t)$/（kg/kg）\\
 \includegraphics[width=0.78\textwidth]{q1_temperature_surface.pdf}
 \caption{问题一预热温度的时空分布及等温线（0--30 min）}\label{fig:q1surface}
 \end{figure}
-
-\subsubsection{二维轴对称检验}
-
-为检验端面传递对中截面结果的影响，另建立半长圆柱轴对称有限体积模型。检验坐标取 $z=0$ 为中截面、$z=L/2$ 为端面，轴线与中截面零通量，侧表面和端面均施加热、质 Robin 边界。在 41 个径向、21 个半轴向节点及 10~s 步长下计算至 1800~s，与配对一维结果比较，全时段中截面最大温差为 $7.49\times10^{-7}~{}^\circ\mathrm C$、最大水分差为 $7.35\times10^{-14}~\mathrm{kg/kg}$，支持本问预热阶段的中截面径向简化。
-
-\subsubsection{本问结论与分析}
-
-预热 1800~s 后中心显著升温，但水分仍接近初值；数值剖面满足中心对称、温度内低外高和水分内高外低的特征。

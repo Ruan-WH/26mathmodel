@@ -74,7 +74,7 @@ D_t=\left.\frac{\partial}{\partial t}\right|_r
 
 在 $\xi_i=1-(1-i/160)^2$ 上采用 161 个表面加密节点，时间步长取 $1$~s。每个时间层先由 PCHIP 更新半径和环境边界，再更新 $R^{-2}$ 内部扩散项及 $R^{-1}$ 表面交换项；随后采用 Picard 迭代依次求解温度场和水分场。全域最大水分浓度首次低于 $0.15$~kg/kg 时停止，并对相邻时间层线性插值定位达标时刻。计算流程见\cref{fig:moving}。
 
-\begin{figure}[!htbp]
+\begin{figure}[!htb]
 \centering
 \includegraphics[height=0.72\textheight]{moving_boundary_solver.pdf}
 \caption{问题四移动边界全隐式迭代流程}\label{fig:moving}
@@ -95,10 +95,6 @@ C(r_j,t)=\mathcal I_\xi[C(\xi,t)]\big|_{\xi=r_j/R(t)},
 
 该规则区分固定物理位置和随材料移动的表面位置，避免将药材外部的环境量误认为材料状态。
 
-\subsubsection{坐标实现的交叉验证}
-
-为检验固定材料坐标实现的可靠性，另在物理坐标中建立移动控制体模型。两种方法使用相同物性、环境、时间步长和首达判据独立计算，所得水分轨迹和达标时间在图示精度下重合。该检验针对坐标离散实现的一致性，详细对照见\cref{tab:q4movingvalidation,fig:q4movingvalidation}。
-
 \subsection{结果的分析和验证}
 
 \subsubsection{达标时间与浓度分布}
@@ -109,9 +105,9 @@ t_d=183915.7175~\mathrm{s}=51.0877~\mathrm{h},\qquad
 R(t_d)=1.2000~\mathrm{cm}.
 \label{eq:q4time}
 \end{equation}
-典型时刻的固定物理位置与动态表面水分见\cref{tab:q4}。6~h 时中心水分仍为 1.7188，动态表面已降至 $0.4205~\mathrm{kg/kg}$；24~h 时中心为 0.2851，表面只有 0.0673；达标时中心为 0.1500，表面为 0.0526。
+典型时刻的固定物理位置与动态表面水分见\cref{tab:q4}。
 
-\begin{table}[!htbp]
+\begin{table}[H]
 \centering
 \caption{问题四典型时刻水分浓度（kg/kg）}\label{tab:q4}
 \begin{tabular}{ccccc}
@@ -131,6 +127,8 @@ $t$/h&0 cm&0.5 cm&1.0 cm&动态表面\\
 \end{tabular}
 \end{table}
 
+6~h 时中心水分仍为 1.7188，动态表面已降至 $0.4205~\mathrm{kg/kg}$；24~h 时中心为 0.2851，表面只有 0.0673；达标时中心为 0.1500，表面为 0.0526。
+
 动态表面在 $12.7848$~h 已达到 0.15，而中心需要 $51.0877$~h，两者仍相差 $38.3029$~h。收缩虽然显著缩短了内部扩散距离，却没有消除“外干内湿”的过程特征，因此实际控制仍应关注中心或内部代理量。
 
 \subsubsection{收缩效应的反事实分解}
@@ -149,7 +147,7 @@ $t$/h&0 cm&0.5 cm&1.0 cm&动态表面\\
 \end{equation}
 第二组与材料模型相差 $1.5498$~h，表明速度描述影响长期预测。该差异不能解释为独立“坐标移动效应”，也不能据此认定任一方程已被实验验证。固定半径与均匀收缩模型的中心水分轨迹及半径变化见\cref{fig:q4}。
 
-\begin{figure}[!htbp]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.92\textwidth]{q4_shrinkage_comparison.pdf}
 \caption{问题四收缩与固定半径反事实比较}\label{fig:q4}
@@ -159,7 +157,7 @@ $t$/h&0 cm&0.5 cm&1.0 cm&动态表面\\
 
 \cref{fig:q4field}(a)给出收缩边界与水分场；(b)为径向解的轴对称截面重建，各截面共用长度比例和色标。几何收缩先于深部水分达标，重建截面不属于独立二维计算。
 
-\begin{figure}[!htbp]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.96\textwidth]{q4_shrinking_field.pdf}
 \caption{问题四收缩材料域的水分时空场及等比例截面重建}\label{fig:q4field}
@@ -171,7 +169,7 @@ COMSOL 采用相同物性、环境与半径历史，并设置轴向均匀、端�
 
 \input{contents/sections/q4_comsol_mesh_table.tex}
 
-\begin{figure}[!htbp]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.96\textwidth]{q4_comsol_refined_validation.pdf}
 \caption{加密 COMSOL 有限元与有限体积解的剖面对照及半径收缩历程}\label{fig:q4comsol}
@@ -206,6 +204,3 @@ COMSOL 采用相同物性、环境与半径历史，并设置轴向均匀、端�
 
 全二维最大水分均位于轴线与中截面交点。41$\times$21 网格下，全过程中截面最大温差为 $0.000108~{}^\circ\mathrm C$，最大水分差为 $1.38\times10^{-6}~\mathrm{kg/kg}$；最大端面与中截面水分差约为 $1.707~\mathrm{kg/kg}$。该检验支持当前端面条件下的中心控制，主模型仍采用 1~s 终算时长。
 
-\subsubsection{本问结论与分析}
-
-时间步与空间网格加密的达标时间相对差均小于 $1.3\times10^{-5}$；结合移动网格与有限元复核，数值结果支持收缩缩短扩散距离、加快整体干燥的判断。

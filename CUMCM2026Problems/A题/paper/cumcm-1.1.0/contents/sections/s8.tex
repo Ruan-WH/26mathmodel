@@ -30,29 +30,11 @@ M(t)=C(0,t),
 
 \subsection{模型的求解}
 
-\subsubsection{长期积分与首达区间搜索}
+\subsubsection{长期积分与阈值事件定位}
 
-沿用问题二的网格、1~s 步长及题面附录3的物性，从初始状态连续推进，不在 3~h 处重新初始化。附件一时间范围内采用 PCHIP 环境值，超过 4~h 后取 $T_e=50~{}^\circ\mathrm C$、$C_e=0.05~\mathrm{kg/kg}$。每步先完成温湿场 Picard 迭代，再计算全部径向节点中的最大水分 $M^{n+1}$。
+沿用问题二的 161 节点网格、1~s 步长及附录3物性，从初态连续推进，不在 3~h 处重新初始化。附件区间内采用 PCHIP 环境值，4~h 后取 $T_e=50~{}^\circ\mathrm C$、$C_e=0.05~\mathrm{kg/kg}$。每步完成 Picard 迭代并检查\cref{eq:monotonecheck}，以全域最大水分搜索首达区间。
 
-
-
-\textbf{Step 1 初始化判据：}令 $t_0=0$、$M^0=2.55$，标记尚未达到阈值。
-
-\textbf{Step 2 推进状态：}按问题二交替求解温度和水分，并检查\cref{eq:monotonecheck}。
-
-\textbf{Step 3 寻找跨越：}若 $M^{n+1}>0.15$，令 $n\leftarrow n+1$ 继续积分；第一次出现 $M^n>0.15$ 且 $M^{n+1}\le0.15$ 时，确定首达区间 $[t_n,t_{n+1}]$。
-
-
-搜索使用全域最大值，中心控制仅在径向单调性检验通过后得到确认。如此可同时满足“全域均达标”与“首次达标”的要求。
-
-
-\subsubsection{阈值事件定位方法}
-
-长期积分使用 $\Delta t=1$~s。设第 $n$ 层尚未达标而第 $n+1$ 层已经达标，即
-\[
-M^n>0.15,\qquad M^{n+1}\le0.15.
-\]
-在这两个相邻时间层间定义
+首次出现 $M^n>0.15$ 且 $M^{n+1}\le0.15$ 时，在相邻时间层间定义
 \begin{equation}
 \lambda=\frac{0.15-M^n}{M^{n+1}-M^n},\qquad
 t_d=t_n+\lambda\Delta t,
@@ -63,16 +45,11 @@ t_d=t_n+\lambda\Delta t,
 C(r,t_d)=C^n(r)+\lambda[C^{n+1}(r)-C^n(r)].
 \label{eq:profileinterp}
 \end{equation}
-由于 $0\le\lambda\le1$，所得时刻位于数值解跨越阈值的 1~s 区间内。时间精度由积分步长和事件插值决定，题目要求的 60~s 取值间隔只用于结果展示。
+由于 $0\le\lambda\le1$，所得时刻位于跨越阈值的 1~s 区间内。时间精度由积分步长和事件插值决定，60~s 取值间隔只用于结果展示。
 
+\subsubsection{达标剖面与输出核验}
 
-
-
-\subsubsection{达标剖面与数值精度核验}
-
-确定 $t_d$ 后，使用同一插值权重计算温度、水分剖面，核对最大水分等于阈值且其余位置不超过阈值。每 60~s 的径向分布由同一连续轨迹取值；若首达时间不是整分钟，则继续推进到其后的首个整分钟，以覆盖题目要求的时间序列。
-
-终算采用 161 节点、1~s 步长，网格与时间步加密对照见\cref{tab:verify}。
+以同一权重插值温湿剖面，核对最大水分等于阈值、其余位置均达标。每 60~s 的分布由同一轨迹取值；若首达时刻不是整分钟，则继续推进至其后的首个整分钟。
 
 \subsection{结果的分析和验证}
 
@@ -126,11 +103,12 @@ $t$/h&0 cm&0.5 cm&1.0 cm&1.5 cm&2.0 cm\\
 \caption{问题三已达标区域与未达标区域的演化；红线为含水率阈值边界}\label{fig:q3front}
 \end{figure}
 
-\subsubsection{空间网格与时间步长检验}
+\begin{samepage}
+\subsubsection{空间网格与时间步长检验}\label{sec:q3convergence}
 
 先固定 10~s 步长，比较 41、81、161、321 个径向节点，再固定 161 个节点将步长由 2~s 减为 1~s，结果见\cref{tab:verify}。空间与时间加密的达标时间相对变化分别为 $1.65\times10^{-5}$、$1.52\times10^{-5}$，均小于预设空间 $10^{-3}$、时间 $10^{-4}$ 的相对容差。这些差值表示离散加密的经验变化量，不是严格误差上界。
 
-\begin{table}[!htbp]
+\begin{table}[H]
 \centering
 \caption{问题三网格与步长收敛检验：达标时间（h）}\label{tab:verify}
 \begin{tabular}{lc}
@@ -146,6 +124,7 @@ $t$/h&0 cm&0.5 cm&1.0 cm&1.5 cm&2.0 cm\\
 \bottomrule
 \end{tabular}
 \end{table}
+\par\end{samepage}
 
 \subsubsection{端面影响的二维检验}
 
@@ -153,7 +132,7 @@ $t$/h&0 cm&0.5 cm&1.0 cm&1.5 cm&2.0 cm\\
 
 41$\times$21 网格下，中截面最大温差为 $0.001775~{}^\circ\mathrm C$，最大水分差为 $2.41\times10^{-5}~\mathrm{kg/kg}$；端面与中截面最大水分差约为 $0.970~\mathrm{kg/kg}$。因此中部径向模型能够描述控制达标的位置，但不能代替端面局部状态。二维检验步长与 1~s 终算不同，其时长不用于替换主模型答案。
 
-\subsubsection{环境边界灵敏度分析}
+\subsubsection{环境边界灵敏度分析}\label{sec:boundarysensitivity}
 
 保持前 4~h 实测边界不变，对后续 $T_{e,\infty}=50~{}^\circ\mathrm C$ 施加 $\pm2.5~{}^\circ\mathrm C$ 扰动，对 $C_{e,\infty}=0.05~\mathrm{kg/kg}$ 施加 $\pm5\%$ 扰动。所有方案采用 161 节点、10~s 步长，结果见\cref{tab:sens}。
 
@@ -182,7 +161,3 @@ S_C=\frac{t_d(1.05C_e)-t_d(0.95C_e)}{0.10t_d(C_e)}.
 得到 $K_T=-1.8299$~h/$^\circ$C、$S_C=0.0174$；以开尔文温度定义 $S_T=(T_{e,K}/t_d)K_T$，得 $S_T=-10.2874$。在所设扰动下，升温缩短干燥时间，提高环境水分则延长时间，且温度影响更明显。
 
 上述温度扰动对应的时长为 53.16--62.31~h，说明常值延拓是预测的重要条件；该范围是给定边界扰动下的情景结果，不是统计置信区间。因而数值离散变化很小，并不意味着实际干燥时长也具有同等确定性。
-
-\subsubsection{本问结论与分析}
-
-时间步与空间网格加密所得达标时间相对差均小于 $2\times10^{-5}$，全部剖面通过径向单调性检查，支持上述首达时间的数值稳定性。

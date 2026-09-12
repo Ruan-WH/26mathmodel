@@ -1,0 +1,288 @@
+{
+  "total_pages": 50,
+  "pre_appendix_pages": 30,
+  "appendix_A_page": 31,
+  "floats": [
+    {
+      "label": "fig:roadmap",
+      "number": "图1",
+      "caption_page": 3,
+      "first_mention_page": 3,
+      "mention_pages": [
+        3
+      ]
+    },
+    {
+      "label": "tab:symbols",
+      "number": "表1",
+      "caption_page": 5,
+      "first_mention_page": 5,
+      "mention_pages": [
+        5
+      ]
+    },
+    {
+      "label": "fig:geometry",
+      "number": "图2",
+      "caption_page": 6,
+      "first_mention_page": 5,
+      "mention_pages": [
+        5,
+        6
+      ]
+    },
+    {
+      "label": "tab:data",
+      "number": "表2",
+      "caption_page": 6,
+      "first_mention_page": 6,
+      "mention_pages": [
+        6
+      ]
+    },
+    {
+      "label": "tab:q1t",
+      "number": "表3",
+      "caption_page": 11,
+      "first_mention_page": 11,
+      "mention_pages": [
+        11
+      ]
+    },
+    {
+      "label": "tab:q1c",
+      "number": "表4",
+      "caption_page": 11,
+      "first_mention_page": 11,
+      "mention_pages": [
+        11
+      ]
+    },
+    {
+      "label": "tab:q1gap",
+      "number": "表5",
+      "caption_page": 12,
+      "first_mention_page": 12,
+      "mention_pages": [
+        12
+      ]
+    },
+    {
+      "label": "fig:q1",
+      "number": "图3",
+      "caption_page": 12,
+      "first_mention_page": 12,
+      "mention_pages": [
+        12
+      ]
+    },
+    {
+      "label": "fig:q1surface",
+      "number": "图4",
+      "caption_page": 13,
+      "first_mention_page": 12,
+      "mention_pages": [
+        12,
+        13
+      ]
+    },
+    {
+      "label": "tab:q2prop",
+      "number": "表6",
+      "caption_page": 13,
+      "first_mention_page": 13,
+      "mention_pages": [
+        13
+      ]
+    },
+    {
+      "label": "tab:q2t",
+      "number": "表7",
+      "caption_page": 15,
+      "first_mention_page": 14,
+      "mention_pages": [
+        14,
+        15
+      ]
+    },
+    {
+      "label": "tab:q2c",
+      "number": "表8",
+      "caption_page": 15,
+      "first_mention_page": 15,
+      "mention_pages": [
+        15
+      ]
+    },
+    {
+      "label": "fig:q2",
+      "number": "图5",
+      "caption_page": 15,
+      "first_mention_page": 15,
+      "mention_pages": [
+        15
+      ]
+    },
+    {
+      "label": "fig:q2surface",
+      "number": "图6",
+      "caption_page": 16,
+      "first_mention_page": 16,
+      "mention_pages": [
+        16
+      ]
+    },
+    {
+      "label": "fig:q2diffusivity",
+      "number": "图7",
+      "caption_page": 16,
+      "first_mention_page": 16,
+      "mention_pages": [
+        16
+      ]
+    },
+    {
+      "label": "tab:q3",
+      "number": "表9",
+      "caption_page": 18,
+      "first_mention_page": 18,
+      "mention_pages": [
+        18
+      ]
+    },
+    {
+      "label": "fig:q3",
+      "number": "图8",
+      "caption_page": 19,
+      "first_mention_page": 18,
+      "mention_pages": [
+        18,
+        19
+      ]
+    },
+    {
+      "label": "fig:q3front",
+      "number": "图9",
+      "caption_page": 19,
+      "first_mention_page": 19,
+      "mention_pages": [
+        19
+      ]
+    },
+    {
+      "label": "tab:verify",
+      "number": "表10",
+      "caption_page": 20,
+      "first_mention_page": 20,
+      "mention_pages": [
+        20
+      ]
+    },
+    {
+      "label": "tab:sens",
+      "number": "表11",
+      "caption_page": 21,
+      "first_mention_page": 20,
+      "mention_pages": [
+        20,
+        21
+      ]
+    },
+    {
+      "label": "tab:q4radius",
+      "number": "表12",
+      "caption_page": 21,
+      "first_mention_page": 21,
+      "mention_pages": [
+        21
+      ]
+    },
+    {
+      "label": "fig:moving",
+      "number": "图10",
+      "caption_page": 23,
+      "first_mention_page": 23,
+      "mention_pages": [
+        23
+      ]
+    },
+    {
+      "label": "tab:q4",
+      "number": "表13",
+      "caption_page": 24,
+      "first_mention_page": 24,
+      "mention_pages": [
+        24
+      ]
+    },
+    {
+      "label": "fig:q4",
+      "number": "图11",
+      "caption_page": 25,
+      "first_mention_page": 25,
+      "mention_pages": [
+        25
+      ]
+    },
+    {
+      "label": "fig:q4field",
+      "number": "图12",
+      "caption_page": 26,
+      "first_mention_page": 25,
+      "mention_pages": [
+        25,
+        26
+      ]
+    },
+    {
+      "label": "tab:q4comsolmesh",
+      "number": "表14",
+      "caption_page": 27,
+      "first_mention_page": 26,
+      "mention_pages": [
+        26,
+        27
+      ]
+    },
+    {
+      "label": "fig:q4comsol",
+      "number": "图13",
+      "caption_page": 27,
+      "first_mention_page": 26,
+      "mention_pages": [
+        26,
+        27
+      ]
+    },
+    {
+      "label": "tab:q4movingvalidation",
+      "number": "表15",
+      "caption_page": 28,
+      "first_mention_page": 27,
+      "mention_pages": [
+        27,
+        28
+      ]
+    },
+    {
+      "label": "fig:q4movingvalidation",
+      "number": "图14",
+      "caption_page": 28,
+      "first_mention_page": 27,
+      "mention_pages": [
+        27,
+        28
+      ]
+    },
+    {
+      "label": "tab:q4verify",
+      "number": "表16",
+      "caption_page": 29,
+      "first_mention_page": 28,
+      "mention_pages": [
+        28,
+        29
+      ]
+    }
+  ]
+}

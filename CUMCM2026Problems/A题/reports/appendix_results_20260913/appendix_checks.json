@@ -1,0 +1,422 @@
+{
+  "status": "PASS",
+  "pdf_pages": 78,
+  "body_pages": 30,
+  "appendix_A_page": 31,
+  "appendix_B_page": 32,
+  "source_file_count": 7,
+  "original_source_lines": 2053,
+  "source_checks": [
+    {
+      "file": "code/solve_drying.py",
+      "source_lines": 858,
+      "filename_comment_correct": true,
+      "full_source_identical": true,
+      "python_syntax_pass": true,
+      "pdf_first_page": 32,
+      "pdf_last_page": 50
+    },
+    {
+      "file": "code/run_q4_counterfactual.py",
+      "source_lines": 47,
+      "filename_comment_correct": true,
+      "full_source_identical": true,
+      "python_syntax_pass": true,
+      "pdf_first_page": 51,
+      "pdf_last_page": 52
+    },
+    {
+      "file": "code/make_figures.py",
+      "source_lines": 415,
+      "filename_comment_correct": true,
+      "full_source_identical": true,
+      "python_syntax_pass": true,
+      "pdf_first_page": 52,
+      "pdf_last_page": 61
+    },
+    {
+      "file": "code/make_additional_figures.py",
+      "source_lines": 283,
+      "filename_comment_correct": true,
+      "full_source_identical": true,
+      "python_syntax_pass": true,
+      "pdf_first_page": 61,
+      "pdf_last_page": 67
+    },
+    {
+      "file": "code/plot_moving_mesh_validation.py",
+      "source_lines": 85,
+      "filename_comment_correct": true,
+      "full_source_identical": true,
+      "python_syntax_pass": true,
+      "pdf_first_page": 67,
+      "pdf_last_page": 69
+    },
+    {
+      "file": "code/make_geometry_diagram.py",
+      "source_lines": 107,
+      "filename_comment_correct": true,
+      "full_source_identical": true,
+      "python_syntax_pass": true,
+      "pdf_first_page": 69,
+      "pdf_last_page": 72
+    },
+    {
+      "file": "comsol_q4/plot_q4_physical.py",
+      "source_lines": 258,
+      "filename_comment_correct": true,
+      "full_source_identical": true,
+      "python_syntax_pass": true,
+      "pdf_first_page": 72,
+      "pdf_last_page": 78
+    }
+  ],
+  "body_pixel_checks": [
+    {
+      "page": 1,
+      "render_sha256": "7c2e9a2eacf28a38468d87a60793722d4bc12a7147b17c46072ec63c76fd274c",
+      "unchanged": true
+    },
+    {
+      "page": 2,
+      "render_sha256": "df1051479281a1ea467749300f299bf138c2fa813faf6e5d64797a33002a2410",
+      "unchanged": true
+    },
+    {
+      "page": 3,
+      "render_sha256": "59b723cf9194109eb40cda262963360f0523d1cc12a0fcfbd7b704f6df099f14",
+      "unchanged": true
+    },
+    {
+      "page": 4,
+      "render_sha256": "06c56724eb7a71d2e924cd921c7968998a61cfed50ca2c64bbdf362351dafd0f",
+      "unchanged": true
+    },
+    {
+      "page": 5,
+      "render_sha256": "81ef3fe329dcaab7c5614698fd910c4756c765a93af381ec4023351a5d5a89df",
+      "unchanged": true
+    },
+    {
+      "page": 6,
+      "render_sha256": "0ee76448cb2ccd8c489b8be8c8aa2609916ed5e1446a0b5700ca4a58df07b014",
+      "unchanged": true
+    },
+    {
+      "page": 7,
+      "render_sha256": "7e987a8673b989d1ae8f26e8cdf0e12b59c6e2e87ee1a9edc79b4fe2a9d5a4b0",
+      "unchanged": true
+    },
+    {
+      "page": 8,
+      "render_sha256": "de9799a9947cdd80412021fcb9dfaecbaa4f9ad9460a98adb973a5a30470f7f1",
+      "unchanged": true
+    },
+    {
+      "page": 9,
+      "render_sha256": "f6e59a9881691262c2a39886be7e99df7e14c07dd2e2c0e53b8c63609e979815",
+      "unchanged": true
+    },
+    {
+      "page": 10,
+      "render_sha256": "83a022c0462fbed8413ee0caea6db0ffa63a31f480b032e24cdd3a31b216f8b1",
+      "unchanged": true
+    },
+    {
+      "page": 11,
+      "render_sha256": "5575353d2e784935c2083bd24486948e1c64051d5167913e32c4ffbea3a31a88",
+      "unchanged": true
+    },
+    {
+      "page": 12,
+      "render_sha256": "ec30063b3506d07a79d78505781dd73073f28304c010b72cf5a02c3db9832a77",
+      "unchanged": true
+    },
+    {
+      "page": 13,
+      "render_sha256": "503931826fa544201c3bf6d4b80ac01ef88d86916aaff79b0b41fe966b925e19",
+      "unchanged": true
+    },
+    {
+      "page": 14,
+      "render_sha256": "1fc750d69deb71076245df1e1f8ef90f3259bf4071a085474054b3f27a540868",
+      "unchanged": true
+    },
+    {
+      "page": 15,
+      "render_sha256": "ae991afc23b2ee6395a0cfc0e0a33ed2b5579d352538820261bbeeb800bdc33c",
+      "unchanged": true
+    },
+    {
+      "page": 16,
+      "render_sha256": "5b0aff92b7ddd15d86f45541cd34a612dc83b098ad02db42f7042403af1c759a",
+      "unchanged": true
+    },
+    {
+      "page": 17,
+      "render_sha256": "8d904d70cb7158212640f025bc32b81678d2ba3f4746700dde5938bd61abd830",
+      "unchanged": true
+    },
+    {
+      "page": 18,
+      "render_sha256": "b7bbf4e66ecb17bea786b486349f6bafa809318bec7031f32868da89af61307c",
+      "unchanged": true
+    },
+    {
+      "page": 19,
+      "render_sha256": "74c37afec5efc964ec77d93f84a0e9b4d4e1c471ff07da094f64b6be9669054f",
+      "unchanged": true
+    },
+    {
+      "page": 20,
+      "render_sha256": "b33dfa146df34d6f3b24eb52cce32ceb63648a643d2130e44264cbf9dc8f5b8c",
+      "unchanged": true
+    },
+    {
+      "page": 21,
+      "render_sha256": "6efab17e3880170c9d4bbf66544c5e076ab328a86b943269e2b6e36d66f951bb",
+      "unchanged": true
+    },
+    {
+      "page": 22,
+      "render_sha256": "b48a2e70620ff31b3cae1c8885ddf3c02e3dcfa255641ea03b578a674767528e",
+      "unchanged": true
+    },
+    {
+      "page": 23,
+      "render_sha256": "2767bb5bc74eea1cf2a801c3c793795285a5f23261858b7c7f92a87728ab81ab",
+      "unchanged": true
+    },
+    {
+      "page": 24,
+      "render_sha256": "6ca9f2660e68f117620003a1d0611347e7db295b9d83579652c625e7d390b03a",
+      "unchanged": true
+    },
+    {
+      "page": 25,
+      "render_sha256": "e19901db62b00c681851f5f8a2214f74b6a9a8cb5a9c7f7f4bc655b872ad6d6b",
+      "unchanged": true
+    },
+    {
+      "page": 26,
+      "render_sha256": "45d676a80dd1fa6b17ea4ccc38eae1a7de078374c10509cec3116cdd986d3521",
+      "unchanged": true
+    },
+    {
+      "page": 27,
+      "render_sha256": "4481754c2c66c2fa990fe29652365801c8609fd909db835f4a367fa38dfbdc67",
+      "unchanged": true
+    },
+    {
+      "page": 28,
+      "render_sha256": "1e256c3cdff563ab3ad2ca6647dcd3f92b056019f7604d3954712411b222ff75",
+      "unchanged": true
+    },
+    {
+      "page": 29,
+      "render_sha256": "1e2d3939a5c9cf001106634a456305766e6cb4d4bfe84c90a05f9652dc3beb36",
+      "unchanged": true
+    },
+    {
+      "page": 30,
+      "render_sha256": "97dec75a7048a790fee3f8b4bef7d72b61035e382d8979ffefee6f40a7c710ae",
+      "unchanged": true
+    }
+  ],
+  "appendix_A_data_centering_max_abs_error_pt": 0.0007387177422231161,
+  "appendix_A_centering_details": [
+    {
+      "text": "code/solve_drying.py",
+      "column": 1,
+      "center_pt": 190.61001586914062,
+      "expected_center_pt": 190.609788320832,
+      "error_pt": 0.00022754830862936615
+    },
+    {
+      "text": "四问热湿迁移求解、首达判定及收缩模型",
+      "column": 2,
+      "center_pt": 411.468994140625,
+      "expected_center_pt": 411.4682744963691,
+      "error_pt": 0.0007196442559234129
+    },
+    {
+      "text": "code/run_q4_counterfactual.py",
+      "column": 1,
+      "center_pt": 190.6105194091797,
+      "expected_center_pt": 190.609788320832,
+      "error_pt": 0.0007310883476918661
+    },
+    {
+      "text": "同物性固定半径反事实计算",
+      "column": 2,
+      "center_pt": 411.468994140625,
+      "expected_center_pt": 411.4682744963691,
+      "error_pt": 0.0007196442559234129
+    },
+    {
+      "text": "code/make_figures.py",
+      "column": 1,
+      "center_pt": 190.61001586914062,
+      "expected_center_pt": 190.609788320832,
+      "error_pt": 0.00022754830862936615
+    },
+    {
+      "text": "四问主要数值结果图绘制",
+      "column": 2,
+      "center_pt": 411.468994140625,
+      "expected_center_pt": 411.4682744963691,
+      "error_pt": 0.0007196442559234129
+    },
+    {
+      "text": "code/make_additional_figures.py",
+      "column": 1,
+      "center_pt": 190.61052703857422,
+      "expected_center_pt": 190.609788320832,
+      "error_pt": 0.0007387177422231161
+    },
+    {
+      "text": "时空场、扩散系数和收缩截面图绘制",
+      "column": 2,
+      "center_pt": 411.468994140625,
+      "expected_center_pt": 411.4682744963691,
+      "error_pt": 0.0007196442559234129
+    },
+    {
+      "text": "code/plot_moving_mesh_validation.py",
+      "column": 1,
+      "center_pt": 190.61052703857422,
+      "expected_center_pt": 190.609788320832,
+      "error_pt": 0.0007387177422231161
+    },
+    {
+      "text": "移动网格与固定域结果对照图绘制",
+      "column": 2,
+      "center_pt": 411.468994140625,
+      "expected_center_pt": 411.4682744963691,
+      "error_pt": 0.0007196442559234129
+    },
+    {
+      "text": "code/make_geometry_diagram.py",
+      "column": 1,
+      "center_pt": 190.6105194091797,
+      "expected_center_pt": 190.609788320832,
+      "error_pt": 0.0007310883476918661
+    },
+    {
+      "text": "药材几何与坐标示意图绘制",
+      "column": 2,
+      "center_pt": 411.468994140625,
+      "expected_center_pt": 411.4682744963691,
+      "error_pt": 0.0007196442559234129
+    },
+    {
+      "text": "comsol_q4/plot_q4_physical.py",
+      "column": 1,
+      "center_pt": 190.6105194091797,
+      "expected_center_pt": 190.609788320832,
+      "error_pt": 0.0007310883476918661
+    },
+    {
+      "text": "有限元物理剖面和水分场绘制",
+      "column": 2,
+      "center_pt": 411.468994140625,
+      "expected_center_pt": 411.4682744963691,
+      "error_pt": 0.0007196442559234129
+    },
+    {
+      "text": "results/result1.xlsx",
+      "column": 1,
+      "center_pt": 190.61001586914062,
+      "expected_center_pt": 190.609788320832,
+      "error_pt": 0.00022754830862936615
+    },
+    {
+      "text": "问题一前1800 秒，每1 秒、0.1 厘米的温度和水分",
+      "column": 2,
+      "center_pt": 411.468994140625,
+      "expected_center_pt": 411.4682744963691,
+      "error_pt": 0.0007196442559234129
+    },
+    {
+      "text": "结果",
+      "column": 2,
+      "center_pt": 411.468994140625,
+      "expected_center_pt": 411.4682744963691,
+      "error_pt": 0.0007196442559234129
+    },
+    {
+      "text": "results/result2.xlsx",
+      "column": 1,
+      "center_pt": 190.61000061035156,
+      "expected_center_pt": 190.609788320832,
+      "error_pt": 0.00021228951956686615
+    },
+    {
+      "text": "问题二前3 小时，每1 秒、0.1 厘米的温度和水分结",
+      "column": 2,
+      "center_pt": 411.468994140625,
+      "expected_center_pt": 411.4682744963691,
+      "error_pt": 0.0007196442559234129
+    },
+    {
+      "text": "果",
+      "column": 2,
+      "center_pt": 411.468994140625,
+      "expected_center_pt": 411.4682744963691,
+      "error_pt": 0.0007196442559234129
+    },
+    {
+      "text": "results/result3.xlsx",
+      "column": 1,
+      "center_pt": 190.61000061035156,
+      "expected_center_pt": 190.609788320832,
+      "error_pt": 0.00021228951956686615
+    },
+    {
+      "text": "问题三至达标，每60 秒、0.1 厘米的水分结果",
+      "column": 2,
+      "center_pt": 411.468994140625,
+      "expected_center_pt": 411.4682744963691,
+      "error_pt": 0.0007196442559234129
+    },
+    {
+      "text": "results/result4.xlsx",
+      "column": 1,
+      "center_pt": 190.61000061035156,
+      "expected_center_pt": 190.609788320832,
+      "error_pt": 0.00021228951956686615
+    },
+    {
+      "text": "问题四至达标，每60 秒的固定物理位置及动态表面",
+      "column": 2,
+      "center_pt": 411.468994140625,
+      "expected_center_pt": 411.4682744963691,
+      "error_pt": 0.0007196442559234129
+    },
+    {
+      "text": "水分",
+      "column": 2,
+      "center_pt": 411.468994140625,
+      "expected_center_pt": 411.4682744963691,
+      "error_pt": 0.0007196442559234129
+    },
+    {
+      "text": "AI 工具使用详情.pdf",
+      "column": 1,
+      "center_pt": 190.6099853515625,
+      "expected_center_pt": 190.609788320832,
+      "error_pt": 0.00019703073050436615
+    },
+    {
+      "text": "AI 工具名称、使用环节及人工核验说明",
+      "column": 2,
+      "center_pt": 411.4684753417969,
+      "expected_center_pt": 411.4682744963691,
+      "error_pt": 0.00020084542779841286
+    }
+  ],
+  "appendix_A_vertical_alignment": "m columns; visually reviewed",
+  "no_latex_errors_missing_glyphs_or_overfull_boxes": true,
+  "all_appendix_pages_rendered": true,
+  "pdf_sha256": "4574a52dfcc63adfcc3f85d9195c4c9200e9b3eb8e3dbdeb462f6720df1d24cf"
+}

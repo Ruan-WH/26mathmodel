@@ -1,0 +1,842 @@
+{
+  "status": "completed",
+  "git_entries_before": 8074,
+  "dependency_junction_entries_removed": 7796,
+  "dependency_junction_target_preserved": true,
+  "files_deleted_count": 164,
+  "bytes_deleted": 71118593,
+  "deleted_files": [
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/artifact/before_result2.png",
+      "bytes": 19292,
+      "sha256": "f92e41039cc4300b08a4a3783b5da4ff79b866a4a7ff4170a606bed3336ff86c"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/artifact/check_runtime.mjs",
+      "bytes": 538,
+      "sha256": "5e04aa6beffb4532f65505798f5d0976739498eb9a417a4081687dbd2c4f2d06"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/compile_final1.txt",
+      "bytes": 148200,
+      "sha256": "2a3afffd124ac44f123e763e29b1b237b28183503a2e7b7d5ac3c589f1c8a795"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/compile_final2.txt",
+      "bytes": 147658,
+      "sha256": "bbc85822ac46a666f1a64386cad44d772b1e87fb6a2eaa2434abd018d5b20117"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/compile_final3.txt",
+      "bytes": 147798,
+      "sha256": "e9a3ae0c29a6ac8f837af59a49f96ea18c5cf02f84a6402f9d1cbda31d532532"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/compile_final4.txt",
+      "bytes": 147630,
+      "sha256": "64ccd6e16bdca213882933da4e1d28bf91a50e38d86758b6eacf7807d1576e79"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/compile_pass1.txt",
+      "bytes": 201092,
+      "sha256": "2867a15cc982271beb8e9bd6d4ef21612c9098bc75e63085894d8c59b662bbd6"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/compile_pass2.txt",
+      "bytes": 200550,
+      "sha256": "b632e70f18756cbac516fa033bbf7afe7d5b84f30dbbf505772919bb556bd289"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/compile_pass3.txt",
+      "bytes": 177050,
+      "sha256": "2c29e5042b690ca8441c142f07b329de45f56ce03ee6d430ad53201072d45ce8"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/compile_pass4.txt",
+      "bytes": 176882,
+      "sha256": "8450d04fc2c88bd056bcc0a41f88abe76fb28b2a40376b3d12c6592a31dce0e1"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/compile_pass5.txt",
+      "bytes": 176882,
+      "sha256": "8450d04fc2c88bd056bcc0a41f88abe76fb28b2a40376b3d12c6592a31dce0e1"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/compile_pass6.txt",
+      "bytes": 167858,
+      "sha256": "61090248c1e2146a760ed57e75f710a2a98e3efb866449a154c737abb95ef69e"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/contact_031.png",
+      "bytes": 492940,
+      "sha256": "990b9c941adc908313654699d7e6878d95428479239d327a410bffa33b0e2b1f"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/contact_043.png",
+      "bytes": 518596,
+      "sha256": "6c4e741147e1c4213ad00950d09fb7f831eb24a27bcfb61d34b438207bec6f74"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/contact_055.png",
+      "bytes": 533857,
+      "sha256": "acb58f3741c1085b725a7a72f3fd8af70a1464752f445f70a1b5ba2e95d6ecc8"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/contact_067.png",
+      "bytes": 633233,
+      "sha256": "a4cc54ada8046802094e584649a60dcdf04261b2eb639ca073306a511133485b"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_031.png",
+      "bytes": 97228,
+      "sha256": "ed353eaa9d1459c1a4e382f805d6ee9e434a3f048f815da73ec1ab4ca5d5d29a"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_032.png",
+      "bytes": 99613,
+      "sha256": "1a72f006a0d7a05bc90ae9d41c7c4c12708132557b5beacf9c800ba5c40771bb"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_033.png",
+      "bytes": 96854,
+      "sha256": "a4e556468b5652324d95de9a5578caade3c3c87c493d81a7c37f85cb1994cf2f"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_034.png",
+      "bytes": 114512,
+      "sha256": "e97bb9529fe3365ccca7953e35449f6968226add451471197fe509878e1e9dce"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_035.png",
+      "bytes": 105027,
+      "sha256": "5ae75a546c0c7d68072e5d913b4c165db424ad1797bc167f289c5fb2a4423c40"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_036.png",
+      "bytes": 101569,
+      "sha256": "4a7b41daa450cddbb5da9d741b10b5f6778d63f1ac46fef494d2e40fed7e088d"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_037.png",
+      "bytes": 111175,
+      "sha256": "aabe72c4070d795bde88f64c6f5c409c742d9c6bf53ca178f9e73027f6645b1b"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_038.png",
+      "bytes": 141844,
+      "sha256": "fdb53edef63026881bf8465b50592f075bc1ed9005e837ad1090546ab745b634"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_039.png",
+      "bytes": 112745,
+      "sha256": "a6fef281592720cd7bbeba6590834bd7ccea9ca09a9bf19f39bf3b41c70bbafa"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_040.png",
+      "bytes": 100796,
+      "sha256": "58810fd95c457ee8fea4e0de53b412db69c18656633536230bcbb997459f6397"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_041.png",
+      "bytes": 124244,
+      "sha256": "2a55d7bb2faabb3af023c577c4e307ddb8e09b9d59c07fcb988fd7bc28e149b4"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_042.png",
+      "bytes": 98624,
+      "sha256": "d37e05930a56f4b7db1f1127edff48695e6a3b6b22bdca834ef38cedd911f127"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_043.png",
+      "bytes": 118596,
+      "sha256": "e1c41d7517a53e4d1eef95d4538ad3c352c0dce695eadbbcccff45b68fbde507"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_044.png",
+      "bytes": 116897,
+      "sha256": "f0d86f50ca816d0a19389b46b0c716e5a04a960640905d2024a80c7f0db62b78"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_045.png",
+      "bytes": 105181,
+      "sha256": "5f69f660e8bd5cf0d49d8a24a355449a6ce4d3af40db2cd01d79aa4beb9fb477"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_046.png",
+      "bytes": 122434,
+      "sha256": "ddf5c3615a1c0579330a0db0632464f16c35be8a5fa3455e2a2b3a8c9b2558d1"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_047.png",
+      "bytes": 113115,
+      "sha256": "2d82986f1e07b9289ecde93e48e074a182b81dc35ae672fdf8ba442c0bae1ca2"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_048.png",
+      "bytes": 128759,
+      "sha256": "624899dd3772e77671c590ca10c54118be3ceb3eefa39d8df901c9ce2e25f80f"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_049.png",
+      "bytes": 99528,
+      "sha256": "e9d9976d512c7e0b68533ee2432a5896b234ee356c8a6bd6813b70c86d13b2c6"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_050.png",
+      "bytes": 132610,
+      "sha256": "f3c6fd69cf9faf9393d3da5ca9cbdf227ed71687f08540ed86b394aa02c3514a"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_051.png",
+      "bytes": 94396,
+      "sha256": "d5fc127d533f7099e0d8260346c4b72f536aec05aeaec937f2ac71f1efee726c"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_052.png",
+      "bytes": 107599,
+      "sha256": "1e2e5693c301c80bd10208b5588b6ef30419a9107eb751da17b4f7a313785292"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_053.png",
+      "bytes": 108375,
+      "sha256": "4be97ebe5f58eda2c1b23ca45ff404946aca336207fad14f09f528d33720a819"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_054.png",
+      "bytes": 98544,
+      "sha256": "21807cd0c7dc3c1f04a6a3f4b726cfcaf12b335047deedae37b61ff3b7ddaafa"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_055.png",
+      "bytes": 88408,
+      "sha256": "97752b9dd7fba0b74c875d8608d232aa5cd6f58485a98d5f72a11a3bd87f862c"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_056.png",
+      "bytes": 89024,
+      "sha256": "306ffffeafef56f02658babbf060de7422f61a16a37ad1d1fe550af19744ceb7"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_057.png",
+      "bytes": 92860,
+      "sha256": "a2deacd6129b3d391c3b0be1578c23b2edea6209cc919313d14789c75f193c72"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_058.png",
+      "bytes": 105021,
+      "sha256": "8789c312aedcda9f3dd352e502d673aaba1f54fa11a21438a129b623b78756c2"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_059.png",
+      "bytes": 95810,
+      "sha256": "b4378ed80c5093b46527034654ccf963d7ccfb3874b629d3ff3425e3204830c1"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_060.png",
+      "bytes": 107954,
+      "sha256": "6474fbde05bf951f308ac3ede74682576162498e90a7bb4401695cbeff85d51d"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_061.png",
+      "bytes": 106923,
+      "sha256": "0ae9f7940e7deba7725444cd1fe6c713cd1212edd6f4b921f3f874919a4fb37d"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_062.png",
+      "bytes": 113795,
+      "sha256": "93b8098b9033b5603f5962b33e2c9918708e220b083751643725e9fd4a7b35e9"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_063.png",
+      "bytes": 127646,
+      "sha256": "225b1e22198e3e385a190f96e90d7244ad5b953e0c202d5085557f0c1e653421"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_064.png",
+      "bytes": 164788,
+      "sha256": "f77951cf1aa7866791b97f1a3a22eeb0be97a4007b44d7f4ac564040db5898d5"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_065.png",
+      "bytes": 173285,
+      "sha256": "b6f0cc41cf36dca3de9f28fae2bd39ce5dd8d345e4d30c03667e97e555c5ee6c"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_066.png",
+      "bytes": 179018,
+      "sha256": "85de30227e92b9828555af25af7c7ca663b01c49019c006050998e35a210ce91"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_067.png",
+      "bytes": 133406,
+      "sha256": "46aa52ca33888f21edf7f7c7982542c6812eb0987b4d0a35366157de0fc0af13"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_068.png",
+      "bytes": 179549,
+      "sha256": "a4ff84505321db79073e7870b21cc0dcd5e85bd4cb0a1fd3267f5417dff818d5"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_069.png",
+      "bytes": 157733,
+      "sha256": "ba1d4b087efcb28dd3c0293f9a4286645be2b3585acb64906a1d1733b685b375"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_070.png",
+      "bytes": 143854,
+      "sha256": "a3d63fcc20b0963abe5f70e584700fdb650dbe82221af1d418e92a9aece64d9e"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_071.png",
+      "bytes": 158027,
+      "sha256": "e8b8fe81ca35b1ada29e523f114657a32571e2db8447245fcff64542e2ebb6be"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_072.png",
+      "bytes": 124511,
+      "sha256": "016eafb062a5c34f0f14a31cbc203264c2694e7317b338f49bdb990894b0eae9"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_073.png",
+      "bytes": 102590,
+      "sha256": "736899fffddb90e9a1723cbbc8a92383afd85a3df38dbe4cc87e7b9828c96823"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_074.png",
+      "bytes": 117601,
+      "sha256": "5db1df407302fb328154067d8477590bf5a47a4f9045328335a9f483a0c0e2f3"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_075.png",
+      "bytes": 134023,
+      "sha256": "673a13e63a55710320fb84a2869a3c577d9e9e473ff0562dc7ed204459cc01cd"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_076.png",
+      "bytes": 142653,
+      "sha256": "313b4469114fe7bf3bc960d8b737fac4cefb460c8a2743a3bd0e2ca48b42c961"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_077.png",
+      "bytes": 148142,
+      "sha256": "a1869973b722777b4dfd99ca5b07bdaad62ea4e9b1e482bf8d739879b86cded0"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/final_pages/page_078.png",
+      "bytes": 51080,
+      "sha256": "2b6aa44b693b304710a6dccfd413f1d0428f0f73060fea3e48aad6dcdbce2960"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/model_audit_resume.pid",
+      "bytes": 7,
+      "sha256": "b4867b7009b4c9ef0852b14a25a09e604933fce0bcee3d7eb581e84ddbe079ca"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/model_audit_resume_stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/model_audit_resume_stdout.log",
+      "bytes": 7866,
+      "sha256": "dcb2c46c97403e9f327d8be23ae17e46bdb7a00db03ec8589c855e9215fae70d"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/preview_031.png",
+      "bytes": 145602,
+      "sha256": "400c333df77ea4e92beac129c503729329802c0da4cb0ef464c0946b757b7ee0"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/preview_032.png",
+      "bytes": 17594,
+      "sha256": "bfc9cd83bccaccfb3550c687d39639ca0f82194c392701bb40c8923d6c283ae0"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/preview_033.png",
+      "bytes": 89256,
+      "sha256": "c2c6c541c190460eb8144f2a3a2eb8f0196bc33b1e9f5959c94670d42644b90e"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/preview_123.png",
+      "bytes": 191933,
+      "sha256": "ef3d537197ea250752091ff54b731e9541c5d7f2aa79b252dc718ed04600e0c5"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/preview_124.png",
+      "bytes": 15691,
+      "sha256": "7f7d72d7415f6b802e3ad46166d19159be6a8a6d08033631cdf570b108ecaa88"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/preview3_031.png",
+      "bytes": 145123,
+      "sha256": "fd76d0a83aaf398c0b0bd82055ca5ae9c7e432eccd10a1bee019e9e40db87707"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/preview3_032.png",
+      "bytes": 88611,
+      "sha256": "9784a3266c34fb71bd286f09f52487a7c1ee41f75298815cad74a43d13e1368e"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/preview3_124.png",
+      "bytes": 203006,
+      "sha256": "51850ef4b6fad056660ff394c3bc26a8df12e2885b8ed1ad5c635b91665be7bf"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/preview3_125.png",
+      "bytes": 17502,
+      "sha256": "9b09baaeef49763b3099fa62316fb193ac6d07590dd123ddd409a57bd9327bc1"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/recomputed/q1/fields.npz",
+      "bytes": 474467,
+      "sha256": "9330e7249efc81d66a4cab40c600f3721076c2d2d66a238ca1b828cc23417192"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/recomputed/q1/summary.json",
+      "bytes": 3024,
+      "sha256": "5ee2d254c12320ab193a6e7b519e7bcdc86750fee84898d5073f5a77fedbb225"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/recomputed/q2/fields.npz",
+      "bytes": 38337343,
+      "sha256": "864e4d90d2a0b22f3eae37f34cae3fcea093dfb9f63bd4d0f2214f149209ab6b"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/recomputed/q2/summary.json",
+      "bytes": 2606,
+      "sha256": "50e944799e9441d5dd4979d3fd2a3f3cca0276e6efaa2516408ea67ff3b7fb0a"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/recomputed/q3/fields.npz",
+      "bytes": 720492,
+      "sha256": "1f1869a3a04c0627a5c738288aa028002b158803e526668baf339d17cb83c278"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/recomputed/q3/summary.json",
+      "bytes": 2621,
+      "sha256": "f9db8dc65c06725c2439513804ab449109e781a604a3c3a5c3603dfb4bc6a622"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/recomputed/q4/fields.npz",
+      "bytes": 4852894,
+      "sha256": "ec26dda9a41ad47a13259710c913fd40a8a283fe5c64d84cce93ed203d0a53cd"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/recomputed/q4/fixed_radius_counterfactual.npz",
+      "bytes": 1542497,
+      "sha256": "95b4070c4f49c551b7cde0be5bfd0d76b650363fea654726a7ea1a0a090fcf6f"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/appendix_results_20260913/recomputed/q4/summary.json",
+      "bytes": 2756,
+      "sha256": "8e9e15a59063fe34c775da0a069da66776fd37f825533cb5f5e9f9bb744a8425"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/compile_final_pass1.txt",
+      "bytes": 138246,
+      "sha256": "a2ed6d7c81798092d9b1dd906f45dde49c3a1b07cc45e67aeda2d670e886f809"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/compile_final_pass2.txt",
+      "bytes": 137872,
+      "sha256": "120c3f305709e6c0c1a90a1b2f984ab41bddb2f1070db9e35144a035bc896a09"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/compile_trial1.txt",
+      "bytes": 141508,
+      "sha256": "16d28c72177f5012bf08726a98627ede78259b465ede057ba15381a2a287eab6"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/compile_trial2.txt",
+      "bytes": 140654,
+      "sha256": "8b27cdd227df62830e8f51d40ded24c467ac53fe19c6d9280bb398a54ed62525"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/compile_trial3.txt",
+      "bytes": 140486,
+      "sha256": "a2e523f1b54906eadc7d7787ce2e83abc1d5f4760b78bd2db18335883341c0b2"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/compile_trial4.txt",
+      "bytes": 140630,
+      "sha256": "d47f77abb64016921c49fda4bcde9f7a9e9dbba223f368f8507771af94ad480a"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/compile_trial5.txt",
+      "bytes": 140648,
+      "sha256": "121d8c04286a27a595c3111e716418e1bace2845c954c21d72e05c1cddde1e4c"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/compile_trial6.txt",
+      "bytes": 140634,
+      "sha256": "b12477a952a624a22b659535349d1a4b9272c3ecfef2c0d109490fa7fc010655"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/compile_trial7.txt",
+      "bytes": 138414,
+      "sha256": "37ab8b7642414bc65d4fc772e273390203b219f56739e6df1967ab5e1b1cdbd7"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/preview/contact_1.png",
+      "bytes": 609377,
+      "sha256": "55141060572793ee003791fe27ff003687b8d960111954e99850357aa46bea37"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/preview/contact_2.png",
+      "bytes": 445957,
+      "sha256": "f533daa8edb3057bb737cc7877b1ad9896a1c6f5448551da92366cf1f4199c97"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/preview/contact_3.png",
+      "bytes": 424156,
+      "sha256": "fd70607711c66c98136adcc8d0874df92037af817012f1eec018a75ec120f044"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/preview/contact_4.png",
+      "bytes": 389739,
+      "sha256": "21518e73774dbad87c540b6b82874b37354d19519d000a499d5a9fe1cda7a15a"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/preview/contact_5.png",
+      "bytes": 452312,
+      "sha256": "26a2cab5e295a975468c03971ef1a33d5a44fd4ec21bf760c31b172918bffed1"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/preview/contact_6.png",
+      "bytes": 63080,
+      "sha256": "7a1e57d7afdb86532101078f6d3e51d4256eab95d307bb7ac5cf94c4af1c8630"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/preview/page_01.png",
+      "bytes": 294094,
+      "sha256": "68c60d78717ef72c70bdce540b5578b11b734e54547ce2dc6107f0c8441cdbf7"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/preview/page_02.png",
+      "bytes": 241662,
+      "sha256": "e3b436a336efa818588828475e716f91ffd2b05173cb4a8bcfe86360670f16d2"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/preview/page_03.png",
+      "bytes": 183323,
+      "sha256": "4f69ac1d9b40a87e0c4608ab8e46a998280ba04b5008e5a699c5b6aa015e2ae7"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/preview/page_04.png",
+      "bytes": 212332,
+      "sha256": "922c2e686fd8cd5fd2ec61d6e0f2627609dc93e7134d4af1138e1ebbd52844b7"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/preview/page_05.png",
+      "bytes": 161503,
+      "sha256": "dbc7fa76ddd54c3137850780f422c30572e22632e428070bf8722c83fc3598a7"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/preview/page_06.png",
+      "bytes": 153886,
+      "sha256": "6c1605c0b4f97cd3202566bd81bffe947888591bff41c4fb31af74cefbda51f1"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/preview/page_07.png",
+      "bytes": 186007,
+      "sha256": "8a30f57ec554d2ba22adb48c67d24c1511b0965ef468d0108fc74b74316864d7"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/preview/page_08.png",
+      "bytes": 160867,
+      "sha256": "87944847aa0ef8d2ae0c7ea06c3ecac797ae14bc1f192fec778b36a4e634f817"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/preview/page_09.png",
+      "bytes": 133793,
+      "sha256": "e25ed00d616c08a8493bbcb9b9af76af3bacaee2d9e233843f120f09a3a713c4"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/preview/page_10.png",
+      "bytes": 175824,
+      "sha256": "098c6b325c8297a0100c46ec1668978d2de24e5c891af535d4966906d2f9cc18"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/preview/page_11.png",
+      "bytes": 136842,
+      "sha256": "b0b3d7b99f375efee8edc72a424263a9f5b5c0cd37334167dbd51546b5d30498"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/preview/page_12.png",
+      "bytes": 130365,
+      "sha256": "ff4ec0db4279078617b0fcbcf36f0ef10284c151b2476a84fb8c32c7e08985ed"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/preview/page_13.png",
+      "bytes": 177065,
+      "sha256": "2406c798bbde4b295efa953115acf8bbaa30691a0f24dc0fa686f87d1ed1043f"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/preview/page_14.png",
+      "bytes": 150677,
+      "sha256": "e9bbad74947b63e9220fb35f50de52ee2b9c306a841baaba5c2ecf136d3160ed"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/preview/page_15.png",
+      "bytes": 126309,
+      "sha256": "f0994bb96b57b3fa9335e6badaf0233819dd895af74325dae24bdffd08d173e3"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/preview/page_16.png",
+      "bytes": 143186,
+      "sha256": "dfa2c56f8c325adf9aa6be18c607e46e1a4876745f85a66bc62dd5ec6af26d63"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/preview/page_17.png",
+      "bytes": 151666,
+      "sha256": "395f2f9b67e11afc14af4fc6af5125e287284deb02f1b68e78fffbe8a594cd4f"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/preview/page_18.png",
+      "bytes": 134974,
+      "sha256": "49e1864004c458b529036688295981b0273736bbb9d95de1d352a002341d4212"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/preview/page_19.png",
+      "bytes": 98904,
+      "sha256": "f23ff6b57f5568fb7f999185aad099f65a68e568f3b48241910c927f3d1a2b42"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/preview/page_20.png",
+      "bytes": 169637,
+      "sha256": "795c8452f0caa5858c72100fe4f2714070a5faa77359dca63934183b69d1dc81"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/preview/page_21.png",
+      "bytes": 154810,
+      "sha256": "b7b4d34256a2e2acee05a028dcc4967cc79bcd6c716d417edf892bb0f70a4ba2"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/preview/page_22.png",
+      "bytes": 155130,
+      "sha256": "1dd5a83c916b7f63d74e5ba8593ae6168ffcdbe81cb13d369c9681fd990b0600"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/preview/page_23.png",
+      "bytes": 101971,
+      "sha256": "3b24d6a5c0ada086fed061b513cef6cf4dae0f7a6564d9d7c7615d8f1028bc07"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/preview/page_24.png",
+      "bytes": 127534,
+      "sha256": "2ccaede891f73c87074bf964c9dcdac920415a8eba682f5fb2806bead89f18bb"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/preview/page_25.png",
+      "bytes": 165605,
+      "sha256": "a465826cf305e016adf4951e74910338586e4794572e239bb91abf6dded69924"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/preview/page_26.png",
+      "bytes": 177597,
+      "sha256": "5febf3a07d46e71cfb29a939a8b626b60e72e14ced6f07b069076d897b87366d"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/preview/page_27.png",
+      "bytes": 100977,
+      "sha256": "9130689141c6de125e0ec5ee954e4a39de44d48d450d699467ef166d153c38c8"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/preview/page_28.png",
+      "bytes": 166335,
+      "sha256": "bf59d3cceb38867effd72e9e12e94db69678050c64f0f8ac5fee54d35d35ce85"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/preview/page_29.png",
+      "bytes": 174449,
+      "sha256": "afddb68db34e3fd1775571f0541fc54027d7e29f6dfb6d9368eaf0c0ee213ba2"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/preview/page_30.png",
+      "bytes": 168296,
+      "sha256": "4239edfd143a72b815f98937b6497d23ba5c60f8e4d4a3b04c3b852b6f7b1409"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/preview/page_31.png",
+      "bytes": 95823,
+      "sha256": "5e02cf361574fa7a1df5a1ecb7adf6d6600d6a8de0dd3e33bd0b3a6b2e3b12c2"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/preview/page_32.png",
+      "bytes": 95923,
+      "sha256": "577e8c4b4ae07c7f24600bef6248d1fb54563f527a9f40f179a3182d57581030"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/page_limit_30_20260913/compile_stage1_pass1.txt",
+      "bytes": 154062,
+      "sha256": "b37f3274687f7f4d5b533261c404fc08feb571df109783670a087ac72ae5d1fb"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/page_limit_30_20260913/compile_stage1_pass2.txt",
+      "bytes": 153520,
+      "sha256": "6da880c83b98430600360fdc9493a05e5922022cfd3fafbb558473f0162dd656"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/page_limit_30_20260913/compile_stage2_pass1.txt",
+      "bytes": 153682,
+      "sha256": "8d353c5a5c9d9ebb872b2ca328fdf23071b68dd223d80a0d28273fe1e3b015e6"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/page_limit_30_20260913/compile_stage2_pass2.txt",
+      "bytes": 153514,
+      "sha256": "c77035c0dbe8bb5352d91e688a0b91929721a43812e2979a2593b91ce6485d7c"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/page_limit_30_20260913/compile_stage3_pass1.txt",
+      "bytes": 151450,
+      "sha256": "7f5499844e159c965d0cd214819a176b002fbabec0aeb3b38e6338e904722c06"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/page_limit_30_20260913/compile_stage3_pass2.txt",
+      "bytes": 150908,
+      "sha256": "00d51fcb8f86df205b71f6a4f7897265616b1d11f3709494e49e97b1ee5df30a"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/page_limit_30_20260913/compile_stage4_pass1.txt",
+      "bytes": 148662,
+      "sha256": "aafa70f3c69be6826e00cdbad3ae801f8de38648f0139bed28d98eea7773bd05"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/page_limit_30_20260913/compile_stage4_pass2.txt",
+      "bytes": 148288,
+      "sha256": "d96846bb32ad7e4875b1acdea9c51819f73bb582ae87546e9ea38d426106026d"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/page_limit_30_20260913/preview/contact_1.png",
+      "bytes": 609377,
+      "sha256": "55141060572793ee003791fe27ff003687b8d960111954e99850357aa46bea37"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/page_limit_30_20260913/preview/contact_2.png",
+      "bytes": 446469,
+      "sha256": "e1ee59bd544fa0f178c1ba7f96fd538613ab7a6d8aa7312edd98ce560604786c"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/page_limit_30_20260913/preview/contact_3.png",
+      "bytes": 432119,
+      "sha256": "51d60cafd1c72521e9b29e493f044b16db5b66410f4eb7d9a34d537c82b790bb"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/page_limit_30_20260913/preview/contact_4.png",
+      "bytes": 388680,
+      "sha256": "f23ba109a75dce903dc8706a2427b299b7bc7bdc792980c26e6f8fa36e8889b7"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/page_limit_30_20260913/preview/contact_5.png",
+      "bytes": 469174,
+      "sha256": "212994363571cf75984493d9a0734e05fe357ede849d45c4da894a5dbf2c2373"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/page_limit_30_20260913/preview/page_06.png",
+      "bytes": 166976,
+      "sha256": "b9609f241c96e9db40b29e5f153d94bd7e6442790ae4350509864028cbaca2ba"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/page_limit_30_20260913/preview/page_09.png",
+      "bytes": 144875,
+      "sha256": "5760ac7dbbd9a938b6973a349ca4d6fc9813a31bd7b97ac3596035ca7ab81d44"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/page_limit_30_20260913/preview/page_10.png",
+      "bytes": 190726,
+      "sha256": "96e693f5c60c9c16847f00a14c1a9ad91a40f281cc3f1bbddbddc0d60aebea60"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/page_limit_30_20260913/preview/page_13.png",
+      "bytes": 202414,
+      "sha256": "2788da6be16d5efb71b1fd073dc877313bc231c68c58be19a27c1c9f8e66b59c"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/page_limit_30_20260913/preview/page_14.png",
+      "bytes": 178013,
+      "sha256": "2f2308799020feb92bfacb3d2b8f2fb82cb370d051f165f094ba2dd93166e94a"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/page_limit_30_20260913/preview/page_17.png",
+      "bytes": 142438,
+      "sha256": "27ca5249a53df6149cdee9db307d779096dad174111538ca332132223a8a2776"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/page_limit_30_20260913/preview/page_18.png",
+      "bytes": 172476,
+      "sha256": "ff85d30b920f147f325204ed75333e4efa6ffcc374ecd35913892011fd777cc2"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/page_limit_30_20260913/preview/page_22.png",
+      "bytes": 176872,
+      "sha256": "1c1655f1530e3f5bb1f25c787c0fe3b7ce42547c9f1343e2ea9a370110259218"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/page_limit_30_20260913/preview/page_23.png",
+      "bytes": 155507,
+      "sha256": "f9e610477ef0e8cb75b6433a7ba5e98ebd5562143b251b62730967f715764e8a"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/page_limit_30_20260913/preview/page_24.png",
+      "bytes": 83026,
+      "sha256": "3b0247ffa118926eae127c3c2be3bbde34ffa9564b550cb266a37a85455b5c47"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/page_limit_30_20260913/preview/page_27.png",
+      "bytes": 191841,
+      "sha256": "4ed9297a5ee9f7a2506cafd2b8908a6c1795df57c25a16e1acfd2bf0dc6faa71"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/page_limit_30_20260913/preview/page_28.png",
+      "bytes": 176639,
+      "sha256": "0a65fa73325063b7efb753067f8a4eda921cad9274cbc1bc55e6bd407ac9c27e"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/page_limit_30_20260913/preview/page_29.png",
+      "bytes": 190549,
+      "sha256": "e9c7a6d8fc8cc5350cc4cd509712580a689c1b55591d1aaf66aa85164e663666"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/page_limit_30_20260913/preview/page_30.png",
+      "bytes": 181557,
+      "sha256": "a3fed8d0dd574b284965a551488bca1036287d48109029689de4b50124812d5f"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/page_limit_30_20260913/preview/page_31.png",
+      "bytes": 104044,
+      "sha256": "e0532f4ee14d0ec07505d257ed71171cff26d636d5d79f9c92716cebcde71e40"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/group_evidence.py",
+      "bytes": 1882,
+      "sha256": "50592f2bfee1d28e9e9b98404843aae326657a5bc3d3c8a75ddb4d91b114f607"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/refine_floats.py",
+      "bytes": 794,
+      "sha256": "3b27af0354e6148f0ff7a36c1e2f9e34de00693427c2cb99f88be11cd398df47"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/float_layout_20260913/revise_layout.py",
+      "bytes": 3651,
+      "sha256": "f650e48f67ecc9cabdddf5cc9419ac96a8e205c1f314e77fe40148a6f61dfad6"
+    },
+    {
+      "path": "CUMCM2026Problems/A题/reports/page_limit_30_20260913/compress_repeated_methods.py",
+      "bytes": 4416,
+      "sha256": "8223ae4dc5934137b8e19b0c93c3226aceb69a3c1ea7542e95dc0496f1ad5bea"
+    }
+  ],
+  "protected_file_count": 113,
+  "protected_files_unchanged": true,
+  "local_unique_baselines_preserved": true,
+  "git_entries_after": 62,
+  "git_status_after": {
+    " M": 19,
+    "??": 43
+  },
+  "final_pdf_pages": 78,
+  "body_pages": 30,
+  "only_changed_pdf_page": 31,
+  "only_changed_rendered_pdf_page": 31
+}

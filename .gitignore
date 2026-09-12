@@ -5,8 +5,22 @@ __pycache__/
 .mypy_cache/
 .ruff_cache/
 
+# Installed dependencies, including temporary directory links
+node_modules/
+
 # Temporary working files (repository root only)
 /tmp/
+
+# Reproducible previews and working copies from paper revision audits
+/CUMCM2026Problems/A题/reports/*/preview/
+/CUMCM2026Problems/A题/reports/*/final_pages/
+/CUMCM2026Problems/A题/reports/*/before/
+/CUMCM2026Problems/A题/reports/*/paper_before.pdf
+/CUMCM2026Problems/A题/reports/*/compile*.txt
+/CUMCM2026Problems/A题/reports/appendix_results_20260913/artifact/
+/CUMCM2026Problems/A题/reports/appendix_results_20260913/preview*.png
+/CUMCM2026Problems/A题/reports/appendix_results_20260913/recomputed/q[1-4]/
+/CUMCM2026Problems/A题/reports/appendix_results_20260913/model_audit_resume.pid
 
 # LaTeX build intermediates
 *.aux

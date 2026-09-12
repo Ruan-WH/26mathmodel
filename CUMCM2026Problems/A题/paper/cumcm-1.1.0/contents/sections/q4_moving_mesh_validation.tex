@@ -1,12 +1,12 @@
 \subsubsection{移动网格独立验证}
 
-按前述移动控制体方法独立计算，比较结果见\cref{tab:q4movingvalidation}和\cref{fig:q4movingvalidation}。
+另在物理坐标中建立移动控制体模型，以相同物性、环境、时间步长和首达判据独立计算，与固定材料坐标解比较，结果见\cref{tab:q4movingvalidation}和\cref{fig:q4movingvalidation}。
 
 \input{contents/sections/q4_moving_mesh_table.tex}
 
 两法达标时间相对差为 $5.81\times10^{-13}$，全水分场最大差为 $2.61\times10^{-13}$~kg/kg、温度场最大差为 $1.16\times10^{-10}~{}^\circ\mathrm C$，并通过几何守恒检查。
 
-\begin{figure}[!htbp]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.96\textwidth]{q4_moving_mesh_validation.pdf}
 \caption{两种坐标实现的中心水分轨迹及物理半径剖面对比；曲线在图示精度下重合，圆点仅用于区分移动网格曲线}\label{fig:q4movingvalidation}

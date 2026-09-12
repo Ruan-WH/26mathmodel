@@ -1,15 +1,51 @@
 \clearpage
-\section{完整源程序}
+\section{核心求解与绘图源程序}
 
-以下为实际运行的四问核心求解程序全文，按源文件顺序单栏连续排版；电子支撑材料中另提供原始 Python 文件。
+\begingroup
+\newfontfamily\appendixcodefont{Consolas}
+\xeCJKDeclareCharClass{CJK}{"2103}
+\lstset{language=Python,basicstyle=\small\appendixcodefont,breaklines=true,breakatwhitespace=false,columns=fullflexible,keepspaces=true,tabsize=4,showstringspaces=false,numbers=none}
 
-\lstinputlisting[
-  language=Python,
-  basicstyle=\small\ttfamily,
-  breaklines=true,
-  columns=fullflexible,
-  keepspaces=true,
-  tabsize=4,
-  showstringspaces=false,
-  numbers=none
-]{code/solve_drying.py}
+\subsection{\texorpdfstring{\texttt{solve\_drying.py}}{solve\_drying.py}}
+\label{app:source1}
+
+\lstinputlisting{code/solve_drying.py}
+\label{app:source1end}
+
+\subsection{\texorpdfstring{\texttt{run\_q4\_counterfactual.py}}{run\_q4\_counterfactual.py}}
+\label{app:source2}
+
+\lstinputlisting{code/run_q4_counterfactual.py}
+\label{app:source2end}
+
+\subsection{\texorpdfstring{\texttt{make\_figures.py}}{make\_figures.py}}
+\label{app:source3}
+
+\lstinputlisting{code/make_figures.py}
+\label{app:source3end}
+
+\subsection{\texorpdfstring{\texttt{make\_additional\_figures.py}}{make\_additional\_figures.py}}
+\label{app:source4}
+
+\lstinputlisting{code/make_additional_figures.py}
+\label{app:source4end}
+
+\subsection{\texorpdfstring{\texttt{plot\_moving\_mesh\_validation.py}}{plot\_moving\_mesh\_validation.py}}
+\label{app:source5}
+
+\lstinputlisting{code/plot_moving_mesh_validation.py}
+\label{app:source5end}
+
+\subsection{\texorpdfstring{\texttt{make\_geometry\_diagram.py}}{make\_geometry\_diagram.py}}
+\label{app:source6}
+
+\lstinputlisting{code/make_geometry_diagram.py}
+\label{app:source6end}
+
+\subsection{\texorpdfstring{\texttt{plot\_q4\_physical.py}}{plot\_q4\_physical.py}}
+\label{app:source7}
+
+\lstinputlisting{code/comsol_q4/plot_q4_physical.py}
+\label{app:source7end}
+
+\endgroup

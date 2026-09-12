@@ -1,3 +1,4 @@
+# File: code/make_additional_figures.py
 # Academic Figure Skill Asset Confirmation (verified against assets/figures/)
 # q1/q2 surfaces -> no continuous PDE surface asset -> cross-type inherit
 # q2 map -> heatmap/plot_composition.py -> param inherit (continuous field, not counts)

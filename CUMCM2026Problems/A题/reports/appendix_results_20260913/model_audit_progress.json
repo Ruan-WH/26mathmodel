@@ -1,0 +1,9 @@
+{
+  "event": "completed",
+  "utc": "2026-09-12T17:36:09.956947+00:00",
+  "elapsed_s": 152.0055042999993,
+  "report": "D:\\26mathmodel\\CUMCM2026Problems\\A题\\reports\\appendix_results_20260913\\model_audit_recompute.json",
+  "all_four_fields_exact_equal": true,
+  "all_four_summaries_exact_equal": true,
+  "protected_files_unchanged": true
+}

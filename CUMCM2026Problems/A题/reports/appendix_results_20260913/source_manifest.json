@@ -1,0 +1,72 @@
+[
+  {
+    "source": "code/solve_drying.py",
+    "appendix_copy": "code/solve_drying.py",
+    "description": "四问热湿迁移求解、首达判定及收缩模型",
+    "first_line": "# File: code/solve_drying.py",
+    "source_lines": 858,
+    "source_sha256": "93609143157003e52347ca0b988596eafce937c958935414a1b6e85adea210e6",
+    "appendix_sha256": "86e330cd459bab473da7936282ede6430d70d2c09104547faae801a9978e759d",
+    "identical_after_filename_comment_and_newline_normalization": true
+  },
+  {
+    "source": "code/run_q4_counterfactual.py",
+    "appendix_copy": "code/run_q4_counterfactual.py",
+    "description": "同物性固定半径反事实计算",
+    "first_line": "# File: code/run_q4_counterfactual.py",
+    "source_lines": 47,
+    "source_sha256": "331d3a904ddfce83fa69431025d42383f93570ce92df5a2dd24f71af64502dcb",
+    "appendix_sha256": "b46820355ffe9f0714bccf1c52f04a7c6ef451f36bf5fe9ceffb93fca2690882",
+    "identical_after_filename_comment_and_newline_normalization": true
+  },
+  {
+    "source": "code/make_figures.py",
+    "appendix_copy": "code/make_figures.py",
+    "description": "四问主要数值结果图绘制",
+    "first_line": "# File: code/make_figures.py",
+    "source_lines": 415,
+    "source_sha256": "3aadc2e32ed6504bb9dc12323caf06443441c3c45ceb8a8238dd0691fee88636",
+    "appendix_sha256": "5e55b6b28bd36b21d37bc2151daa01f0255da2a0e672d152ccbc1da6c89daf0d",
+    "identical_after_filename_comment_and_newline_normalization": true
+  },
+  {
+    "source": "code/make_additional_figures.py",
+    "appendix_copy": "code/make_additional_figures.py",
+    "description": "时空场、扩散系数和收缩截面图绘制",
+    "first_line": "# File: code/make_additional_figures.py",
+    "source_lines": 283,
+    "source_sha256": "f03fc141547528f5f1922401c3ed70911d38eba06c58061bc91e3acc5d35e792",
+    "appendix_sha256": "55785f4e3a8eaf9e98b07df6a9185b9b4eb68f978f669399c3380250f289bd09",
+    "identical_after_filename_comment_and_newline_normalization": true
+  },
+  {
+    "source": "code/plot_moving_mesh_validation.py",
+    "appendix_copy": "code/plot_moving_mesh_validation.py",
+    "description": "移动网格与固定域结果对照图绘制",
+    "first_line": "# File: code/plot_moving_mesh_validation.py",
+    "source_lines": 85,
+    "source_sha256": "8d07195e01c121f49bff44701571f323d0bc0fd01cf18577f348edbd351bf8e1",
+    "appendix_sha256": "16d95747a4b4f0e08d6964fd75cf56af37099871c6eee2ac73dfb02d1264f6f0",
+    "identical_after_filename_comment_and_newline_normalization": true
+  },
+  {
+    "source": "code/make_geometry_diagram.py",
+    "appendix_copy": "code/make_geometry_diagram.py",
+    "description": "药材几何与坐标示意图绘制",
+    "first_line": "# File: code/make_geometry_diagram.py",
+    "source_lines": 107,
+    "source_sha256": "e86058cabc71c5c1665148d36e3c1663bc8a8c9f3d1d248e716b1f8b7a919053",
+    "appendix_sha256": "3b06df69fda50f7933b039fb6a428f69e14426ad7e52e5713ab5d1a25b83e489",
+    "identical_after_filename_comment_and_newline_normalization": true
+  },
+  {
+    "source": "comsol_q4/plot_q4_physical.py",
+    "appendix_copy": "code/comsol_q4/plot_q4_physical.py",
+    "description": "有限元物理剖面和水分场绘制",
+    "first_line": "# File: comsol_q4/plot_q4_physical.py",
+    "source_lines": 258,
+    "source_sha256": "a8f9c3b9e8b6101f6a27b5be3c0f4cf1dfb642a528d12f4f3a9a3df03b67b057",
+    "appendix_sha256": "9f5267efacaa88bebfec97903fc67a2ab403d5ce6b78e54a09f10c2c7d13ecd3",
+    "identical_after_filename_comment_and_newline_normalization": true
+  }
+]

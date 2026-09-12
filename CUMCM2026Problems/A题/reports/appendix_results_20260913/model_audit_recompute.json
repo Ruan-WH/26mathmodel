@@ -1,0 +1,752 @@
+{
+  "scope": "Canonical solver executed anew with isolated output; all stored arrays and all summary fields compared.",
+  "resumed_after_interruption": true,
+  "q2_workbook_scope": "User requires only 1..10800 s in result2.xlsx; long q2 fields are retained for q3 shared trajectory.",
+  "simulation_calls": [
+    {
+      "elapsed_s": 0.5563787999999477,
+      "simulation": "property_q1_1",
+      "dt_s": 1.0,
+      "output_interval_s": 1.0,
+      "include_advection": false,
+      "steps": 1800,
+      "last_time_s": 1800.0,
+      "threshold_time_s": null,
+      "monotone_profiles": true,
+      "center_is_max": true,
+      "picard_max": 4,
+      "picard_mean": 4.0
+    },
+    {
+      "elapsed_s": 77.50464029999785,
+      "simulation": "property_q23_2",
+      "dt_s": 1.0,
+      "output_interval_s": 1.0,
+      "include_advection": false,
+      "steps": 206940,
+      "last_time_s": 206940.0,
+      "threshold_time_s": 206898.87102730837,
+      "monotone_profiles": true,
+      "center_is_max": true,
+      "picard_max": 5,
+      "picard_mean": 4.380313134241809
+    },
+    {
+      "elapsed_s": 76.46983919999911,
+      "simulation": "moving_3",
+      "dt_s": 1.0,
+      "output_interval_s": 60.0,
+      "include_advection": false,
+      "steps": 183960,
+      "last_time_s": 183960.0,
+      "threshold_time_s": 183915.71747843814,
+      "monotone_profiles": true,
+      "center_is_max": true,
+      "picard_max": 5,
+      "picard_mean": 4.1402696238312675
+    },
+    {
+      "elapsed_s": 42.375971099998424,
+      "simulation": "property_q23_4",
+      "dt_s": 2.0,
+      "output_interval_s": 60.0,
+      "include_advection": false,
+      "steps": 103470,
+      "last_time_s": 206940.0,
+      "threshold_time_s": 206902.01057106533,
+      "monotone_profiles": true,
+      "center_is_max": true,
+      "picard_max": 6,
+      "picard_mean": 4.794935730163332
+    },
+    {
+      "elapsed_s": 41.23225519999687,
+      "simulation": "moving_5",
+      "dt_s": 2.0,
+      "output_interval_s": 60.0,
+      "include_advection": false,
+      "steps": 91980,
+      "last_time_s": 183960.0,
+      "threshold_time_s": 183918.08831708544,
+      "monotone_profiles": true,
+      "center_is_max": true,
+      "picard_max": 5,
+      "picard_mean": 4.452467927810393
+    },
+    {
+      "elapsed_s": 81.89707780000026,
+      "simulation": "moving_6",
+      "dt_s": 1.0,
+      "output_interval_s": 60.0,
+      "include_advection": true,
+      "steps": 189540,
+      "last_time_s": 189540.0,
+      "threshold_time_s": 189495.02465136134,
+      "monotone_profiles": true,
+      "center_is_max": true,
+      "picard_max": 5,
+      "picard_mean": 4.134989975730717
+    },
+    {
+      "simulation": "property_q4_7",
+      "dt_s": 1.0,
+      "output_interval_s": 60.0,
+      "include_advection": false,
+      "elapsed_s": 150.62688720000006,
+      "steps": 467460,
+      "last_time_s": 467460.0,
+      "threshold_time_s": 467440.34344568016,
+      "monotone_profiles": true,
+      "center_is_max": true,
+      "picard_max": 4,
+      "picard_mean": 3.6361913318786634
+    }
+  ],
+  "event_brackets": [
+    {
+      "simulation": "property_q23_2",
+      "before_time_s": 206898.0,
+      "after_time_s": 206899.0,
+      "dt_s": 1.0,
+      "before_max_c": 0.1500002537314416,
+      "after_max_c": 0.1499999624300792,
+      "interpolation_weight": 0.8710273083623608,
+      "threshold_time_s": 206898.87102730837,
+      "threshold_max_c": 0.15,
+      "threshold_center_c": 0.15,
+      "threshold_surface_c": 0.05265947717356415,
+      "all_prior_step_maxima_above_threshold": true,
+      "native_node_count": 161
+    },
+    {
+      "simulation": "moving_3",
+      "before_time_s": 183915.0,
+      "after_time_s": 183916.0,
+      "dt_s": 1.0,
+      "before_max_c": 0.15000036843115117,
+      "after_max_c": 0.14999985492282591,
+      "interpolation_weight": 0.7174784381366187,
+      "threshold_time_s": 183915.71747843814,
+      "threshold_max_c": 0.15,
+      "threshold_center_c": 0.15,
+      "threshold_surface_c": 0.052619962344433086,
+      "all_prior_step_maxima_above_threshold": true,
+      "native_node_count": 161
+    },
+    {
+      "simulation": "property_q23_4",
+      "before_time_s": 206902.0,
+      "after_time_s": 206904.0,
+      "dt_s": 2.0,
+      "before_max_c": 0.15000000307931316,
+      "after_max_c": 0.1499994204865339,
+      "interpolation_weight": 0.005285532665594044,
+      "threshold_time_s": 206902.01057106533,
+      "threshold_max_c": 0.15,
+      "threshold_center_c": 0.15,
+      "threshold_surface_c": 0.05265947687860579,
+      "all_prior_step_maxima_above_threshold": true,
+      "native_node_count": 161
+    },
+    {
+      "simulation": "moving_5",
+      "before_time_s": 183918.0,
+      "after_time_s": 183920.0,
+      "dt_s": 2.0,
+      "before_max_c": 0.15000004535063352,
+      "after_max_c": 0.1499990183549328,
+      "interpolation_weight": 0.044158542722223006,
+      "threshold_time_s": 183918.08831708544,
+      "threshold_max_c": 0.15,
+      "threshold_center_c": 0.15,
+      "threshold_surface_c": 0.05261996188123364,
+      "all_prior_step_maxima_above_threshold": true,
+      "native_node_count": 161
+    },
+    {
+      "simulation": "moving_6",
+      "before_time_s": 189495.0,
+      "after_time_s": 189496.0,
+      "dt_s": 1.0,
+      "before_max_c": 0.15000001265700058,
+      "after_max_c": 0.14999949921677247,
+      "interpolation_weight": 0.024651361333832906,
+      "threshold_time_s": 189495.02465136134,
+      "threshold_max_c": 0.15,
+      "threshold_center_c": 0.15,
+      "threshold_surface_c": 0.05262021545314311,
+      "all_prior_step_maxima_above_threshold": true,
+      "native_node_count": 161
+    },
+    {
+      "simulation": "property_q4_7",
+      "before_time_s": 467440.0,
+      "after_time_s": 467441.0,
+      "dt_s": 1.0,
+      "before_max_c": 0.15000006354751305,
+      "after_max_c": 0.14999987851821517,
+      "interpolation_weight": 0.3434456801394203,
+      "threshold_time_s": 467440.34344568016,
+      "threshold_max_c": 0.15,
+      "threshold_center_c": 0.15,
+      "threshold_surface_c": 0.051571445798205495,
+      "all_prior_step_maxima_above_threshold": true,
+      "native_node_count": 161
+    }
+  ],
+  "comparisons": {
+    "q1": {
+      "fields": {
+        "same_keys": true,
+        "reference_keys": [
+          "times_s",
+          "radius_m",
+          "temperature_c",
+          "moisture"
+        ],
+        "recomputed_keys": [
+          "times_s",
+          "radius_m",
+          "temperature_c",
+          "moisture"
+        ],
+        "arrays": {
+          "moisture": {
+            "shape": [
+              1801,
+              21
+            ],
+            "recomputed_shape": [
+              1801,
+              21
+            ],
+            "dtype": "float64",
+            "recomputed_dtype": "float64",
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "different_values": 0
+          },
+          "radius_m": {
+            "shape": [
+              21
+            ],
+            "recomputed_shape": [
+              21
+            ],
+            "dtype": "float64",
+            "recomputed_dtype": "float64",
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "different_values": 0
+          },
+          "temperature_c": {
+            "shape": [
+              1801,
+              21
+            ],
+            "recomputed_shape": [
+              1801,
+              21
+            ],
+            "dtype": "float64",
+            "recomputed_dtype": "float64",
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "different_values": 0
+          },
+          "times_s": {
+            "shape": [
+              1801
+            ],
+            "recomputed_shape": [
+              1801
+            ],
+            "dtype": "float64",
+            "recomputed_dtype": "float64",
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "different_values": 0
+          }
+        },
+        "all_exact_equal": true
+      },
+      "summary_differences": [],
+      "summary_exact_equal": true
+    },
+    "q2": {
+      "fields": {
+        "same_keys": true,
+        "reference_keys": [
+          "times_s",
+          "radius_m",
+          "temperature_c",
+          "moisture",
+          "threshold_temperature_c",
+          "threshold_moisture"
+        ],
+        "recomputed_keys": [
+          "times_s",
+          "radius_m",
+          "temperature_c",
+          "moisture",
+          "threshold_temperature_c",
+          "threshold_moisture"
+        ],
+        "arrays": {
+          "moisture": {
+            "shape": [
+              206941,
+              21
+            ],
+            "recomputed_shape": [
+              206941,
+              21
+            ],
+            "dtype": "float64",
+            "recomputed_dtype": "float64",
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "different_values": 0
+          },
+          "radius_m": {
+            "shape": [
+              21
+            ],
+            "recomputed_shape": [
+              21
+            ],
+            "dtype": "float64",
+            "recomputed_dtype": "float64",
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "different_values": 0
+          },
+          "temperature_c": {
+            "shape": [
+              206941,
+              21
+            ],
+            "recomputed_shape": [
+              206941,
+              21
+            ],
+            "dtype": "float64",
+            "recomputed_dtype": "float64",
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "different_values": 0
+          },
+          "threshold_moisture": {
+            "shape": [
+              21
+            ],
+            "recomputed_shape": [
+              21
+            ],
+            "dtype": "float64",
+            "recomputed_dtype": "float64",
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "different_values": 0
+          },
+          "threshold_temperature_c": {
+            "shape": [
+              21
+            ],
+            "recomputed_shape": [
+              21
+            ],
+            "dtype": "float64",
+            "recomputed_dtype": "float64",
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "different_values": 0
+          },
+          "times_s": {
+            "shape": [
+              206941
+            ],
+            "recomputed_shape": [
+              206941
+            ],
+            "dtype": "float64",
+            "recomputed_dtype": "float64",
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "different_values": 0
+          }
+        },
+        "all_exact_equal": true
+      },
+      "summary_differences": [],
+      "summary_exact_equal": true
+    },
+    "q3": {
+      "fields": {
+        "same_keys": true,
+        "reference_keys": [
+          "times_s",
+          "radius_m",
+          "temperature_c",
+          "moisture",
+          "threshold_temperature_c",
+          "threshold_moisture"
+        ],
+        "recomputed_keys": [
+          "times_s",
+          "radius_m",
+          "temperature_c",
+          "moisture",
+          "threshold_temperature_c",
+          "threshold_moisture"
+        ],
+        "arrays": {
+          "moisture": {
+            "shape": [
+              3450,
+              21
+            ],
+            "recomputed_shape": [
+              3450,
+              21
+            ],
+            "dtype": "float64",
+            "recomputed_dtype": "float64",
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "different_values": 0
+          },
+          "radius_m": {
+            "shape": [
+              21
+            ],
+            "recomputed_shape": [
+              21
+            ],
+            "dtype": "float64",
+            "recomputed_dtype": "float64",
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "different_values": 0
+          },
+          "temperature_c": {
+            "shape": [
+              3450,
+              21
+            ],
+            "recomputed_shape": [
+              3450,
+              21
+            ],
+            "dtype": "float64",
+            "recomputed_dtype": "float64",
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "different_values": 0
+          },
+          "threshold_moisture": {
+            "shape": [
+              21
+            ],
+            "recomputed_shape": [
+              21
+            ],
+            "dtype": "float64",
+            "recomputed_dtype": "float64",
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "different_values": 0
+          },
+          "threshold_temperature_c": {
+            "shape": [
+              21
+            ],
+            "recomputed_shape": [
+              21
+            ],
+            "dtype": "float64",
+            "recomputed_dtype": "float64",
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "different_values": 0
+          },
+          "times_s": {
+            "shape": [
+              3450
+            ],
+            "recomputed_shape": [
+              3450
+            ],
+            "dtype": "float64",
+            "recomputed_dtype": "float64",
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "different_values": 0
+          }
+        },
+        "all_exact_equal": true
+      },
+      "summary_differences": [],
+      "summary_exact_equal": true
+    },
+    "q4": {
+      "fields": {
+        "same_keys": true,
+        "reference_keys": [
+          "times_s",
+          "xi",
+          "radii_m",
+          "temperature_c",
+          "moisture",
+          "threshold_temperature_c",
+          "threshold_moisture"
+        ],
+        "recomputed_keys": [
+          "times_s",
+          "xi",
+          "radii_m",
+          "temperature_c",
+          "moisture",
+          "threshold_temperature_c",
+          "threshold_moisture"
+        ],
+        "arrays": {
+          "moisture": {
+            "shape": [
+              3067,
+              161
+            ],
+            "recomputed_shape": [
+              3067,
+              161
+            ],
+            "dtype": "float64",
+            "recomputed_dtype": "float64",
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "different_values": 0
+          },
+          "radii_m": {
+            "shape": [
+              3067
+            ],
+            "recomputed_shape": [
+              3067
+            ],
+            "dtype": "float64",
+            "recomputed_dtype": "float64",
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "different_values": 0
+          },
+          "temperature_c": {
+            "shape": [
+              3067,
+              161
+            ],
+            "recomputed_shape": [
+              3067,
+              161
+            ],
+            "dtype": "float64",
+            "recomputed_dtype": "float64",
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "different_values": 0
+          },
+          "threshold_moisture": {
+            "shape": [
+              161
+            ],
+            "recomputed_shape": [
+              161
+            ],
+            "dtype": "float64",
+            "recomputed_dtype": "float64",
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "different_values": 0
+          },
+          "threshold_temperature_c": {
+            "shape": [
+              161
+            ],
+            "recomputed_shape": [
+              161
+            ],
+            "dtype": "float64",
+            "recomputed_dtype": "float64",
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "different_values": 0
+          },
+          "times_s": {
+            "shape": [
+              3067
+            ],
+            "recomputed_shape": [
+              3067
+            ],
+            "dtype": "float64",
+            "recomputed_dtype": "float64",
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "different_values": 0
+          },
+          "xi": {
+            "shape": [
+              161
+            ],
+            "recomputed_shape": [
+              161
+            ],
+            "dtype": "float64",
+            "recomputed_dtype": "float64",
+            "exact_equal": true,
+            "max_absolute_difference": 0.0,
+            "different_values": 0
+          }
+        },
+        "all_exact_equal": true
+      },
+      "summary_differences": [],
+      "summary_exact_equal": true
+    },
+    "q4_fixed_radius_counterfactual": {
+      "same_keys": true,
+      "reference_keys": [
+        "times_s",
+        "radius_m",
+        "temperature_c",
+        "moisture",
+        "threshold_temperature_c",
+        "threshold_moisture"
+      ],
+      "recomputed_keys": [
+        "times_s",
+        "radius_m",
+        "temperature_c",
+        "moisture",
+        "threshold_temperature_c",
+        "threshold_moisture"
+      ],
+      "arrays": {
+        "moisture": {
+          "shape": [
+            7792,
+            21
+          ],
+          "recomputed_shape": [
+            7792,
+            21
+          ],
+          "dtype": "float64",
+          "recomputed_dtype": "float64",
+          "exact_equal": true,
+          "max_absolute_difference": 0.0,
+          "different_values": 0
+        },
+        "radius_m": {
+          "shape": [
+            21
+          ],
+          "recomputed_shape": [
+            21
+          ],
+          "dtype": "float64",
+          "recomputed_dtype": "float64",
+          "exact_equal": true,
+          "max_absolute_difference": 0.0,
+          "different_values": 0
+        },
+        "temperature_c": {
+          "shape": [
+            7792,
+            21
+          ],
+          "recomputed_shape": [
+            7792,
+            21
+          ],
+          "dtype": "float64",
+          "recomputed_dtype": "float64",
+          "exact_equal": true,
+          "max_absolute_difference": 0.0,
+          "different_values": 0
+        },
+        "threshold_moisture": {
+          "shape": [
+            21
+          ],
+          "recomputed_shape": [
+            21
+          ],
+          "dtype": "float64",
+          "recomputed_dtype": "float64",
+          "exact_equal": true,
+          "max_absolute_difference": 0.0,
+          "different_values": 0
+        },
+        "threshold_temperature_c": {
+          "shape": [
+            21
+          ],
+          "recomputed_shape": [
+            21
+          ],
+          "dtype": "float64",
+          "recomputed_dtype": "float64",
+          "exact_equal": true,
+          "max_absolute_difference": 0.0,
+          "different_values": 0
+        },
+        "times_s": {
+          "shape": [
+            7792
+          ],
+          "recomputed_shape": [
+            7792
+          ],
+          "dtype": "float64",
+          "recomputed_dtype": "float64",
+          "exact_equal": true,
+          "max_absolute_difference": 0.0,
+          "different_values": 0
+        }
+      },
+      "all_exact_equal": true
+    }
+  },
+  "protected_hashes_before": {
+    "code\\solve_drying.py": "93609143157003e52347ca0b988596eafce937c958935414a1b6e85adea210e6",
+    "附件\\附件1.xlsx": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7",
+    "附件\\附件2.xlsx": "5563acbfa4b4afb10cc6c03e2207e5369bf39da27576672aff14cc5c32e704af",
+    "results\\q1\\fields.npz": "9330e7249efc81d66a4cab40c600f3721076c2d2d66a238ca1b828cc23417192",
+    "results\\q1\\summary.json": "5ee2d254c12320ab193a6e7b519e7bcdc86750fee84898d5073f5a77fedbb225",
+    "results\\q2\\fields.npz": "864e4d90d2a0b22f3eae37f34cae3fcea093dfb9f63bd4d0f2214f149209ab6b",
+    "results\\q2\\summary.json": "50e944799e9441d5dd4979d3fd2a3f3cca0276e6efaa2516408ea67ff3b7fb0a",
+    "results\\q3\\fields.npz": "1f1869a3a04c0627a5c738288aa028002b158803e526668baf339d17cb83c278",
+    "results\\q3\\summary.json": "f9db8dc65c06725c2439513804ab449109e781a604a3c3a5c3603dfb4bc6a622",
+    "results\\q4\\fields.npz": "ec26dda9a41ad47a13259710c913fd40a8a283fe5c64d84cce93ed203d0a53cd",
+    "results\\q4\\summary.json": "8e9e15a59063fe34c775da0a069da66776fd37f825533cb5f5e9f9bb744a8425",
+    "results\\q4\\fixed_radius_counterfactual.npz": "95b4070c4f49c551b7cde0be5bfd0d76b650363fea654726a7ea1a0a090fcf6f"
+  },
+  "protected_hashes_after": {
+    "code\\solve_drying.py": "93609143157003e52347ca0b988596eafce937c958935414a1b6e85adea210e6",
+    "附件\\附件1.xlsx": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7",
+    "附件\\附件2.xlsx": "5563acbfa4b4afb10cc6c03e2207e5369bf39da27576672aff14cc5c32e704af",
+    "results\\q1\\fields.npz": "9330e7249efc81d66a4cab40c600f3721076c2d2d66a238ca1b828cc23417192",
+    "results\\q1\\summary.json": "5ee2d254c12320ab193a6e7b519e7bcdc86750fee84898d5073f5a77fedbb225",
+    "results\\q2\\fields.npz": "864e4d90d2a0b22f3eae37f34cae3fcea093dfb9f63bd4d0f2214f149209ab6b",
+    "results\\q2\\summary.json": "50e944799e9441d5dd4979d3fd2a3f3cca0276e6efaa2516408ea67ff3b7fb0a",
+    "results\\q3\\fields.npz": "1f1869a3a04c0627a5c738288aa028002b158803e526668baf339d17cb83c278",
+    "results\\q3\\summary.json": "f9db8dc65c06725c2439513804ab449109e781a604a3c3a5c3603dfb4bc6a622",
+    "results\\q4\\fields.npz": "ec26dda9a41ad47a13259710c913fd40a8a283fe5c64d84cce93ed203d0a53cd",
+    "results\\q4\\summary.json": "8e9e15a59063fe34c775da0a069da66776fd37f825533cb5f5e9f9bb744a8425",
+    "results\\q4\\fixed_radius_counterfactual.npz": "95b4070c4f49c551b7cde0be5bfd0d76b650363fea654726a7ea1a0a090fcf6f"
+  },
+  "protected_files_unchanged": true,
+  "elapsed_s": 152.00374079999892,
+  "all_four_fields_exact_equal": true,
+  "all_four_summaries_exact_equal": true
+}
