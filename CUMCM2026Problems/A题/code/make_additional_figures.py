@@ -257,6 +257,10 @@ def shrinking():
         details.append({'time_h':float(t[i]),'radius_cm':float(rad),'center_C':float(c[i,0])})
     fig.text(.50,.035,'(b) 等比例圆截面重建；虚线为初始外轮廓，共用上方水分色标',ha='center',fontsize=8)
     METRICS['q4_shrinking_field']={'snapshots':details,'all_time_samples':len(t),'method':'axisymmetric reconstruction of 1D radial solution, not independent 2D simulation'}
+    from matplotlib.text import Text
+    fig.canvas.draw()
+    for text in fig.findobj(Text):
+        text.set_path_effects([pe.withStroke(linewidth=0.16, foreground=text.get_color())])
     save(fig,'q4_shrinking_field')
 
 def main():

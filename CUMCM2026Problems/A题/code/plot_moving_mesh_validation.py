@@ -45,6 +45,11 @@ def main():
     ax.set(xlim=(0,1.24),ylim=(.04,.30),xlabel='物理半径 / cm',ylabel='水分浓度 / (kg/kg)')
     ax.set_xticks([0,.3,.6,.9,1.2]);ax.legend(loc='lower left',fontsize=6.6)
     ax.text(.5,-.30,'(b) 完整径向剖面',transform=ax.transAxes,ha='center',fontsize=8)
+    from matplotlib.text import Text
+    from matplotlib.patheffects import withStroke
+    fig.canvas.draw()
+    for text in fig.findobj(Text):
+        text.set_path_effects([withStroke(linewidth=0.16, foreground=text.get_color())])
     save_cns_figure(fig,OUT/'q4_moving_mesh_validation');plt.close(fig)
     shutil.copy2(OUT/'q4_moving_mesh_validation.pdf',ROOT/'paper/cumcm-1.1.0/figures/q4_moving_mesh_validation.pdf')
 

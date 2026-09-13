@@ -37,7 +37,13 @@ mpl.rcParams.update({
     "savefig.dpi": 300,
 })
 
-def save_cns_figure(fig, filename):
+def save_cns_figure(fig, filename, bold_text=False):
+    if bold_text:
+        from matplotlib.text import Text
+        from matplotlib.patheffects import withStroke
+        fig.canvas.draw()
+        for text in fig.findobj(Text):
+            text.set_path_effects([withStroke(linewidth=0.16, foreground=text.get_color())])
     """Standard Academic Figure Skill export: vector PDF + 300dpi PNG preview."""
     fig.savefig(f"{filename}.pdf", bbox_inches="tight", dpi=300)
     fig.savefig(f"{filename}.png", bbox_inches="tight", dpi=300)
@@ -221,7 +227,7 @@ def make_validation_figure(comsol, baseline):
             ha="center", va="top", fontsize=8)
 
     fig.suptitle("COMSOL 物理场剖面、独立数值校核与收缩历程", y=0.96)
-    save_cns_figure(fig, OUT / "q4_comsol_profiles_validation")
+    save_cns_figure(fig, OUT / "q4_comsol_profiles_validation", bold_text=True)
     plt.close(fig)
     return {"max_abs_moisture_difference": float(err), "comparison_points": len(parity_x),
             "baseline_saved_nodes": len(bxi)}

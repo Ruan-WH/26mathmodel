@@ -57,8 +57,14 @@ mpl.rcParams.update({
     "savefig.dpi": 300,
 })
 
-def save_cns_figure(fig, filename):
+def save_cns_figure(fig, filename, bold_text=False):
     """Standard Academic Figure Skill export: vector PDF + 300dpi PNG preview."""
+    if bold_text:
+        from matplotlib.text import Text
+        from matplotlib.patheffects import withStroke
+        fig.canvas.draw()
+        for text in fig.findobj(Text):
+            text.set_path_effects([withStroke(linewidth=0.16, foreground=text.get_color())])
     fig.savefig(f"{filename}.pdf", bbox_inches="tight", dpi=300)
     fig.savefig(f"{filename}.png", bbox_inches="tight", dpi=300)
 
@@ -397,7 +403,7 @@ def figure_q4() -> None:
     common_axis_style(axes[1])
     fig.subplots_adjust(left=0.09, right=0.98, top=0.84, bottom=0.23, wspace=0.34)
     panel_labels(fig, list(axes))
-    save_cns_figure(fig, str(FIGURES / "q4_shrinkage_comparison"))
+    save_cns_figure(fig, str(FIGURES / "q4_shrinkage_comparison"), bold_text=True)
     plt.close(fig)
 
 
