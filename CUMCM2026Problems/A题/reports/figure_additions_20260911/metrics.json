@@ -9,7 +9,8 @@
     "time_range_s": [
       0,
       1800
-    ]
+    ],
+    "plot": "2D heatmap with contour lines"
   },
   "q2_moisture_surface": {
     "shape": [
@@ -21,7 +22,8 @@
     "time_range_s": [
       0,
       10800
-    ]
+    ],
+    "plot": "2D heatmap with contour lines"
   },
   "q2_diffusivity_map": {
     "shape": [
