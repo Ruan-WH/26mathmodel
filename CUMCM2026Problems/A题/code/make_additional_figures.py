@@ -193,7 +193,7 @@ def diffusivity():
     ax.set_xticks([0,1,2,3])
     ax.set_yticks([0,.5,1,1.5,2])
     cb=fig.colorbar(im,cax=fig.add_axes([.89,.20,.023,.74]))
-    cb.set_label('扩散系数 D / (10⁻⁹ m²·s⁻¹)',labelpad=8)
+    cb.set_label(r'扩散系数 $D$ / ($10^{-9}\,\mathrm{m^2/s}$)',labelpad=8)
     METRICS['q2_diffusivity_map']={'shape':list(z.shape),'min_1e9':float(z.min()),'max_1e9':float(z.max()),'center_end_1e9':float(z[-1,0]),'surface_end_1e9':float(z[-1,-1])}
     save(fig,'q2_diffusivity_map')
 
@@ -237,13 +237,15 @@ def shrinking():
     im=ax.pcolormesh(xx,yy,c,cmap=BLUE,norm=NORM_C,shading='gouraud',rasterized=True)
     ax.plot(t,radii,color=BLACK,lw=1.2)
     con=ax.contour(xx,yy,c,levels=[.15],colors=ACCENT_RED,linewidths=1.2)
-    ax.clabel(con,fmt={.15:'0.15'},fontsize=8,inline=True)
+    contour_labels = ax.clabel(con,fmt={.15:'C = 0.15'},fontsize=8,inline=True)
+    for label in contour_labels:
+        label.set_color(BLACK)
     ax.text(27,1.73,'材料域外（留白）',ha='center',fontsize=9,color='#666666')
     ax.annotate('实时表面 R(t)',xy=(6,radii[np.argmin(abs(t-6))]),xytext=(10,1.75),
                 arrowprops=dict(arrowstyle='->',color=BLACK,lw=.7),fontsize=8)
     ax.set(xlim=(0,t[-1]),ylim=(0,2.08),xlabel='时间 / h',ylabel='物理半径 / cm')
     ax.set_xticks([0,12,24,36,48]); ax.set_yticks([0,.5,1,1.5,2])
-    cb=fig.colorbar(im,cax=fig.add_axes([.89,.48,.021,.46]));cb.set_label('水分浓度 / (kg·kg⁻¹)',labelpad=7)
+    cb=fig.colorbar(im,cax=fig.add_axes([.89,.48,.021,.46]));cb.set_label(r'水分浓度 $C$ / ($\mathrm{kg/kg}$)',labelpad=7)
     fig.text(.465,.38,'(a) 收缩材料域中的水分时空场',ha='center',fontsize=8)
     requested=[0,6,12,24,36,float(t[-1])]
     theta=np.linspace(0,2*np.pi,181)
@@ -262,10 +264,6 @@ def shrinking():
         details.append({'time_h':float(t[i]),'radius_cm':float(rad),'center_C':float(c[i,0])})
     fig.text(.50,.035,'(b) 等比例圆截面重建；虚线为初始外轮廓，共用上方水分色标',ha='center',fontsize=8)
     METRICS['q4_shrinking_field']={'snapshots':details,'all_time_samples':len(t),'method':'axisymmetric reconstruction of 1D radial solution, not independent 2D simulation'}
-    from matplotlib.text import Text
-    fig.canvas.draw()
-    for text in fig.findobj(Text):
-        text.set_path_effects([pe.withStroke(linewidth=0.16, foreground=text.get_color())])
     save(fig,'q4_shrinking_field')
 
 def main():
