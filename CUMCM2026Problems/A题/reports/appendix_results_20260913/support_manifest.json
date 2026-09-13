@@ -510,8 +510,8 @@
       "source": "paper/cumcm-1.1.0/main.pdf",
       "archive_path": "paper/cumcm-1.1.0/main.pdf",
       "description": "当前完整论文；供附录与结果核对",
-      "size_bytes": 2267377,
-      "sha256": "c52c5dfd4bef6c99fd1d583e87ccf697abc17712983bab27b829cd0c713b559e"
+      "size_bytes": 2267469,
+      "sha256": "77598db6fe260565efc85d9e0e623e98e2c33b585928d3ec3770184877a20702"
     },
     {
       "source": "results/data_audit.json",

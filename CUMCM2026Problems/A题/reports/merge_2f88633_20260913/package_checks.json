@@ -1,0 +1,133 @@
+{
+  "status": "PASS",
+  "scope": "Repackage verified merged PDF; no model execution or calculation changes",
+  "accepted_local_baseline": "edfa9bc",
+  "remote_merge_target": "2f88633",
+  "zip_path": "support_materials_20260913.zip",
+  "zip_bytes": 18121159,
+  "zip_sha256": "86b509846fa9c0ced87d7be536d42bc76927033e6b0d5bf851f145c4e8d1b06b",
+  "size_limit_bytes": 20000000,
+  "crc_check": "PASS",
+  "source_files_byte_identical": 33,
+  "manifest_entries_verified": 107,
+  "zip_files": 108,
+  "appendix_A_files": 108,
+  "file_sets_equal": true,
+  "file_list_unchanged_from_edfa9bc": true,
+  "changed_file_contents_from_edfa9bc": [
+    "paper/cumcm-1.1.0/main.pdf",
+    "support_manifest.json"
+  ],
+  "empty_directories": [
+    "figures/",
+    "drawio/",
+    "paper/cumcm-1.1.0/figures/",
+    "paper/cumcm-1.1.0/contents/sections/"
+  ],
+  "main_pdf_pages": 148,
+  "main_pdf_bytes": 2267469,
+  "main_pdf_sha256": "77598db6fe260565efc85d9e0e623e98e2c33b585928d3ec3770184877a20702",
+  "main_pdf_byte_identical": true,
+  "ai_pdf_byte_identical": true,
+  "result_workbook_metadata": [
+    {
+      "file": "results/result1.xlsx",
+      "creator": null,
+      "lastModifiedBy": null,
+      "sha256": "0246ef2d4dc1e7ee733d1d87130b2e27dadd585cf42839e24c9cc2584b44ce58"
+    },
+    {
+      "file": "results/result2.xlsx",
+      "creator": null,
+      "lastModifiedBy": null,
+      "sha256": "7c5f3043554b8493c1c07c65b0c286b2190690dd3814e2d12ca70a094c5540e4"
+    },
+    {
+      "file": "results/result3.xlsx",
+      "creator": null,
+      "lastModifiedBy": null,
+      "sha256": "6f805f29a5261b29f112e285fdb614e6495259f8742567fcb904a93cf5050286"
+    },
+    {
+      "file": "results/result4.xlsx",
+      "creator": null,
+      "lastModifiedBy": null,
+      "sha256": "9888f85de53c9b8f0047e2d87a6bb09de7be623c930d8f9b5f273044ee079439"
+    }
+  ],
+  "omitted_rebuildable": [
+    {
+      "archive_path": "comsol_q4/near_surface_check/graded160/q4_comsol_profiles.csv",
+      "source": "comsol_q4/near_surface_check/graded160/q4_comsol_profiles.csv",
+      "size_bytes": 19355430,
+      "sha256": "4330e86e13dc484e0ced3868bd6d612b2c8f7586565d6f23c6a0cb1f5a7c852e",
+      "compressed_size_bytes": 4952505,
+      "reason": "超过20 MB提交包体积约束；保留完整源码与输入供重建",
+      "rebuild_command": "在 comsol_q4/near_surface_check/graded160/ 修正 WORK_DIR 后，用 COMSOL 6.3 的 comsolcompile 和 comsolbatch 执行同目录 Q4Automation.java"
+    },
+    {
+      "archive_path": "comsol_q4/near_surface_check/graded320/q4_comsol_profiles.csv",
+      "source": "comsol_q4/near_surface_check/graded320/q4_comsol_profiles.csv",
+      "size_bytes": 19444033,
+      "sha256": "5f455cfb995a685dd1d5325b6b5f6b5cf48d1cf4cb6f9498c2c39891d44c1c33",
+      "compressed_size_bytes": 4971489,
+      "reason": "超过20 MB提交包体积约束；保留完整源码与输入供重建",
+      "rebuild_command": "在 comsol_q4/near_surface_check/graded320/ 修正 WORK_DIR 后，用 COMSOL 6.3 的 comsolcompile 和 comsolbatch 执行同目录 Q4Automation.java"
+    },
+    {
+      "archive_path": "comsol_q4/near_surface_check/graded80/q4_comsol_profiles.csv",
+      "source": "comsol_q4/near_surface_check/graded80/q4_comsol_profiles.csv",
+      "size_bytes": 19565542,
+      "sha256": "edb619f1c28ba3b107f1d24f4cb484b14706b1db99ffd287f972c7cd72b54f39",
+      "compressed_size_bytes": 4912265,
+      "reason": "超过20 MB提交包体积约束；保留完整源码与输入供重建",
+      "rebuild_command": "在 comsol_q4/near_surface_check/graded80/ 修正 WORK_DIR 后，用 COMSOL 6.3 的 comsolcompile 和 comsolbatch 执行同目录 Q4Automation.java"
+    },
+    {
+      "archive_path": "comsol_q4/near_surface_check/original_dense/q4_comsol_profiles.csv",
+      "source": "comsol_q4/near_surface_check/original_dense/q4_comsol_profiles.csv",
+      "size_bytes": 18997561,
+      "sha256": "4f3b1ab0d1d4d8cb4e71d7981febcc05d5b78f3a7e7b112283fd5084e097dbaa",
+      "compressed_size_bytes": 4889659,
+      "reason": "超过20 MB提交包体积约束；保留完整源码与输入供重建",
+      "rebuild_command": "在 comsol_q4/near_surface_check/original_dense/ 修正 WORK_DIR 后，用 COMSOL 6.3 的 comsolcompile 和 comsolbatch 执行同目录 Q4Automation.java"
+    },
+    {
+      "archive_path": "comsol_q4/near_surface_check/original_tight/q4_comsol_profiles.csv",
+      "source": "comsol_q4/near_surface_check/original_tight/q4_comsol_profiles.csv",
+      "size_bytes": 18993124,
+      "sha256": "f4b6c9135bcc78c64c1fc6d20f92212c798b732ba4a4272728d1bf643b2d4034",
+      "compressed_size_bytes": 4891958,
+      "reason": "超过20 MB提交包体积约束；保留完整源码与输入供重建",
+      "rebuild_command": "在 comsol_q4/near_surface_check/original_tight/ 修正 WORK_DIR 后，用 COMSOL 6.3 的 comsolcompile 和 comsolbatch 执行同目录 Q4Automation.java"
+    },
+    {
+      "archive_path": "results/q2/fields.npz",
+      "source": "results/q2/fields.npz",
+      "size_bytes": 38337343,
+      "sha256": "864e4d90d2a0b22f3eae37f34cae3fcea093dfb9f63bd4d0f2214f149209ab6b",
+      "compressed_size_bytes": 37611300,
+      "reason": "超过20 MB提交包体积约束；保留完整源码与输入供重建",
+      "rebuild_command": "python code/solve_drying.py --skip-convergence"
+    },
+    {
+      "archive_path": "results/q4/fixed_radius_counterfactual.npz",
+      "source": "results/q4/fixed_radius_counterfactual.npz",
+      "size_bytes": 1542497,
+      "sha256": "95b4070c4f49c551b7cde0be5bfd0d76b650363fea654726a7ea1a0a090fcf6f",
+      "compressed_size_bytes": 1532691,
+      "reason": "超过20 MB提交包体积约束；保留完整源码与输入供重建",
+      "rebuild_command": "python code/run_q4_counterfactual.py"
+    },
+    {
+      "archive_path": "results/q4/validation_moving_mesh/fields.npz",
+      "source": "results/q4/validation_moving_mesh/fields.npz",
+      "size_bytes": 14824563,
+      "sha256": "c20e4371912ce3574447cdb039e0ef84a7fd2d98fef504cb8518a9eaa1193441",
+      "compressed_size_bytes": 14675876,
+      "reason": "超过20 MB提交包体积约束；保留完整源码与输入供重建",
+      "rebuild_command": "python code/validate_moving_mesh.py"
+    }
+  ],
+  "numerical_source_execution": false
+}
