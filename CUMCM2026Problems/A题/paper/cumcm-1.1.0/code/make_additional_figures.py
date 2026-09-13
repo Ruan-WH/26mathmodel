@@ -1,4 +1,3 @@
-# File: code/make_additional_figures.py
 # Academic Figure Skill Asset Confirmation (verified against assets/figures/)
 # q1/q2 surfaces -> no continuous PDE surface asset -> cross-type inherit
 # q2 map -> heatmap/plot_composition.py -> param inherit (continuous field, not counts)
@@ -158,6 +157,11 @@ def surface_heatmap(q,key,name,zlabel,cmap,limit,ticks):
     im=ax.pcolormesh(t,r,v.T,cmap=cmap,norm=norm,shading='auto',rasterized=True)
     cs=ax.contour(t,r,v.T,levels=ticks,colors='white',linewidths=.75)
     labels=ax.clabel(cs,fmt='%g',fontsize=7,inline=True)
+    # The 2.5 contour lies against the initial-value boundary; suppress only
+    # that edge label to avoid clipping while retaining the contour itself.
+    for label in labels:
+        if label.get_text() == '2.5':
+            label.set_visible(False)
     for label in labels:
         label.set_path_effects([pe.withStroke(linewidth=1.4,foreground='#555555')])
     ax.plot(t,np.zeros_like(t),color='#222222',lw=.85)
@@ -167,7 +171,7 @@ def surface_heatmap(q,key,name,zlabel,cmap,limit,ticks):
     ax.set_yticks([0,.5,1,1.5,2])
     cb=fig.colorbar(im,cax=fig.add_axes([.89,.20,.023,.73]))
     cb.set_label(zlabel,labelpad=8)
-    fig.text(.47,.035,'实线：中心    虚线：表面',ha='center',fontsize=8)
+    fig.text(.47,.035,'下边界：中心    上边界：表面',ha='center',fontsize=8)
     METRICS[name]={'shape':list(v.shape),'min':float(v.min()),'max':float(v.max()),'time_range_s':[0,limit], 'plot':'2D heatmap with contour lines'}
     save(fig,name)
 
@@ -209,7 +213,7 @@ def threshold_front():
     ax.plot(t[start:],front[start:],color=ACCENT_RED,lw=1.8)
     ax.scatter([ts,t[-1]],[2,0],s=24,color=ACCENT_RED,zorder=6,clip_on=False)
     ax.text(14,.42,'未达标区域\nC > 0.15 kg/kg',ha='center',fontsize=9,color='#17466B')
-    ax.text(43,1.55,'已达标区域\nC ≤ 0.15 kg/kg',ha='center',fontsize=9,
+    ax.text(43,1.55,'已达标区域\nC < 0.15 kg/kg',ha='center',fontsize=9,
             bbox=dict(facecolor='white',edgecolor='none',alpha=.92,pad=3))
     ax.annotate(f'表面首达 {ts:.3f} h',xy=(ts,2),xytext=(ts+2,2.13),fontsize=8,
                 arrowprops=dict(arrowstyle='-',color=GREY,lw=.7),annotation_clip=False)
