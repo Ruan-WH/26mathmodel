@@ -21,7 +21,7 @@
 powershell -ExecutionPolicy Bypass -File .\build.ps1
 ```
 
-本轮使用本机已有 Tectonic 编译，自动完成交叉引用重跑，并同步两个阅读版及 `build/AI_usage.pdf`。Tectonic 首次运行需获取宏包，字体查找需配置本机 Windows 字体目录；后续可使用缓存。原 XeLaTeX 构建入口保持不变。
+本轮使用本机 XeLaTeX 编译，自动完成交叉引用重跑，并同步两个阅读版及 `build/AI_usage.pdf`。为适配当前 macOS 编译环境，说明文件使用 ctex 的 mac 字体配置；提交 PDF 的版式与正文模板保持一致。原 Windows PowerShell 构建入口仍保留。
 
 ## 内容依据
 
