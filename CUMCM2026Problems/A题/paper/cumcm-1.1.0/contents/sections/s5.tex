@@ -79,19 +79,27 @@ D=7.0\times10^{-9}\exp(-0.89/C).
 \label{eq:prop1}
 \end{equation}
 问题二、三采用题面附录3给出的物性关系
-\begin{align}
-\rho&=650+128C,&c_p&=1450+2736\frac{C}{C+1},\nonumber\\
-k&=0.21+0.38\frac{C}{C+1},&
-D&=2.4\times10^{-3}\exp(-0.45/C)\exp[-3850/(T+273.15)].
+\begin{equation}
+\begin{aligned}
+\rho(C)&=650+128C,\\
+c_p(C)&=1450+2736\frac{C}{C+1},\\
+k(C)&=0.21+0.38\frac{C}{C+1},\\
+D(T,C)&=2.4\times10^{-3}\exp\left(-\frac{0.45}{C}\right)
+\exp\left[-\frac{3850}{T+273.15}\right].
+\end{aligned}
 \label{eq:prop23}
-\end{align}
+\end{equation}
 问题四采用题面附录4给出的物性关系
-\begin{align}
-\rho&=760+90C,&c_p&=1850+2150\frac{C}{C+1},\nonumber\\
-k&=0.12+0.20\frac{C}{C+1},&
-D&=4.2\times10^{-4}\exp(-0.30/C)\exp[-3850/(T+273.15)].
+\begin{equation}
+\begin{aligned}
+\rho(C)&=760+90C,\\
+c_p(C)&=1850+2150\frac{C}{C+1},\\
+k(C)&=0.12+0.20\frac{C}{C+1},\\
+D(T,C)&=4.2\times10^{-4}\exp\left(-\frac{0.30}{C}\right)
+\exp\left[-\frac{3850}{T+273.15}\right].
+\end{aligned}
 \label{eq:prop4}
-\end{align}
+\end{equation}
 
 由\cref{eq:prop23,eq:prop4}可知，水分影响储热与导热，温度和水分共同影响 $D$，由此形成状态相关物性耦合。采用题给函数可在统一口径下比较四问的温湿迁移，但这一耦合不包含蒸发耗热；例如，COMSOL 湿多孔介质热湿模型将有效热物性与蒸发潜热源分别处理\cite{comsolmoistheat}。本文未建立液汽相分配及局部汽化速率关系，也未完成潜热与输入热量的量级对照，故不将缺少相变项解释为其影响已足够小；后文收敛与交叉求解仅检验既定方程的数值实现。
 
