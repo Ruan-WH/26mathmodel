@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "layout": "flat",
+  "file_count": 11,
+  "files": [
+    {
+      "archive_path": "AI工具使用详情.pdf",
+      "source": "paper/AI_usage/AI工具使用详情.pdf",
+      "delivery_source": "paper/AI_usage/AI工具使用详情.pdf",
+      "description": "AI工具使用情况说明",
+      "kind": "AI_usage_pdf",
+      "size_bytes": 154470,
+      "sha256": "ebae38e734aebbc7848f32c1625f8a380ca40970766845a76df5f96958d52efa",
+      "source_sha256": "ebae38e734aebbc7848f32c1625f8a380ca40970766845a76df5f96958d52efa"
+    },
+    {
+      "archive_path": "figure_style.py",
+      "source": "code/figure_style.py",
+      "delivery_source": "reports/flat_delivery_20260913/delivery/figure_style.py",
+      "description": "主图字体、数学排版和缺字检查",
+      "kind": "Python",
+      "size_bytes": 2927,
+      "sha256": "193cd203ac259af2527d1ac53c7256af75345d5b9966d2c16eb7a5cb792dc062",
+      "source_sha256": "cf2ede75b1496617f56f19e309cc02f40fcdff7854e263824be655dc982263d9"
+    },
+    {
+      "archive_path": "input_data.py",
+      "source": null,
+      "delivery_source": "reports/flat_delivery_20260913/delivery/input_data.py",
+      "description": "附件1/2原始数值与来源哈希；无需外部输入文件",
+      "kind": "Python",
+      "size_bytes": 10429,
+      "sha256": "5dc1d3447b10ff007883988c3ed2c8f2856328b5143129c58b7c1b045e73eaed",
+      "source_sha256": null
+    },
+    {
+      "archive_path": "make_additional_figures.py",
+      "source": "code/make_additional_figures.py",
+      "delivery_source": "reports/flat_delivery_20260913/delivery/make_additional_figures.py",
+      "description": "温湿时空场、扩散率、干燥前沿和收缩主图绘制",
+      "kind": "Python",
+      "size_bytes": 15006,
+      "sha256": "0e79becff133a0d59efd35ae7ae889a94b5ad89fbff8b6ba3747754194dbdb15",
+      "source_sha256": "36ec91a92fdb92856ed3898bb28975b3d9af102b93de7763824a76a1d5cd0437"
+    },
+    {
+      "archive_path": "make_figures.py",
+      "source": "code/make_figures.py",
+      "delivery_source": "reports/flat_delivery_20260913/delivery/make_figures.py",
+      "description": "四问主要结果图绘制",
+      "kind": "Python",
+      "size_bytes": 13448,
+      "sha256": "3303fd4d8b9befff307a34f6aa8d62d848ba3ff6c61e1f5f38d068650f1caf12",
+      "source_sha256": "59c66fb1bb0a441b7eb5f40f560c6e6720351c72f8c481fd7ead185a6fd37c9d"
+    },
+    {
+      "archive_path": "result1.xlsx",
+      "source": "results/result1.xlsx",
+      "delivery_source": "results/result1.xlsx",
+      "description": "原样保留的正式结果工作簿",
+      "kind": "result_workbook",
+      "size_bytes": 379565,
+      "sha256": "0246ef2d4dc1e7ee733d1d87130b2e27dadd585cf42839e24c9cc2584b44ce58",
+      "source_sha256": "0246ef2d4dc1e7ee733d1d87130b2e27dadd585cf42839e24c9cc2584b44ce58"
+    },
+    {
+      "archive_path": "result2.xlsx",
+      "source": "results/result2.xlsx",
+      "delivery_source": "results/result2.xlsx",
+      "description": "原样保留的正式结果工作簿",
+      "kind": "result_workbook",
+      "size_bytes": 2478187,
+      "sha256": "7c5f3043554b8493c1c07c65b0c286b2190690dd3814e2d12ca70a094c5540e4",
+      "source_sha256": "7c5f3043554b8493c1c07c65b0c286b2190690dd3814e2d12ca70a094c5540e4"
+    },
+    {
+      "archive_path": "result3.xlsx",
+      "source": "results/result3.xlsx",
+      "delivery_source": "results/result3.xlsx",
+      "description": "原样保留的正式结果工作簿",
+      "kind": "result_workbook",
+      "size_bytes": 353745,
+      "sha256": "6f805f29a5261b29f112e285fdb614e6495259f8742567fcb904a93cf5050286",
+      "source_sha256": "6f805f29a5261b29f112e285fdb614e6495259f8742567fcb904a93cf5050286"
+    },
+    {
+      "archive_path": "result4.xlsx",
+      "source": "results/result4.xlsx",
+      "delivery_source": "results/result4.xlsx",
+      "description": "原样保留的正式结果工作簿",
+      "kind": "result_workbook",
+      "size_bytes": 300045,
+      "sha256": "9888f85de53c9b8f0047e2d87a6bb09de7be623c930d8f9b5f273044ee079439",
+      "source_sha256": "9888f85de53c9b8f0047e2d87a6bb09de7be623c930d8f9b5f273044ee079439"
+    },
+    {
+      "archive_path": "run_q4_counterfactual.py",
+      "source": "code/run_q4_counterfactual.py",
+      "delivery_source": "reports/flat_delivery_20260913/delivery/run_q4_counterfactual.py",
+      "description": "第四问同物性固定半径对照，供主要比较图使用",
+      "kind": "Python",
+      "size_bytes": 2684,
+      "sha256": "94140069dd232249fe543bca3e9f7175419d3cdeabce7f54fa0353aa3ca6ee80",
+      "source_sha256": "e5027c493896dbfaa5e7cd11b9a2996107f607c819d4a183347bf847ed2cc2ae"
+    },
+    {
+      "archive_path": "solve_drying.py",
+      "source": "code/solve_drying.py",
+      "delivery_source": "reports/flat_delivery_20260913/delivery/solve_drying.py",
+      "description": "四问主模型求解；平铺路径与内嵌输入适配",
+      "kind": "Python",
+      "size_bytes": 34189,
+      "sha256": "eb71fffd6e3706c6f4ec477d9b25c4f6e0b583113a54d7bea2889cd54b91cefd",
+      "source_sha256": "7016bf12f67710261eb0db124ed932a6e74692d919ca472df655976522fe572d"
+    }
+  ],
+  "source_inputs": [
+    {
+      "source": "附件/附件1.xlsx",
+      "source_sha256": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7",
+      "shape": [
+        241,
+        3
+      ],
+      "numeric_array_sha256": "cab97e27199ba926228bfdade52025a9e6882a519fb94cf71f77143fd17002bf"
+    },
+    {
+      "source": "附件/附件2.xlsx",
+      "source_sha256": "5563acbfa4b4afb10cc6c03e2207e5369bf39da27576672aff14cc5c32e704af",
+      "shape": [
+        145,
+        2
+      ],
+      "numeric_array_sha256": "5e561fff89b0699aba78bf65444ee42c7f6922e7a227f3fc811dded2a75d13cc"
+    }
+  ],
+  "code_adaptation_scope": "Only delivery IO roots, embedded input lookup and output copying; all modeling functions unchanged",
+  "directories_in_archive": false,
+  "metadata_manifest_in_archive": false
+}

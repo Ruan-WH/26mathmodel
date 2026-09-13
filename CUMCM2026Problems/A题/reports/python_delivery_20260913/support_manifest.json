@@ -1,0 +1,229 @@
+{
+  "schema_version": 1,
+  "layout": "root results and AI PDF; all appendix-B Python flat under 代码/",
+  "file_count": 27,
+  "python_source_count": 22,
+  "mph_file_count": 0,
+  "files": [
+    {
+      "archive_path": "AI工具使用详情.pdf",
+      "source": "paper/AI_usage/AI工具使用详情.pdf",
+      "description": "AI工具使用情况说明（原样保留）",
+      "kind": "AI_usage_pdf",
+      "size_bytes": 839048,
+      "sha256": "ba918159135d2fa683c2d6726ab9aaafd2a844fbd84029d64344eeee9f1392a1"
+    },
+    {
+      "archive_path": "result1.xlsx",
+      "source": "results/result1.xlsx",
+      "description": "问题1正式结果工作簿（原样保留）",
+      "kind": "result_workbook",
+      "size_bytes": 379565,
+      "sha256": "0246ef2d4dc1e7ee733d1d87130b2e27dadd585cf42839e24c9cc2584b44ce58"
+    },
+    {
+      "archive_path": "result2.xlsx",
+      "source": "results/result2.xlsx",
+      "description": "问题2正式结果工作簿（原样保留）",
+      "kind": "result_workbook",
+      "size_bytes": 2478187,
+      "sha256": "7c5f3043554b8493c1c07c65b0c286b2190690dd3814e2d12ca70a094c5540e4"
+    },
+    {
+      "archive_path": "result3.xlsx",
+      "source": "results/result3.xlsx",
+      "description": "问题3正式结果工作簿（原样保留）",
+      "kind": "result_workbook",
+      "size_bytes": 353745,
+      "sha256": "6f805f29a5261b29f112e285fdb614e6495259f8742567fcb904a93cf5050286"
+    },
+    {
+      "archive_path": "result4.xlsx",
+      "source": "results/result4.xlsx",
+      "description": "问题4正式结果工作簿（原样保留）",
+      "kind": "result_workbook",
+      "size_bytes": 300045,
+      "sha256": "9888f85de53c9b8f0047e2d87a6bb09de7be623c930d8f9b5f273044ee079439"
+    },
+    {
+      "archive_path": "代码/analyze_q4_comsol.py",
+      "source": "comsol_q4/analyze_q4_comsol.py",
+      "description": "有限元与有限体积数值结果比较",
+      "kind": "Python",
+      "size_bytes": 6842,
+      "sha256": "575f610c2f7e3ebb1a938d6d9202530ca9c56a095b7b890d0cb965a9491cea27"
+    },
+    {
+      "archive_path": "代码/analyze_refinement.py",
+      "source": "comsol_q4/near_surface_check/analyze_refinement.py",
+      "description": "有限元近表面加密结果分析",
+      "kind": "Python",
+      "size_bytes": 3546,
+      "sha256": "f5ebe4c4fd798df97239feda3ad4627586eb65a81cc3db28b1d33d9cad1f61ae"
+    },
+    {
+      "archive_path": "代码/check_moving_mesh_delivery.py",
+      "source": "code/check_moving_mesh_delivery.py",
+      "description": "移动网格验证结果一致性检查",
+      "kind": "Python",
+      "size_bytes": 14545,
+      "sha256": "50c08bdd9e2a933e8f83c38c9bb9844b8b1a4170ef346d6cf7fc50924430faef"
+    },
+    {
+      "archive_path": "代码/check_numerics.py",
+      "source": "code/check_numerics.py",
+      "description": "空间网格与时间步长收敛检验",
+      "kind": "Python",
+      "size_bytes": 1974,
+      "sha256": "b2e1e086ee88ee7fb554e73a5ceaf7f0b02c5a6a6dd72c72b053e2b0cfa33d59"
+    },
+    {
+      "archive_path": "代码/figure_style.py",
+      "source": "code/figure_style.py",
+      "description": "绘图字体、数学排版与缺字检查",
+      "kind": "Python",
+      "size_bytes": 3006,
+      "sha256": "cf2ede75b1496617f56f19e309cc02f40fcdff7854e263824be655dc982263d9"
+    },
+    {
+      "archive_path": "代码/inspect_inputs.py",
+      "source": "inspect_inputs.py",
+      "description": "题目附件与结果模板结构检查",
+      "kind": "Python",
+      "size_bytes": 879,
+      "sha256": "af854b66192173fe8d9afc2da8067f49c024a6ca5897986425799ab48fb2c740"
+    },
+    {
+      "archive_path": "代码/make_additional_figures.py",
+      "source": "code/make_additional_figures.py",
+      "description": "时空场、扩散系数和收缩截面图绘制",
+      "kind": "Python",
+      "size_bytes": 13843,
+      "sha256": "36ec91a92fdb92856ed3898bb28975b3d9af102b93de7763824a76a1d5cd0437"
+    },
+    {
+      "archive_path": "代码/make_figures.py",
+      "source": "code/make_figures.py",
+      "description": "四问主要数值结果图绘制",
+      "kind": "Python",
+      "size_bytes": 12560,
+      "sha256": "59c66fb1bb0a441b7eb5f40f560c6e6720351c72f8c481fd7ead185a6fd37c9d"
+    },
+    {
+      "archive_path": "代码/make_geometry_diagram.py",
+      "source": "code/make_geometry_diagram.py",
+      "description": "药材几何与坐标示意图绘制",
+      "kind": "Python",
+      "size_bytes": 5382,
+      "sha256": "7651dd53ba85daf181776f8bb972ba3f24b487a209bc736af8a459a66bca7e3b"
+    },
+    {
+      "archive_path": "代码/plot_moving_mesh_validation.py",
+      "source": "code/plot_moving_mesh_validation.py",
+      "description": "移动网格与固定域结果对照图绘制",
+      "kind": "Python",
+      "size_bytes": 5764,
+      "sha256": "4ca41233e79906e5f6e77d17d99ecce94d3df3f8431fd843b826eb0338b1d537"
+    },
+    {
+      "archive_path": "代码/plot_q4_physical.py",
+      "source": "comsol_q4/plot_q4_physical.py",
+      "description": "有限元物理剖面和水分场绘制",
+      "kind": "Python",
+      "size_bytes": 11596,
+      "sha256": "98e4be76370a1bc7348a9d2455f4aa26ffad2651df3b98e5e15e3c109b86e6cb"
+    },
+    {
+      "archive_path": "代码/prepare_inputs.py",
+      "source": "comsol_q1/prepare_inputs.py",
+      "description": "问题一有限元输入准备与结果比较",
+      "kind": "Python",
+      "size_bytes": 4375,
+      "sha256": "cf5d93819cfe820acca8f91af1d36ae9779e0299d106ca97009ed66005cbce40"
+    },
+    {
+      "archive_path": "代码/prepare_q4_inputs.py",
+      "source": "comsol_q4/prepare_q4_inputs.py",
+      "description": "问题四有限元物性与边界输入准备",
+      "kind": "Python",
+      "size_bytes": 2272,
+      "sha256": "6d3e9f3f28bcf17dbf809321d51acfee9c6da18c9ad34cb5f89898b277fef967"
+    },
+    {
+      "archive_path": "代码/run_q4_counterfactual.py",
+      "source": "code/run_q4_counterfactual.py",
+      "description": "同物性固定半径反事实计算",
+      "kind": "Python",
+      "size_bytes": 1461,
+      "sha256": "e5027c493896dbfaa5e7cd11b9a2996107f607c819d4a183347bf847ed2cc2ae"
+    },
+    {
+      "archive_path": "代码/run_sensitivity.py",
+      "source": "code/run_sensitivity.py",
+      "description": "长期环境边界灵敏度计算",
+      "kind": "Python",
+      "size_bytes": 2992,
+      "sha256": "0f500a0263edd6f9c9b8f9b6c55e9f248493ec9b777b3bd6f416b59ed6e6dd58"
+    },
+    {
+      "archive_path": "代码/solve_drying.py",
+      "source": "code/solve_drying.py",
+      "description": "四问热湿迁移求解、首达判定及收缩模型",
+      "kind": "Python",
+      "size_bytes": 34056,
+      "sha256": "7016bf12f67710261eb0db124ed932a6e74692d919ca472df655976522fe572d"
+    },
+    {
+      "archive_path": "代码/validate_2d.py",
+      "source": "code/validate_2d.py",
+      "description": "问题一轴对称二维端面影响检验入口",
+      "kind": "Python",
+      "size_bytes": 824,
+      "sha256": "c6e2eb0fe0ecca8af71cd12c76cccb5d871916f16810883e8226a711448154ac"
+    },
+    {
+      "archive_path": "代码/validate_long_2d.py",
+      "source": "code/validate_long_2d.py",
+      "description": "长期二维与一维配对计算",
+      "kind": "Python",
+      "size_bytes": 5466,
+      "sha256": "d66cdde8bf216c97002bf542a2a311133059f50cbccd0af5679cdd85879f6c04"
+    },
+    {
+      "archive_path": "代码/validate_moving_mesh.py",
+      "source": "code/validate_moving_mesh.py",
+      "description": "独立移动控制体模型与几何守恒检验",
+      "kind": "Python",
+      "size_bytes": 19231,
+      "sha256": "7a9dccc4ac558daff24cd3f5051cc848880380381e8a6dd191dadb7632b5e31d"
+    },
+    {
+      "archive_path": "代码/verify_revision.py",
+      "source": "code/verify_revision.py",
+      "description": "轨迹一致性、场量与离散平衡检查",
+      "kind": "Python",
+      "size_bytes": 3126,
+      "sha256": "ad02e1d84b97fa7fb702d3eaae3f1616fe069bc36a72b0cefaea565b1298d4d6"
+    },
+    {
+      "archive_path": "代码/write_report.py",
+      "source": "comsol_q4/near_surface_check/write_report.py",
+      "description": "有限元网格与容差检验结果汇总",
+      "kind": "Python",
+      "size_bytes": 3795,
+      "sha256": "5584752830ff90a1461087e752177dcd5facd4d1222f85fbbccec6e9bd922fd6"
+    },
+    {
+      "archive_path": "代码/write_results.py",
+      "source": "code/write_results.py",
+      "description": "四份结果工作簿导出与逐项回读核验",
+      "kind": "Python",
+      "size_bytes": 11804,
+      "sha256": "cbade6ecc9922a5b1b91ec959e4279f4c8b5d77bccdb8e2e8d8e6a22cb9b41ca"
+    }
+  ],
+  "runtime_scope": "Flat source/model archive; restore original source paths shown in appendix B before running, with original problem inputs and applicable COMSOL data",
+  "source_execution": false,
+  "internal_readme_or_manifest": false,
+  "explicit_directory_entries": false
+}

@@ -1,6 +1,6 @@
-# COMSOL 自动化复现：问题一
+# COMSOL 模型与结果核对：问题一
 
-本目录把 A 题问题一的固定半径 Fourier–Fick 模型写成 COMSOL Java API 模型。
+本目录保留 A 题问题一固定半径 Fourier–Fick 模型的 COMSOL 工程及导出结果。
 二维计算域取半径 0.02 m、轴向厚度 0.001 m 的绝热切片，并在通用 PDE 的储存项、扩散项和表面通量中显式乘以径向坐标，严格实现圆柱径向守恒形式。两端零通量使解沿轴向保持一致。
 
 边界环境数据由 `prepare_inputs.py` 从附件 1 读取，经 PCHIP 插值后按 1 s 采样。
@@ -24,4 +24,5 @@ COMSOL 6.3.0.290 批处理求解成功。对正文采用的 7 个时刻、5 个�
 
 ## 复现
 
-在 PowerShell 中运行 `run_comsol_q1.ps1`。脚本重新准备边界数据、编译 Java API 模型、批量求解并生成比较表。
+使用 COMSOL 6.3 打开已有 `q1_comsol_model.mph` 查看模型与解。
+在本目录运行 `python prepare_inputs.py q1_comsol_profiles.csv`，可依据现有导出剖面重新生成比较表；所需题给附件和主模型结果应位于原工程对应目录。

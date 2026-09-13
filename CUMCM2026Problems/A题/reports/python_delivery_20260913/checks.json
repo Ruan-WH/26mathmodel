@@ -1,0 +1,293 @@
+{
+  "status": "PASS",
+  "zip_bytes": 3984743,
+  "zip_sha256": "83ec045215d3f9159dda52e515e55a600754c2354bbb20b8ab6ed624ae0a4310",
+  "mph_file_count": 0,
+  "code_subdirectories": 0,
+  "exceeds_previous_20MB_limit": false,
+  "size_policy": "User explicitly requested all 2 selected MPH files; retained all without truncation",
+  "archive_file_count": 27,
+  "python_source_count": 22,
+  "archive_names": [
+    "AI工具使用详情.pdf",
+    "result1.xlsx",
+    "result2.xlsx",
+    "result3.xlsx",
+    "result4.xlsx",
+    "代码/analyze_q4_comsol.py",
+    "代码/analyze_refinement.py",
+    "代码/check_moving_mesh_delivery.py",
+    "代码/check_numerics.py",
+    "代码/figure_style.py",
+    "代码/inspect_inputs.py",
+    "代码/make_additional_figures.py",
+    "代码/make_figures.py",
+    "代码/make_geometry_diagram.py",
+    "代码/plot_moving_mesh_validation.py",
+    "代码/plot_q4_physical.py",
+    "代码/prepare_inputs.py",
+    "代码/prepare_q4_inputs.py",
+    "代码/run_q4_counterfactual.py",
+    "代码/run_sensitivity.py",
+    "代码/solve_drying.py",
+    "代码/validate_2d.py",
+    "代码/validate_long_2d.py",
+    "代码/validate_moving_mesh.py",
+    "代码/verify_revision.py",
+    "代码/write_report.py",
+    "代码/write_results.py"
+  ],
+  "explicit_directory_entries": 0,
+  "root_file_names": [
+    "AI工具使用详情.pdf",
+    "result1.xlsx",
+    "result2.xlsx",
+    "result3.xlsx",
+    "result4.xlsx"
+  ],
+  "only_authorized_file_types": true,
+  "crc_check": "PASS",
+  "complete_appendix_B_source_set": true,
+  "source_checks": [
+    {
+      "source": "code/solve_drying.py",
+      "archive_path": "代码/solve_drying.py",
+      "canonical_byte_identical": true,
+      "appendix_identical_after_filename_comment": true,
+      "syntax_checked_not_executed": true,
+      "sha256": "7016bf12f67710261eb0db124ed932a6e74692d919ca472df655976522fe572d"
+    },
+    {
+      "source": "code/write_results.py",
+      "archive_path": "代码/write_results.py",
+      "canonical_byte_identical": true,
+      "appendix_identical_after_filename_comment": true,
+      "syntax_checked_not_executed": true,
+      "sha256": "cbade6ecc9922a5b1b91ec959e4279f4c8b5d77bccdb8e2e8d8e6a22cb9b41ca"
+    },
+    {
+      "source": "code/check_numerics.py",
+      "archive_path": "代码/check_numerics.py",
+      "canonical_byte_identical": true,
+      "appendix_identical_after_filename_comment": true,
+      "syntax_checked_not_executed": true,
+      "sha256": "b2e1e086ee88ee7fb554e73a5ceaf7f0b02c5a6a6dd72c72b053e2b0cfa33d59"
+    },
+    {
+      "source": "code/validate_2d.py",
+      "archive_path": "代码/validate_2d.py",
+      "canonical_byte_identical": true,
+      "appendix_identical_after_filename_comment": true,
+      "syntax_checked_not_executed": true,
+      "sha256": "c6e2eb0fe0ecca8af71cd12c76cccb5d871916f16810883e8226a711448154ac"
+    },
+    {
+      "source": "code/validate_long_2d.py",
+      "archive_path": "代码/validate_long_2d.py",
+      "canonical_byte_identical": true,
+      "appendix_identical_after_filename_comment": true,
+      "syntax_checked_not_executed": true,
+      "sha256": "d66cdde8bf216c97002bf542a2a311133059f50cbccd0af5679cdd85879f6c04"
+    },
+    {
+      "source": "code/verify_revision.py",
+      "archive_path": "代码/verify_revision.py",
+      "canonical_byte_identical": true,
+      "appendix_identical_after_filename_comment": true,
+      "syntax_checked_not_executed": true,
+      "sha256": "ad02e1d84b97fa7fb702d3eaae3f1616fe069bc36a72b0cefaea565b1298d4d6"
+    },
+    {
+      "source": "code/run_sensitivity.py",
+      "archive_path": "代码/run_sensitivity.py",
+      "canonical_byte_identical": true,
+      "appendix_identical_after_filename_comment": true,
+      "syntax_checked_not_executed": true,
+      "sha256": "0f500a0263edd6f9c9b8f9b6c55e9f248493ec9b777b3bd6f416b59ed6e6dd58"
+    },
+    {
+      "source": "code/run_q4_counterfactual.py",
+      "archive_path": "代码/run_q4_counterfactual.py",
+      "canonical_byte_identical": true,
+      "appendix_identical_after_filename_comment": true,
+      "syntax_checked_not_executed": true,
+      "sha256": "e5027c493896dbfaa5e7cd11b9a2996107f607c819d4a183347bf847ed2cc2ae"
+    },
+    {
+      "source": "code/validate_moving_mesh.py",
+      "archive_path": "代码/validate_moving_mesh.py",
+      "canonical_byte_identical": true,
+      "appendix_identical_after_filename_comment": true,
+      "syntax_checked_not_executed": true,
+      "sha256": "7a9dccc4ac558daff24cd3f5051cc848880380381e8a6dd191dadb7632b5e31d"
+    },
+    {
+      "source": "code/check_moving_mesh_delivery.py",
+      "archive_path": "代码/check_moving_mesh_delivery.py",
+      "canonical_byte_identical": true,
+      "appendix_identical_after_filename_comment": true,
+      "syntax_checked_not_executed": true,
+      "sha256": "50c08bdd9e2a933e8f83c38c9bb9844b8b1a4170ef346d6cf7fc50924430faef"
+    },
+    {
+      "source": "code/figure_style.py",
+      "archive_path": "代码/figure_style.py",
+      "canonical_byte_identical": true,
+      "appendix_identical_after_filename_comment": true,
+      "syntax_checked_not_executed": true,
+      "sha256": "cf2ede75b1496617f56f19e309cc02f40fcdff7854e263824be655dc982263d9"
+    },
+    {
+      "source": "code/make_figures.py",
+      "archive_path": "代码/make_figures.py",
+      "canonical_byte_identical": true,
+      "appendix_identical_after_filename_comment": true,
+      "syntax_checked_not_executed": true,
+      "sha256": "59c66fb1bb0a441b7eb5f40f560c6e6720351c72f8c481fd7ead185a6fd37c9d"
+    },
+    {
+      "source": "code/make_additional_figures.py",
+      "archive_path": "代码/make_additional_figures.py",
+      "canonical_byte_identical": true,
+      "appendix_identical_after_filename_comment": true,
+      "syntax_checked_not_executed": true,
+      "sha256": "36ec91a92fdb92856ed3898bb28975b3d9af102b93de7763824a76a1d5cd0437"
+    },
+    {
+      "source": "code/plot_moving_mesh_validation.py",
+      "archive_path": "代码/plot_moving_mesh_validation.py",
+      "canonical_byte_identical": true,
+      "appendix_identical_after_filename_comment": true,
+      "syntax_checked_not_executed": true,
+      "sha256": "4ca41233e79906e5f6e77d17d99ecce94d3df3f8431fd843b826eb0338b1d537"
+    },
+    {
+      "source": "code/make_geometry_diagram.py",
+      "archive_path": "代码/make_geometry_diagram.py",
+      "canonical_byte_identical": true,
+      "appendix_identical_after_filename_comment": true,
+      "syntax_checked_not_executed": true,
+      "sha256": "7651dd53ba85daf181776f8bb972ba3f24b487a209bc736af8a459a66bca7e3b"
+    },
+    {
+      "source": "inspect_inputs.py",
+      "archive_path": "代码/inspect_inputs.py",
+      "canonical_byte_identical": true,
+      "appendix_identical_after_filename_comment": true,
+      "syntax_checked_not_executed": true,
+      "sha256": "af854b66192173fe8d9afc2da8067f49c024a6ca5897986425799ab48fb2c740"
+    },
+    {
+      "source": "comsol_q1/prepare_inputs.py",
+      "archive_path": "代码/prepare_inputs.py",
+      "canonical_byte_identical": true,
+      "appendix_identical_after_filename_comment": true,
+      "syntax_checked_not_executed": true,
+      "sha256": "cf5d93819cfe820acca8f91af1d36ae9779e0299d106ca97009ed66005cbce40"
+    },
+    {
+      "source": "comsol_q4/prepare_q4_inputs.py",
+      "archive_path": "代码/prepare_q4_inputs.py",
+      "canonical_byte_identical": true,
+      "appendix_identical_after_filename_comment": true,
+      "syntax_checked_not_executed": true,
+      "sha256": "6d3e9f3f28bcf17dbf809321d51acfee9c6da18c9ad34cb5f89898b277fef967"
+    },
+    {
+      "source": "comsol_q4/analyze_q4_comsol.py",
+      "archive_path": "代码/analyze_q4_comsol.py",
+      "canonical_byte_identical": true,
+      "appendix_identical_after_filename_comment": true,
+      "syntax_checked_not_executed": true,
+      "sha256": "575f610c2f7e3ebb1a938d6d9202530ca9c56a095b7b890d0cb965a9491cea27"
+    },
+    {
+      "source": "comsol_q4/plot_q4_physical.py",
+      "archive_path": "代码/plot_q4_physical.py",
+      "canonical_byte_identical": true,
+      "appendix_identical_after_filename_comment": true,
+      "syntax_checked_not_executed": true,
+      "sha256": "98e4be76370a1bc7348a9d2455f4aa26ffad2651df3b98e5e15e3c109b86e6cb"
+    },
+    {
+      "source": "comsol_q4/near_surface_check/analyze_refinement.py",
+      "archive_path": "代码/analyze_refinement.py",
+      "canonical_byte_identical": true,
+      "appendix_identical_after_filename_comment": true,
+      "syntax_checked_not_executed": true,
+      "sha256": "f5ebe4c4fd798df97239feda3ad4627586eb65a81cc3db28b1d33d9cad1f61ae"
+    },
+    {
+      "source": "comsol_q4/near_surface_check/write_report.py",
+      "archive_path": "代码/write_report.py",
+      "canonical_byte_identical": true,
+      "appendix_identical_after_filename_comment": true,
+      "syntax_checked_not_executed": true,
+      "sha256": "5584752830ff90a1461087e752177dcd5facd4d1222f85fbbccec6e9bd922fd6"
+    }
+  ],
+  "result_workbook_checks": [
+    {
+      "file": "result1.xlsx",
+      "byte_identical": true,
+      "sha256": "0246ef2d4dc1e7ee733d1d87130b2e27dadd585cf42839e24c9cc2584b44ce58",
+      "creator": null,
+      "lastModifiedBy": null
+    },
+    {
+      "file": "result2.xlsx",
+      "byte_identical": true,
+      "sha256": "7c5f3043554b8493c1c07c65b0c286b2190690dd3814e2d12ca70a094c5540e4",
+      "creator": null,
+      "lastModifiedBy": null
+    },
+    {
+      "file": "result3.xlsx",
+      "byte_identical": true,
+      "sha256": "6f805f29a5261b29f112e285fdb614e6495259f8742567fcb904a93cf5050286",
+      "creator": null,
+      "lastModifiedBy": null
+    },
+    {
+      "file": "result4.xlsx",
+      "byte_identical": true,
+      "sha256": "9888f85de53c9b8f0047e2d87a6bb09de7be623c930d8f9b5f273044ee079439",
+      "creator": null,
+      "lastModifiedBy": null
+    }
+  ],
+  "ai_pdf_byte_identical": true,
+  "canonical_sources_and_documents_unchanged": true,
+  "protected_sha256": {
+    "code/solve_drying.py": "7016bf12f67710261eb0db124ed932a6e74692d919ca472df655976522fe572d",
+    "code/write_results.py": "cbade6ecc9922a5b1b91ec959e4279f4c8b5d77bccdb8e2e8d8e6a22cb9b41ca",
+    "code/check_numerics.py": "b2e1e086ee88ee7fb554e73a5ceaf7f0b02c5a6a6dd72c72b053e2b0cfa33d59",
+    "code/validate_2d.py": "c6e2eb0fe0ecca8af71cd12c76cccb5d871916f16810883e8226a711448154ac",
+    "code/validate_long_2d.py": "d66cdde8bf216c97002bf542a2a311133059f50cbccd0af5679cdd85879f6c04",
+    "code/verify_revision.py": "ad02e1d84b97fa7fb702d3eaae3f1616fe069bc36a72b0cefaea565b1298d4d6",
+    "code/run_sensitivity.py": "0f500a0263edd6f9c9b8f9b6c55e9f248493ec9b777b3bd6f416b59ed6e6dd58",
+    "code/run_q4_counterfactual.py": "e5027c493896dbfaa5e7cd11b9a2996107f607c819d4a183347bf847ed2cc2ae",
+    "code/validate_moving_mesh.py": "7a9dccc4ac558daff24cd3f5051cc848880380381e8a6dd191dadb7632b5e31d",
+    "code/check_moving_mesh_delivery.py": "50c08bdd9e2a933e8f83c38c9bb9844b8b1a4170ef346d6cf7fc50924430faef",
+    "code/figure_style.py": "cf2ede75b1496617f56f19e309cc02f40fcdff7854e263824be655dc982263d9",
+    "code/make_figures.py": "59c66fb1bb0a441b7eb5f40f560c6e6720351c72f8c481fd7ead185a6fd37c9d",
+    "code/make_additional_figures.py": "36ec91a92fdb92856ed3898bb28975b3d9af102b93de7763824a76a1d5cd0437",
+    "code/plot_moving_mesh_validation.py": "4ca41233e79906e5f6e77d17d99ecce94d3df3f8431fd843b826eb0338b1d537",
+    "code/make_geometry_diagram.py": "7651dd53ba85daf181776f8bb972ba3f24b487a209bc736af8a459a66bca7e3b",
+    "inspect_inputs.py": "af854b66192173fe8d9afc2da8067f49c024a6ca5897986425799ab48fb2c740",
+    "comsol_q1/prepare_inputs.py": "cf5d93819cfe820acca8f91af1d36ae9779e0299d106ca97009ed66005cbce40",
+    "comsol_q4/prepare_q4_inputs.py": "6d3e9f3f28bcf17dbf809321d51acfee9c6da18c9ad34cb5f89898b277fef967",
+    "comsol_q4/analyze_q4_comsol.py": "575f610c2f7e3ebb1a938d6d9202530ca9c56a095b7b890d0cb965a9491cea27",
+    "comsol_q4/plot_q4_physical.py": "98e4be76370a1bc7348a9d2455f4aa26ffad2651df3b98e5e15e3c109b86e6cb",
+    "comsol_q4/near_surface_check/analyze_refinement.py": "f5ebe4c4fd798df97239feda3ad4627586eb65a81cc3db28b1d33d9cad1f61ae",
+    "comsol_q4/near_surface_check/write_report.py": "5584752830ff90a1461087e752177dcd5facd4d1222f85fbbccec6e9bd922fd6",
+    "results/result1.xlsx": "0246ef2d4dc1e7ee733d1d87130b2e27dadd585cf42839e24c9cc2584b44ce58",
+    "results/result2.xlsx": "7c5f3043554b8493c1c07c65b0c286b2190690dd3814e2d12ca70a094c5540e4",
+    "results/result3.xlsx": "6f805f29a5261b29f112e285fdb614e6495259f8742567fcb904a93cf5050286",
+    "results/result4.xlsx": "9888f85de53c9b8f0047e2d87a6bb09de7be623c930d8f9b5f273044ee079439",
+    "paper/AI_usage/AI工具使用详情.pdf": "ba918159135d2fa683c2d6726ab9aaafd2a844fbd84029d64344eeee9f1392a1"
+  },
+  "numerical_source_execution": false,
+  "runtime_smoke_performed": false,
+  "verification_scope": "Current source/appendix hash, exact contents, Python syntax, ZIP integrity and result metadata; no numerical rerun"
+}

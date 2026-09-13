@@ -1,0 +1,190 @@
+{
+  "status": "PASS",
+  "zip_bytes": 3282810,
+  "zip_sha256": "db303cc76a9130d47d98b9cb0f4d68fd5e376747a914944c9bfb6c1ed757c9fc",
+  "archive_file_count": 11,
+  "archive_names": [
+    "AI工具使用详情.pdf",
+    "figure_style.py",
+    "input_data.py",
+    "make_additional_figures.py",
+    "make_figures.py",
+    "result1.xlsx",
+    "result2.xlsx",
+    "result3.xlsx",
+    "result4.xlsx",
+    "run_q4_counterfactual.py",
+    "solve_drying.py"
+  ],
+  "no_directory_entries": true,
+  "all_root_names": true,
+  "four_result_workbooks_byte_identical": true,
+  "ai_pdf_byte_identical": true,
+  "definitions_ast_checks": [
+    {
+      "file": "solve_drying.py",
+      "definitions": 23,
+      "identical_definitions": 22,
+      "changed_io_definitions": [
+        "_read_numeric_sheet"
+      ],
+      "all_other_definitions_ast_identical": true
+    },
+    {
+      "file": "make_figures.py",
+      "definitions": 10,
+      "identical_definitions": 10,
+      "changed_io_definitions": [],
+      "all_other_definitions_ast_identical": true
+    },
+    {
+      "file": "make_additional_figures.py",
+      "definitions": 11,
+      "identical_definitions": 9,
+      "changed_io_definitions": [
+        "main",
+        "save"
+      ],
+      "all_other_definitions_ast_identical": true
+    },
+    {
+      "file": "figure_style.py",
+      "definitions": 2,
+      "identical_definitions": 2,
+      "changed_io_definitions": [],
+      "all_other_definitions_ast_identical": true
+    },
+    {
+      "file": "run_q4_counterfactual.py",
+      "definitions": 1,
+      "identical_definitions": 1,
+      "changed_io_definitions": [],
+      "all_other_definitions_ast_identical": true
+    }
+  ],
+  "protected_files_unchanged": true,
+  "protected_sha256_before": {
+    "code/solve_drying.py": "7016bf12f67710261eb0db124ed932a6e74692d919ca472df655976522fe572d",
+    "code/make_figures.py": "59c66fb1bb0a441b7eb5f40f560c6e6720351c72f8c481fd7ead185a6fd37c9d",
+    "code/make_additional_figures.py": "36ec91a92fdb92856ed3898bb28975b3d9af102b93de7763824a76a1d5cd0437",
+    "code/figure_style.py": "cf2ede75b1496617f56f19e309cc02f40fcdff7854e263824be655dc982263d9",
+    "code/run_q4_counterfactual.py": "e5027c493896dbfaa5e7cd11b9a2996107f607c819d4a183347bf847ed2cc2ae",
+    "results/result1.xlsx": "0246ef2d4dc1e7ee733d1d87130b2e27dadd585cf42839e24c9cc2584b44ce58",
+    "results/result2.xlsx": "7c5f3043554b8493c1c07c65b0c286b2190690dd3814e2d12ca70a094c5540e4",
+    "results/result3.xlsx": "6f805f29a5261b29f112e285fdb614e6495259f8742567fcb904a93cf5050286",
+    "results/result4.xlsx": "9888f85de53c9b8f0047e2d87a6bb09de7be623c930d8f9b5f273044ee079439",
+    "附件/附件1.xlsx": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7",
+    "附件/附件2.xlsx": "5563acbfa4b4afb10cc6c03e2207e5369bf39da27576672aff14cc5c32e704af"
+  },
+  "protected_sha256_after": {
+    "code/solve_drying.py": "7016bf12f67710261eb0db124ed932a6e74692d919ca472df655976522fe572d",
+    "code/make_figures.py": "59c66fb1bb0a441b7eb5f40f560c6e6720351c72f8c481fd7ead185a6fd37c9d",
+    "code/make_additional_figures.py": "36ec91a92fdb92856ed3898bb28975b3d9af102b93de7763824a76a1d5cd0437",
+    "code/figure_style.py": "cf2ede75b1496617f56f19e309cc02f40fcdff7854e263824be655dc982263d9",
+    "code/run_q4_counterfactual.py": "e5027c493896dbfaa5e7cd11b9a2996107f607c819d4a183347bf847ed2cc2ae",
+    "results/result1.xlsx": "0246ef2d4dc1e7ee733d1d87130b2e27dadd585cf42839e24c9cc2584b44ce58",
+    "results/result2.xlsx": "7c5f3043554b8493c1c07c65b0c286b2190690dd3814e2d12ca70a094c5540e4",
+    "results/result3.xlsx": "6f805f29a5261b29f112e285fdb614e6495259f8742567fcb904a93cf5050286",
+    "results/result4.xlsx": "9888f85de53c9b8f0047e2d87a6bb09de7be623c930d8f9b5f273044ee079439",
+    "附件/附件1.xlsx": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7",
+    "附件/附件2.xlsx": "5563acbfa4b4afb10cc6c03e2207e5369bf39da27576672aff14cc5c32e704af"
+  },
+  "isolated_directory": "tmp/flat_delivery_20260913/run-fa9dda7f52",
+  "original_input_checks": [
+    {
+      "file": "附件1.xlsx",
+      "shape": [
+        241,
+        3
+      ],
+      "all_values_identical": true,
+      "value_count": 723
+    },
+    {
+      "file": "附件2.xlsx",
+      "shape": [
+        145,
+        2
+      ],
+      "all_values_identical": true,
+      "value_count": 290
+    }
+  ],
+  "short_solver_checks": [
+    {
+      "model": "property_q1",
+      "steps": 10,
+      "output_arrays_identical": true
+    },
+    {
+      "model": "property_q23",
+      "steps": 10,
+      "output_arrays_identical": true
+    },
+    {
+      "model": "property_q4",
+      "steps": 10,
+      "output_arrays_identical": true
+    },
+    {
+      "model": "moving_domain_step",
+      "time_s": 1.0,
+      "arrays_identical": true
+    },
+    {
+      "model": "moving_domain_step",
+      "time_s": 21600.0,
+      "arrays_identical": true
+    },
+    {
+      "model": "moving_domain_step",
+      "time_s": 172800.0,
+      "arrays_identical": true
+    }
+  ],
+  "plot_runs": [
+    {
+      "script": "make_figures.py",
+      "returncode": 0
+    },
+    {
+      "script": "make_additional_figures.py",
+      "returncode": 0
+    }
+  ],
+  "generated_plot_artifacts": [
+    "q1_preheat_profiles.pdf",
+    "q1_preheat_profiles.png",
+    "q1_temperature_surface.pdf",
+    "q1_temperature_surface.png",
+    "q2_coupled_profiles.pdf",
+    "q2_coupled_profiles.png",
+    "q2_diffusivity_map.pdf",
+    "q2_diffusivity_map.png",
+    "q2_moisture_surface.pdf",
+    "q2_moisture_surface.png",
+    "q3_drying_front.pdf",
+    "q3_drying_front.png",
+    "q3_threshold_diagnostics.pdf",
+    "q3_threshold_diagnostics.png",
+    "q4_shrinkage_comparison.pdf",
+    "q4_shrinkage_comparison.png",
+    "q4_shrinking_field.pdf",
+    "q4_shrinking_field.png"
+  ],
+  "plot_data_scope": "Existing unchanged saved fields used only as isolated test fixtures; no intermediate data in ZIP",
+  "full_duration_model_rerun": false,
+  "documentation_only_update": {
+    "scope": "Module docstrings only: accurately describe --skip-convergence as skipping time-step and model-comparison checks",
+    "changed_delivery_files": [
+      "make_additional_figures.py",
+      "make_figures.py",
+      "run_q4_counterfactual.py",
+      "solve_drying.py"
+    ],
+    "previous_zip_sha256": "1ddaad021362c0048433b95f33502dc407d19e174fee3d4684be2f555b2bd811",
+    "executable_ast_unchanged": true,
+    "previous_short_solver_and_plot_smoke_evidence_retained": true,
+    "short_solver_or_plot_smoke_rerun": false
+  }
+}

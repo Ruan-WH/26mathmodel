@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "total_pages": 119,
+  "body_pages": 30,
+  "appendix_A_start_page": 32,
+  "appendix_B_start_page": 33,
+  "appendix_A_file_count": 27,
+  "appendix_B_python_count": 22,
+  "mph_file_count": 0,
+  "code_subdirectories": 0,
+  "body_text_unchanged": true,
+  "compile_issues": [],
+  "pdf_sha256": "0b4851f4d2ba836cc3491f0ee5e23034a80a341052d7c3e816db4b2784a1211f",
+  "archive_filename": "support_materials_final_20260913.zip",
+  "archive_sha256": "83ec045215d3f9159dda52e515e55a600754c2354bbb20b8ab6ed624ae0a4310"
+}

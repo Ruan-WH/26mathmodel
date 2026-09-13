@@ -4,7 +4,7 @@
   "output_times": 309,
   "radial_sample_points": 101,
   "baseline_saved_nodes": 161,
-  "time_source": "Q4Automation.java study output schedule; CSV header times are rounded",
+  "time_source": "Archived study output schedule in analyze_q4_comsol.py; CSV header times are rounded",
   "event_comparison_scope": "Concentrations at the FVM event time; not an independent COMSOL event search",
   "comparison": [
     {

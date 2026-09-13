@@ -1,0 +1,63 @@
+{
+  "status": "PASS",
+  "scope": "Requested figure alignment, AI statement, original bibliography font/page limit, flat package and appendix A synchronization",
+  "pdf": {
+    "total_pages": 145,
+    "abstract_pages": 1,
+    "body_pages": 30,
+    "appendix_a_start": 32,
+    "appendix_b_start": 33,
+    "reference_pdf_font_pt": 12.004983901977539
+  },
+  "pdf_sha256": "4220faa65cdde093ad3630108da46c6ea470add9bc6c133868a4de19472953fe",
+  "zip_sha256": "db303cc76a9130d47d98b9cb0f4d68fd5e376747a914944c9bfb6c1ed757c9fc",
+  "retained_references": [
+    "luikov1975",
+    "shrinkage2019",
+    "dietl1998",
+    "purlis2019",
+    "zhu2021"
+  ],
+  "removed_references": {
+    "salagnac2004": "联合干燥热源背景与本题热风模型关联较弱",
+    "lentzou2019": "果皮阻力及参数反演内容非本题主要建模依据",
+    "adrovercet2019": "移动边界主题与保留的完整期刊论文重复"
+  },
+  "reference_typography": "Original CUMCM font size and line spacing; raggedright prevents stretched inter-word spaces",
+  "undefined_citations": [],
+  "ai_statement_chatgpt_removed": true,
+  "appendix_a_names": [
+    "AI工具使用详情.pdf",
+    "figure_style.py",
+    "input_data.py",
+    "make_additional_figures.py",
+    "make_figures.py",
+    "result1.xlsx",
+    "result2.xlsx",
+    "result3.xlsx",
+    "result4.xlsx",
+    "run_q4_counterfactual.py",
+    "solve_drying.py"
+  ],
+  "appendix_a_exactly_matches_zip": true,
+  "appendix_b_canonical_sources": 33,
+  "four_workbooks_match_git_a7b6bdd": true,
+  "visual_review_pages": [
+    27,
+    31,
+    32
+  ],
+  "visual_findings": "Figure boxes and text baselines aligned; references and appendix readable without overlap or cropping",
+  "figure_13_data_unchanged": {
+    "comparison_points": 6006,
+    "max_abs_difference": 4.544533736350331e-05,
+    "coordinate_sha256": "4883b0af2cca63b5a2fed077addebf6b7cec5f85e5299b0ac391bcaea86aac5b"
+  },
+  "compile_missing_glyphs_overfull_underfull_unresolved_citations": false,
+  "nonblocking_font_notes": [
+    "LaTeX Font Warning: Font shape `TU/FandolFang-Regular(0)/b/n' undefined",
+    "LaTeX Font Warning: Some font shapes were not available, defaults substituted."
+  ],
+  "full_numerical_rerun": false,
+  "package_check_report": "checks.json"
+}

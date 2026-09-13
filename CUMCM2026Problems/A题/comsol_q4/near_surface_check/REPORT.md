@@ -4,7 +4,7 @@
 
 ## 检验设置
 
-- 原 Q4Automation.java 的物性、系数型 PDE、初值、Robin 边界、半径及环境输入文件保持相同。
+- 各组既有计算采用相同的物性、系数型 PDE、初值、Robin 边界、半径及环境输入文件。
 - 保持原参考矩形长度 0.08 m、轴向均匀和端面绝热；这不是含端面交换的二维验证。
 - 原网格采用 autoMeshSize(3)。加密组使用映射四边形网格，径向 80/160/320 单元、轴向 4 单元，径向端点按 (1-cos(pi*i/N))/2 分布，在轴线与表层加密。
 - 相对求解容差按表设置；仍为自适应时间求解，输出间隔不是固定积分步长。
@@ -46,7 +46,7 @@
 
 ## 文件与复核
 
-- 各子目录：Java 源码、batch.log、COMSOL 原始 CSV、包含解的 q4_shrinking_herb_comsol.mph。
+- 各子目录：batch.log、COMSOL 原始 CSV、包含解的 q4_shrinking_herb_comsol.mph。
 - comparison.csv / summary.json：数值比较与逐时刻最大差。
 - comparison_fields.npz：六时刻的共同采样场与有限体积参考。
 - analyze_refinement.py：重新读取原始导出并比较；write_report.py：生成本报告。

@@ -1,0 +1,118 @@
+{
+  "status": "PASS",
+  "scope": "Read all seven saved COMSOL CSVs after Java deletion; CSV bytes and full precision requested times match pre-deletion baseline. No solver or plotting function ran.",
+  "checks": [
+    {
+      "case": ".",
+      "shape": [
+        101,
+        1238
+      ],
+      "times": 309,
+      "last_two_times_s": [
+        183915.71747843814,
+        184200.0
+      ],
+      "java_exists": false,
+      "csv_sha256_unchanged": true,
+      "exact_times_sha256_unchanged": true,
+      "decoded_arrays_sha256": "a5e7ec5e302016d02f65fa76901f0a2d18d90b8d3c20435bd0318449a5884e4f"
+    },
+    {
+      "case": "near_surface_check/graded160",
+      "shape": [
+        1001,
+        1238
+      ],
+      "times": 309,
+      "last_two_times_s": [
+        183915.71747843814,
+        184200.0
+      ],
+      "java_exists": false,
+      "csv_sha256_unchanged": true,
+      "exact_times_sha256_unchanged": true,
+      "decoded_arrays_sha256": "a37ea44c92ae6342701e3d696ba989c4f46619d47220b53a96ea7006992d11a1"
+    },
+    {
+      "case": "near_surface_check/graded320",
+      "shape": [
+        1001,
+        1238
+      ],
+      "times": 309,
+      "last_two_times_s": [
+        183915.71747843814,
+        184200.0
+      ],
+      "java_exists": false,
+      "csv_sha256_unchanged": true,
+      "exact_times_sha256_unchanged": true,
+      "decoded_arrays_sha256": "a75a806dd5e64b4770cecde3d918c832b4fa0a87dda0c8e15ad5900c2619342d"
+    },
+    {
+      "case": "near_surface_check/graded320_tight",
+      "shape": [
+        1001,
+        1238
+      ],
+      "times": 309,
+      "last_two_times_s": [
+        183915.71747843814,
+        184200.0
+      ],
+      "java_exists": false,
+      "csv_sha256_unchanged": true,
+      "exact_times_sha256_unchanged": true,
+      "decoded_arrays_sha256": "85c08bbc759d59930f505de0bd79231f9a9101f32bf0d233786fae8933bceb45"
+    },
+    {
+      "case": "near_surface_check/graded80",
+      "shape": [
+        1001,
+        1238
+      ],
+      "times": 309,
+      "last_two_times_s": [
+        183915.71747843814,
+        184200.0
+      ],
+      "java_exists": false,
+      "csv_sha256_unchanged": true,
+      "exact_times_sha256_unchanged": true,
+      "decoded_arrays_sha256": "59cf4d857d63388b8a1b93e409cd7a599160cfde3c3d020241ff226a6d6920fd"
+    },
+    {
+      "case": "near_surface_check/original_dense",
+      "shape": [
+        1001,
+        1238
+      ],
+      "times": 309,
+      "last_two_times_s": [
+        183915.71747843814,
+        184200.0
+      ],
+      "java_exists": false,
+      "csv_sha256_unchanged": true,
+      "exact_times_sha256_unchanged": true,
+      "decoded_arrays_sha256": "a8141deb30f71f654ae3748c6f2d3680241f14e3aac63ad1cc589067d4f401ce"
+    },
+    {
+      "case": "near_surface_check/original_tight",
+      "shape": [
+        1001,
+        1238
+      ],
+      "times": 309,
+      "last_two_times_s": [
+        183915.71747843814,
+        184200.0
+      ],
+      "java_exists": false,
+      "csv_sha256_unchanged": true,
+      "exact_times_sha256_unchanged": true,
+      "decoded_arrays_sha256": "73fe7463dc2a0437ee3f073032d6d1204e2d5d0c5a1b5c7471602029727872cc"
+    }
+  ]
+}

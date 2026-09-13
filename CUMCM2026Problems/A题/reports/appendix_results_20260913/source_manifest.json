@@ -165,17 +165,6 @@
     "identical_after_filename_comment_and_newline_normalization": true
   },
   {
-    "source": "code/run_figures.sh",
-    "appendix_copy": "code/run_figures.sh",
-    "description": "绘图批处理入口及字体环境检查",
-    "language": "Bash",
-    "first_line": "# File: code/run_figures.sh",
-    "source_lines": 22,
-    "source_sha256": "2398c2de5f944e39595a29522cdd21d89686c788e3128954c3e38dcd1e2b3d9a",
-    "appendix_sha256": "b21381f199efca35c21d8e7e5c4a84b37884ca61c8fde297c847c9a8826ade7a",
-    "identical_after_filename_comment_and_newline_normalization": true
-  },
-  {
     "source": "inspect_inputs.py",
     "appendix_copy": "code/inspect_inputs.py",
     "description": "题目附件与结果模板结构检查",
@@ -198,28 +187,6 @@
     "identical_after_filename_comment_and_newline_normalization": true
   },
   {
-    "source": "comsol_q1/Q1Automation.java",
-    "appendix_copy": "code/comsol_q1/Q1Automation.java",
-    "description": "问题一有限元建模、求解和剖面导出",
-    "language": "Java",
-    "first_line": "// File: comsol_q1/Q1Automation.java",
-    "source_lines": 140,
-    "source_sha256": "49fa28f8ac6b2f67753d33700349921360967b95bf170a9c8804d327254893f7",
-    "appendix_sha256": "739b5cc433481c4a7185a28cf23e66be52511db1fe358ef1d884e6166e84e1fd",
-    "identical_after_filename_comment_and_newline_normalization": true
-  },
-  {
-    "source": "comsol_q1/run_comsol_q1.ps1",
-    "appendix_copy": "code/comsol_q1/run_comsol_q1.ps1",
-    "description": "问题一有限元编译、运行与比较入口",
-    "language": "PowerShell",
-    "first_line": "# File: comsol_q1/run_comsol_q1.ps1",
-    "source_lines": 17,
-    "source_sha256": "3f35529381ab14cd542c399abf28bb2f7007c9c815d10584c32077dc81b7c91d",
-    "appendix_sha256": "232282aa3b921088eb3aca60bd3d325b35b8d762892dc0fcd02bba8169e7eb14",
-    "identical_after_filename_comment_and_newline_normalization": true
-  },
-  {
     "source": "comsol_q4/prepare_q4_inputs.py",
     "appendix_copy": "code/comsol_q4/prepare_q4_inputs.py",
     "description": "问题四有限元物性与边界输入准备",
@@ -231,25 +198,14 @@
     "identical_after_filename_comment_and_newline_normalization": true
   },
   {
-    "source": "comsol_q4/Q4Automation.java",
-    "appendix_copy": "code/comsol_q4/Q4Automation.java",
-    "description": "问题四收缩有限元建模、求解和剖面导出",
-    "language": "Java",
-    "first_line": "// File: comsol_q4/Q4Automation.java",
-    "source_lines": 121,
-    "source_sha256": "6ac156d92df77aeeb025fb3db70ab109513d049a0eb8144ebf05f36917444f6b",
-    "appendix_sha256": "fd9438b4296b35f60313b7d098c01f03405f460fcae2b8e43c9a95c8100315ed",
-    "identical_after_filename_comment_and_newline_normalization": true
-  },
-  {
     "source": "comsol_q4/analyze_q4_comsol.py",
     "appendix_copy": "code/comsol_q4/analyze_q4_comsol.py",
     "description": "有限元与有限体积数值结果比较",
     "language": "Python",
     "first_line": "# File: comsol_q4/analyze_q4_comsol.py",
-    "source_lines": 128,
-    "source_sha256": "11cf84b3eea1a5f87afcbf7ec7060bd0bcc5c0595324a571851ac3aab75b9f46",
-    "appendix_sha256": "e42f3a9ca821752682b8f62b07f653218da1e498e16ffaf2e31ac516de215f7a",
+    "source_lines": 148,
+    "source_sha256": "575f610c2f7e3ebb1a938d6d9202530ca9c56a095b7b890d0cb965a9491cea27",
+    "appendix_sha256": "b038ec784be07c2c0b97f8ec13882862b8321ca69dd1e1a0a73a014a2fc2fe2d",
     "identical_after_filename_comment_and_newline_normalization": true
   },
   {
@@ -258,9 +214,9 @@
     "description": "有限元物理剖面和水分场绘制",
     "language": "Python",
     "first_line": "# File: comsol_q4/plot_q4_physical.py",
-    "source_lines": 239,
-    "source_sha256": "72aa3646060e2331f37a09148aec41818bd421768c982b7bb1e0e4fa69257290",
-    "appendix_sha256": "fa47efae938a45ee4a607e2c8340897041849eadc97d14eee7d4dd569b5c0ad9",
+    "source_lines": 251,
+    "source_sha256": "98e4be76370a1bc7348a9d2455f4aa26ffad2651df3b98e5e15e3c109b86e6cb",
+    "appendix_sha256": "018a163bb6df0e8ba7cdaf56f162e1287e2b11e03a3785b4021330cf2bc3cee6",
     "identical_after_filename_comment_and_newline_normalization": true
   },
   {
@@ -281,85 +237,8 @@
     "language": "Python",
     "first_line": "# File: comsol_q4/near_surface_check/write_report.py",
     "source_lines": 36,
-    "source_sha256": "275949bc7ebce584049b80f599ade8a90353fc7ea63b52e96d4d701cc6986710",
-    "appendix_sha256": "d95049e59069804612838a5ffaf86e341d0b1374110e305bb17f3999372bdcc6",
-    "identical_after_filename_comment_and_newline_normalization": true
-  },
-  {
-    "source": "comsol_q4/near_surface_check/run_cases.ps1",
-    "appendix_copy": "code/comsol_q4/near_surface_check/run_cases.ps1",
-    "description": "六组有限元网格与容差算例运行入口",
-    "language": "PowerShell",
-    "first_line": "# File: comsol_q4/near_surface_check/run_cases.ps1",
-    "source_lines": 15,
-    "source_sha256": "6aee9b33db2f009bb57e433af50da24a3ede1687b831fce7a725dd7155c02c89",
-    "appendix_sha256": "c4d93456a880a8e96a655a2939fe45d6f17571ac47a0ac8f35523b27109fa325",
-    "identical_after_filename_comment_and_newline_normalization": true
-  },
-  {
-    "source": "comsol_q4/near_surface_check/original_dense/Q4Automation.java",
-    "appendix_copy": "code/comsol_q4/near_surface_check/original_dense/Q4Automation.java",
-    "description": "原始网格加密输出检验",
-    "language": "Java",
-    "first_line": "// File: comsol_q4/near_surface_check/original_dense/Q4Automation.java",
-    "source_lines": 121,
-    "source_sha256": "0ade50df31ca02637b907e04874b9f338d8946711346d10d84bb984767119980",
-    "appendix_sha256": "f3bb2da05f0c2248e47df3e5d5874dcc7d09fae22e29a4f4abfea65679787481",
-    "identical_after_filename_comment_and_newline_normalization": true
-  },
-  {
-    "source": "comsol_q4/near_surface_check/original_tight/Q4Automation.java",
-    "appendix_copy": "code/comsol_q4/near_surface_check/original_tight/Q4Automation.java",
-    "description": "原始网格收紧求解容差检验",
-    "language": "Java",
-    "first_line": "// File: comsol_q4/near_surface_check/original_tight/Q4Automation.java",
-    "source_lines": 121,
-    "source_sha256": "32af1ebe7ab7781a36ac5ad85c8f6240c471626c847054452e4aeb31ebd21b15",
-    "appendix_sha256": "3d8f8c00c8b475ab6aac927b493421e5c21f3030711fb1077bac47afa2e319cb",
-    "identical_after_filename_comment_and_newline_normalization": true
-  },
-  {
-    "source": "comsol_q4/near_surface_check/graded80/Q4Automation.java",
-    "appendix_copy": "code/comsol_q4/near_surface_check/graded80/Q4Automation.java",
-    "description": "近表面分级网格80单元检验",
-    "language": "Java",
-    "first_line": "// File: comsol_q4/near_surface_check/graded80/Q4Automation.java",
-    "source_lines": 129,
-    "source_sha256": "92e7c61140f037916bc6c64ce771c2f8b9d36ed61057e6f6cfe894f0e9892c7d",
-    "appendix_sha256": "f9840709e0b45013f5e0b369b209e99923f2023d8df2a4db9c6b7890ff6115fa",
-    "identical_after_filename_comment_and_newline_normalization": true
-  },
-  {
-    "source": "comsol_q4/near_surface_check/graded160/Q4Automation.java",
-    "appendix_copy": "code/comsol_q4/near_surface_check/graded160/Q4Automation.java",
-    "description": "近表面分级网格160单元检验",
-    "language": "Java",
-    "first_line": "// File: comsol_q4/near_surface_check/graded160/Q4Automation.java",
-    "source_lines": 129,
-    "source_sha256": "3062b47686abd678fa549da8cc983d1fd2641d9b93b742ed623b66ff2eb9e613",
-    "appendix_sha256": "db3bca1adb4dc2f3571ed436bad897e17f361645d37c69f069ed5b9d168ef68f",
-    "identical_after_filename_comment_and_newline_normalization": true
-  },
-  {
-    "source": "comsol_q4/near_surface_check/graded320/Q4Automation.java",
-    "appendix_copy": "code/comsol_q4/near_surface_check/graded320/Q4Automation.java",
-    "description": "近表面分级网格320单元检验",
-    "language": "Java",
-    "first_line": "// File: comsol_q4/near_surface_check/graded320/Q4Automation.java",
-    "source_lines": 129,
-    "source_sha256": "4bec91c7fdaaaf08bb3ea7bd02da219f8538e9997dd7d858556f3651128e1311",
-    "appendix_sha256": "16a5c8e5e371ee054eae95af1ccbee9259450b5d017c1538585301e3defc7d25",
-    "identical_after_filename_comment_and_newline_normalization": true
-  },
-  {
-    "source": "comsol_q4/near_surface_check/graded320_tight/Q4Automation.java",
-    "appendix_copy": "code/comsol_q4/near_surface_check/graded320_tight/Q4Automation.java",
-    "description": "近表面分级网格320单元及严格容差检验",
-    "language": "Java",
-    "first_line": "// File: comsol_q4/near_surface_check/graded320_tight/Q4Automation.java",
-    "source_lines": 129,
-    "source_sha256": "4e0ed3c5fccff48d0f750b0534fdfce7fcf0417929544ea56cebf9fa6c21bd83",
-    "appendix_sha256": "6c203f60688281af544d428d2996361fe2e00c2aa75fbc8a789bc6179e4aa0c4",
+    "source_sha256": "5584752830ff90a1461087e752177dcd5facd4d1222f85fbbccec6e9bd922fd6",
+    "appendix_sha256": "5441ef5d785decac62bce7e2d0cb3c2ba62dbcbdf8edf968e9c1ff476c28a920",
     "identical_after_filename_comment_and_newline_normalization": true
   }
 ]

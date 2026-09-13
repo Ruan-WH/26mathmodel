@@ -28,4 +28,4 @@ COMSOL 内部使用初始材料半径作为参考坐标，变量 `rphys=x*Rt(t)/
 
 `q4_comsol_validation.json` 和 `q4_comsol_comparison.csv` 保存校核数值，`q4_comsol_profiles.csv` 保存 COMSOL 原始导出数据。两张 PNG 用于直接查看，两张 PDF 是论文排版用矢量母版。
 
-更新比较图时，先运行 `python analyze_q4_comsol.py`，再运行 `python plot_q4_physical.py`。分析程序从 `Q4Automation.java` 的输出计划恢复 CSV 表头被舍入的时间标签，使用完整计算网格，并在事件处读取保存的首达剖面；图中散点与报告使用相同的六个时刻，共 606 个比较点。
+更新比较图时，先运行 `python analyze_q4_comsol.py`，再运行 `python plot_q4_physical.py`。分析程序从 `analyze_q4_comsol.py` 内归档的精确输出计划恢复 CSV 表头被舍入的时间标签；该计划保留了原研究设置的完整精度及来源哈希，无需 Java 文件，使用完整计算网格，并在事件处读取保存的首达剖面；图中散点与报告使用相同的六个时刻，共 606 个比较点。

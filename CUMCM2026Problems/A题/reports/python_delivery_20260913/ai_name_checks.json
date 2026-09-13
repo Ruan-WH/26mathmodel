@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "requested_name_replacements": [
+    "DeepSeek-V4.1-Flash",
+    "GLM-5.3-Flash"
+  ],
+  "latex_source_updated": true,
+  "ai_pdf_pages": 3,
+  "current_pdf_old_names_absent": true,
+  "pages_2_3_pixel_identical": true,
+  "page_1_visual_check": "PASS",
+  "pdf_update_method": "Two text spans replaced in existing PDF to preserve original macOS typography; matching LaTeX source edited",
+  "zip_pdf_byte_identical": true,
+  "ai_pdf_sha256": "ba918159135d2fa683c2d6726ab9aaafd2a844fbd84029d64344eeee9f1392a1"
+}

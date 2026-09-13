@@ -12,6 +12,31 @@ import numpy as np
 HERE = Path(__file__).resolve().parent
 BASELINE = HERE.parent / "results" / "q4" / "fields.npz"
 
+# Archived COMSOL study output schedule (seconds), schema version 1.
+# Extracted from the seven original Q4Automation.java studies before their removal.
+# CSV header times are rounded, so retain the original full-precision event time.
+COMSOL_OUTPUT_SCHEDULE = {
+    "schema_version": 1,
+    "range_s": (0.0, 600.0, 183600.0),
+    "extra_times_s": (183915.71747843814, 184200.0),
+    "original_study_sha256": {
+        "Q4Automation.java":
+            "6ac156d92df77aeeb025fb3db70ab109513d049a0eb8144ebf05f36917444f6b",
+        "near_surface_check/graded160/Q4Automation.java":
+            "3062b47686abd678fa549da8cc983d1fd2641d9b93b742ed623b66ff2eb9e613",
+        "near_surface_check/graded320/Q4Automation.java":
+            "4bec91c7fdaaaf08bb3ea7bd02da219f8538e9997dd7d858556f3651128e1311",
+        "near_surface_check/graded320_tight/Q4Automation.java":
+            "4e0ed3c5fccff48d0f750b0534fdfce7fcf0417929544ea56cebf9fa6c21bd83",
+        "near_surface_check/graded80/Q4Automation.java":
+            "92e7c61140f037916bc6c64ce771c2f8b9d36ed61057e6f6cfe894f0e9892c7d",
+        "near_surface_check/original_dense/Q4Automation.java":
+            "0ade50df31ca02637b907e04874b9f338d8946711346d10d84bb984767119980",
+        "near_surface_check/original_tight/Q4Automation.java":
+            "32af1ebe7ab7781a36ac5ad85c8f6240c471626c847054452e4aeb31ebd21b15",
+    },
+}
+
 
 def read_comsol_wide(path: Path):
     with path.open("r", encoding="utf-8-sig") as f:
@@ -26,15 +51,10 @@ def read_comsol_wide(path: Path):
         if not m:
             raise ValueError(names[j])
         times.append(float(m.group(1)))
-    # COMSOL rounds long CSV time labels; recover exact values from the study schedule.
-    # Recover the requested output times from the model's study definition.
-    study = (path.parent / "Q4Automation.java").read_text(encoding="utf-8")
-    schedule = re.search(r'\.set\("tlist", "range\(([^)]+)\) ([^"]+)"\)', study)
-    if schedule is None:
-        raise ValueError("Cannot identify the COMSOL study output times")
-    start, step, end = map(float, schedule.group(1).split(","))
+    # Recover the exact requested times from the archived study metadata above.
+    start, step, end = COMSOL_OUTPUT_SCHEDULE["range_s"]
     requested = np.r_[np.arange(start, end + step / 2, step),
-                      [float(value) for value in schedule.group(2).split()]]
+                      COMSOL_OUTPUT_SCHEDULE["extra_times_s"]]
     if len(requested) != len(times) or not np.allclose(requested, times, rtol=0, atol=5):
         raise ValueError("COMSOL CSV columns do not match the study output schedule")
     return names, data, requested
@@ -104,7 +124,7 @@ def main():
         "output_times": int(len(times)),
         "radial_sample_points": int(len(x)),
         "baseline_saved_nodes": int(len(base_xi)),
-        "time_source": "Q4Automation.java study output schedule; CSV header times are rounded",
+        "time_source": "Archived study output schedule in analyze_q4_comsol.py; CSV header times are rounded",
         "event_comparison_scope": "Concentrations at the FVM event time; not an independent COMSOL event search",
         "comparison": records,
         "overall_max_abs_temperature_difference_C": float(max(all_dt)),

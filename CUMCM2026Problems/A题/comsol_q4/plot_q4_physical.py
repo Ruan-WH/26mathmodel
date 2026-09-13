@@ -137,8 +137,12 @@ def make_validation_figure(comsol, baseline):
     colors = [CATEGORICAL[0], CATEGORICAL[3], CATEGORICAL[1]]
 
     mm = 1 / 25.4
-    fig, axes = plt.subplots(1, 3, figsize=(183*mm, 87*mm), gridspec_kw={"wspace": 0.62})
-    fig.subplots_adjust(left=0.105, right=0.985, bottom=0.27, top=0.77)
+    fig, axes = plt.subplots(1, 3, figsize=(183*mm, 87*mm), gridspec_kw={"wspace": 0.70})
+    fig.subplots_adjust(left=0.105, right=0.985, bottom=0.30, top=0.77)
+    # A shared square box keeps the parity panel aligned with both profile panels.
+    # Axis titles use two rows, and panel descriptions use figure coordinates.
+    for ax in axes:
+        ax.set_box_aspect(1)
     ax = axes[0]
     for target, label, color in zip(chosen, labels, colors):
         ic = nearest(ct, target)
@@ -149,14 +153,13 @@ def make_validation_figure(comsol, baseline):
         pick = np.unique(np.r_[np.arange(0, len(cxi), stride), len(cxi)-1-np.array([0, 1, 2, 5])])
         ax.plot(r_cm[pick], base_at_cxi[pick], "o", ms=2.8, mfc="white",
                 mec=color, mew=0.7)
-    ax.set_xlabel(r"实际半径 $r\,/\,\mathrm{cm}$", fontfamily="SimSun")
-    ax.set_ylabel(r"水分浓度 $C\,/\,(\mathrm{kg/kg})$", fontfamily="SimSun")
+    ax.set_xlabel("实际半径 $r$", fontfamily="SimSun", labelpad=5)
+    ax.set_ylabel("水分浓度 $C$\n(kg/kg)", fontfamily="SimSun", labelpad=5)
     ax.set_xlim(0, 1.45)
     handles, time_labels = ax.get_legend_handles_labels()
-    fig.legend(handles, time_labels, loc="upper center", bbox_to_anchor=(0.5, 0.92),
-               ncol=3, fontsize=10, title="干燥时间", title_fontsize=10)
-    ax.text(0.5, -0.42, "(a) 径向水分剖面", transform=ax.transAxes,
-            ha="center", va="top", fontsize=10)
+    fig.legend(handles, time_labels, loc="upper center", bbox_to_anchor=(0.5, 0.905),
+               ncol=3, fontsize=10, title="干燥时间", title_fontsize=10,
+               borderaxespad=0, labelspacing=0.55, handlelength=2.4, columnspacing=2.0)
 
     ax = axes[1]
     # Match the six times reported in the numerical comparison and paper.
@@ -172,8 +175,8 @@ def make_validation_figure(comsol, baseline):
     ax.plot([lo, hi], [lo, hi], color=GREY, ls="--", lw=0.7)
     ax.scatter(parity_x, parity_y, s=8, color=CATEGORICAL[0], alpha=0.7,
                edgecolors="none", rasterized=True)
-    ax.set_xlabel("有限体积水分浓度\n(kg/kg)")
-    ax.set_ylabel("COMSOL 水分浓度\n(kg/kg)")
+    ax.set_xlabel("有限体积水分浓度", labelpad=5)
+    ax.set_ylabel("COMSOL 水分浓度\n(kg/kg)", labelpad=5)
     ax.set_xlim(lo, hi)
     ax.set_ylim(lo, hi)
     ax.set_aspect("equal", adjustable="box")
@@ -182,8 +185,6 @@ def make_validation_figure(comsol, baseline):
     ax.text(0.03, 0.96, r"$\max|\Delta C|$" + "\n" +
             rf"$={err/10**exponent:.2f}\times10^{{{exponent}}}$", transform=ax.transAxes,
             va="top", fontsize=10)
-    ax.text(0.5, -0.42, "(b) COMSOL 与基准模型\n逐点校核", transform=ax.transAxes,
-            ha="center", va="top", fontsize=10)
 
     ax = axes[2]
     ax.plot(ct/3600, cr, color=CATEGORICAL[0], lw=1.5)
@@ -194,14 +195,25 @@ def make_validation_figure(comsol, baseline):
     ax.annotate(f"主模型达标时刻\n{event_h:.2f} h", (event_h, 1.2), xytext=(-38, 18),
                 textcoords="offset points", arrowprops=dict(arrowstyle="-", lw=0.6),
                 ha="center", fontsize=10)
-    ax.set_xlabel(r"时间 $t\,/\,\mathrm{h}$", fontfamily="SimSun")
-    ax.set_ylabel(r"药材半径 $R(t)\,/\,\mathrm{cm}$", fontfamily="SimSun")
+    ax.set_xlabel("时间 $t$", fontfamily="SimSun", labelpad=5)
+    ax.set_ylabel("药材半径 $R(t)$\n(cm)", fontfamily="SimSun", labelpad=5)
     ax.set_xlim(0, 52)
     ax.set_ylim(1.15, 2.05)
-    ax.text(0.5, -0.42, "(c) 药材半径收缩历程", transform=ax.transAxes,
-            ha="center", va="top", fontsize=10)
+    # Use the same text rows despite mixed Chinese/math font metrics.
+    panel_labels = ["(a) 径向水分剖面",
+                    "(b) COMSOL 与基准模型\n逐点校核",
+                    "(c) 药材半径收缩历程"]
+    for ax, label, unit in zip(axes, panel_labels, ["cm", "kg/kg", "h"]):
+        ax.xaxis.set_label_coords(0.5, -0.25)
+        ax.xaxis.label.set_verticalalignment("baseline")
+        ax.text(0.5, -0.35, f"({unit})", transform=ax.transAxes,
+                ha="center", va="baseline", fontsize=11)
+        ax.yaxis.set_label_coords(-0.34, 0.5)
+        box = ax.get_position()
+        fig.text((box.x0 + box.x1) / 2, 0.095, label,
+                 ha="center", va="top", fontsize=10, linespacing=1.2)
 
-    fig.suptitle("COMSOL 物理场剖面、独立数值校核与收缩历程", y=0.98, fontsize=11)
+    fig.suptitle("COMSOL 物理场剖面、独立数值校核与收缩历程", y=0.995, fontsize=11)
     save_figure(fig, OUT / "q4_comsol_profiles_validation")
     plt.close(fig)
     return {"max_abs_moisture_difference": float(err), "comparison_points": len(parity_x),
