@@ -28,9 +28,9 @@
 为1.200 cm。保持附件物性与环境条件一致，固定初始半径的对照模型需129.845 h；在
 给定物性与收缩轨迹下，收缩使干燥时长缩短60.7%。该对照用于分析收缩效应。
 网格与步长加密检验支持数值收敛；移动网格验证中，两种坐标实现的最大水分差
-为2.61 × 10−13 kg/kg，干燥时间差为1.07 × 10−7 s；COMSOL 有限元复核在六个
-采样时刻的最大水分差为4.54 × 10−5 kg/kg。在收缩轨迹不变的所设温度与环境水分
-扰动试验中，干燥时长对温度的响应更明显。模型可确定圆柱药材的干燥终点。
+为2.61 × 10−13 kg/kg，干燥时间差为1.07 × 10−7 s；COMSOL 有限元复核在六个采
+样时刻的最大水分差为4.54 × 10−5 kg/kg。在收缩轨迹不变的所设温度与环境水分扰
+动试验中，干燥时长对温度的响应更明显。模型可确定圆柱药材的干燥终点。
 关键字：药材烘干
 Fourier–Fick 模型
 有限体积法
@@ -77,8 +77,8 @@ Fourier–Fick 模型
 的主链条，但各问新增困难不同。问题一解决基础的时变边界扩散；问题二处理系数随
 解变化引起的非线性；问题三引入全域阈值首达事件；问题四再处理随时间收缩的空间
 区域。按照这一依赖关系建立同一套守恒离散程序，可以避免各问采用不同数值口径造
-成的结果不可比。本节题目条件与建模文档中的疑点借助ChatGPT 辅助讨论[7]。总体
-技术路线如图1 所示。
+成的结果不可比。本节题目条件与建模过程中的疑点借助ChatGPT 辅助讨论[7]。总体
+技术路线如图1所示。
 附件数据读取
 PCHIP环境边界
 Fourier–Fick方程
@@ -113,8 +113,8 @@ D(T, C)，形成温度场与水分场相互影响的非线性耦合模型。由�
 3
 
 
-值作为事件判据；通过全过程剖面检查确定控制位置，并在阈值附近插值定位临界时刻，
-区分临界等于与其后的严格低于。
+值作为事件判据；通过全过程剖面检查确定控制位置，并在阈值附近插值定位临界时
+刻，区分临界等于与其后的严格低于。
 2 . 4 问题四的分析
 问题四中药材半径随时间变化，固定空间区域和固定网格不能直接描述材料边界的
 移动。本文假设药材均匀径向收缩，利用ξ = r/R(t) 将移动域映射至固定区间，并在问
@@ -287,7 +287,7 @@ PCHIP，区间外取0.05
 附件一存在小幅波动，故环境量保留实测序列的PCHIP 重构，不强制单调化。最
 后1 h 的温度和环境水分均值分别为49.9989 ◦C 和0.049988 kg/kg，据此假设14400 s 后
 工况保持为50.000 ◦C 与0.05000 kg/kg，避免无限沿用末个采样点的波动。末段稳定性
-支持这一情景的选取，但不能确定后续数十小时的实际边界；后文第9 . 3 . 8 节进一步量
+支持这一情景的选取，但不能确定后续数十小时的实际边界；后文第9 . 3 . 8节进一步量
 化环境偏离设定值对达标时间的影响。
 5 . 3 径向热湿控制方程
 基于Fourier 导热定律和Fick 扩散定律[1]，固定半径域内的控制方程为
@@ -520,8 +520,8 @@ D0
 本问不能只解两个平均状态常微分方程，而必须保留径向偏微分方程。
 6 . 2 模型的求解
 采用第五节的统一有限体积方法，以161 个表面加密节点和1 s 步长计算[0, 1800] s
-的预热过程。控制体、界面导通系数及三对角系统分别按(10)、(12) 和(13) 构造，中
-心零通量和表面Robin 通量按(14) 处理。
+的预热过程。控制体、界面导通系数及三对角系统分别按(10)、(12) 和(13) 构造，中心
+零通量和表面Robin 通量按(14) 处理。
 初始场取(1)，每步环境量由PCHIP 在tn+1 处求值。温度方程为线性，水分扩散系
 数D(C) 仍需Picard 更新；迭代右端的历史状态始终固定为上一时间层。沿用第五节的
 双重容差及30 次迭代上限，本问实际最多4 次迭代即收敛。
@@ -533,7 +533,7 @@ D0
 6 . 3 结果的分析和验证
 6 . 3 . 1 温度场计算结果与分析
 问题一典型时刻的温度结果见表3。100 s 时热扰动尚集中在表面附近，中心温度只
-比初值高6.4 × 10−5 ◦C；随着热量持续输入，600 s 后整个截面开始明显升温。到1800 s，
+比初值高6.4×10−5 ◦C；随着热量持续输入，600 s 后整个截面开始明显升温。到1800 s，
 中心与表面分别达到33.5770 ◦C 和36.7865 ◦C。
 表3
 问题一典型时刻温度分布（◦C）
@@ -715,7 +715,7 @@ C(0, t) −C(R, t)/（kg/kg）
 
 
 6 . 3 . 4 预热温度的连续时空演化
-图4 展示0–30 min 的温度时空分布及等温线，热量由表面逐渐传向中心。
+图4展示0–30 min 的温度时空分布及等温线，热量由表面逐渐传向中心。
 0
 10
 20
@@ -759,8 +759,7 @@ C(0, t) −C(R, t)/（kg/kg）
 表6
 问题二代表状态下的物性参数
 状态
-ρ/（kg/m3）
-cp/[J/(kg K)]
+ρ/（kg/m3）cp/[J/(kg K)]
 k/[W/(m K)]
 D/（m2/s）
 初始全域
@@ -780,9 +779,9 @@ D/（m2/s）
 1.027 × 10−8
 7 . 2 模型的求解
 7 . 2 . 1 变物性迭代与轨迹衔接
-沿用161 个表面加密节点和1 s 步长，从(1) 重新出发，采用附录3 物性，不能以
-问题一的预热结果替代初段解。前3 h 用于本问分析，随后沿同一轨迹继续积分，为问
-题三确定达标时间；4 h 后采用第五节的常值环境延拓。
+沿用161 个表面加密节点和1 s 步长，从(1) 重新出发，采用附录3 物性，不能以问
+题一的预热结果替代初段解。前3 h 用于本问分析，随后沿同一轨迹继续积分，为问题
+三确定达标时间；4 h 后采用第五节的常值环境延拓。
 按(13) 分别组装温度、水分三对角矩阵AT, AC，界面平均及边界处理沿用第五节。
 以T (0) = T n, C(0) = Cn 为初值，一次交替迭代为
 AT(C(m))T (m+1) = diag
@@ -801,9 +800,9 @@ Cn + bC.
 其中bT, bC 为环境交换项。先由当前水分更新热物性，再以新温度和当前水分更新D，
 温度指数统一采用开尔文温度；历史状态T n, Cn 保持不变，迭代收敛后才推进时间。
 7 . 2 . 2 精度与计算检查
-采用第五节的双重容差和逐步检查，实际最多5 次Picard 迭代即收敛，未触及30
-次上限。全隐式格式减轻稳定性限制，离散精度由问题三的长期收敛检验统一评估（第
-8 . 3 . 3 节）。
+采用第五节的双重容差和逐步检查，实际最多5 次Picard 迭代即收敛，未触及
+30 次上限。全隐式格式减轻稳定性限制，离散精度由问题三的长期收敛检验统一评估
+（第8 . 3 . 3节）。
 7 . 3 结果的分析和验证
 7 . 3 . 1 温湿分布及内部迁移特征
 典型时刻温度见表7。0.5 h 时中心和表面分别为32.1911 ◦C、35.4141 ◦C，仍有
@@ -938,7 +937,7 @@ t/h
 图5
 问题二变物性温度与水分剖面
 7 . 3 . 2 水分迁移与扩散系数的时空证据
-图6 展示前3 h 水分时空分布，失水影响由表面向中心传播。
+图6展示前3 h 水分时空分布，失水影响由表面向中心传播。
 0
 1
 2
@@ -961,7 +960,7 @@ t/h
 下边界：中心    上边界：表面
 图6
 问题二前3 h 水分浓度的时空分布及等浓度线
-图7 展示D(T, C) 的时空变化：升温增强扩散，但表层失水使其扩散系数低于内部。
+图7展示D(T, C) 的时空变化：升温增强扩散，但表层失水使其扩散系数低于内部。
 16
 
 
@@ -1168,7 +1167,7 @@ t/h
 
 
 8 . 3 . 2 达标区域由表面向中心的推进
-图9 显示严格达标区域由表面向中心推进，未达标核心最终于57.472 h 消失。红线
+图9显示严格达标区域由表面向中心推进，未达标核心最终于57.472 h 消失。红线
 为浓度阈值边界，不是相变界面。
 0
 12
@@ -1210,8 +1209,7 @@ C<0.15 kg/kg
 57.480706
 161 节点，2 s
 57.472781
-161 节点，1 s（终算）
-57.471909
+161 节点，1 s（终算）57.471909
 8 . 3 . 4 端面影响的二维检验
 沿用问题一的半长圆柱二维边界设置，将计算延伸至全二维区域达标，统一采用
 30 s 步长，并与相同径向网格和步长的一维计算配对。41×21 节点下，二维达标时间
@@ -1356,11 +1354,11 @@ R
 只缩放网格而遗漏这些尺度因子，模型将不能正确反映半径变化带来的通量放大。
 9 . 2 模型的求解
 9 . 2 . 1 材料坐标离散与迭代流程
-在ξi = 1 −(1 −i/160)2 上采用161 个表面加密节点，时间步长取1 s。每个时间层
-先由PCHIP 更新半径和环境边界，再更新R−2 内部扩散项及R−1 表面交换项；随后采
-用Picard 迭代依次求解温度场和水分场。全域最大水分浓度跨越0.15 kg/kg 时停止搜索，
-并对相邻时间层线性插值定位临界时刻；首个严格低于阈值的整数秒另行核对。计算流
-程见图10。
+在ξi = 1 −(1 −i/160)2 上采用161 个表面加密节点，时间步长取1 s。每个时间
+层先由PCHIP 更新半径和环境边界，再更新R−2 内部扩散项及R−1 表面交换项；随后
+采用Picard 迭代依次求解温度场和水分场。全域最大水分浓度跨越0.15 kg/kg 时停止搜
+索，并对相邻时间层线性插值定位临界时刻；首个严格低于阈值的整数秒另行核对。计
+算流程见图10。
 为分离几何收缩作用，另保持题面附录4 的物性和环境不变，将半径固定为2 cm，
 22
 
@@ -1562,10 +1560,10 @@ R=1.200 cm
 9 . 3 . 4 COMSOL 有限元复核
 COMSOL 采用相同物性、环境与半径历史，并设置轴向均匀、端面绝热。在6、12、
 24、36、48 h 及主模型首达时刻，分别取1001 个共同径向位置，将有限元解与由原始161
-节点线性插值得到的有限体积解比较。表13 统一列出这一采样口径下的网格与容差检
+节点线性插值得到的有限体积解比较。表13统一列出这一采样口径下的网格与容差检
 验，表中加密单元数指径向单元数。初始自动网格下最大水分差约为1.17 × 10−2 kg/kg；
 径向加密至320 单元、相对求解容差收紧至10−7 后，六个对照时刻的最大水分差为
-4.54 × 10−5 kg/kg。图13 采用该加密设置，展示径向剖面、采样点对照及半径历程。
+4.54 × 10−5 kg/kg。图13采用该加密设置，展示径向剖面、采样点对照及半径历程。
 主模型首达时刻51.0877 h 对应的COMSOL 中心水分为0.14999888 kg/kg，该值不是
 COMSOL 独立首达时间。上述检验支持既定模型的数值一致性，不替代对物理假设的
 实验验证。
@@ -1642,7 +1640,7 @@ COMSOL 物理场剖面、独立数值校核与收缩历程
 加密COMSOL 有限元与有限体积解的剖面对照及半径收缩历程
 9 . 3 . 5 移动网格独立验证
 另在物理坐标中建立移动控制体模型，以相同物性、环境、时间步长和首达判据独
-立计算，与固定材料坐标解比较，结果见表14 和图14。
+立计算，与固定材料坐标解比较，结果见表14和图14。
 27
 
 
@@ -1758,8 +1756,7 @@ C=0.15
 51.093656
 161 节点，2 s
 51.088358
-161 节点，1 s（终算）
-51.087699
+161 节点，1 s（终算）51.087699
 9 . 3 . 7 端面影响的二维检验
 沿用问题一的半长圆柱轴对称模型，在侧表面与端面施加热、质Robin 边界，并
 加入给定半径历史与均匀径向收缩。采用30 s 步长，41×21 节点下二维达标时间为
@@ -1830,16 +1827,16 @@ SC = td(1.05Ce) −td(0.95Ce)
 
 
 10 . 2 模型的推广
-结合少量中心温湿测量，可标定扩散与表面交换参数，利用模型估计内部达标时刻，
-并进一步加入能耗、品质和设备约束以优化干燥温度策略。
+结合少量中心温湿测量，可标定扩散与表面交换参数，利用模型估计内部达标时
+刻，并进一步加入能耗、品质和设备约束以优化干燥温度策略。
 对短柱或端面交换显著的材料，可采用二维轴对称模型；获得潜热和吸湿数据后，
 可扩展为Luikov 型热湿耦合模型[4]。经物性与边界重新标定，该框架可用于果蔬、木
 材等多孔材料的干燥预测。
 AI 工具使用声明
-本文使用ChatGPT（GPT-6）[7] 等AI 工具辅助思路讨论、局部公式检查、程序实现
-与调试、结果核对及图文排版。数值结果由程序计算获得，参赛队负责模型方案的确定、
-建议的取舍和结果审核，并对论文内容承担最终责任。具体使用情况见支撑材料《AI 工
-具使用详情》。
+本文使用ChatGPT（GPT-6）[7] 等AI 工具辅助思路讨论、局部公式检查、程序实
+现与调试、结果核对及图文排版。数值结果由程序计算获得，参赛队负责模型方案的确
+定、建议的取舍和结果审核，并对论文内容承担最终责任。具体使用情况见支撑材料
+《AI 工具使用详情》。
 参考文献
 [1] Crank J. The Mathematics of Diffusion[M]. 2nd ed. Oxford: Clarendon Press, 1975.
 [2] Patankar S V. Numerical Heat Transfer and Fluid Flow[M]. Washington, DC: Hemisphere,
@@ -1862,14 +1859,32 @@ https://doc.comsol.com/6.4/doc/com.comsol.help.heat/heat_ug_theory.07.
 
 附录A
 支撑材料文件列表
+以下路径均相对于支撑材料压缩包的解压根目录。程序运行环境、执行顺序及可重
+建文件见包内运行说明。
 表17
 支撑材料及作用
-文件（相对项目目录）
+文件（相对支撑包根目录）
 作用
 code/solve_drying.py
 四问热湿迁移求解、首达判定及收缩模型
+code/write_results.py
+四份结果工作簿导出与逐项回读核验
+code/check_numerics.py
+空间网格与时间步长收敛检验
+code/validate_2d.py
+问题一轴对称二维端面影响检验入口
+code/validate_long_2d.py
+长期二维与一维配对计算
+code/verify_revision.py
+轨迹一致性、场量与离散平衡检查
+code/run_sensitivity.py
+长期环境边界灵敏度计算
 code/run_q4_counterfactual.py
 同物性固定半径反事实计算
+code/validate_moving_mesh.py
+独立移动控制体模型与几何守恒检验
+code/check_moving_mesh_delivery.py
+移动网格验证结果一致性检查
 code/figure_style.py
 绘图字体、数学排版与缺字检查
 code/make_figures.py
@@ -1880,26 +1895,255 @@ code/plot_moving_mesh_validation.py
 移动网格与固定域结果对照图绘制
 code/make_geometry_diagram.py
 药材几何与坐标示意图绘制
+code/run_figures.sh
+绘图批处理入口及字体环境检查
+inspect_inputs.py
+题目附件与结果模板结构检查
+comsol_q1/prepare_inputs.py
+问题一有限元输入准备与结果比较
+comsol_q1/Q1Automation.java
+问题一有限元建模、求解和剖面导出
+comsol_q1/run_comsol_q1.ps1
+问题一有限元编译、运行与比较入口
+comsol_q4/prepare_q4_inputs.py
+问题四有限元物性与边界输入准备
+comsol_q4/Q4Automation.java
+问题四收缩有限元建模、求解和剖面导出
+comsol_q4/analyze_q4_comsol.py
+有限元与有限体积数值结果比较
 comsol_q4/plot_q4_physical.py
 有限元物理剖面和水分场绘制
-results/result1.xlsx
-问题一前1800 秒，每1 秒、0.1 厘米的温度和水分
-结果
-results/result2.xlsx
-问题二前3 小时，每1 秒、0.1 厘米的温度和水分结
-果
-results/result3.xlsx
-问题三至达标，每60 秒、0.1 厘米的水分结果
-results/result4.xlsx
-问题四至达标，每60 秒的固定物理位置及动态表面
-水分
-AI 工具使用详情.pdf
-AI 工具名称、使用环节及人工核验说明
+comsol_q4/near_surface_check/analyze_
+refinement.py
+有限元近表面加密结果分析
+comsol_q4/near_surface_check/write_report.py
+有限元网格与容差检验结果汇总
+comsol_q4/near_surface_check/run_cases.ps1
+六组有限元网格与容差算例运行入口
+comsol_q4/near_surface_check/original_dense/
+Q4Automation.java
+原始网格加密输出检验
+comsol_q4/near_surface_check/original_tight/
+Q4Automation.java
+原始网格收紧求解容差检验
+续下页
 32
 
 
+表17
+支撑材料及作用（续）
+文件（相对支撑包根目录）
+作用
+comsol_q4/near_surface_check/graded80/
+Q4Automation.java
+近表面分级网格80 单元检验
+comsol_q4/near_surface_check/graded160/
+Q4Automation.java
+近表面分级网格160 单元检验
+comsol_q4/near_surface_check/graded320/
+Q4Automation.java
+近表面分级网格320 单元检验
+comsol_q4/near_surface_check/graded320_tight/
+Q4Automation.java
+近表面分级网格320 单元及严格容差检验
+support_manifest.json
+逐文件来源、哈希及可重建资料清单
+AI 工具使用详情.pdf
+AI 工具使用情况说明
+README.md
+支撑材料运行及文件核验说明
+comsol_q1/ambient_moisture.txt
+COMSOL 输入、导出数据或数值比较记录
+comsol_q1/ambient_temperature.txt
+COMSOL 输入、导出数据或数值比较记录
+comsol_q1/comparison.json
+COMSOL 输入、导出数据或数值比较记录
+comsol_q1/input_metadata.json
+COMSOL 输入、导出数据或数值比较记录
+comsol_q1/q1_comparison.csv
+COMSOL 输入、导出数据或数值比较记录
+comsol_q1/q1_comsol_profiles.csv
+COMSOL 输入、导出数据或数值比较记录
+comsol_q4/ambient_moisture.txt
+COMSOL 输入、导出数据或数值比较记录
+comsol_q4/ambient_temperature.txt
+COMSOL 输入、导出数据或数值比较记录
+comsol_q4/near_surface_check/comparison.csv
+COMSOL 输入、导出数据或数值比较记录
+comsol_q4/near_surface_check/comparison_
+fields.npz
+COMSOL 输入、导出数据或数值比较记录
+comsol_q4/near_surface_check/graded160/
+ambient_moisture.txt
+COMSOL 输入、导出数据或数值比较记录
+comsol_q4/near_surface_check/graded160/
+ambient_temperature.txt
+COMSOL 输入、导出数据或数值比较记录
+comsol_q4/near_surface_check/graded160/radius_
+history.txt
+COMSOL 输入、导出数据或数值比较记录
+comsol_q4/near_surface_check/graded320/
+ambient_moisture.txt
+COMSOL 输入、导出数据或数值比较记录
+comsol_q4/near_surface_check/graded320/
+ambient_temperature.txt
+COMSOL 输入、导出数据或数值比较记录
+comsol_q4/near_surface_check/graded320/radius_
+history.txt
+COMSOL 输入、导出数据或数值比较记录
+comsol_q4/near_surface_check/graded320_tight/
+ambient_moisture.txt
+COMSOL 输入、导出数据或数值比较记录
+comsol_q4/near_surface_check/graded320_tight/
+ambient_temperature.txt
+COMSOL 输入、导出数据或数值比较记录
+续下页
+33
+
+
+表17
+支撑材料及作用（续）
+文件（相对支撑包根目录）
+作用
+comsol_q4/near_surface_check/graded320_tight/
+q4_comsol_profiles.csv
+COMSOL 输入、导出数据或数值比较记录
+comsol_q4/near_surface_check/graded320_tight/
+radius_history.txt
+COMSOL 输入、导出数据或数值比较记录
+comsol_q4/near_surface_check/graded80/ambient_
+moisture.txt
+COMSOL 输入、导出数据或数值比较记录
+comsol_q4/near_surface_check/graded80/ambient_
+temperature.txt
+COMSOL 输入、导出数据或数值比较记录
+comsol_q4/near_surface_check/graded80/radius_
+history.txt
+COMSOL 输入、导出数据或数值比较记录
+comsol_q4/near_surface_check/manifest.json
+COMSOL 输入、导出数据或数值比较记录
+comsol_q4/near_surface_check/original_dense/
+ambient_moisture.txt
+COMSOL 输入、导出数据或数值比较记录
+comsol_q4/near_surface_check/original_dense/
+ambient_temperature.txt
+COMSOL 输入、导出数据或数值比较记录
+comsol_q4/near_surface_check/original_dense/
+radius_history.txt
+COMSOL 输入、导出数据或数值比较记录
+comsol_q4/near_surface_check/original_tight/
+ambient_moisture.txt
+COMSOL 输入、导出数据或数值比较记录
+comsol_q4/near_surface_check/original_tight/
+ambient_temperature.txt
+COMSOL 输入、导出数据或数值比较记录
+comsol_q4/near_surface_check/original_tight/
+radius_history.txt
+COMSOL 输入、导出数据或数值比较记录
+comsol_q4/near_surface_check/summary.json
+COMSOL 输入、导出数据或数值比较记录
+comsol_q4/q4_comsol_comparison.csv
+COMSOL 输入、导出数据或数值比较记录
+comsol_q4/q4_comsol_fields.npz
+COMSOL 输入、导出数据或数值比较记录
+comsol_q4/q4_comsol_profiles.csv
+COMSOL 输入、导出数据或数值比较记录
+comsol_q4/q4_comsol_validation.json
+COMSOL 输入、导出数据或数值比较记录
+comsol_q4/radius_history.txt
+COMSOL 输入、导出数据或数值比较记录
+paper/cumcm-1.1.0/main.pdf
+当前完整论文；供附录与结果核对
+results/data_audit.json
+已保存的计算场、汇总结果或验证记录
+results/long_2d_verification.json
+已保存的计算场、汇总结果或验证记录
+results/numerical_verification.json
+已保存的计算场、汇总结果或验证记录
+results/paper_revision_verification.json
+已保存的计算场、汇总结果或验证记录
+results/paper_table_audit.json
+已保存的计算场、汇总结果或验证记录
+results/q1/fields.npz
+已保存的计算场、汇总结果或验证记录
+results/q1/summary.json
+已保存的计算场、汇总结果或验证记录
+results/q1/validation_2d.json
+已保存的计算场、汇总结果或验证记录
+续下页
+34
+
+
+表17
+支撑材料及作用（续）
+文件（相对支撑包根目录）
+作用
+results/q2/summary.json
+已保存的计算场、汇总结果或验证记录
+results/q3/fields.npz
+已保存的计算场、汇总结果或验证记录
+results/q3/summary.json
+已保存的计算场、汇总结果或验证记录
+results/q4/fields.npz
+已保存的计算场、汇总结果或验证记录
+results/q4/output_verification.json
+已保存的计算场、汇总结果或验证记录
+results/q4/summary.json
+已保存的计算场、汇总结果或验证记录
+results/q4/validation_moving_mesh/comparison.
+csv
+已保存的计算场、汇总结果或验证记录
+results/q4/validation_moving_mesh/delivery_
+checks.json
+已保存的计算场、汇总结果或验证记录
+results/q4/validation_moving_mesh/profiles.csv
+已保存的计算场、汇总结果或验证记录
+results/q4/validation_moving_mesh/protected_
+files_sha256.json
+已保存的计算场、汇总结果或验证记录
+results/q4/validation_moving_mesh/reference_
+reproduction.json
+已保存的计算场、汇总结果或验证记录
+results/q4/validation_moving_mesh/summary.json
+已保存的计算场、汇总结果或验证记录
+results/q4/validation_moving_mesh/unit_checks.
+json
+已保存的计算场、汇总结果或验证记录
+results/result1.xlsx
+题目要求的正式结果工作簿
+results/result2.xlsx
+题目要求的正式结果工作簿
+results/result3.xlsx
+题目要求的正式结果工作簿
+results/result4.xlsx
+题目要求的正式结果工作簿
+results/revision_checks.json
+已保存的计算场、汇总结果或验证记录
+results/revision_scope_verification.json
+已保存的计算场、汇总结果或验证记录
+results/sensitivity.json
+已保存的计算场、汇总结果或验证记录
+results/workbook_verification.json
+已保存的计算场、汇总结果或验证记录
+附件/ 附件1.xlsx
+题目原始输入数据或结果工作簿模板
+附件/ 附件2.xlsx
+题目原始输入数据或结果工作簿模板
+附件/ 附件3/result1.xlsx
+题目原始输入数据或结果工作簿模板
+附件/ 附件3/result2.xlsx
+题目原始输入数据或结果工作簿模板
+附件/ 附件3/result3.xlsx
+题目原始输入数据或结果工作簿模板
+附件/ 附件3/result4.xlsx
+题目原始输入数据或结果工作簿模板
+35
+
+
 附录B
-核心求解与绘图源程序
+完整源程序
+以下收录求解、结果导出、数值验证与绘图所用源程序。除首行文件路径注释外，
+内容与项目对应源码一致；可执行文件及运行说明见支撑材料。
 2 . 1
 solve_drying.py
 # File: code/solve_drying.py
@@ -1934,11 +2178,11 @@ INITIAL_C = 2.55
 THRESHOLD_C = 0.15
 TERMINAL_TEMPERATURE_C = 50.0
 TERMINAL_MOISTURE = 0.05
-@dataclass
-class Environment:
-33
+36
 
 
+@dataclass
+class Environment:
 time_s: np.ndarray
 temperature_c: np.ndarray
 moisture: np.ndarray
@@ -1976,11 +2220,11 @@ if row[0] is None:
 continue
 rows.append([float(value) for value in row])
 return np.asarray(rows, dtype=float)
-def load_environment() −> Environment:
-data = _read_numeric_sheet(INPUT_DIR / "附件1.xlsx")
-34
+37
 
 
+def load_environment() −> Environment:
+data = _read_numeric_sheet(INPUT_DIR / "附件1.xlsx")
 time_s, temperature_c, moisture = data.T
 if not np.all(np.diff(time_s) > 0):
 raise ValueError("附件1时间列不是严格递增。")
@@ -2019,12 +2263,12 @@ diffusivity = 7.0e−9 * np.exp(−0.89 / safe_c)
 return rho, cp, k, diffusivity
 def property_q23(temperature_c: np.ndarray, moisture: np.ndarray) −> tuple[np.ndarray,
 ...]:
+38
+
+
 safe_c = np.maximum(moisture, 1e−8)
 rho = 650.0 + 128.0 * safe_c
 cp = 1450.0 + 2736.0 * safe_c / (safe_c + 1.0)
-35
-
-
 k = 0.21 + 0.38 * safe_c / (safe_c + 1.0)
 diffusivity = (
 2.4e−3
@@ -2059,12 +2303,12 @@ volumes = math.pi * (upper**2 −lower**2)
 return volumes, faces
 def implicit_radial_step(
 old: np.ndarray,
+39
+
+
 storage: np.ndarray,
 conductivity: np.ndarray,
 dt: float,
-36
-
-
 coordinate: np.ndarray,
 diffusion_scale: float,
 boundary_conductance: float,
@@ -2102,12 +2346,12 @@ return solve_banded((1, 1), matrix, rhs, check_finite=False)
 def advance_coupled(
 temperature_old: np.ndarray,
 moisture_old: np.ndarray,
+40
+
+
 dt: float,
 radius_m: float,
 radius_rate_m_s: float,
-37
-
-
 ambient_temperature_c: float,
 ambient_moisture: float,
 property_model: Callable[[np.ndarray, np.ndarray], tuple[np.ndarray, ...]],
@@ -2150,12 +2394,12 @@ next_moisture = implicit_radial_step(
 old=moisture_old,
 storage=np.ones_like(moisture),
 conductivity=diffusivity,
+41
+
+
 dt=dt,
 coordinate=coordinate,
 diffusion_scale=diffusion_scale,
-38
-
-
 boundary_conductance=mass_boundary,
 boundary_value=ambient_moisture,
 advection_velocity=shrink_velocity,
@@ -2198,10 +2442,10 @@ heat_residual = (heat_change + heat_flux + adv_t) / heat_reference
 balance['maximum_step_heat_equation_residual'] = max(balance['
 maximum_step_heat_equation_residual'], abs(heat_residual))
 return temperature, moisture, iteration
-def new_balance() −> dict:
-39
+42
 
 
+def new_balance() −> dict:
 return dict(moisture_change=0.0, boundary_loss=0.0, relative_transport=0.0,
 maximum_step_mass_residual=0.0, maximum_step_heat_equation_residual=0.0)
 def simulate_fixed(
@@ -2243,12 +2487,12 @@ moisture_before = moisture.copy()
 ambient_t, ambient_c = environment.values(
 new_time, terminal_temp_scale, terminal_moisture_scale
 )
+43
+
+
 temperature, moisture, count = advance_coupled(
 temperature,
 moisture,
-40
-
-
 step,
 R_FIXED,
 0.0,
@@ -2289,12 +2533,12 @@ return {
 "times_s": np.asarray(times),
 "radius_m": output_r,
 "temperature_c": np.asarray(temperatures),
+44
+
+
 "moisture": np.asarray(moistures),
 "threshold_time_s": threshold_time,
 "threshold_temperature_c": None if threshold_temperature is None else np.interp(
-41
-
-
 output_r, radial_m, threshold_temperature),
 "threshold_moisture": None if threshold_moisture is None else np.interp(output_r,
 radial_m, threshold_moisture),
@@ -2337,12 +2581,12 @@ stop_output_time = math.inf
 time_s = 0.0
 next_output = output_interval_s
 maximum_time = float(radius_history.time_s[−1])
+45
+
+
 monotone_profiles = True
 center_is_max = True
 maximum_cfl = 0.0
-42
-
-
 balance = new_balance()
 while time_s < maximum_time −1e−9:
 step = min(dt_s, maximum_time −time_s, next_output −time_s)
@@ -2385,12 +2629,12 @@ threshold_time = previous_time + fraction * step
 threshold_temperature = (
 temperature_before + fraction * (temperature −temperature_before)
 )
+46
+
+
 threshold_moisture = moisture_before + fraction * (moisture −moisture_before)
 threshold_radius_m = radius_history.values(threshold_time)[0]
 stop_output_time = (
-43
-
-
 math.ceil(threshold_time / output_interval_s) * output_interval_s
 )
 if time_s + 1e−8 >= next_output:
@@ -2430,12 +2674,12 @@ simulation: dict[str, np.ndarray | float | int | bool],
 requested_times_s: list[float],
 requested_radii_cm: list[float],
 variable: str,
+47
+
+
 ) −> list[list[float]]:
 times = np.asarray(simulation["times_s"])
 radii_m = np.asarray(simulation["radius_m"])
-44
-
-
 values = np.asarray(simulation[variable])
 table: list[list[float]] = []
 for requested_time in requested_times_s:
@@ -2478,12 +2722,12 @@ and abs(requested_time_s −threshold_time) < 1e−5
 ):
 profile = np.asarray(threshold_profile)
 radius = float(simulation["threshold_radius_m"])
+48
+
+
 else:
 index = int(np.argmin(np.abs(times −requested_time_s)))
 profile = moisture[index]
-45
-
-
 radius = float(radii_m[index])
 values: list[float | None] = []
 for radius_cm in requested_radii_cm:
@@ -2519,12 +2763,12 @@ def run_all(run_convergence: bool = True) −> None:
 RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 for name in ("q1", "q2", "q3", "q4"):
 (RESULTS_DIR / name).mkdir(parents=True, exist_ok=True)
+49
+
+
 environment = load_environment()
 radius_history = load_radius_history()
 data_audit = {
-46
-
-
 "environment_rows": len(environment.time_s),
 "environment_time_range_s": [environment.time_s[0], environment.time_s[−1]],
 "environment_sampling_s": np.unique(np.diff(environment.time_s)),
@@ -2568,12 +2812,12 @@ q1_summary = {
 "temperature_table_c": extract_fixed_table(q1, q1_times, table_radii, "
 temperature_c"),
 "moisture_table": extract_fixed_table(q1, q1_times, table_radii, "moisture"),
+50
+
+
 "biot_heat": H_T * R_FIXED / 0.36,
 "initial_diffusivity_m2_s": float(property_q1(
 np.array([INITIAL_T]), np.array([INITIAL_C])
-47
-
-
 )[3][0]),
 "biot_mass_initial": H_M * R_FIXED / float(property_q1(
 np.array([INITIAL_T]), np.array([INITIAL_C])
@@ -2616,12 +2860,12 @@ write_summary(RESULTS_DIR / "q2" / "summary.json", q2_summary)
 q3 = dict(q2)
 for key in ("times_s", "temperature_c", "moisture"):
 q3[key] = q2[key][::60].copy()
+51
+
+
 save_npz(RESULTS_DIR / "q3" / "fields.npz", q3)
 q3_end = float(q3["threshold_time_s"])
 q3_report_times = list(np.arange(6 * 3600, math.floor(q3_end / (6 * 3600)) * 6 * 3600
-48
-
-
 + 1, 6 * 3600))
 if not q3_report_times or abs(q3_report_times[−1] −q3_end) > 1e−6:
 q3_report_times.append(q3_end)
@@ -2665,12 +2909,12 @@ extract_moving_profile(q4, time, q4_table_radii) for time in q4_report_times
 "radius_at_end_cm": float(radius_history.values(q4_end)[0] * 100.0),
 "center_is_max": q4["center_is_max"],
 "monotone_profiles": q4["monotone_profiles"],
+52
+
+
 "maximum_advection_cfl": q4["maximum_advection_cfl"],
 "picard_max": q4["picard_max"],
 "picard_mean": q4["picard_mean"],
-49
-
-
 }
 if run_convergence:
 q3_dt2 = simulate_fixed(
@@ -2714,12 +2958,12 @@ q4_summary["moving_term_comparison"] = {
 "material_model_h": q4_end / 3600.0,
 "stationary_spatial_model_h": float(q4_stationary["threshold_time_s"]) /
 3600.0,
+53
+
+
 "difference_h": (
 float(q4_stationary["threshold_time_s"]) −q4_end
 ) / 3600.0,
-50
-
-
 }
 for summary, simulation in [(q1_summary, q1), (q2_summary, q2), (q3_summary, q3), (
 q4_summary, q4)]:
@@ -2758,10 +3002,647 @@ args = parser.parse_args()
 run_all(run_convergence=not args.skip_convergence)
 if __name__ == "__main__":
 main()
-51
+54
 
 
 2 . 2
+write_results.py
+# File: code/write_results.py
+"""Write the four official−format Excel result workbooks."""
+from __future__ import annotations
+import json
+from copy import copy
+import hashlib
+import shutil
+import sys
+from pathlib import Path
+import numpy as np
+from openpyxl import load_workbook
+from openpyxl.utils import get_column_letter
+ROOT = Path(__file__).resolve().parents[1]
+TEMPLATE_DIR = ROOT / "附件" / "附件3"
+RESULTS_DIR = ROOT / "results"
+def reset_sheet(sheet) −> dict:
+"""Clear template placeholders while retaining the official sheet settings."""
+last_column = sheet.max_column
+template = {
+"corner": sheet.cell(1, 1).value,
+"styles": {(row, column): copy(sheet.cell(row, column)._style)
+for row in (1, 2) for column in range(1, last_column + 1)},
+"last_column": last_column,
+"column_a": copy(sheet.column_dimensions["A"]),
+"column_data": copy(sheet.column_dimensions["B"]),
+"row_header": copy(sheet.row_dimensions[1]),
+"row_data": copy(sheet.row_dimensions[2]),
+}
+for row in sheet.iter_rows():
+for cell in row:
+cell.value = None
+return template
+def style_sheet(sheet, row_count: int, column_count: int, template: dict) −> None:
+"""Extend template styles; only result cells use the required four decimals."""
+last_template_column = template["last_column"]
+55
+
+
+for row in sheet.iter_rows(min_row=1, max_row=row_count,
+min_col=1, max_col=column_count):
+for cell in row:
+prototype_column = (last_template_column if cell.column == column_count
+else min(cell.column, last_template_column −2))
+cell._style = copy(template["styles"][
+(1 if cell.row == 1 else 2, prototype_column)])
+if cell.row > 1 and cell.column > 1:
+cell.number_format = "0.0000"
+sheet.column_dimensions.clear()
+for column in range(1, column_count + 1):
+letter = get_column_letter(column)
+dim = copy(template["column_a" if column == 1 else "column_data"])
+dim.index = letter
+dim.min = dim.max = column
+sheet.column_dimensions[letter] = dim
+sheet.row_dimensions.clear()
+for row in range(1, row_count + 1):
+dim = copy(template["row_header" if row == 1 else "row_data"])
+dim.index = row
+sheet.row_dimensions[row] = dim
+def anonymize_workbook(book) −> None:
+"""Remove personal document properties from the submitted result copy."""
+book.properties.creator = ""
+book.properties.lastModifiedBy = ""
+def write_fixed_workbook(
+template_name: str,
+output_name: str,
+fields_path: Path,
+include_temperature: bool,
+end_time_s: float | None = None,
+) −> dict:
+output_path = RESULTS_DIR / output_name
+shutil.copy2(TEMPLATE_DIR / template_name, output_path)
+book = load_workbook(output_path)
+fields = np.load(fields_path)
+times = fields["times_s"]
+radii_cm = fields["radius_m"] * 100.0
+start = 1 if abs(times[0]) < 1e−12 else 0
+stop = len(times) if end_time_s is None else int(np.searchsorted(times, end_time_s,
+side="right"))
+written_rows = stop −start + 1
+sheet_variables = (
+56
+
+
+[("温度", "temperature_c"), ("水分浓度", "moisture")]
+if include_temperature
+else [(book.sheetnames[0], "moisture")]
+)
+for sheet_name, key in sheet_variables:
+sheet = book[sheet_name]
+template = reset_sheet(sheet)
+sheet.cell(1, 1, template["corner"])
+for column, radius in enumerate(radii_cm, 2):
+sheet.cell(1, column, round(float(radius), 1))
+values = fields[key]
+for index in range(start, stop):
+row_number = index −start + 2
+sheet.cell(row_number, 1, int(round(float(times[index]))))
+for column, value in enumerate(values[index], 2):
+sheet.cell(row_number, column, round(float(value), 4))
+style_sheet(sheet, written_rows, len(radii_cm) + 1, template)
+anonymize_workbook(book)
+book.save(output_path)
+book.close()
+fields.close()
+return {
+"path": str(output_path),
+"rows_including_header": written_rows,
+"columns": len(radii_cm) + 1,
+"sheets": [name for name, _ in sheet_variables],
+}
+def write_moving_workbook() −> dict:
+fields = np.load(RESULTS_DIR / "q4" / "fields.npz")
+numerics = json.loads((RESULTS_DIR / "q4" / "summary.json").read_text(encoding="utf−8")
+)["numerics"]
+native_xi = 1.0 −(1.0 −np.linspace(0.0, 1.0, numerics["nodes"])) ** numerics["
+grid_power"]
+if fields["xi"].shape != native_xi.shape or not np.allclose(fields["xi"], native_xi,
+rtol=0, atol=1e−14):
+fields.close()
+raise ValueError("Q4 output requires native calculation nodes; regenerate q4/fields
+.npz before exporting.")
+output_path = RESULTS_DIR / "result4.xlsx"
+shutil.copy2(TEMPLATE_DIR / "result4.xlsx", output_path)
+book = load_workbook(output_path)
+sheet = book[book.sheetnames[0]]
+template = reset_sheet(sheet)
+times = fields["times_s"]
+xi = fields["xi"]
+57
+
+
+radii = fields["radii_m"]
+moisture = fields["moisture"]
+fixed_radii_cm = np.arange(0.0, 2.0, 0.1)
+headers = ([template["corner"]]
++ [round(float(radius), 1) for radius in fixed_radii_cm]
++ ["药材表面"])
+for column, value in enumerate(headers, 1):
+sheet.cell(1, column, value)
+start = 1 if abs(times[0]) < 1e−12 else 0
+for index in range(start, len(times)):
+current_radius_m = float(radii[index])
+profile = moisture[index]
+row: list[float | int | None] = [int(round(float(times[index])))]
+for radius_cm in fixed_radii_cm:
+position_m = radius_cm / 100.0
+if position_m > current_radius_m + 1e−12:
+row.append(None)
+else:
+value = np.interp(position_m / current_radius_m, xi, profile)
+row.append(round(float(value), 4))
+row.append(round(float(profile[−1]), 4))
+for column, value in enumerate(row, 1):
+sheet.cell(index −start + 2, column, value)
+rows = len(times) −start + 1
+columns = len(fixed_radii_cm) + 2
+style_sheet(sheet, rows, columns, template)
+anonymize_workbook(book)
+book.save(output_path)
+book.close()
+fields.close()
+return {
+"path": str(output_path),
+"rows_including_header": rows,
+"columns": columns,
+"sheets": book.sheetnames,
+"blank_rule": "固定物理位置超过当时药材半径时留空；末列始终为实时表面。",
+}
+def verify_workbook(item: dict) −> dict:
+path = Path(item["path"])
+book = load_workbook(path, read_only=True, data_only=False)
+verification = {
+"path": str(path),
+"file_size_bytes": path.stat().st_size,
+"sheets": {},
+"formula_errors": [],
+58
+
+
+}
+error_tokens = {"#REF!", "#DIV/0!", "#VALUE!", "#NAME?", "#N/A", "#NUM!", "#NULL!"}
+for sheet in book.worksheets:
+first_row = [cell.value for cell in next(sheet.iter_rows(min_row=1, max_row=1))]
+last_row = [
+cell.value
+for cell in next(
+sheet.iter_rows(
+min_row=sheet.max_row,
+max_row=sheet.max_row,
+min_col=1,
+max_col=sheet.max_column,
+)
+)
+]
+for row in sheet.iter_rows(values_only=True):
+for value in row:
+if isinstance(value, str) and value in error_tokens:
+verification["formula_errors"].append(
+{"sheet": sheet.title, "value": value}
+)
+verification["sheets"][sheet.title] = {
+"rows": sheet.max_row,
+"columns": sheet.max_column,
+"first_row": first_row,
+"last_row": last_row,
+}
+verification["pass"] = (
+not verification["formula_errors"]
+and all(
+details["rows"] == item["rows_including_header"]
+and details["columns"] == item["columns"]
+for details in verification["sheets"].values()
+)
+)
+question = int(path.stem[−1])
+fields_path = RESULTS_DIR / f"q{question}" / "fields.npz"
+with np.load(fields_path) as archive:
+# Decode each compressed array once, rather than once per Excel row.
+fields = {key: archive[key] for key in archive.files}
+times = fields["times_s"]
+end_time = {1: 1800.0, 2: 10800.0}.get(question, float(times[−1]))
+indexes = np.flatnonzero((times > 0) & (times <= end_time))
+interval = 1 if question <= 2 else 60
+expected_times = np.arange(interval, end_time + 0.5, interval)
+schedule_valid = np.array_equal(times[indexes], expected_times)
+mismatches = 0
+59
+
+
+for sheet in book.worksheets:
+key = "temperature_c" if sheet.title == "温度" else "moisture"
+if sheet.max_row != len(indexes) + 1:
+mismatches += 1
+for index, row in zip(indexes, sheet.iter_rows(min_row=2, values_only=True)):
+if row[0] != int(times[index]):
+mismatches += 1
+if question != 4:
+values = np.interp(np.linspace(0, 0.02, 21), fields["radius_m"], fields[key
+][index])
+expected = [round(float(v), 4) for v in values]
+else:
+radius = float(fields["radii_m"][index])
+expected = [None if r > radius + 1e−12 else
+round(float(np.interp(r / radius, fields["xi"], fields["
+moisture"][index])), 4)
+for r in np.arange(20) * 0.001]
+expected.append(round(float(fields["moisture"][index, −1]), 4))
+mismatches += sum(actual != target for actual, target in zip(row[1:], expected)
+)
+verification["source_value_mismatches"] = mismatches
+verification["time_schedule_valid"] = schedule_valid
+verification["source_fields_sha256"] = hashlib.sha256(fields_path.read_bytes()).
+hexdigest()
+verification["workbook_sha256"] = hashlib.sha256(path.read_bytes()).hexdigest()
+verification["pass"] = verification["pass"] and schedule_valid and mismatches == 0
+book.close()
+return verification
+def main() −> None:
+sys.stdout.reconfigure(encoding="utf−8")
+outputs = [
+write_fixed_workbook(
+"result1.xlsx",
+"result1.xlsx",
+RESULTS_DIR / "q1" / "fields.npz",
+include_temperature=True,
+end_time_s=1800.0,
+),
+write_fixed_workbook(
+"result2.xlsx",
+"result2.xlsx",
+RESULTS_DIR / "q2" / "fields.npz",
+include_temperature=True,
+end_time_s=10800.0,
+),
+60
+
+
+write_fixed_workbook(
+"result3.xlsx",
+"result3.xlsx",
+RESULTS_DIR / "q3" / "fields.npz",
+include_temperature=False,
+),
+write_moving_workbook(),
+]
+report = {
+"authoring_backend": "existing openpyxl result exporter",
+"template_policy": "保留附件模板表头、工作表名称和样式；展开省略号，结果显示四位小数。",
+"outputs": outputs,
+"verification": [verify_workbook(item) for item in outputs],
+}
+report_path = RESULTS_DIR / "workbook_verification.json"
+report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf
+−8")
+if not all(item["pass"] for item in report["verification"]):
+raise RuntimeError("Workbook verification failed; see workbook_verification.json")
+print(json.dumps(report, ensure_ascii=False, indent=2))
+if __name__ == "__main__":
+main()
+2 . 3
+check_numerics.py
+# File: code/check_numerics.py
+"""Independent spatial/time refinement checks; does not overwrite production fields."""
+from pathlib import Path
+import json
+import sys
+import numpy as np
+import solve_drying as model
+def run():
+environment=model.load_environment(); radius=model.load_radius_history()
+saved_nodes=model.NODES
+report={'grid_power':model.GRID_POWER,'grid':[],'time':[]}
+for nodes in [41,81,161,321]:
+model.NODES=nodes
+q3=model.simulate_fixed(environment,model.property_q23,None,10,60,True)
+q4=model.simulate_moving(environment,radius,10,60)
+61
+
+
+record={'nodes':nodes,'q3_h':q3['threshold_time_s']/3600,'q4_h':q4['
+threshold_time_s']/3600}
+report['grid'].append(record);print(record,flush=True)
+(model.RESULTS_DIR/'numerical_verification.json').write_text(json.dumps(report,
+indent=2))
+model.NODES=saved_nodes
+for dt in [2.,1.]:
+q3=model.simulate_fixed(environment,model.property_q23,None,dt,60,True)
+q4=model.simulate_moving(environment,radius,dt,60)
+record={'dt_s':dt,'nodes':model.NODES,'q3_h':q3['threshold_time_s']/3600,'q4_h':q4[
+'threshold_time_s']/3600}
+report['time'].append(record);print(record,flush=True)
+report['spatial_relative_change_161_to_321']={q:abs(report['grid'][−1][q]−report['grid'
+][−2][q])/report['grid'][−1][q] for q in ['q3_h','q4_h']}
+report['time_relative_change_2_to_1']={q:abs(report['time'][−1][q]−report['time'][−2][q
+])/report['time'][−1][q] for q in ['q3_h','q4_h']}
+report['time_tolerance']=1e−4
+report['spatial_tolerance']=1e−3
+report['pass']=all(v<report['spatial_tolerance'] for v in report['
+spatial_relative_change_161_to_321'].values()) and all(v<report['time_tolerance'] for v
+in report['time_relative_change_2_to_1'].values())
+(model.RESULTS_DIR/'numerical_verification.json').write_text(json.dumps(report,indent
+=2))
+if __name__=='__main__':
+sys.stdout.reconfigure(encoding='utf−8');run()
+2 . 4
+validate_2d.py
+# File: code/validate_2d.py
+"""Short−duration Q1 validation using the matched−grid axisymmetric solver.
+Whole−run extrema and final−time differences are explicitly distinguished.
+For the full drying process, run validate_long_2d.py.
+"""
+import json
+import sys
+from solve_drying import RESULTS_DIR
+from validate_long_2d import run_case
+def run():
+report = run_case(1, 41, 21, 10.0)
+report['one_dimensional_midplane_pass'] = (
+62
+
+
+report['whole_run_midplane_max_temperature_difference'] < 0.1
+and report['whole_run_midplane_max_moisture_difference'] < 1e−3)
+output = RESULTS_DIR / 'q1' / 'validation_2d.json'
+output.write_text(json.dumps(report, indent=2), encoding='utf−8')
+print(json.dumps(report, indent=2))
+if __name__ == '__main__':
+sys.stdout.reconfigure(encoding='utf−8')
+run()
+2 . 5
+validate_long_2d.py
+# File: code/validate_long_2d.py
+"""Full−duration axisymmetric validation with matched 1D grid and time step.
+z=0 is the symmetry mid−plane; z=L/2 is the exposed end.
+For Q4 both solvers use the homogeneous material−shrinkage closure.
+"""
+import json, math, sys
+import numpy as np
+from scipy.sparse import coo_matrix
+from scipy.sparse.linalg import spsolve
+import solve_drying as m
+LENGTH=.25
+def geometry(nr,nz,radius):
+r=m.radial_grid(nr,radius);z=m.radial_grid(nz,LENGTH/2)
+area,_=m.node_control_volumes(r)
+faces=(z[1:]+z[:−1])/2
+dz=np.diff(np.r_[0.,faces,LENGTH/2])
+return r,z,area,dz,area[:,None]*dz[None,:]
+def step2d(old,storage,k,dt,h,ambient,geom):
+r,z,area,dz,volume=geom;nr,nz=old.shape
+ids=np.arange(nr*nz).reshape(nr,nz)
+a=ids[:−1,:].ravel();b=ids[1:,:].ravel()
+gr=(2*np.pi*((r[1:]+r[:−1])/2)[:,None]*dz[None,:]*
+(k[1:,:]+k[:−1,:])/2/np.diff(r)[:,None]).ravel()
+c=ids[:,:−1].ravel();d=ids[:,1:].ravel()
+gz=(area[:,None]*(k[:,1:]+k[:,:−1])/2/np.diff(z)[None,:]).ravel()
+first=np.r_[a,c];second=np.r_[b,d];g=np.r_[gr,gz]
+capacity=(storage*volume/dt).ravel()
+63
+
+
+diagonal=capacity+np.bincount(first,weights=g,minlength=old.size)+np.bincount(second,
+weights=g,minlength=old.size)
+rhs=capacity*old.ravel()
+side=ids[−1,:];end=ids[:,−1]
+bs=h*2*np.pi*r[−1]*dz;be=h*area
+diagonal[side]+=bs;rhs[side]+=bs*ambient
+diagonal[end]+=be;rhs[end]+=be*ambient
+ix=np.arange(old.size)
+matrix=coo_matrix((np.r_[diagonal,−g,−g],(np.r_[ix,first,second],np.r_[ix,second,first
+])),shape=(old.size,old.size)).tocsc()
+return spsolve(matrix,rhs).reshape(old.shape)
+def run_case(question,nr,nz,dt):
+env=m.load_environment();rh=m.load_radius_history()
+prop={1:m.property_q1,3:m.property_q23,4:m.property_q4}[question]
+temperature=np.full((nr,nz),m.INITIAL_T);moisture=np.full_like(temperature,m.INITIAL_C)
+one_t=temperature[:,0].copy();one_c=moisture[:,0].copy()
+td2=td1=None;maxdiff_t=maxdiff_c=0.;max_end_c=0.;max_location=None
+previous2=previous1=m.INITIAL_C
+maximum=1800 if question==1 else (float(rh.time_s[−1]) if question==4 else 4*86400)
+steps=0
+for t in np.arange(dt,maximum+dt/2,dt):
+radius=rh.values(float(t))[0] if question==4 else m.R_FIXED
+geom=geometry(nr,nz,radius)
+ambient_t,ambient_c=env.values(float(t))
+guess_t=temperature.copy();guess_c=moisture.copy()
+for iteration in range(30):
+rho,cp,k,_=prop(guess_t,guess_c)
+new_t=step2d(temperature,rho*cp,k,dt,m.H_T,ambient_t,geom)
+_,_,_,diffusivity=prop(new_t,guess_c)
+new_c=step2d(moisture,np.ones_like(moisture),diffusivity,dt,m.H_M,ambient_c,
+geom)
+et=np.max(np.abs(new_t−guess_t));ec=np.max(np.abs(new_c−guess_c))
+guess_t,guess_c=new_t,new_c
+if et<1e−8 and ec<1e−10: break
+else: raise RuntimeError('2D Picard failed')
+temperature,moisture=guess_t,guess_c
+one_t,one_c,_=m.advance_coupled(one_t,one_c,dt,radius,0.,ambient_t,ambient_c,prop,
+question==4)
+maxdiff_t=max(maxdiff_t,float(np.max(np.abs(temperature[:,0]−one_t))))
+maxdiff_c=max(maxdiff_c,float(np.max(np.abs(moisture[:,0]−one_c))))
+max_end_c=max(max_end_c,float(np.max(np.abs(moisture[:,−1]−moisture[:,0]))))
+current2=float(moisture.max());current1=float(one_c.max())
+if td2 is None and current2<=m.THRESHOLD_C:
+td2=float(t−dt+dt*(previous2−m.THRESHOLD_C)/(previous2−current2))
+ij=np.unravel_index(np.argmax(moisture),moisture.shape)
+64
+
+
+max_location=[float(geom[0][ij[0]]),float(geom[1][ij[1]])]
+if td1 is None and current1<=m.THRESHOLD_C:
+td1=float(t−dt+dt*(previous1−m.THRESHOLD_C)/(previous1−current1))
+previous2,previous1=current2,current1;steps+=1
+if steps%720==0:print('2D',question,nr,nz,'time h',t/3600,flush=True)
+if td2 is not None and td1 is not None:break
+return {'question':question,'nr':nr,'nz':nz,'dt_s':dt,'end_s':float(t),
+'terminal_temperature_c':m.TERMINAL_TEMPERATURE_C,'terminal_moisture':m.
+TERMINAL_MOISTURE,
+'threshold_2d_h':None if td2 is None else td2/3600,'threshold_matched_1d_h':None if
+td1 is None else td1/3600,
+'relative_threshold_difference':None if td2 is None else abs(td2−td1)/td2,
+'global_control_r_z_m':max_location,'whole_run_midplane_max_temperature_difference'
+:maxdiff_t,
+'whole_run_midplane_max_moisture_difference':maxdiff_c,
+'whole_run_end_midplane_max_moisture_difference':max_end_c,
+'final_midplane_temperature_difference':float(np.max(np.abs(temperature[:,0]−one_t)
+)),
+'final_midplane_moisture_difference':float(np.max(np.abs(moisture[:,0]−one_c)))}
+def run():
+path=m.RESULTS_DIR/'long_2d_verification.json'
+previous=json.loads(path.read_text()) if path.exists() else []
+# Q1 ends before the terminal boundary begins and remains valid. Recompute
+# every long−duration Q3/Q4 case whenever this script is run.
+records=[x for x in previous if x['question']==1]
+for q,nr,nz,dt in [(3,41,21,30.),(4,41,21,30.),(3,81,41,30.),(4,81,41,30.)]:
+record=run_case(q,nr,nz,dt);records.append(record)
+path.write_text(json.dumps(records,indent=2));print(record,flush=True)
+if __name__=='__main__':
+sys.stdout.reconfigure(encoding='utf−8');run()
+2 . 6
+verify_revision.py
+# File: code/verify_revision.py
+"""Check trajectory identity, refinement, closed−system invariance and balances.
+Does not write workbooks or regenerate production results.
+"""
+import hashlib
+import json
+from pathlib import Path
+65
+
+
+import numpy as np
+import solve_drying as m
+def run():
+output = {}
+with np.load(m.RESULTS_DIR/'q2/fields.npz') as q2, np.load(m.RESULTS_DIR/'q3/fields.npz
+') as q3:
+output['q2_q3_exact_shared_trajectory'] = all(
+np.array_equal(q2[key][::60], q3[key])
+for key in ['times_s', 'temperature_c', 'moisture'])
+assert output['q2_q3_exact_shared_trajectory']
+assert np.array_equal(q2['threshold_moisture'],q3['threshold_moisture'])
+env=m.load_environment()
+refinement={}
+original_nodes=m.NODES
+try:
+for q,prop,end in [(1,m.property_q1,1800.),(2,m.property_q23,10800.)]:
+results=[]
+for n in [161,321]:
+m.NODES=n
+results.append(m.simulate_fixed(env,prop,end,1.,60.,False))
+refinement[f'q{q}']={
+'maximum_output_temperature_difference_c':float(np.max(np.abs(results[0]['
+temperature_c']−results[1]['temperature_c']))),
+'maximum_output_moisture_difference':float(np.max(np.abs(results[0]['
+moisture']−results[1]['moisture'])))}
+assert refinement[f'q{q}']['maximum_output_temperature_difference_c']<1e−3
+assert refinement[f'q{q}']['maximum_output_moisture_difference']<1e−4
+finally:m.NODES=original_nodes
+output['short_term_refinement_161_to_321_dt1']=refinement
+# Zero exchange and a uniform field must remain unchanged even as R shrinks.
+old_t=np.full(m.NODES,m.INITIAL_T);old_c=np.full(m.NODES,1.2)
+t=old_t.copy();c=old_c.copy();b=m.new_balance()
+for radius in np.linspace(.02,.012,21):
+t,c,_=m.advance_coupled(t,c,10.,radius,0.,m.INITIAL_T,1.2,m.property_q4,True,
+balance=b)
+output['uniform_material_field_temperature_error']=float(np.max(np.abs(t−old_t)))
+output['uniform_material_field_moisture_error']=float(np.max(np.abs(c−old_c)))
+assert output['uniform_material_field_temperature_error']<1e−8
+assert output['uniform_material_field_moisture_error']<1e−10
+output['production_balances']={}
+for q in range(1,5):
+summary=json.loads((m.RESULTS_DIR/f'q{q}/summary.json').read_text(encoding='utf−8')
+)
+output['production_balances'][f'q{q}']=summary['balance']
+assert summary['balance']['cumulative_mass_equation_residual']<1e−9
+66
+
+
+assert summary['balance']['maximum_step_heat_equation_residual']<1e−10
+output['scope']='Mass balance of implemented dry−reference equation; effective heat
+equation, not total enthalpy.'
+output['source_sha256']={name:hashlib.sha256((Path(__file__).parent/name).read_bytes())
+.hexdigest() for name in ['solve_drying.py','validate_long_2d.py','run_sensitivity.py'
+]}
+output['pass']=True
+(m.RESULTS_DIR/'revision_checks.json').write_text(json.dumps(output,indent=2),encoding=
+'utf−8')
+print(json.dumps(output,indent=2))
+if __name__=='__main__':run()
+2 . 7
+run_sensitivity.py
+# File: code/run_sensitivity.py
+"""Boundary−condition sensitivity for the Q3 and Q4 drying times."""
+from __future__ import annotations
+import json
+import sys
+from solve_drying import (
+RESULTS_DIR,
+TERMINAL_TEMPERATURE_C,
+load_environment,
+load_radius_history,
+property_q23,
+simulate_fixed,
+simulate_moving,
+)
+SCENARIOS = {
+"baseline": (1.0, 1.0),
+"temperature_minus_5pct": (0.95, 1.0),
+"temperature_plus_5pct": (1.05, 1.0),
+"ambient_moisture_minus_5pct": (1.0, 0.95),
+"ambient_moisture_plus_5pct": (1.0, 1.05),
+}
+def run() −> None:
+67
+
+
+environment = load_environment()
+radius_history = load_radius_history()
+output: dict[str, dict[str, float]] = {}
+for name, (temperature_scale, moisture_scale) in SCENARIOS.items():
+q3 = simulate_fixed(
+environment,
+property_q23,
+end_time_s=None,
+dt_s=10.0,
+output_interval_s=3600.0,
+stop_at_threshold=True,
+terminal_temp_scale=temperature_scale,
+terminal_moisture_scale=moisture_scale,
+)
+q4 = simulate_moving(
+environment,
+radius_history,
+dt_s=10.0,
+output_interval_s=3600.0,
+stop_at_threshold=True,
+terminal_temp_scale=temperature_scale,
+terminal_moisture_scale=moisture_scale,
+)
+output[name] = {
+"terminal_temperature_scale": temperature_scale,
+"terminal_moisture_scale": moisture_scale,
+"q3_drying_time_h": float(q3["threshold_time_s"]) / 3600.0,
+"q4_drying_time_h": float(q4["threshold_time_s"]) / 3600.0,
+}
+baseline = output['baseline']
+delta_temperature_c = 0.05 * TERMINAL_TEMPERATURE_C
+baseline_temperature_k = TERMINAL_TEMPERATURE_C + 273.15
+output['definitions'] = {
+'temperature_perturbation_c': delta_temperature_c,
+'temperature_definition': 'additive Celsius perturbation; dimensionless derivative
+normalized by Kelvin temperature',
+'dt_s': 10.0, 'radius_history_fixed': True,
+}
+for q in ['q3','q4']:
+key=f'{q}_drying_time_h'
+derivative=(output['temperature_plus_5pct'][key]−output['temperature_minus_5pct'][
+key])/(2*delta_temperature_c)
+moisture_elasticity=(output['ambient_moisture_plus_5pct'][key]−output['
+ambient_moisture_minus_5pct'][key])/(0.1*baseline[key])
+output['definitions'][q]={'temperature_derivative_h_per_c':derivative,
+'temperature_kelvin_elasticity':derivative*baseline_temperature_k/baseline[key
+68
+
+
+],
+'ambient_moisture_elasticity':moisture_elasticity}
+path = RESULTS_DIR / "sensitivity.json"
+path.write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding="utf−8")
+print(json.dumps(output, ensure_ascii=False, indent=2))
+if __name__ == "__main__":
+sys.stdout.reconfigure(encoding="utf−8")
+run()
+2 . 8
 run_q4_counterfactual.py
 # File: code/run_q4_counterfactual.py
 """Counterfactual Q4 run using Appendix−4 properties but a fixed radius."""
@@ -2790,6 +3671,9 @@ summary_path = RESULTS_DIR / "q4" / "summary.json"
 summary = json.loads(summary_path.read_text(encoding="utf−8"))
 fixed_time_h = float(simulation["threshold_time_s"]) / 3600.0
 moving_time_h = float(summary["drying_time_h"])
+69
+
+
 summary["fixed_radius_counterfactual"] = {
 "same_appendix4_properties_time_h": fixed_time_h,
 "moving_radius_time_h": moving_time_h,
@@ -2801,13 +3685,743 @@ json.dumps(summary, ensure_ascii=False, indent=2),
 encoding="utf−8",
 )
 print(json.dumps(summary["fixed_radius_counterfactual"], ensure_ascii=False, indent=2))
-52
-
-
 if __name__ == "__main__":
 sys.stdout.reconfigure(encoding="utf−8")
 main()
-2 . 3
+2 . 9
+validate_moving_mesh.py
+# File: code/validate_moving_mesh.py
+"""Independent physical−radius moving−control−volume validation of Q4.
+No transformed differential operator or R**(−2) enters the physical solver.
+The reference path calls the unchanged fixed−domain advance_coupled routine.
+Only outputs under results/q4/validation_moving_mesh are written here.
+"""
+from __future__ import annotations
+import argparse
+import csv
+import hashlib
+import json
+import math
+from pathlib import Path
+import sys
+import time
+sys.dont_write_bytecode = True
+import numpy as np
+from scipy.linalg import solve_banded
+import solve_drying as main
+ROOT = Path(__file__).resolve().parents[1]
+OUT = ROOT / 'results/q4/validation_moving_mesh'
+TOL_T, TOL_C, MAX_IT = 1e−8, 1e−10, 30
+70
+
+
+def physical_geometry(nodes: np.ndarray) −> dict:
+"""Physical annuli, per unit axial length; centre and surface half−cells."""
+bounds = np.r_[0.0, (nodes[:−1] + nodes[1:]) / 2.0, nodes[−1]]
+# Factored square difference avoids cancellation in the thin surface cell.
+volumes = math.pi * np.diff(bounds) * (bounds[1:] + bounds[:−1])
+assert np.all(np.diff(nodes) > 0) and np.all(volumes > 0)
+return dict(nodes=nodes, bounds=bounds, volumes=volumes,
+areas=2.0 * math.pi * bounds, distances=np.diff(nodes))
+def mesh_motion(old: dict, new: dict, dt: float) −> tuple[np.ndarray, np.ndarray]:
+"""Swept−volume flux and discrete GCL residual, computed at every face."""
+speed = (new['bounds'] −old['bounds']) / dt
+average_area = math.pi * (new['bounds'] + old['bounds'])
+swept_flux = average_area * speed
+residual = new['volumes'] −old['volumes'] −dt * np.diff(swept_flux)
+return speed, residual
+def solve_physical_inventory(old_value, old_capacity, new_capacity,
+conductivity, geometry, dt, transfer, ambient,
+inventory_correction=None):
+"""Solve extensive inventory balance with physical area / distance fluxes.
+capacity has units inventory per unit scalar (e.g. dry mass per axial m).
+inventory_correction is an extensive change, not an advection coefficient.
+"""
+g = geometry
+face_k = 0.5 * (conductivity[:−1] + conductivity[1:])
+conductance = g['areas'][1:−1] * face_k / g['distances']
+surface = g['areas'][−1] * transfer
+diagonal = new_capacity / dt
+diagonal = diagonal.copy()
+diagonal[:−1] += conductance
+diagonal[1:] += conductance
+diagonal[−1] += surface
+rhs = old_capacity * old_value / dt
+if inventory_correction is not None:
+rhs += inventory_correction / dt
+rhs[−1] += surface * ambient
+band = np.zeros((3, len(old_value)))
+band[0, 1:] = −conductance
+band[1] = diagonal
+band[2, :−1] = −conductance
+result = solve_banded((1, 1), band, rhs, check_finite=False)
+71
+
+
+return result, conductance, surface
+def advance_moving_control_volumes(old_t, old_c, old_g, new_g, dry_mass_total,
+dt, ambient_t, ambient_c,
+heat_transfer=main.H_T, mass_transfer=main.H_M):
+"""Picard iteration for co−moving material cells (v_s=w).
+Water: d(M_d C)/dt + sum(rho_d D A grad C) + boundary loss = 0.
+Heat: preserve the existing effective a D_t T equation. Its extensive
+representation requires T_old * delta(a V), rather than conserving a V T
+without a source. This correction includes geometry AND variable storage.
+"""
+rho_d_old = dry_mass_total / old_g['volumes'].sum()
+rho_d_new = dry_mass_total / new_g['volumes'].sum()
+mass_old = rho_d_old * old_g['volumes']
+mass_new = rho_d_new * new_g['volumes']
+old_rho, old_cp, _, _ = main.property_q4(old_t, old_c)
+old_heat_capacity = old_rho * old_cp * old_g['volumes']
+t, c = old_t.copy(), old_c.copy()
+for iteration in range(1, MAX_IT + 1):
+rho, cp, k, _ = main.property_q4(t, c)
+new_heat_capacity = rho * cp * new_g['volumes']
+correction = old_t * (new_heat_capacity −old_heat_capacity)
+t_next, _, heat_surface = solve_physical_inventory(
+old_t, old_heat_capacity, new_heat_capacity, k, new_g, dt,
+heat_transfer, ambient_t, inventory_correction=correction)
+_, _, _, diffusivity = main.property_q4(t_next, c)
+c_next, _, water_surface = solve_physical_inventory(
+old_c, mass_old, mass_new, rho_d_new * diffusivity, new_g, dt,
+rho_d_new * mass_transfer, ambient_c)
+error_t = np.max(np.abs(t_next −t))
+error_c = np.max(np.abs(c_next −c))
+t, c = t_next, c_next
+if error_t < TOL_T and error_c < TOL_C:
+break
+else:
+raise RuntimeError(f'Physical Picard failed: {error_t=}, {error_c=}')
+if not np.isfinite(t).all() or not np.isfinite(c).all():
+raise FloatingPointError('Nonfinite physical solution')
+if c.min() < −1e−10 or c.max() > main.INITIAL_C + 1e−8:
+raise FloatingPointError('Moisture outside physical bounds')
+water_change = np.sum(mass_new * c −mass_old * old_c)
+water_loss = dt * water_surface * (c[−1] −ambient_c)
+# Report BOTH extensive−inventory closure and effective−heat closure.
+heat_inventory_change = np.sum(new_heat_capacity * t −old_heat_capacity * old_t)
+heat_correction = np.sum(correction)
+72
+
+
+heat_loss = dt * heat_surface * (t[−1] −ambient_t)
+return t, c, iteration, dict(
+water_change=float(water_change), water_loss=float(water_loss),
+water_residual=float(water_change + water_loss),
+dry_cell_change=float(np.max(np.abs(mass_new −mass_old))),
+heat_residual=float(heat_inventory_change −heat_correction + heat_loss),
+heat_reference=float(main.INITIAL_T * new_heat_capacity.sum()))
+def preservation_manifest():
+files = [ROOT/'code/solve_drying.py', ROOT/'code/write_results.py']
+files += list((ROOT/'results').rglob('*.npz')) + list((ROOT/'results').rglob('*.json'))
+files += list(ROOT.rglob('result4.xlsx'))
+for directory in ['figures', 'drawio', 'paper/cumcm−1.1.0/figures']:
+files += list((ROOT/directory).glob('*'))
+return {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest()
+for p in files if p.is_file() and OUT not in p.parents}
+def check_preservation(before):
+changed = [k for k,v in before.items()
+if hashlib.sha256((ROOT/k).read_bytes()).hexdigest() != v]
+if changed:
+raise RuntimeError(f'Protected files changed: {changed}')
+return len(before)
+def run_checks():
+"""Isolated physics tests: GCL, insulated material, stationary−grid limit."""
+xi=main.radial_grid(main.NODES)
+g0=physical_geometry(.02*xi); g1=physical_geometry(.013*xi)
+_,res=mesh_motion(g0,g1,1.0)
+mass=g0['volumes'].sum()
+# rho_d(0)=1; arbitrary normalization cancels.
+tt=np.full(main.NODES,28.0); cc=np.full(main.NODES,2.55)
+t,c,_,diag=advance_moving_control_volumes(tt,cc,g0,g1,mass,1,28,0,
+heat_transfer=0,mass_transfer=0)
+assert np.max(np.abs(c−cc)) < 1e−9
+assert np.max(np.abs(t−tt)) < 1e−7
+assert np.max(np.abs(res)) / mass < 1e−12
+# Smooth nonuniform state, zero mesh motion: same physical PDE as baseline.
+tt=28+4*xi**2; cc=2.55−.5*xi**2
+tp,cp,_,_=advance_moving_control_volumes(tt,cc,g0,g0,mass,1,40,.03)
+tr,cr,_=main.advance_coupled(tt,cc,1,.02,0,40,.03,main.property_q4,False)
+assert np.max(np.abs(tp−tr))<1e−7
+assert np.max(np.abs(cp−cr))<1e−9
+return dict(gcl_normalized_max=float(np.max(np.abs(res))/mass),
+insulated_temperature_max_error=float(np.max(np.abs(t−28))),
+73
+
+
+insulated_moisture_max_error=float(np.max(np.abs(c−2.55))),
+stationary_temperature_max_error=float(np.max(np.abs(tp−tr))),
+stationary_moisture_max_error=float(np.max(np.abs(cp−cr))))
+def simulate_moving_mesh(dt_s=1.0, max_time_s=259200.0):
+"""Integrate both implementations independently on the same time levels.
+Save full 161−node fields every minute and centre/surface/errors every step.
+No reference state is injected into the physical iteration.
+"""
+env=main.load_environment(); radius=main.load_radius_history()
+xi=main.radial_grid(main.NODES)
+geometry=physical_geometry(radius.values(0)[0]*xi)
+dry_mass_total=geometry['volumes'].sum()
+t_map=np.full(main.NODES,main.INITIAL_T); c_map=np.full(main.NODES,main.INITIAL_C)
+t_mov=t_map.copy(); c_mov=c_map.copy()
+events={}
+times=[0.0]; radii=[.02]
+fields_t_map=[t_map.copy()]; fields_t_mov=[t_mov.copy()]
+fields_c_map=[c_map.copy()]; fields_c_mov=[c_mov.copy()]
+trace=[[0.0,c_map[0],c_mov[0],c_map[−1],c_mov[−1],0.0,0.0,0.0]]
+balances=dict(water_change=0.,water_loss=0.,maximum_step_water_residual=0.,
+maximum_heat_residual=0.,maximum_dry_cell_relative_drift=0.,
+maximum_gcl_residual=0.,max_relative_mesh_speed=0.)
+iters=[0,0]; iter_sum=np.zeros(2); monotone=True
+tnow=0.0; next_output=60.0; start=time.perf_counter()
+while tnow < min(max_time_s,float(radius.time_s[−1]))−1e−8:
+step=min(dt_s,next_output−tnow,max_time_s−tnow)
+newtime=tnow+step
+r,r_dot=radius.values(newtime); te,ce=env.values(newtime)
+new_geometry=physical_geometry(r*xi)
+speed,gcl=mesh_motion(geometry,new_geometry,step)
+# Solid faces follow the identical trajectories. The relative flux
+# rho_d C (v_s−w) A is identically zero, not silently omitted.
+solid_face_speed=speed.copy()
+balances['max_relative_mesh_speed']=max(balances['max_relative_mesh_speed'],
+float(np.max(abs(solid_face_speed−speed))))
+old_t_map,old_c_map=t_map,c_map
+old_t_mov,old_c_mov=t_mov,c_mov
+t_map,c_map,im=main.advance_coupled(t_map,c_map,step,r,0.0,te,ce,main.property_q4,
+True)
+t_mov,c_mov,ip,diag=advance_moving_control_volumes(
+t_mov,c_mov,geometry,new_geometry,dry_mass_total,step,te,ce)
+for name,oldt,oldc,tt,cc in [('mapping',old_t_map,old_c_map,t_map,c_map),
+('moving_mesh',old_t_mov,old_c_mov,t_mov,c_mov)]:
+if name not in events and oldc.max()>main.THRESHOLD_C>=cc.max():
+74
+
+
+fraction=(oldc.max()−main.THRESHOLD_C)/(oldc.max()−cc.max())
+et=tnow+fraction*step
+events[name]=dict(time_s=et,time_h=et/3600,
+temperature=oldt+fraction*(tt−oldt),
+moisture=oldc+fraction*(cc−oldc),
+radius_m=radius.values(et)[0])
+reference=dry_mass_total*main.INITIAL_C
+balances['water_change']+=diag['water_change']/reference
+balances['water_loss']+=diag['water_loss']/reference
+balances['maximum_step_water_residual']=max(balances['maximum_step_water_residual'
+],abs(diag['water_residual'])/reference)
+balances['maximum_heat_residual']=max(balances['maximum_heat_residual'],abs(diag['
+heat_residual'])/diag['heat_reference'])
+balances['maximum_dry_cell_relative_drift']=max(balances['
+maximum_dry_cell_relative_drift'],float(np.max(abs((dry_mass_total/new_geometry['
+volumes'].sum())*new_geometry['volumes']/(geometry['volumes']*(dry_mass_total/geometry[
+'volumes'].sum()))−1))))
+balances['maximum_gcl_residual']=max(balances['maximum_gcl_residual'],float(np.max(
+abs(gcl)))/geometry['volumes'].sum())
+monotone=monotone and bool(np.max(np.diff(c_mov))<=2e−9)
+iters=[max(iters[0],im),max(iters[1],ip)]; iter_sum += [im,ip]
+dc=float(np.max(abs(c_map−c_mov))); dtemp=float(np.max(abs(t_map−t_mov)))
+trace.append([newtime,c_map[0],c_mov[0],c_map[−1],c_mov[−1],dc,dtemp,abs(c_map[0]−
+c_mov[0])])
+tnow=newtime;geometry=new_geometry
+if tnow>=next_output−1e−8:
+times.append(tnow);radii.append(r)
+fields_t_map.append(t_map.copy());fields_t_mov.append(t_mov.copy())
+fields_c_map.append(c_map.copy());fields_c_mov.append(c_mov.copy())
+next_output += 60.0
+if int(round(tnow))%21600==0:
+print(f'{tnow/3600:.0f} h: centre C={c_mov[0]:.9f}, max |dC|={dc:.3e},
+elapsed={time.perf_counter()−start:.1f}s',flush=True)
+if len(events)==2:
+break
+arrays=dict(times_s=np.array(times),radii_m=np.array(radii),xi=xi,
+mapping_temperature=np.array(fields_t_map),moving_temperature=np.array(
+fields_t_mov),
+mapping_moisture=np.array(fields_c_map),moving_moisture=np.array(
+fields_c_mov),
+step_trace=np.array(trace))
+for name,e in events.items():
+for key in ['temperature','moisture']:
+arrays[f'{name}_event_{key}']=e[key]
+np.savez_compressed(OUT/'fields.npz',**arrays)
+balances['cumulative_water_residual']=abs(balances['water_change']+balances['water_loss
+'])
+75
+
+
+report=dict(dt_s=dt_s,nodes=main.NODES,tolerances=dict(temperature=TOL_T,moisture=TOL_C
+,max_iterations=MAX_IT),
+elapsed_seconds=time.perf_counter()−start,time_steps=len(trace)−1,
+picard_max=dict(mapping=iters[0],moving_mesh=iters[1]),
+picard_mean=dict(mapping=float(iter_sum[0]/(len(trace)−1)),moving_mesh=
+float(iter_sum[1]/(len(trace)−1))),
+monotone_profiles=monotone,balances=balances,
+events={name:{k:float(v) for k,v in e.items() if k not in ['temperature','
+moisture']} for name,e in events.items()},
+max_abs_moisture_field_difference=float(arrays['step_trace'][:,5].max()),
+max_abs_temperature_field_difference=float(arrays['step_trace'][:,6].max())
+,
+max_abs_center_moisture_difference=float(arrays['step_trace'][:,7].max()))
+if len(events)==2:
+delta=abs(events['mapping']['time_s']−events['moving_mesh']['time_s'])
+report['drying_time_abs_difference_s']=delta
+report['drying_time_relative_difference']=delta/events['mapping']['time_s']
+report['event_comparison_note']='Own−event profiles and common mapping−event centre
+/surface values are distinguished; trajectories compare identical time levels.'
+(OUT/'summary.json').write_text(json.dumps(report,indent=2),encoding='utf8')
+return arrays,report
+def write_comparisons(arrays,report):
+rows=[]
+def add(metric,a,b,unit):
+rows.append(dict(metric=metric,unit=unit,mapping=float(a),moving_mesh=float(b),
+absolute_difference=abs(float(a)−float(b)),
+relative_difference=abs(float(a)−float(b))/abs(float(a)) if a else
+None))
+if len(report['events'])!=2:
+return
+add('drying_time',report['events']['mapping']['time_h'],report['events']['moving_mesh'
+]['time_h'],'h')
+profiles=[]
+for label,seconds in [('6h',21600),('24h',86400),('48h',172800),('own_event',None)]:
+if seconds is None:
+ca=arrays['mapping_event_moisture'];cb=arrays['moving_mesh_event_moisture']
+ta=arrays['mapping_event_temperature'];tb=arrays['moving_mesh_event_temperature
+']
+ra=report['events']['mapping']['radius_m']; rb=report['events']['moving_mesh'][
+'radius_m']
+else:
+i=int(np.flatnonzero(arrays['times_s']==seconds)[0])
+ca=arrays['mapping_moisture'][i];cb=arrays['moving_moisture'][i]
+ta=arrays['mapping_temperature'][i];tb=arrays['moving_temperature'][i]
+ra=rb=arrays['radii_m'][i]
+76
+
+
+for point,k in [('center',0),('surface',−1)]:
+add(f'{label}_{point}_moisture',ca[k],cb[k],'kg/kg')
+for j,xi in enumerate(arrays['xi']):
+profiles.append(dict(time_label=label,node=j,r_mapping_cm=100*ra*xi,r_moving_cm
+=100*rb*xi,
+C_mapping=ca[j],C_moving=cb[j],T_mapping=ta[j],T_moving=tb
+[j]))
+shared_time=report['events']['mapping']['time_s']
+trace=arrays['step_trace']
+for point,ia,ib in [('center',1,2),('surface',3,4)]:
+add(f'common_event_{point}_moisture',np.interp(shared_time,trace[:,0],trace[:,ia]),
+np.interp(shared_time,trace[:,0],trace[:,ib]),'kg/kg')
+# Compute the time relative difference in seconds consistently with summary.
+rows[0]['relative_difference']=report['drying_time_relative_difference']
+for name,data in [('comparison.csv',rows),('profiles.csv',profiles)]:
+with (OUT/name).open('w',newline='',encoding='utf−8−sig') as stream:
+writer=csv.DictWriter(stream,fieldnames=data[0].keys());writer.writeheader();
+writer.writerows(data)
+text='| Metric | Unit | Fixed mapping | Physical moving mesh | Relative difference |\n
+|−−−|−−−|−−−:|−−−:|−−−:|\n'
+for row in rows:
+text+=f"| {row['metric']} | {row['unit']} | {row['mapping']:.12g} | {row['
+moving_mesh']:.12g} | {row['relative_difference']:.4e} |\n"
+(OUT/'comparison.md').write_text(text,encoding='utf8')
+# Match regenerated reference fields to the pre−existing output, without
+# changing original files or using them as integration states.
+old=np.load(ROOT/'results/q4/fields.npz')
+source=json.loads((ROOT/'results/q4/summary.json').read_text(encoding='utf8'))
+assert np.array_equal(old['times_s'],arrays['times_s'])
+mapped_c=np.array([np.interp(old['xi'],arrays['xi'],row) for row in arrays['
+mapping_moisture']])
+mapped_t=np.array([np.interp(old['xi'],arrays['xi'],row) for row in arrays['
+mapping_temperature']])
+reproduction=dict(max_C_difference=float(np.max(abs(mapped_c−old['moisture']))),
+max_T_difference=float(np.max(abs(mapped_t−old['temperature_c']))),
+drying_time_difference_s=abs(report['events']['mapping']['time_s']−
+source['drying_time_s']))
+(OUT/'reference_reproduction.json').write_text(json.dumps(reproduction,indent=2),
+encoding='utf8')
+assert reproduction['max_C_difference']<1e−12 and reproduction['max_T_difference']<1e
+−10
+assert reproduction['drying_time_difference_s']<1e−6
+def run():
+sys.stdout.reconfigure(encoding='utf8')
+parser=argparse.ArgumentParser();parser.add_argument('−−check−only',action='store_true'
+77
+
+
+)
+args=parser.parse_args()
+OUT.mkdir(parents=True,exist_ok=True)
+before=preservation_manifest()
+(OUT/'protected_files_sha256.json').write_text(json.dumps(before,ensure_ascii=False,
+indent=2),encoding='utf8')
+checks=run_checks();(OUT/'unit_checks.json').write_text(json.dumps(checks,indent=2),
+encoding='utf8')
+print('Physics checks:',checks,flush=True)
+if not args.check_only:
+arrays,report=simulate_moving_mesh()
+write_comparisons(arrays,report)
+assert len(report['events'])==2 and report['monotone_profiles']
+print(json.dumps(report,indent=2),flush=True)
+print('Protected files verified:',check_preservation(before),flush=True)
+if __name__=='__main__':
+run()
+2 . 10
+check_moving_mesh_delivery.py
+# File: code/check_moving_mesh_delivery.py
+"""Verify saved Q4 results and the paper without integrating or packaging by default.
+Example: python check_moving_mesh_delivery.py −−log ../paper/cumcm−1.1.0/build/main.log
+Use −−report to choose the JSON destination, and −−package only to copy main.pdf
+to the submission filename. Historical protection hashes are provenance, not a
+baseline for a later revision; this run separately checks before/after hashes.
+"""
+from __future__ import annotations
+import argparse
+from datetime import datetime, timezone
+import hashlib
+import json
+from pathlib import Path
+import re
+import shutil
+import subprocess
+import sys
+sys.dont_write_bytecode = True
+import numpy as np
+import pymupdf
+78
+
+
+from solve_drying import INITIAL_C, THRESHOLD_C
+ROOT = Path(__file__).resolve().parents[1]
+OUT = ROOT / "results/q4/validation_moving_mesh"
+PAPER = ROOT / "paper/cumcm−1.1.0"
+def require(condition, message):
+if not condition:
+raise ValueError(message)
+def sha256(path):
+with path.open("rb") as stream:
+return hashlib.file_digest(stream, "sha256").hexdigest()
+def load_json(path):
+return json.loads(path.read_text(encoding="utf8"))
+def git_output(*args):
+try:
+return subprocess.check_output(
+["git", "−C", str(ROOT), *args], stderr=subprocess.DEVNULL,
+text=True, encoding="utf8").strip() or None
+except (OSError, subprocess.CalledProcessError):
+return None
+def snapshot(report_path):
+"""Protect calculation code, supplied inputs and all saved numerical results."""
+files = set((ROOT / "code").glob("*.py"))
+files.update((ROOT / "paper").rglob("*.py"))
+files.update(path for path in (ROOT / "附件").rglob("*") if path.is_file())
+files.update(ROOT.rglob("*.xlsx"))
+for pattern in ("*.npz", "*.json", "*.csv"):
+files.update((ROOT / "results").rglob(pattern))
+return {path.relative_to(ROOT).as_posix(): sha256(path)
+for path in sorted(files) if path.resolve() != report_path}
+def check_arrays(arrays, summary, reference, official):
+"""Check dimensions against coordinates and official Q4 data, not old lengths."""
+for name, values in arrays.items():
+require(np.isfinite(values).all(), f"Nonfinite validation array: {name}")
+for name, values in reference.items():
+79
+
+
+require(np.isfinite(values).all(), f"Nonfinite official Q4 array: {name}")
+times, xi, trace = arrays["times_s"], arrays["xi"], arrays["step_trace"]
+require(times.ndim == xi.ndim == 1 and len(times) > 1 and len(xi) > 1,
+"Time and node coordinates must be nonempty vectors")
+require(np.array_equal(times, reference["times_s"]), "Q4 output times differ")
+require(np.all(np.diff(times) > 0) and times[0] == 0, "Invalid output time axis")
+sample_dt = float(times[1] −times[0])
+require(np.allclose(np.diff(times), sample_dt, rtol=0, atol=1e−8),
+"Irregular field output sampling")
+require(np.all(np.diff(xi) > 0) and xi[0] == 0 and xi[−1] == 1,
+"Invalid normalized radial grid")
+require(len(xi) == summary["nodes"] == official["numerics"]["nodes"],
+"Node coordinates disagree with solver metadata")
+require(len(reference["xi"]) == official["numerics"]["output_nodes"],
+"Official Q4 output−node metadata differs")
+require(times[−1] == official["output_end_s"], "Q4 output end time differs")
+require(arrays["radii_m"].shape == times.shape and
+np.array_equal(arrays["radii_m"], reference["radii_m"]) and
+np.all(arrays["radii_m"] > 0), "Radius history differs")
+shape = (len(times), len(xi))
+for name in ("mapping_moisture", "moving_moisture",
+"mapping_temperature", "moving_temperature"):
+require(arrays[name].shape == shape, f"Wrong field shape: {name}")
+for name in ("mapping_moisture", "moving_moisture"):
+values = arrays[name]
+require(values.min() >= −1e−10 and values.max() <= INITIAL_C + 1e−8,
+f"Moisture outside physical bounds: {name}")
+require(np.max(np.diff(values, axis=1)) <= 2e−9,
+f"Nonmonotone radial moisture profile: {name}")
+require(summary["monotone_profiles"], "Full−step monotonicity check failed")
+require(trace.shape == (summary["time_steps"] + 1, 8), "Trace metadata differs")
+dt = float(summary["dt_s"])
+require(dt > 0 and dt == official["numerics"]["dt_s"], "Q4 time steps differ")
+require(trace[0, 0] == 0 and trace[−1, 0] == times[−1], "Trace endpoints differ")
+increments = np.diff(trace[:, 0])
+require(np.all(increments > 0) and np.all(increments <= dt + 1e−8),
+"Missing, duplicate, or oversized integration steps")
+short = np.flatnonzero(increments < dt −1e−8) + 1
+require(np.all(np.isclose(np.remainder(trace[short, 0], sample_dt), 0, atol=1e−8)),
+"Short steps must end at field−output times")
+indices = np.searchsorted(trace[:, 0], times)
+require(np.array_equal(trace[indices, 0], times), "Field times missing from trace")
+for name, node, column in (("mapping_moisture", 0, 1), ("moving_moisture", 0, 2),
+("mapping_moisture", −1, 3), ("moving_moisture", −1, 4)):
+require(np.allclose(arrays[name][:, node], trace[indices, column], rtol=0, atol=1e
+−12),
+f"Field and step trace disagree: {name}, node {node}")
+80
+
+
+require(np.all(trace[:, 5:] >= 0), "Negative absolute errors in step trace")
+require(np.allclose(abs(trace[:, 1] −trace[:, 2]), trace[:, 7], rtol=0, atol=1e−14),
+"Center−error column is inconsistent")
+for field, column, tolerance in (("moisture", 5, 1e−14), ("temperature", 6, 1e−12)):
+errors = np.max(abs(arrays[f"mapping_{field}"] −arrays[f"moving_{field}"]), axis
+=1)
+require(np.allclose(errors, trace[indices, column], rtol=0, atol=tolerance),
+f"Full−field {field} errors disagree with trace")
+error_limits = {"max_abs_moisture_field_difference": (5, 1e−9),
+"max_abs_temperature_field_difference": (6, 1e−7),
+"max_abs_center_moisture_difference": (7, 1e−9)}
+for name, (column, limit) in error_limits.items():
+value = float(trace[:, column].max())
+require(summary[name] == value and value < limit, f"Error check failed: {name}")
+for name, column in (("mapping", 1), ("moving_mesh", 2)):
+event = summary["events"][name]
+moisture = arrays[f"{name}_event_moisture"]
+temperature = arrays[f"{name}_event_temperature"]
+require(moisture.shape == temperature.shape == xi.shape, "Wrong event field shape")
+require(abs(moisture.max() −THRESHOLD_C) < 1e−10, "Event misses drying threshold")
+crossings = np.flatnonzero(trace[:, column] <= THRESHOLD_C)
+require(len(crossings) > 0 and crossings[0] > 0, "Threshold crossing missing")
+i = crossings[0]
+fraction = ((trace[i−1, column] −THRESHOLD_C) /
+(trace[i−1, column] −trace[i, column]))
+crossing_time = trace[i−1, 0] + fraction * (trace[i, 0] −trace[i−1, 0])
+require(abs(crossing_time −event["time_s"]) < 1e−6, "Event time differs from trace
+")
+require(abs(event["time_s"] / 3600 −event["time_h"]) < 1e−12, "Event time units
+differ")
+delta = abs(summary["events"]["mapping"]["time_s"] −
+summary["events"]["moving_mesh"]["time_s"])
+require(delta == summary["drying_time_abs_difference_s"] and delta < 1e−5,
+"Independent drying−time error exceeds tolerance")
+require(np.isclose(summary["drying_time_relative_difference"],
+delta / summary["events"]["mapping"]["time_s"], rtol=1e−12, atol=1e
+−18),
+"Relative drying−time error is inconsistent")
+reproduction = {}
+for field, key, limit in (("moisture", "moisture", 1e−12),
+("temperature", "temperature_c", 1e−10)):
+expected = np.array([np.interp(reference["xi"], xi, row)
+for row in arrays[f"mapping_{field}"]])
+require(reference[key].shape == expected.shape, f"Official {field} field shape
+differs")
+difference = float(np.max(abs(expected −reference[key])))
+require(difference < limit, f"Saved validation no longer reproduces official {field
+81
+
+
+}")
+reproduction[f"max_{field}_difference"] = difference
+time_difference = abs(summary["events"]["mapping"]["time_s"] −official["drying_time_s"
+])
+require(time_difference < 1e−6, "Official drying time differs")
+reproduction["drying_time_difference_s"] = time_difference
+return dict(field_shape=list(shape), step_trace_shape=list(trace.shape),
+output_end_s=float(times[−1]), field_sampling_s=sample_dt, dt_s=dt,
+error_limits={name: limit for name, (_, limit) in error_limits.items()},
+reference_reproduction=reproduction)
+def check_paper(log_path, skip_build_check):
+pdf = PAPER / "main.pdf"
+with pymupdf.open(pdf) as doc:
+result = dict(pdf_pages=len(doc), paper_sha256=sha256(pdf), validation_pages=[
+i + 1 for i, page in enumerate(doc) if any(term in page.get_text() for term in
+("移动网格独立验证", "移动网格与固定域映射的数值比较", "两种坐标实现的中心"))])
+if skip_build_check:
+result["build_check"] = {"status": "not_verified", "reason": "Explicit −−skip−build
+−check"}
+return result
+if log_path is None:
+candidates = [PAPER / "build/main.log", PAPER / "main.log"]
+available = [path for path in candidates if path.is_file()]
+require(available, "No build log: supply −−log, or explicitly use −−skip−build−
+check")
+log_path = max(available, key=lambda path: path.stat().st_mtime)
+require(log_path.is_file(), f"Build log missing: {log_path}")
+log = log_path.read_text(encoding="utf8", errors="replace")
+bad = [item for item in ("Overfull", "undefined references", "Missing character:",
+"Float too large", "! LaTeX Error", "Emergency stop") if item
+in log]
+require(not bad, f"LaTeX warnings/errors require review: {bad}")
+completed = re.findall(r"Output written on .*?\((\d+) pages?", log, flags=re.DOTALL)
+require(completed and int(completed[−1]) == result["pdf_pages"],
+"Log has no successful TeX output with the current PDF page count")
+require(log_path.stat().st_mtime >= pdf.stat().st_mtime −120,
+"Build log predates current PDF; supply the current compilation log")
+result["build_check"] = dict(status="passed", log_path=str(log_path.resolve()),
+log_sha256=sha256(log_path), warnings_or_errors=bad)
+return result
+def historical_provenance():
+path = OUT / "protected_files_sha256.json"
+if not path.is_file():
+82
+
+
+return {"role": "historical_only", "available": False}
+manifest = load_json(path)
+changed = []
+for name, old_hash in manifest.items():
+current = ROOT / name.replace("\\", "/")
+if not current.is_file() or sha256(current) != old_hash:
+changed.append(name)
+return dict(role="historical_only_not_current_acceptance_baseline",
+path=path.relative_to(ROOT).as_posix(), sha256=sha256(path),
+last_recorded_commit=git_output("log", "−1", "−−format=%H", "−−", str(path)
+),
+different_from_historical=changed)
+def main():
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument("−−log", type=Path, help="Current TeX log (default: newest paper/
+build/main.log or paper/main.log)")
+parser.add_argument("−−report", type=Path, default=OUT / "delivery_checks.json")
+parser.add_argument("−−skip−build−check", action="store_true", help="Check data/PDF
+only; report will explicitly be partial")
+parser.add_argument("−−package", action="store_true", help="Also copy verified main.pdf
+to A题_完整论文.pdf")
+args = parser.parse_args()
+require(not (args.package and args.skip_build_check), "Packaging requires build−log
+verification")
+report_path = args.report.resolve()
+require(report_path.suffix.lower() == ".json", "Report must be a JSON file")
+before = snapshot(report_path)
+# A report may replace an earlier delivery report, but never a numerical result or
+historical manifest.
+if report_path.exists():
+previous = load_json(report_path)
+require("protected_files_unchanged" in previous or previous.get("check_kind") == "
+q4_delivery",
+"Refusing to overwrite a file that is not a delivery−check report")
+with np.load(OUT / "fields.npz", allow_pickle=False) as saved, \
+np.load(ROOT / "results/q4/fields.npz", allow_pickle=False) as formal:
+arrays = {name: saved[name] for name in saved.files}
+reference = {name: formal[name] for name in formal.files}
+result = dict(check_kind="q4_delivery", schema_version=2,
+checked_at_utc=datetime.now(timezone.utc).isoformat(), git_head=
+git_output("rev−parse", "HEAD"),
+numerical_checks=check_arrays(arrays, load_json(OUT / "summary.json"),
+reference,
+load_json(ROOT / "results/q4/summary.json")
+),
+83
+
+
+historical_manifest=historical_provenance(),
+**check_paper(args.log, args.skip_build_check))
+if args.package:
+destination = ROOT / "A题_完整论文.pdf"
+shutil.copy2(PAPER / "main.pdf", destination)
+result["packaged_pdf"] = dict(path=str(destination), sha256=sha256(destination))
+after = snapshot(report_path)
+require(before == after, "Protected calculation/input/result files changed during this
+check")
+result["protection"] = dict(unchanged=True, file_count=len(before), before_sha256=
+before, after_sha256=after)
+result["status"] = "partial_build_not_verified" if args.skip_build_check else "passed"
+report_path.parent.mkdir(parents=True, exist_ok=True)
+report_path.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n",
+encoding="utf8")
+print(json.dumps({key: result[key] for key in ("status", "numerical_checks", "pdf_pages
+", "build_check")},
+ensure_ascii=False, indent=2))
+print(f"Report: {report_path}")
+if __name__ == "__main__":
+try:
+main()
+except (ValueError, OSError, KeyError) as error:
+print(f"Delivery check failed: {error}", file=sys.stderr)
+sys.exit(1)
+2 . 11
+figure_style.py
+# File: code/figure_style.py
+"""Shared, reproducible typography for all manuscript data figures."""
+from pathlib import Path
+import logging
+import warnings
+import matplotlib as mpl
+from matplotlib import font_manager
+def configure_fonts() −> None:
+"""Require the actual regular fonts, rather than a platform−dependent fallback."""
+for family in ("Times New Roman", "SimSun"):
+path = font_manager.findfont(
+font_manager.FontProperties(family=family, weight="normal", style="normal"),
+84
+
+
+fallback_to_default=False,
+)
+resolved = font_manager.get_font(path)
+if resolved.family_name != family or resolved.style_name != "Regular":
+raise RuntimeError(
+f"Expected {family} Regular; resolved {resolved.family_name} "
+f"{resolved.style_name} at {path}"
+)
+mpl.rcParams.update({
+"font.family": ["Times New Roman", "SimSun"],
+"font.weight": "normal",
+"font.size": 11,
+"axes.labelsize": 11,
+"axes.labelweight": "normal",
+"axes.titlesize": 11,
+"axes.titleweight": "normal",
+"xtick.labelsize": 10,
+"ytick.labelsize": 10,
+"legend.fontsize": 10,
+"legend.title_fontsize": 10,
+"figure.titlesize": 12,
+"figure.titleweight": "normal",
+"mathtext.fontset": "custom",
+"mathtext.rm": "Times New Roman",
+"mathtext.it": "Times New Roman:italic",
+"mathtext.bf": "Times New Roman:bold",
+"mathtext.sf": "Times New Roman",
+"mathtext.fallback": "stix",
+"axes.unicode_minus": True,
+"pdf.fonttype": 42,
+"svg.fonttype": "none",
+"savefig.dpi": 300,
+"savefig.bbox": "tight",
+})
+def save_figure(fig, filename) −> None:
+"""Export embedded−font PDF and PNG; never silently accept missing glyphs."""
+filename = Path(filename)
+filename.parent.mkdir(parents=True, exist_ok=True)
+from matplotlib.text import Text
+# Non−math Chinese runs need an explicit face; $...$ keeps Times math.
+for text in fig.findobj(Text):
+value = text.get_text()
+if "$" in value and any("\u3400" <= ch <= "\u9fff" for ch in value):
+text.set_fontfamily("SimSun")
+85
+
+
+class MissingGlyphError(logging.Handler):
+def emit(self, record):
+message = record.getMessage()
+if "does not have a glyph" in message or "dummy symbol" in message:
+raise RuntimeError(message)
+logger = logging.getLogger("matplotlib")
+guard = MissingGlyphError()
+logger.addHandler(guard)
+try:
+with warnings.catch_warnings():
+warnings.filterwarnings("error", message=r"Glyph .* missing from font")
+fig.canvas.draw()
+for suffix in ("pdf", "png"):
+fig.savefig(f"{filename}.{suffix}", bbox_inches="tight", dpi=300)
+finally:
+logger.removeHandler(guard)
+2 . 12
 make_figures.py
 # File: code/make_figures.py
 # Academic Figure Skill Asset Confirmation (verified against assets/figures/)
@@ -2837,6 +4451,9 @@ GREY
 = "#999999"
 BLACK
 = "#222222"
+86
+
+
 import json
 import sys
 from pathlib import Path
@@ -2848,9 +4465,6 @@ RESULTS = ROOT / "results"
 FIGURES = ROOT / "figures"
 MM_TO_INCH = 1.0 / 25.4
 TIME_COLORS = ["#BFD7EA", "#6BAED6", "#2166AC", "#762A83", "#B2182B"]
-53
-
-
 def load_summary(question: str) −> dict:
 return json.loads((RESULTS / question / "summary.json").read_text(encoding="utf−8"))
 def nearest_indices(times: np.ndarray, requested: list[float]) −> list[int]:
@@ -2875,6 +4489,9 @@ axis.xaxis.set_major_locator(MaxNLocator(nbins=5))
 axis.yaxis.set_major_locator(MaxNLocator(nbins=6, steps=[1, 2, 2.5, 5, 10]))
 axis.spines["top"].set_visible(False)
 axis.spines["right"].set_visible(False)
+87
+
+
 axis.spines["left"].set_linewidth(0.6)
 axis.spines["bottom"].set_linewidth(0.6)
 axis.grid(False)
@@ -2888,9 +4505,6 @@ show_legend: bool = True,
 ) −> None:
 for index, (profile, label) in enumerate(zip(values, labels)):
 color = TIME_COLORS[index if len(values) == len(TIME_COLORS) else int(
-54
-
-
 round(index * (len(TIME_COLORS) −1) / max(len(values) −1, 1))
 )]
 axis.plot(
@@ -2921,6 +4535,9 @@ axis.xaxis.set_major_formatter(StrMethodFormatter("{x:g}"))
 def figure_q1() −> None:
 data = np.load(RESULTS / "q1" / "fields.npz")
 times = data["times_s"]
+88
+
+
 radius_cm = data["radius_m"] * 100.0
 requested = [100, 600, 1200, 1800]
 indexes = nearest_indices(times, requested)
@@ -2936,9 +4553,6 @@ axes[0],
 radius_cm,
 data["temperature_c"][indexes],
 labels,
-55
-
-
 "温度/ °C",
 show_legend=False,
 )
@@ -2969,6 +4583,9 @@ fig.subplots_adjust(left=0.10, right=0.98, top=0.84, bottom=0.24, wspace=0.34)
 panel_labels(fig, list(axes))
 save_figure(fig, str(FIGURES / "q1_preheat_profiles"))
 plt.close(fig)
+89
+
+
 def figure_q2() −> None:
 data = np.load(RESULTS / "q2" / "fields.npz")
 times = data["times_s"]
@@ -2984,9 +4601,6 @@ gridspec_kw={"wspace": 0.22},
 )
 plot_profiles(
 axes[0],
-56
-
-
 radius_cm,
 data["temperature_c"][indexes],
 labels,
@@ -3019,6 +4633,9 @@ fig.subplots_adjust(left=0.10, right=0.98, top=0.84, bottom=0.24, wspace=0.34)
 panel_labels(fig, list(axes))
 save_figure(fig, str(FIGURES / "q2_coupled_profiles"))
 plt.close(fig)
+90
+
+
 def figure_q3() −> None:
 data = np.load(RESULTS / "q3" / "fields.npz")
 summary = load_summary("q3")
@@ -3032,9 +4649,6 @@ figsize=(183 * MM_TO_INCH, 86 * MM_TO_INCH),
 gridspec_kw={"wspace": 0.28},
 )
 axes[0].plot(time_h, data["moisture"][:, 0], color=CATEGORICAL[0], linewidth=1.4, label
-57
-
-
 ="中心")
 axes[0].plot(
 time_h,
@@ -3066,6 +4680,9 @@ profiles = data["moisture"][indexes].copy()
 profiles[−1] = data["threshold_moisture"]
 plot_profiles(
 axes[1],
+91
+
+
 radius_cm,
 profiles,
 labels,
@@ -3081,9 +4698,6 @@ legend_labels,
 loc="upper center",
 bbox_to_anchor=(0.5, 0.975),
 ncol=len(legend_labels),
-58
-
-
 columnspacing=1.0,
 handlelength=1.8,
 handletextpad=0.45,
@@ -3114,6 +4728,9 @@ gridspec_kw={"width_ratios": [1.35, 1.0], "wspace": 0.34},
 axes[0].plot(
 time_fixed_h,
 fixed["moisture"][:, 0],
+92
+
+
 color=CATEGORICAL[0],
 linewidth=1.3,
 linestyle="−−",
@@ -3129,9 +4746,6 @@ label="收缩模型（问题4）",
 axes[0].axhline(0.15, color=GREY, linewidth=0.8, linestyle=":")
 axes[0].scatter(
 [end_fixed_h, end4_h],
-59
-
-
 [0.15, 0.15],
 color=[CATEGORICAL[0], ACCENT_RED],
 s=18,
@@ -3163,6 +4777,9 @@ q4["radii_m"] * 100.0,
 color=CATEGORICAL[4],
 linewidth=1.4,
 marker="o",
+93
+
+
 markersize=2.2,
 markevery=max(1, len(time4_h) // 12),
 )
@@ -3178,9 +4795,6 @@ fontsize=10,
 axes[1].set_xlabel("时间/ h")
 axes[1].set_ylabel(r"药材半径$R\,/\,\mathrm{cm}$", fontfamily="SimSun")
 axes[1].set_xlim(0, max(time4_h))
-60
-
-
 axes[1].set_ylim(1.12, 2.05)
 common_axis_style(axes[1])
 fig.subplots_adjust(left=0.10, right=0.98, top=0.83, bottom=0.24, wspace=0.38)
@@ -3197,7 +4811,7 @@ figure_q4()
 print("Generated q1−−q4 PDF and PNG figures.")
 if __name__ == "__main__":
 main()
-2 . 4
+2 . 13
 make_additional_figures.py
 # File: code/make_additional_figures.py
 # Academic Figure Skill Asset Confirmation (verified against assets/figures/)
@@ -3206,6 +4820,9 @@ make_additional_figures.py
 # q3 threshold region −> no semantic match −> cross−type inherit
 # q4 field / disks −> heatmap shared quantitative scale −> param inherit
 # Shared CUMCM typography is applied after the common plot settings below.
+94
+
+
 import matplotlib as mpl
 mpl.rcParams.update({
 "axes.spines.top": False,
@@ -3220,9 +4837,6 @@ mpl.rcParams.update({
 # Academic Figure Skill Nature/Cell/Science Color Palette −−COPY VERBATIM
 CATEGORICAL = ["#2166AC", "#B2182B", "#1B7837", "#F1A340", "#762A83", "#666666"]
 CATEGORICAL_EXTENDED = [
-61
-
-
 "#2166AC", "#B2182B", "#1B7837", "#F1A340", "#762A83", "#666666",
 "#4393C3", "#D6604D", "#5AAE61", "#B35806", "#9970AB", "#999999",
 ]
@@ -3256,6 +4870,9 @@ REPORT = ROOT / 'reports/figure_additions_20260911'
 BLUE = LinearSegmentedColormap.from_list('moisture', SEQUENTIAL)
 NORM_C = Normalize(0, 2.55)
 METRICS = {}
+95
+
+
 def read(q):
 with np.load(ROOT / 'results' / q / 'fields.npz') as z:
 d = {k:z[k] for k in z.files}
@@ -3269,9 +4886,6 @@ assert np.max(np.diff(d['moisture'],axis=1)) < 2e−8
 return d
 def summary(q):
 return json.loads((ROOT/'results'/q/'summary.json').read_text(encoding='utf8'))
-62
-
-
 def event_data(q):
 d=read(q); s=summary(q); end=s['drying_time_s']
 keep=d['times_s'] < end
@@ -3302,6 +4916,9 @@ ax.set(xlim=(t[0],t[−1]),ylim=(0,2),zlim=(ticks[0],ticks[−1]))
 ax.set_xticks([0,10,20,30] if q=='q1' else [0,1,2,3])
 ax.set_yticks([0,1,2]); ax.set_zticks(ticks)
 ax.set_xlabel('时间/ '+('min' if q=='q1' else 'h'),labelpad=7)
+96
+
+
 ax.set_ylabel(r'半径$r\,/\,\mathrm{cm}$',labelpad=6)
 ax.set_zlabel('')
 fig.text(.10,.62,zlabel,rotation=90,va='center',ha='center',fontsize=11)
@@ -3318,9 +4935,6 @@ fig.text(.44,.03,'实线：中心边界
 虚线：表面边界',ha='center',fontsize=10)
 METRICS[name]={'shape':list(v.shape),'min':float(v.min()),'max':float(v.max()),'
 time_range_s':[0,limit]}
-63
-
-
 save(fig,name)
 def label_contours_inside(ax, contours):
 """Keep numeric labels inside the plotted domain after enlarging the type."""
@@ -3350,6 +4964,9 @@ v=d[key][mask]
 fig,ax=plt.subplots(figsize=(183/25.4,82/25.4))
 fig.subplots_adjust(left=.10,right=.86,bottom=.20,top=.93)
 norm=Normalize(float(v.min()),float(v.max()))
+97
+
+
 im=ax.pcolormesh(t,r,v.T,cmap=cmap,norm=norm,shading='auto',rasterized=True)
 cs=ax.contour(t,r,v.T,levels=ticks,colors='white',linewidths=.75)
 labels=label_contours_inside(ax,cs)
@@ -3366,9 +4983,6 @@ cb=fig.colorbar(im,cax=fig.add_axes([.89,.20,.023,.73]))
 cb.set_label(zlabel,labelpad=8)
 fig.text(.47,.035,'下边界：中心
 上边界：表面',ha='center',fontsize=10)
-64
-
-
 METRICS[name]={'shape':list(v.shape),'min':float(v.min()),'max':float(v.max()),'
 time_range_s':[0,limit], 'plot':'2D heatmap with contour lines'}
 save(fig,name)
@@ -3399,6 +5013,9 @@ save(fig,'q2_diffusivity_map')
 def threshold_front():
 d,s,t,c,keep=event_data('q3'); r=d['radius_m']*100
 front=np.empty(len(t))
+98
+
+
 for i,row in enumerate(c):
 if row[−1]>.15: front[i]=2
 elif row[0]<=.15+1e−12: front[i]=0
@@ -3414,9 +5031,6 @@ ax.plot(t[start:],front[start:],color=ACCENT_RED,lw=1.8)
 ax.scatter([ts,t[−1]],[2,0],s=24,color=ACCENT_RED,zorder=6,clip_on=False)
 ax.text(14,.42,'未达标区域\n'+r'$C > 0.15\ \mathrm{kg/kg}$',ha='center',fontsize=10,
 color='#17466B')
-65
-
-
 ax.text(43,1.55,'已达标区域\n'+r'$C < 0.15\ \mathrm{kg/kg}$',ha='center',fontsize=10,
 bbox=dict(facecolor='white',edgecolor='none',alpha=.92,pad=3))
 ax.annotate(f'表面首达{ts:.3f} h',xy=(ts,2),xytext=(ts+2,2.13),fontsize=10,
@@ -3448,6 +5062,9 @@ label_index=int(np.argmin(abs(t−.60*t[−1])))
 label_radius=float(np.interp(.15,c[label_index,::−1],yy[label_index,::−1]))
 contour_labels = ax.clabel(con,fmt={.15:r'$C = 0.15$'},fontsize=10,inline=True,
 manual=[(float(t[label_index]),label_radius)])
+99
+
+
 for label in contour_labels:
 label.set_color(BLACK)
 label.set_fontweight('normal')
@@ -3463,9 +5080,6 @@ cb=fig.colorbar(im,cax=fig.add_axes([.89,.48,.021,.46]));cb.set_label(r'水分�
 fig.text(.465,.38,'(a) 收缩材料域中的水分时空场',ha='center',fontsize=10)
 requested=[0,6,12,24,36,float(t[−1])]
 theta=np.linspace(0,2*np.pi,181)
-66
-
-
 details=[]
 for j,h in enumerate(requested):
 i=int(np.argmin(abs(t−h))); rad=radii[i]
@@ -3497,19 +5111,19 @@ surface_heatmap('q2','moisture','q2_moisture_surface',r'水分浓度$C\,/\,(\mat
 $',BLUE,10800,[1,1.5,2,2.5])
 print('Q2 surface saved',flush=True)
 diffusivity();threshold_front();shrinking()
+100
+
+
 (REPORT/'metrics.json').write_text(json.dumps(METRICS,ensure_ascii=False,indent=2),
 encoding='utf8')
 print(json.dumps(METRICS,ensure_ascii=False,indent=2))
 if __name__=='__main__':
 main()
-2 . 5
+2 . 14
 plot_moving_mesh_validation.py
 # File: code/plot_moving_mesh_validation.py
 """Render real Q4 validation data and generate the manuscript result table.
 Asset confirmation: academic−figure−skill assets/figures/LineTrend/plot_sweep.py
-67
-
-
 was inspected; inherit open axes and overlaid line encoding, not example data.
 Reuse the project's verified typography/palette/export baseline by import.
 """
@@ -3540,6 +5154,9 @@ ax.set(xlim=(0,52),ylim=(0,2.65),xlabel='时间/ h',ylabel='中心水分浓度/ 
 ax.set_xticks([0,12,24,36,48]);ax.legend(loc='upper right',fontsize=10)
 ax.text(.5,−.30,'(a) 中心水分轨迹',transform=ax.transAxes,ha='center',fontsize=10)
 ax=axes[1]
+101
+
+
 for h,color in [(24,CATEGORICAL[0]),(48,CATEGORICAL[4])]:
 i=int(np.flatnonzero(arrays['times_s']==h*3600)[0])
 r=100*arrays['radii_m'][i]*arrays['xi']
@@ -3554,9 +5171,6 @@ ax.text(.5,−.30,'(b) 完整径向剖面',transform=ax.transAxes,ha='center',fo
 save_figure(fig,OUT/'q4_moving_mesh_validation');plt.close(fig)
 shutil.copy2(OUT/'q4_moving_mesh_validation.pdf',ROOT/'paper/cumcm−1.1.0/figures/
 q4_moving_mesh_validation.pdf')
-68
-
-
 fig,axes=plt.subplots(1,2,figsize=(7.2,3.2))
 fig.subplots_adjust(left=.12,right=.98,bottom=.23,top=.90,wspace=.52)
 for ax,column,label,color in [(axes[0],5,'水分场最大绝对差/ (kg/kg)',CATEGORICAL[0]),
@@ -3587,6 +5201,9 @@ write_comparisons(arrays,report)
 rows=list(csv.DictReader((OUT/'comparison.csv').open(encoding='utf−8−sig')))
 labels={'drying_time':r'$t_d$/h'}
 for time,caption in [('6h','6 h'),('24h','24 h'),('48h','48 h'),('common_event',r'$t_d
+102
+
+
 ^{\rm map}$')]:
 for point,cn in [('center','中心'),('surface','动态表面')]:
 labels[f'{time}_{point}_moisture']=f'{caption}，{cn}'
@@ -3602,9 +5219,6 @@ mant,exponent=f'{d:.2e}'.split('e')
 diff=rf'${mant}\times10^{{{int(exponent)}}}$' if d else '$0$'
 label=labels[row['metric']]
 tex.append(f'{label} & {a:.9f} & {b:.9f} & {diff}'+r'\\')
-69
-
-
 md+=f'| {label} | {a:.12g} | {b:.12g} | {d:.3e} |\n'
 tex += [r'\bottomrule',r'\end{tabular}',r'\par\smallskip',
 r'{\footnotesize 水分单位为kg/kg；相对差以固定域结果为分母。末两行为同一固定域达标时
@@ -3617,7 +5231,7 @@ encoding='utf8')))
 print(f'Figures and table generated; {count} original files unchanged.')
 if __name__=='__main__':
 main()
-2 . 6
+2 . 15
 make_geometry_diagram.py
 # File: code/make_geometry_diagram.py
 """Build an editable DrawIO cylinder / cylindrical−coordinate schematic."""
@@ -3631,6 +5245,9 @@ shadow='0')
 tree=ET.SubElement(model,'root')
 ET.SubElement(tree,'mxCell',id='0')
 ET.SubElement(tree,'mxCell',id='1',parent='0')
+103
+
+
 count=1
 def ident():
 global count
@@ -3643,9 +5260,6 @@ ET.SubElement(el,'mxGeometry',x=str(x),y=str(y),width=str(w),height=str(h),attri
 :'geometry'})
 return el
 def label(x,y,w,h,text,size=24,align='center'):
-70
-
-
 html=f'<div style="font−family:Times New Roman;font−size:{size}px;color:#111111;">{text
 }</div>'
 return cell(x,y,w,h,f'text;html=1;strokeColor=none;fillColor=none;align={align};
@@ -3674,6 +5288,9 @@ ellipse(440.5,150,44,100,fill='#F2F2F2',dash=True,width=1.8,color='#666666')
 ellipse(128,150,44,100,fill='#FFFFFF')
 # Cartesian reference frame at the left−end centre, z along the cylinder axis.
 line(150,200,860,200,arrow='block',dash=True,color='#666666',width=1.8)
+104
+
+
 line(150,200,91,254,arrow='block',width=2)
 line(150,200,150,95,arrow='block',width=2)
 label(94,185,25,30,'<i>O</i>')
@@ -3688,9 +5305,6 @@ line(150,265,150,312,color='#666666',width=1.5)
 line(775,265,775,312,color='#666666',width=1.5)
 line(150,301,775,301,arrow='classic',start='classic',width=2)
 label(362.5,307,200,34,'<i>L</i> = 25 cm')
-71
-
-
 label(372.5,251,180,35,'<i>z</i> = <i>L</i>/2')
 # Early−stage exchange directions (not universal sign assumptions).
 line(344,105,344,143,arrow='block')
@@ -3720,6 +5334,9 @@ label(379,492,144,38,zh('轴对称降维'))
 line(565,550,820,550,width=3)
 ellipse(559,544,12,12,fill='#111111',width=2)
 ellipse(814,544,12,12,fill='#FFFFFF',width=2)
+105
+
+
 label(532,574,66,32,'<i>r</i> = 0')
 label(759,574,122,32,'<i>r</i> = <i>R</i>(<i>t</i>)')
 label(509,614,112,34,zh('中心对称'))
@@ -3731,11 +5348,634 @@ label(24,710,870,34,'(b) '+zh('中截面圆柱坐标与一维径向计算域'))
 out=ROOT/'drawio/geometry_coordinates.drawio'
 ET.ElementTree(doc).write(out,encoding='utf−8',xml_declaration=True)
 print(out)
-2 . 7
-plot_q4_physical.py
-72
+2 . 16
+run_figures.sh
+# File: code/run_figures.sh
+#!/bin/zsh
+# Rebuild all data−driven figures with the repository's fixed font environment.
+set −euo pipefail
+SCRIPT_DIR="${0:A:h}"
+export DYLD_LIBRARY_PATH="/opt/homebrew/opt/expat/lib${DYLD_LIBRARY_PATH:+:
+$DYLD_LIBRARY_PATH}"
+export MPLCONFIGDIR="${MPLCONFIGDIR:−$HOME/.matplotlib−cumcm2026}"
+mkdir −p "$MPLCONFIGDIR"
+cd "$SCRIPT_DIR/.."
+python3 −<<'PY'
+from matplotlib import font_manager
+font_manager._load_fontmanager(try_read_cache=False)
+for name in ("Times New Roman", "Songti SC"):
+print(f"{name}: {font_manager.findfont(name, fallback_to_default=False)}")
+PY
+python3 "$SCRIPT_DIR/make_figures.py"
+if python3 −c 'import openpyxl' >/dev/null 2>&1; then
+python3 "$SCRIPT_DIR/make_additional_figures.py"
+else
+echo "提示：当前Python 缺少openpyxl，已完成基础图；运行附加图前请安装openpyxl。" >&2
+fi
+2 . 17
+inspect_inputs.py
+# File: inspect_inputs.py
+from pathlib import Path
+106
 
 
+from openpyxl import load_workbook
+BASE = Path(__file__).resolve().parent / "附件"
+def preview_workbook(path: Path) −> None:
+print(f"\n=== {path.name} ===")
+book = load_workbook(path, read_only=True, data_only=False)
+print("sheets:", book.sheetnames)
+for sheet in book.worksheets:
+print(f"[{sheet.title}] size={sheet.max_row}x{sheet.max_column}")
+rows = list(sheet.iter_rows(values_only=True))
+for row in rows[:8]:
+print(row)
+if len(rows) > 8:
+print("... tail ...")
+for row in rows[−3:]:
+print(row)
+if __name__ == "__main__":
+paths = [BASE / "附件1.xlsx", BASE / "附件2.xlsx"]
+paths.extend(sorted((BASE / "附件3").glob("*.xlsx")))
+for workbook_path in paths:
+preview_workbook(workbook_path)
+2 . 18
+prepare_inputs.py
+# File: comsol_q1/prepare_inputs.py
+"""Prepare COMSOL boundary data and compare its output with the Q1 baseline."""
+from __future__ import annotations
+import csv
+import json
+import sys
+from pathlib import Path
+import numpy as np
+from openpyxl import load_workbook
+from scipy.interpolate import PchipInterpolator
+HERE = Path(__file__).resolve().parent
+107
+
+
+PROJECT = HERE.parent
+def read_environment() −> np.ndarray:
+book = load_workbook(PROJECT / "附件" / "附件1.xlsx", read_only=True, data_only=True)
+rows = []
+for row in book.active.iter_rows(min_row=2, values_only=True):
+if row[0] is not None:
+rows.append(tuple(float(x) for x in row[:3]))
+return np.asarray(rows)
+def prepare() −> None:
+raw = read_environment()
+seconds = np.arange(0.0, 1800.0 + 1.0, 1.0)
+temperature = PchipInterpolator(raw[:, 0], raw[:, 1])(seconds)
+moisture = PchipInterpolator(raw[:, 0], raw[:, 2])(seconds)
+for name, values in (("ambient_temperature.txt", temperature), ("ambient_moisture.txt",
+moisture)):
+with (HERE / name).open("w", encoding="ascii", newline="") as handle:
+writer = csv.writer(handle, delimiter=" ", lineterminator="\n")
+writer.writerows(zip(seconds, values))
+metadata = {
+"source": str(PROJECT / "附件" / "附件1.xlsx"),
+"interpolation": "PCHIP sampled each second; COMSOL uses linear interpolation",
+"time_range_s": [0, 1800],
+"rows": len(seconds),
+"initial": {"temperature_c": float(temperature[0]), "moisture": float(moisture[0])
+},
+"final": {"temperature_c": float(temperature[−1]), "moisture": float(moisture[−1])
+},
+}
+(HERE / "input_metadata.json").write_text(
+json.dumps(metadata, ensure_ascii=False, indent=2), encoding="utf−8"
+)
+def compare(csv_path: Path) −> None:
+"""Compare COMSOL point export with the existing 1D finite−volume baseline."""
+baseline = json.loads((PROJECT / "results" / "q1" / "summary.json").read_text(encoding=
+"utf−8"))
+# COMSOL Data exports contain comment lines beginning with %. Remaining rows are
+numeric.
+data = np.loadtxt(csv_path, comments="%", delimiter=",")
+if data.ndim == 1:
+data = data[None, :]
+comsol_times = [0, 100, 300, 600, 900, 1200, 1500, 1800]
+108
+
+
+selected_radii = [0, 5, 10, 15, 20]
+time_columns = [comsol_times.index(t) for t in baseline["table_times_s"]]
+comsol_t = np.asarray([[data[r, 2 + 2 * j] for r in selected_radii] for j in
+time_columns])
+comsol_c = np.asarray([[data[r, 3 + 2 * j] for r in selected_radii] for j in
+time_columns])
+base_t = np.asarray(baseline["temperature_table_c"])
+base_c = np.asarray(baseline["moisture_table"])
+delta_t = comsol_t −base_t
+delta_c = comsol_c −base_c
+result = {
+"comsol_csv": str(csv_path),
+"shape": list(data.shape),
+"baseline_times_s": baseline["table_times_s"],
+"baseline_radii_cm": baseline["table_radii_cm"],
+"max_abs_temperature_difference_c": float(np.max(np.abs(delta_t))),
+"rmse_temperature_c": float(np.sqrt(np.mean(delta_t**2))),
+"max_abs_moisture_difference": float(np.max(np.abs(delta_c))),
+"rmse_moisture": float(np.sqrt(np.mean(delta_c**2))),
+"comsol_final_temperature_c": comsol_t[−1].tolist(),
+"baseline_final_temperature_c": base_t[−1].tolist(),
+"comsol_final_moisture": comsol_c[−1].tolist(),
+"baseline_final_moisture": base_c[−1].tolist(),
+}
+(HERE / "comparison.json").write_text(
+json.dumps(result, ensure_ascii=False, indent=2), encoding="utf−8"
+)
+with (HERE / "q1_comparison.csv").open("w", encoding="utf−8−sig", newline="") as handle
+:
+writer = csv.writer(handle)
+writer.writerow(["time_s", "radius_cm", "comsol_T_C", "baseline_T_C", "delta_T_C",
+"comsol_C", "baseline_C", "delta_C"])
+for i, time_s in enumerate(baseline["table_times_s"]):
+for j, radius_cm in enumerate(baseline["table_radii_cm"]):
+writer.writerow([time_s, radius_cm, comsol_t[i, j], base_t[i, j], delta_t[i
+, j],
+comsol_c[i, j], base_c[i, j], delta_c[i, j]])
+if __name__ == "__main__":
+prepare()
+if len(sys.argv) == 2:
+compare(Path(sys.argv[1]))
+2 . 19
+Q1Automation.java
+109
+
+
+// File: comsol_q1/Q1Automation.java
+import com.comsol.model.*;
+import com.comsol.model.util.*;
+/** COMSOL reproduction of CUMCM 2026 A, question 1. */
+public class Q1Automation {
+private static final String DEFAULT_WORK_DIR =
+"D:\\COMSOL\\test";
+public static Model run() throws java.io.IOException {
+return build(DEFAULT_WORK_DIR);
+}
+public static Model build(String workDir) throws java.io.IOException {
+Model model = ModelUtil.create("Model");
+model.modelPath(workDir);
+model.label("q1_comsol_model.mph");
+model.param().set("rad0", "0.02[m]", "Herb radius");
+model.param().set("L", "0.001[m]", "Short insulated axial slice");
+model.param().set("alphaT", "0.36/(820*2600)[m^2/s]", "Thermal diffusivity");
+model.param().set("betaT", "25/(820*2600)[m/s]", "Normalized heat transfer coefficient"
+);
+model.param().set("hm", "8e−7[m/s]");
+model.func().create("Te", "Interpolation");
+model.func("Te").set("funcname", "Te");
+model.func("Te").set("source", "file");
+model.func("Te").set("filename", workDir + "\\ambient_temperature.txt");
+model.func("Te").set("interp", "linear");
+model.func("Te").set("argunit", "s");
+model.func().create("Ce", "Interpolation");
+model.func("Ce").set("funcname", "Ce");
+model.func("Ce").set("source", "file");
+model.func("Ce").set("filename", workDir + "\\ambient_moisture.txt");
+model.func("Ce").set("interp", "linear");
+model.func("Ce").set("argunit", "s");
+model.component().create("comp1", true);
+model.component("comp1").geom().create("geom1", 2);
+model.component("comp1").geom("geom1").lengthUnit("m");
+model.component("comp1").geom("geom1").create("r1", "Rectangle");
+model.component("comp1").geom("geom1").feature("r1").set("size", new String[]{"rad0", "
+L"});
+model.component("comp1").geom("geom1").run();
+110
+
+
+model.component("comp1").variable().create("var1");
+model.component("comp1").variable("var1").set("Dmoist", "7e−9[m^2/s]*exp(−0.89/max(C,1e
+−6))");
+model.component("comp1").physics().create("heat", "CoefficientFormPDE", "geom1");
+model.component("comp1").physics("heat").field("dimensionless").field("T");
+model.component("comp1").physics("heat").field("dimensionless").component(new String[]{
+"T"});
+model.component("comp1").physics("heat").feature("cfeq1").set("da", "x");
+model.component("comp1").physics("heat").feature("cfeq1").set("c", "x*alphaT");
+model.component("comp1").physics("heat").feature("cfeq1").set("f", "0");
+model.component("comp1").physics("heat").feature("init1").set("T", "28");
+model.component("comp1").physics("heat").create("flux1", "FluxBoundary", 1);
+model.component("comp1").physics("heat").feature("flux1").selection().set(4);
+model.component("comp1").physics("heat").feature("flux1").set("g", "rad0*betaT*Te(t)");
+model.component("comp1").physics("heat").feature("flux1").set("q", "rad0*betaT");
+model.component("comp1").physics().create("mass", "CoefficientFormPDE", "geom1");
+model.component("comp1").physics("mass").field("dimensionless").field("C");
+model.component("comp1").physics("mass").field("dimensionless").component(new String[]{
+"C"});
+model.component("comp1").physics("mass").feature("cfeq1").set("da", "x");
+model.component("comp1").physics("mass").feature("cfeq1").set("c", "x*Dmoist");
+model.component("comp1").physics("mass").feature("cfeq1").set("f", "0");
+model.component("comp1").physics("mass").feature("init1").set("C", "2.55");
+model.component("comp1").physics("mass").create("flux1", "FluxBoundary", 1);
+model.component("comp1").physics("mass").feature("flux1").selection().set(4);
+model.component("comp1").physics("mass").feature("flux1").set("g", "rad0*hm*Ce(t)");
+model.component("comp1").physics("mass").feature("flux1").set("q", "rad0*hm");
+model.component("comp1").mesh().create("mesh1");
+model.component("comp1").mesh("mesh1").autoMeshSize(2);
+model.component("comp1").mesh("mesh1").run();
+model.study().create("std1");
+model.study("std1").create("time", "Transient");
+model.study("std1").feature("time").set("tlist", "0 100 300 600 900 1200 1500 1800");
+model.study("std1").feature("time").set("rtol", "1e−5");
+model.study("std1").run();
+double[] radii = new double[21];
+double[] axial = new double[21];
+for (int i = 0; i < 21; i++) {
+radii[i] = i * 0.001;
+axial[i] = 0.0005;
+}
+111
+
+
+model.result().dataset().create("cpt1", "CutPoint2D");
+model.result().dataset("cpt1").set("pointx", radii);
+model.result().dataset("cpt1").set("pointy", axial);
+model.result().dataset().create("cln1", "CutLine2D");
+model.result().dataset("cln1").set("genpoints", new double[][]{{0.0, 0.0005}, {0.02,
+0.0005}});
+model.result().create("pgT", "PlotGroup1D");
+model.result("pgT").label("Temperature radial profile at 1800 s");
+model.result("pgT").set("data", "cln1");
+model.result("pgT").set("looplevel", new int[]{8});
+model.result("pgT").create("lngr1", "LineGraph");
+model.result("pgT").feature("lngr1").set("expr", "T");
+model.result("pgT").feature("lngr1").set("descr", "Temperature (degC numeric)");
+model.result("pgT").feature("lngr1").set("linewidth", "2");
+model.result().create("pgC", "PlotGroup1D");
+model.result("pgC").label("Moisture radial profile at 1800 s");
+model.result("pgC").set("data", "cln1");
+model.result("pgC").set("looplevel", new int[]{8});
+model.result("pgC").create("lngr1", "LineGraph");
+model.result("pgC").feature("lngr1").set("expr", "C");
+model.result("pgC").feature("lngr1").set("descr", "Moisture (kg/kg numeric)");
+model.result("pgC").feature("lngr1").set("linewidth", "2");
+model.result().create("pgT2", "PlotGroup2D");
+model.result("pgT2").label("Temperature field at 1800 s");
+model.result("pgT2").set("looplevel", new int[]{8});
+model.result("pgT2").create("surf1", "Surface");
+model.result("pgT2").feature("surf1").set("expr", "T");
+model.result().create("pgC2", "PlotGroup2D");
+model.result("pgC2").label("Moisture field at 1800 s");
+model.result("pgC2").set("looplevel", new int[]{8});
+model.result("pgC2").create("surf1", "Surface");
+model.result("pgC2").feature("surf1").set("expr", "C");
+model.result().export().create("data1", "Data");
+model.result().export("data1").set("data", "cpt1");
+model.result().export("data1").set("expr", new String[]{"T", "C"});
+model.result().export("data1").set("descr", new String[]{"Temperature", "Moisture"});
+model.result().export("data1").set("filename", workDir + "\\q1_comsol_profiles.csv");
+model.result().export("data1").set("separator", ",");
+model.result().export("data1").run();
+model.save(workDir + "\\q1_comsol_model_with_plots.mph");
+return model;
+112
+
+
+}
+public static void main(String[] args) throws java.io.IOException {
+String workDir = args != null && args.length > 0 ? args[0] : DEFAULT_WORK_DIR;
+build(workDir);
+}
+}
+2 . 20
+run_comsol_q1.ps1
+# File: comsol_q1/run_comsol_q1.ps1
+$ErrorActionPreference = 'Stop'
+$ComsolBin = 'D:\COMSOL\install\COMSOL63\Multiphysics\bin\win64'
+$WorkDir = 'D:\COMSOL\test'
+$ProjectToolDir = 'D:\26mathmodel\CUMCM2026Problems\A题\comsol_q1'
+Set−Location −LiteralPath $WorkDir
+& 'D:\Anaconda\python.exe' "$ProjectToolDir\prepare_inputs.py"
+Copy−Item −LiteralPath "$ProjectToolDir\ambient_temperature.txt" −Destination $WorkDir −
+Force
+Copy−Item −LiteralPath "$ProjectToolDir\ambient_moisture.txt" −Destination $WorkDir −Force
+& "$ComsolBin\comsolcompile.exe" 'Q1Automation.java'
+if ($LASTEXITCODE −ne 0) { throw "COMSOL Java compilation failed: $LASTEXITCODE" }
+& "$ComsolBin\comsolbatch.exe" −inputfile 'Q1Automation.class' −batchlog 'comsol_batch.log'
+if ($LASTEXITCODE −ne 0) { throw "COMSOL batch run failed: $LASTEXITCODE" }
+& 'D:\Anaconda\python.exe' "$ProjectToolDir\prepare_inputs.py" "$WorkDir\q1_comsol_profiles
+.csv"
+Copy−Item −LiteralPath "$ProjectToolDir\comparison.json" −Destination $WorkDir −Force
+Copy−Item −LiteralPath "$ProjectToolDir\q1_comparison.csv" −Destination $WorkDir −Force
+Write−Host 'Q1 COMSOL simulation and comparison completed.'
+2 . 21
+prepare_q4_inputs.py
+# File: comsol_q4/prepare_q4_inputs.py
+from pathlib import Path
+import json
+import math
+import numpy as np
+from openpyxl import load_workbook
+from scipy.interpolate import PchipInterpolator
+ROOT = Path(__file__).resolve().parents[1]
+113
+
+
+OUT = Path(__file__).resolve().parent
+def read_numeric_xlsx(path: Path) −> np.ndarray:
+ws = load_workbook(path, data_only=True, read_only=True).active
+rows = []
+for row in ws.iter_rows(values_only=True):
+try:
+rows.append([float(v) for v in row])
+except (TypeError, ValueError):
+continue
+return np.asarray(rows, dtype=float)
+def write_table(path: Path, x: np.ndarray, y: np.ndarray) −> None:
+np.savetxt(path, np.column_stack([x, y]), fmt="%.12g", delimiter=" ")
+def main() −> None:
+OUT.mkdir(parents=True, exist_ok=True)
+env = read_numeric_xlsx(ROOT / "附件" / "附件1.xlsx")
+radius = read_numeric_xlsx(ROOT / "附件" / "附件2.xlsx")
+summary = json.loads((ROOT / "results" / "q4" / "summary.json").read_text(encoding="utf
+−8"))
+end_s = math.ceil(float(summary["drying_time_s"]) / 600.0) * 600.0
+dense_t = np.arange(0.0, end_s + 60.0, 60.0)
+# Represent the transition from the measured warm−up series to the stated
+# 50 C / 0.05 constant−stage setpoints without smearing it over one minute.
+dense_t = np.unique(np.r_[dense_t, env[−1, 0] + 1e−6])
+te_interp = PchipInterpolator(env[:, 0], env[:, 1], extrapolate=False)
+ce_interp = PchipInterpolator(env[:, 0], env[:, 2], extrapolate=False)
+te = np.where(dense_t <= env[−1, 0], te_interp(np.minimum(dense_t, env[−1, 0])), 50.0)
+ce = np.where(dense_t <= env[−1, 0], ce_interp(np.minimum(dense_t, env[−1, 0])), 0.05)
+monotone_radius_m = np.minimum.accumulate(radius[:, 1]) / 100.0
+r_interp = PchipInterpolator(radius[:, 0], monotone_radius_m, extrapolate=False)
+rt = r_interp(dense_t)
+write_table(OUT / "ambient_temperature.txt", dense_t, te)
+write_table(OUT / "ambient_moisture.txt", dense_t, ce)
+write_table(OUT / "radius_history.txt", dense_t, rt)
+print(f"Prepared {len(dense_t)} rows through {end_s/3600:.3f} h")
+print(f"Radius: {rt[0]*100:.3f} cm −> {rt[−1]*100:.3f} cm")
+if __name__ == "__main__":
+114
+
+
+main()
+2 . 22
+Q4Automation.java
+// File: comsol_q4/Q4Automation.java
+import com.comsol.model.*;
+import com.comsol.model.util.*;
+/** Question 4: coupled heat/moisture transport in a uniformly shrinking cylindrical herb.
+*/
+public class Q4Automation {
+private static final String WORK_DIR =
+"D:\\26mathmodel\\CUMCM2026Problems\\A题\\comsol_q4";
+public static Model build() throws java.io.IOException {
+Model model = ModelUtil.create("Model");
+model.modelPath(WORK_DIR);
+model.label("q4_shrinking_herb_comsol.mph");
+model.param().set("R0", "0.02[m]", "Initial herb radius");
+model.param().set("L", "0.08[m]", "Representative cylinder length; ends insulated");
+model.param().set("hT", "25[W/(m^2*K)]", "Convective heat transfer coefficient");
+model.param().set("hm", "8e−7[m/s]", "Convective moisture transfer coefficient");
+// Temperature unknown is stored as the numerical value in degC, matching the paper
+equations.
+createInterpolation(model, "Te", "Te", "ambient_temperature.txt", "1");
+createInterpolation(model, "Ce", "Ce", "ambient_moisture.txt", "1");
+createInterpolation(model, "Rt", "Rt", "radius_history.txt", "m");
+model.component().create("comp1", true);
+model.component("comp1").geom().create("geom1", 2);
+model.component("comp1").geom("geom1").lengthUnit("m");
+model.component("comp1").geom("geom1").create("r1", "Rectangle");
+model.component("comp1").geom("geom1").feature("r1").set("size", new String[]{"R0", "L"
+});
+model.component("comp1").geom("geom1").run();
+model.component("comp1").variable().create("var1");
+model.component("comp1").variable("var1").set("Csafe", "max(C,1e−6)");
+model.component("comp1").variable("var1").set("rho", "760[kg/m^3]+90[kg/m^3]*Csafe");
+model.component("comp1").variable("var1").set("cp", "1850[J/(kg*K)]+2150[J/(kg*K)]*
+Csafe/(Csafe+1)");
+model.component("comp1").variable("var1").set("kherb", "0.12[W/(m*K)]+0.20[W/(m*K)]*
+Csafe/(Csafe+1)");
+115
+
+
+model.component("comp1").variable("var1").set("Dherb", "4.2e−4[m^2/s]*exp(−0.30/Csafe)*
+exp(−3850/(T+273.15))");
+model.component("comp1").variable("var1").set("shrink", "R0/Rt(t)");
+model.component("comp1").variable("var1").set("rphys", "x*Rt(t)/R0");
+// Reference−coordinate radial PDE. x is the material radius at t=0.
+model.component("comp1").physics().create("heat", "CoefficientFormPDE", "geom1");
+model.component("comp1").physics("heat").field("dimensionless").field("T");
+model.component("comp1").physics("heat").field("dimensionless").component(new String[]{
+"T"});
+model.component("comp1").physics("heat").feature("cfeq1").set("da", "x*rho*cp");
+model.component("comp1").physics("heat").feature("cfeq1").set("c", "x*kherb*shrink^2");
+model.component("comp1").physics("heat").feature("cfeq1").set("f", "0");
+model.component("comp1").physics("heat").feature("init1").set("T", "28");
+model.component("comp1").physics("heat").create("flux1", "FluxBoundary", 1);
+model.component("comp1").physics("heat").feature("flux1").selection().set(4);
+model.component("comp1").physics("heat").feature("flux1").set("q", "R0*hT*shrink");
+model.component("comp1").physics("heat").feature("flux1").set("g", "R0*hT*shrink*Te(t)
+");
+model.component("comp1").physics().create("mass", "CoefficientFormPDE", "geom1");
+model.component("comp1").physics("mass").field("dimensionless").field("C");
+model.component("comp1").physics("mass").field("dimensionless").component(new String[]{
+"C"});
+model.component("comp1").physics("mass").feature("cfeq1").set("da", "x");
+model.component("comp1").physics("mass").feature("cfeq1").set("c", "x*Dherb*shrink^2");
+model.component("comp1").physics("mass").feature("cfeq1").set("f", "0");
+model.component("comp1").physics("mass").feature("init1").set("C", "2.55");
+model.component("comp1").physics("mass").create("flux1", "FluxBoundary", 1);
+model.component("comp1").physics("mass").feature("flux1").selection().set(4);
+model.component("comp1").physics("mass").feature("flux1").set("q", "R0*hm*shrink");
+model.component("comp1").physics("mass").feature("flux1").set("g", "R0*hm*shrink*Ce(t)
+");
+model.component("comp1").mesh().create("mesh1");
+model.component("comp1").mesh("mesh1").autoMeshSize(3);
+model.component("comp1").mesh("mesh1").run();
+model.study().create("std1");
+model.study("std1").create("time", "Transient");
+model.study("std1").feature("time").set("tlist", "range(0,600,183600)
+183915.71747843814 184200");
+model.study("std1").feature("time").set("rtol", "1e−4");
+model.study("std1").run();
+double[] x = new double[101];
+double[] y = new double[101];
+116
+
+
+for (int i = 0; i < 101; i++) {
+x[i] = i * 0.0002;
+y[i] = 0.04;
+}
+model.result().dataset().create("cpt1", "CutPoint2D");
+model.result().dataset("cpt1").set("pointx", x);
+model.result().dataset("cpt1").set("pointy", y);
+model.result().create("pgC", "PlotGroup2D");
+model.result("pgC").label("Moisture field in shrinking herb reference domain");
+model.result("pgC").create("surf1", "Surface");
+model.result("pgC").feature("surf1").set("expr", "C");
+model.result().create("pgT", "PlotGroup2D");
+model.result("pgT").label("Temperature field in shrinking herb reference domain");
+model.result("pgT").create("surf1", "Surface");
+model.result("pgT").feature("surf1").set("expr", "T");
+model.result().export().create("data1", "Data");
+model.result().export("data1").set("data", "cpt1");
+model.result().export("data1").set("expr", new String[]{"T", "C", "rphys", "Rt(t)"});
+model.result().export("data1").set("descr", new String[]{"Temperature", "Moisture", "
+Physical radius", "Herb radius"});
+model.result().export("data1").set("filename", WORK_DIR + "\\q4_comsol_profiles.csv");
+model.result().export("data1").set("separator", ",");
+model.result().export("data1").run();
+model.save(WORK_DIR + "\\q4_shrinking_herb_comsol.mph");
+return model;
+}
+private static void createInterpolation(Model model, String tag, String name,
+String file, String fununit) {
+model.func().create(tag, "Interpolation");
+model.func(tag).set("funcname", name);
+model.func(tag).set("source", "file");
+model.func(tag).set("filename", WORK_DIR + "\\" + file);
+model.func(tag).set("interp", "linear");
+model.func(tag).set("argunit", "s");
+model.func(tag).set("fununit", fununit);
+}
+public static void main(String[] args) throws java.io.IOException {
+build();
+}
+}
+117
+
+
+2 . 23
+analyze_q4_comsol.py
+# File: comsol_q4/analyze_q4_comsol.py
+from __future__ import annotations
+import csv
+import json
+import re
+from pathlib import Path
+import numpy as np
+HERE = Path(__file__).resolve().parent
+BASELINE = HERE.parent / "results" / "q4" / "fields.npz"
+def read_comsol_wide(path: Path):
+with path.open("r", encoding="utf−8−sig") as f:
+lines = [line for line in f if not line.startswith("%") or line.startswith("% X,")]
+header = next(line[2:].strip() for line in lines if line.startswith("% X,"))
+rows = [line for line in lines if not line.startswith("%")]
+names = next(csv.reader([header]))
+data = np.asarray([[float(x) for x in row] for row in csv.reader(rows)], dtype=float)
+times = []
+for j in range(2, len(names), 4):
+m = re.search(r"@ t=([0−9.Ee+−]+)", names[j])
+if not m:
+raise ValueError(names[j])
+times.append(float(m.group(1)))
+# COMSOL rounds long CSV time labels; recover exact values from the study schedule.
+# Recover the requested output times from the model's study definition.
+study = (path.parent / "Q4Automation.java").read_text(encoding="utf−8")
+schedule = re.search(r'\.set\("tlist", "range\(([^)]+)\) ([^"]+)"\)', study)
+if schedule is None:
+raise ValueError("Cannot identify the COMSOL study output times")
+start, step, end = map(float, schedule.group(1).split(","))
+requested = np.r_[np.arange(start, end + step / 2, step),
+[float(value) for value in schedule.group(2).split()]]
+if len(requested) != len(times) or not np.allclose(requested, times, rtol=0, atol=5):
+raise ValueError("COMSOL CSV columns do not match the study output schedule")
+return names, data, requested
+def comparison_times(event_time_s):
+return np.array([21600., 43200., 86400., 129600., 172800., event_time_s])
+118
+
+
+def baseline_profile(base, key, time_s, event_time_s):
+"""Use the native−grid event profile or interpolate at the requested time."""
+if abs(time_s −event_time_s) < 1e−6:
+return base["threshold_" + key]
+times = base["times_s"]
+index = int(np.searchsorted(times, time_s))
+if index < len(times) and abs(times[index] −time_s) < 1e−8:
+return base[key][index]
+if index == 0 or index == len(times):
+raise ValueError("Requested comparison time is outside the baseline trajectory")
+fraction = (time_s −times[index −1]) / (times[index] −times[index −1])
+return (1 −fraction) * base[key][index −1] + fraction * base[key][index]
+def main():
+names, data, times = read_comsol_wide(HERE / "q4_comsol_profiles.csv")
+x = data[:, 0]
+temp = data[:, 2::4].T
+moist = data[:, 3::4].T
+rphys = data[:, 4::4].T
+radius = data[0, 5::4]
+with np.load(BASELINE) as archive:
+base = {key: archive[key] for key in archive.files}
+base_xi = base["xi"]
+reference_summary = json.loads(BASELINE.with_name("summary.json").read_text(encoding="
+utf−8"))
+event_time = reference_summary["drying_time_s"]
+compare_times = comparison_times(event_time)
+records = []
+all_dt, all_dc = [], []
+for target in compare_times:
+ic = int(np.argmin(np.abs(times −target)))
+if abs(times[ic] −target) > 1e−6:
+raise ValueError("COMSOL output is missing a requested comparison time")
+bt = np.interp(x / 0.02, base_xi, baseline_profile(base, "temperature_c", target,
+event_time))
+bc = np.interp(x / 0.02, base_xi, baseline_profile(base, "moisture", target,
+event_time))
+dt = np.abs(temp[ic] −bt)
+dc = np.abs(moist[ic] −bc)
+all_dt.extend(dt)
+all_dc.extend(dc)
+records.append({
+"time_h": float(target / 3600),
+"comparison_time_s": float(target),
+119
+
+
+"comsol_output_time_s": float(times[ic]),
+"radius_cm": float(radius[ic] * 100),
+"comsol_center_moisture": float(moist[ic, 0]),
+"baseline_center_moisture": float(bc[0]),
+"comsol_surface_moisture": float(moist[ic, −1]),
+"baseline_surface_moisture": float(bc[−1]),
+"max_abs_temperature_difference_C": float(dt.max()),
+"max_abs_moisture_difference": float(dc.max()),
+"maximum_difference_xi": float(x[int(np.argmax(dc))] / 0.02),
+})
+summary = {
+"comsol_version": "6.3.0.290",
+"formulation": "uniform material shrinkage in a fixed radial reference coordinate",
+"output_times": int(len(times)),
+"radial_sample_points": int(len(x)),
+"baseline_saved_nodes": int(len(base_xi)),
+"time_source": "Q4Automation.java study output schedule; CSV header times are
+rounded",
+"event_comparison_scope": "Concentrations at the FVM event time; not an independent
+COMSOL event search",
+"comparison": records,
+"overall_max_abs_temperature_difference_C": float(max(all_dt)),
+"overall_max_abs_moisture_difference": float(max(all_dc)),
+"event_time_h": event_time / 3600,
+"event_comsol_center_moisture": float(moist[np.argmin(abs(times−event_time)), 0]),
+"event_comsol_surface_moisture": float(moist[np.argmin(abs(times−event_time)), −1])
+,
+}
+(HERE / "q4_comsol_validation.json").write_text(
+json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf−8"
+)
+with (HERE / "q4_comsol_comparison.csv").open("w", newline="", encoding="utf−8−sig") as
+f:
+writer = csv.DictWriter(f, fieldnames=list(records[0]))
+writer.writeheader()
+writer.writerows(records)
+np.savez_compressed(HERE / "q4_comsol_fields.npz", times_s=times, x_ref_m=x,
+radii_m=radius, rphys_m=rphys, temperature_c=temp, moisture=moist)
+print(json.dumps(summary, ensure_ascii=False, indent=2))
+if __name__ == "__main__":
+main()
+120
+
+
+2 . 24
+plot_q4_physical.py
 # File: comsol_q4/plot_q4_physical.py
 """Plot saved COMSOL fields with the shared manuscript typography."""
 from pathlib import Path
@@ -3779,10 +6019,10 @@ BLACK
 = "#222222"
 HERE = Path(__file__).resolve().parent
 BASE = HERE.parent / "results" / "q4" / "fields.npz"
-from analyze_q4_comsol import baseline_profile, comparison_times
-73
+121
 
 
+from analyze_q4_comsol import baseline_profile, comparison_times
 OUT = HERE / "figures"
 OUT.mkdir(exist_ok=True)
 # Asset confirmation: assets/figures was checked; no cylindrical physical−field asset
@@ -3820,10 +6060,10 @@ ax.set_title(title, pad=1.5, fontfamily="SimSun")
 ax.set_xlim(−0.4, length_cm + 0.4)
 ax.set_ylim(−2.15, 2.15)
 ax.set_zlim(−2.15, 2.15)
-ax.set_box_aspect((length_cm + 0.8, 4.3, 4.3))
-74
+122
 
 
+ax.set_box_aspect((length_cm + 0.8, 4.3, 4.3))
 ax.view_init(elev=20, azim=−63)
 ax.set_axis_off()
 def make_physical_plate(comsol):
@@ -3865,10 +6105,10 @@ ct = comsol["times_s"]
 cxi = comsol["x_ref_m"] / 0.02
 cm = comsol["moisture"]
 cr = comsol["radii_m"] * 100
-bxi = baseline["xi"]
-75
+123
 
 
+bxi = baseline["xi"]
 event_time = json.loads(BASE.with_name("summary.json").read_text(encoding="utf−8"))["
 drying_time_s"]
 chosen = [21600.0, 86400.0, event_time]
@@ -3913,10 +6153,10 @@ lo, hi = 0.045, 1.82
 ax.plot([lo, hi], [lo, hi], color=GREY, ls="−−", lw=0.7)
 ax.scatter(parity_x, parity_y, s=8, color=CATEGORICAL[0], alpha=0.7,
 edgecolors="none", rasterized=True)
-ax.set_xlabel("有限体积水分浓度\n(kg/kg)")
-76
+124
 
 
+ax.set_xlabel("有限体积水分浓度\n(kg/kg)")
 ax.set_ylabel("COMSOL 水分浓度\n(kg/kg)")
 ax.set_xlim(lo, hi)
 ax.set_ylim(lo, hi)
@@ -3959,10 +6199,10 @@ global OUT
 from analyze_q4_comsol import read_comsol_wide
 _, data, times = read_comsol_wide(HERE / 'near_surface_check/graded320_tight/
 q4_comsol_profiles.csv')
-comsol = {'times_s': times, 'x_ref_m': data[:, 0], 'moisture': data[:, 3::4].T,
-77
+125
 
 
+comsol = {'times_s': times, 'x_ref_m': data[:, 0], 'moisture': data[:, 3::4].T,
 'radii_m': data[0, 5::4]}
 OUT = HERE / 'near_surface_check/figures'
 OUT.mkdir(exist_ok=True)
@@ -3982,84 +6222,971 @@ print(json.dumps({"output": str(OUT), "figures": sorted(p.name for p in OUT.iter
 }, ensure_ascii=False))
 if __name__ == "__main__":
 main()
-2 . 8
-figure_style.py
-# File: code/figure_style.py
-"""Shared, reproducible typography for all manuscript data figures."""
+2 . 25
+analyze_refinement.py
+# File: comsol_q4/near_surface_check/analyze_refinement.py
+"""Read−only comparison of independent COMSOL runs against the saved FVM field."""
 from pathlib import Path
-import logging
-import warnings
-import matplotlib as mpl
-from matplotlib import font_manager
-def configure_fonts() −> None:
-"""Require the actual regular fonts, rather than a platform−dependent fallback."""
-for family in ("Times New Roman", "SimSun"):
-path = font_manager.findfont(
-font_manager.FontProperties(family=family, weight="normal", style="normal"),
-fallback_to_default=False,
-)
-resolved = font_manager.get_font(path)
-if resolved.family_name != family or resolved.style_name != "Regular":
-raise RuntimeError(
-f"Expected {family} Regular; resolved {resolved.family_name} "
-78
+import sys,json,csv,hashlib
+import numpy as np
+HERE=Path(__file__).resolve().parent
+sys.path.insert(0,str(HERE.parent))
+from analyze_q4_comsol import read_comsol_wide,baseline_profile,comparison_times
+ROOT=HERE.parents[1]
+with np.load(ROOT/'results/q4/fields.npz') as z:base={k:z[k] for k in z.files}
+event=json.loads((ROOT/'results/q4/summary.json').read_text(encoding='utf−8'))['
+drying_time_s']
+target= comparison_times(event)
+fields={};records=[]
+for name,n,tol in json.loads((HERE/'manifest.json').read_text())['cases']:
+path=HERE/name/'q4_comsol_profiles.csv'
+if not path.exists():continue
+_,raw,times=read_comsol_wide(path)
+xi=raw[:,0]/.02;order=np.argsort(xi);xi=xi[order]
+tc=raw[order,2::4].T;c=raw[order,3::4].T
+126
 
 
-f"{resolved.style_name} at {path}"
-)
-mpl.rcParams.update({
-"font.family": ["Times New Roman", "SimSun"],
-"font.weight": "normal",
-"font.size": 11,
-"axes.labelsize": 11,
-"axes.labelweight": "normal",
-"axes.titlesize": 11,
-"axes.titleweight": "normal",
-"xtick.labelsize": 10,
-"ytick.labelsize": 10,
-"legend.fontsize": 10,
-"legend.title_fontsize": 10,
-"figure.titlesize": 12,
-"figure.titleweight": "normal",
-"mathtext.fontset": "custom",
-"mathtext.rm": "Times New Roman",
-"mathtext.it": "Times New Roman:italic",
-"mathtext.bf": "Times New Roman:bold",
-"mathtext.sf": "Times New Roman",
-"mathtext.fallback": "stix",
-"axes.unicode_minus": True,
-"pdf.fonttype": 42,
-"svg.fonttype": "none",
-"savefig.dpi": 300,
-"savefig.bbox": "tight",
-})
-def save_figure(fig, filename) −> None:
-"""Export embedded−font PDF and PNG; never silently accept missing glyphs."""
-filename = Path(filename)
-filename.parent.mkdir(parents=True, exist_ok=True)
-from matplotlib.text import Text
-# Non−math Chinese runs need an explicit face; $...$ keeps Times math.
-for text in fig.findobj(Text):
-value = text.get_text()
-if "$" in value and any("\u3400" <= ch <= "\u9fff" for ch in value):
-text.set_fontfamily("SimSun")
-class MissingGlyphError(logging.Handler):
-def emit(self, record):
-message = record.getMessage()
-if "does not have a glyph" in message or "dummy symbol" in message:
-raise RuntimeError(message)
-79
+indexes=[int(np.argmin(abs(times−t))) for t in target]
+selected=c[indexes];temp=tc[indexes]
+ref=np.array([np.interp(xi,base['xi'],baseline_profile(base,'moisture',t,event)) for t in
+target])
+tref=np.array([np.interp(xi,base['xi'],baseline_profile(base,'temperature_c',t,event)) for
+t in target])
+err=np.abs(selected−ref);i,j=np.unravel_index(np.argmax(err),err.shape)
+jcross=np.flatnonzero(c[:,0]<=.15)
+crossing=None
+if len(jcross):
+k=jcross[0];crossing=float((times[k−1]+(.15−c[k−1,0])/(c[k,0]−c[k−1,0])*(times[k]−times[k
+−1]))/3600)
+record={'case':name,'radial_elements':n or 'original_auto3','rtol':tol,
+'max_moisture_difference':float(err.max()),'at_time_h':float(target[i]/3600),'at_xi':float
+(xi[j]),
+'max_center_difference':float(err[:,0].max()),'max_surface_difference':float(err[:,−1].max
+()),
+'max_outer_10pct_difference':float(err[:,xi>=.9].max()),
+'max_temperature_difference':float(np.max(abs(temp−tref))),
+'center_C_at_FVM_event':float(selected[−1,0]),'surface_C_at_FVM_event':float(selected
+[−1,−1]),
+'estimated_COMSOL_event_h':crossing,'event_estimation_scope':'linear interpolation of
+saved output; not solver event detection',
+'per_time_max_difference':[float(v) for v in err.max(axis=1)]}
+fields[name]={'c':selected,'t':temp,'xi':xi}
+records.append(record)
+print(name,'max dC',record['max_moisture_difference'],'xi',record['at_xi'],'event',
+crossing,flush=True)
+np.savez_compressed(HERE/'comparison_fields.npz',times_s=target,xi=xi,reference_moisture=
+ref,**{name+'_moisture':v['c'] for name,v in fields.items()})
+comparisons=[]
+for a,b in [('original_dense','original_tight'),('original_tight','graded80'),('graded80','
+graded160'),('graded160','graded320'),('graded320','graded320_tight')]:
+if a in fields and b in fields:
+comparisons.append({'a':a,'b':b,'max_moisture_difference':float(abs(fields[a]['c']−fields
+[b]['c']).max()),'max_temperature_difference':float(abs(fields[a]['t']−fields[b]['t']).
+max())})
+with (HERE/'comparison.csv').open('w',newline='',encoding='utf−8−sig') as f:
+w=csv.DictWriter(f,fieldnames=list(records[0]));w.writeheader();w.writerows(records)
+manifest=json.loads((HERE/'manifest.json').read_text())
+protected={name:hashlib.sha256((ROOT/name).read_bytes()).hexdigest()==value for name,value
+in manifest['source_sha256'].items()}
+summary={'scope':'6 specified times and 1001 common reference radii; original input
+interpolation retained','cases':records,'successive_comparisons':comparisons,'
+protected_files_unchanged':protected}
+(HERE/'summary.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2),encoding='
+utf−8')
+127
 
 
-logger = logging.getLogger("matplotlib")
-guard = MissingGlyphError()
-logger.addHandler(guard)
-try:
-with warnings.catch_warnings():
-warnings.filterwarnings("error", message=r"Glyph .* missing from font")
-fig.canvas.draw()
-for suffix in ("pdf", "png"):
-fig.savefig(f"{filename}.{suffix}", bbox_inches="tight", dpi=300)
-finally:
-logger.removeHandler(guard)
-80
+print(json.dumps(comparisons,indent=2));print('protected',protected)
+2 . 26
+write_report.py
+# File: comsol_q4/near_surface_check/write_report.py
+from pathlib import Path
+import json
+HERE=Path(__file__).resolve().parent
+s=json.loads((HERE/'summary.json').read_text(encoding='utf−8'))
+rows=s['cases'];best=next((r for r in rows if r['case']=='graded320_tight'),rows[−1])
+lines=['# COMSOL 近表层网格与容差检验（独立试算）','',
+'本目录为独立试算，未修改论文、原COMSOL 模型或四问主计算结果。',
+'','## 检验设置','',
+'−原Q4Automation.java 的物性、系数型PDE、初值、Robin 边界、半径及环境输入文件保持相同。',
+'−保持原参考矩形长度0.08 m、轴向均匀和端面绝热；这不是含端面交换的二维验证。',
+'−原网格采用autoMeshSize(3)。加密组使用映射四边形网格，径向80/160/320 单元、轴向4 单元，径向
+端点按(1−cos(pi*i/N))/2 分布，在轴线与表层加密。',
+'−相对求解容差按表设置；仍为自适应时间求解，输出间隔不是固定积分步长。',
+'−与主模型在6、12、24、36、48 h 及51.0876993 h 比较；每时刻1001 个共同径向位置（包括表面），
+主模型用全部161 个原生节点线性插值。',
+'−所有“最大差”均针对上述六时刻/采样位置，不能解释为全时空的严格误差界。',
+'','## 与主有限体积结果比较','',
+'| 试算| 径向单元| 相对容差| 最大水分绝对差kg/kg | 时刻h | r/R |',
+'|−−−|−−−:|−−−:|−−−:|−−−:|−−−:|']
+for r in rows:lines.append(f"| {r['case']} | {r['radial_elements']} | {r['rtol']} | {r['
+max_moisture_difference']:.8g} | {r['at_time_h']:.4f} | {r['at_xi']:.3f} |")
+lines+=['','## COMSOL 自身网格与容差变化','',
+'| 比较| 最大水分差kg/kg | 最大温差°C |','|−−−|−−−:|−−−:|']
+for r in s['successive_comparisons']:lines.append(f"| {r['a']} →{r['b']} | {r['
+max_moisture_difference']:.8g} | {r['max_temperature_difference']:.8g} |")
+lines+=['','## 结果解释','',
+'收紧原网格容差后，约0.0117 kg/kg 的近表层偏差仍存在；使用表层加密网格后，偏差降至约10^−5 kg/kg
+量级。这支持原COMSOL 网格的近表层分辨能力是原偏差的主要来源。',
+'','加密组对有限体积结果的最大差不必随网格单调减小：比较基准本身仍有时间、空间离散误差和线性插值误
+差。因此应同时看COMSOL 相邻网格之间的差异，不能把两法之差当成COMSOL 的真实误差。',
+'',f"最细且更紧容差组在主模型达标时刻的中心水分为{best['center_C_at_FVM_event']:.10f} kg/kg，表
+面水分为{best['surface_C_at_FVM_event']:.10f} kg/kg。",
+'',f"按已保存输出线性插值得到的COMSOL 达标时间估计为{best['estimated_COMSOL_event_h']:.8f} h
+；此值不是内部事件求根结果，不应据此宣称秒以下的预测精度。",
+'','两法计算输入一致性不等同于实验准确性验证；本次沿用原COMSOL 的线性插值输入文件，未将其与主程序
+PCHIP 之间的细微差异一并消除。',
+'','## 文件与复核','',
+'−各子目录：Java 源码、batch.log、COMSOL 原始CSV、包含解的q4_shrinking_herb_comsol.mph。',
+'−comparison.csv / summary.json：数值比较与逐时刻最大差。',
+'−comparison_fields.npz：六时刻的共同采样场与有限体积参考。',
+128
+
+
+'−analyze_refinement.py：重新读取原始导出并比较；write_report.py：生成本报告。',
+'−manifest.json：运行设置与受保护文件的原始SHA256。',
+'',f"受保护文件保持不变：{all(s['protected_files_unchanged'].values())}。",
+'','网格API 依据：[COMSOL 6.3 Distribution](https://doc.comsol.com/6.3/doc/com.comsol.help.
+comsol/comsol_api_mesh.49.073.html)、[Map](https://doc.comsol.com/6.3/doc/com.comsol.
+help.comsol/comsol_api_mesh.49.090.html)。']
+(HERE/'REPORT.md').write_text('\n'.join(lines)+'\n',encoding='utf−8')
+2 . 27
+run_cases.ps1
+# File: comsol_q4/near_surface_check/run_cases.ps1
+$ErrorActionPreference = 'Stop'
+$comsolBin = 'D:\COMSOL\install\COMSOL63\Multiphysics\bin\win64'
+$experimentRoot = $PSScriptRoot
+foreach ($caseName in @('original_dense', 'original_tight', 'graded80', 'graded160', '
+graded320', 'graded320_tight')) {
+Push−Location −LiteralPath (Join−Path $experimentRoot $caseName)
+try {
+& "$comsolBin\comsolcompile.exe" Q4Automation.java
+if ($LASTEXITCODE −ne 0) { throw "Compilation failed: $caseName" }
+& "$comsolBin\comsolbatch.exe" −np 4 −inputfile Q4Automation.class −batchlog batch.
+log > launcher.log 2>&1
+if ($LASTEXITCODE −ne 0) { throw "Simulation failed: $caseName" }
+} finally { Pop−Location }
+}
+& 'D:\Anaconda\python.exe' −B (Join−Path $experimentRoot 'analyze_refinement.py')
+if ($LASTEXITCODE −ne 0) { throw 'Comparison failed' }
+& 'D:\Anaconda\python.exe' −B (Join−Path $experimentRoot 'write_report.py')
+2 . 28
+Q4Automation.java（original_dense）
+// File: comsol_q4/near_surface_check/original_dense/Q4Automation.java
+import com.comsol.model.*;
+import com.comsol.model.util.*;
+/** Question 4: coupled heat/moisture transport in a uniformly shrinking cylindrical herb.
+*/
+public class Q4Automation {
+private static final String WORK_DIR =
+"D:\\26mathmodel\\CUMCM2026Problems\\A题\\comsol_q4\\near_surface_check\\
+original_dense";
+public static Model build() throws java.io.IOException {
+Model model = ModelUtil.create("Model");
+129
+
+
+model.modelPath(WORK_DIR);
+model.label("q4_shrinking_herb_comsol.mph");
+model.param().set("R0", "0.02[m]", "Initial herb radius");
+model.param().set("L", "0.08[m]", "Representative cylinder length; ends insulated");
+model.param().set("hT", "25[W/(m^2*K)]", "Convective heat transfer coefficient");
+model.param().set("hm", "8e−7[m/s]", "Convective moisture transfer coefficient");
+// Temperature unknown is stored as the numerical value in degC, matching the paper
+equations.
+createInterpolation(model, "Te", "Te", "ambient_temperature.txt", "1");
+createInterpolation(model, "Ce", "Ce", "ambient_moisture.txt", "1");
+createInterpolation(model, "Rt", "Rt", "radius_history.txt", "m");
+model.component().create("comp1", true);
+model.component("comp1").geom().create("geom1", 2);
+model.component("comp1").geom("geom1").lengthUnit("m");
+model.component("comp1").geom("geom1").create("r1", "Rectangle");
+model.component("comp1").geom("geom1").feature("r1").set("size", new String[]{"R0", "L"
+});
+model.component("comp1").geom("geom1").run();
+model.component("comp1").variable().create("var1");
+model.component("comp1").variable("var1").set("Csafe", "max(C,1e−6)");
+model.component("comp1").variable("var1").set("rho", "760[kg/m^3]+90[kg/m^3]*Csafe");
+model.component("comp1").variable("var1").set("cp", "1850[J/(kg*K)]+2150[J/(kg*K)]*
+Csafe/(Csafe+1)");
+model.component("comp1").variable("var1").set("kherb", "0.12[W/(m*K)]+0.20[W/(m*K)]*
+Csafe/(Csafe+1)");
+model.component("comp1").variable("var1").set("Dherb", "4.2e−4[m^2/s]*exp(−0.30/Csafe)*
+exp(−3850/(T+273.15))");
+model.component("comp1").variable("var1").set("shrink", "R0/Rt(t)");
+model.component("comp1").variable("var1").set("rphys", "x*Rt(t)/R0");
+// Reference−coordinate radial PDE. x is the material radius at t=0.
+model.component("comp1").physics().create("heat", "CoefficientFormPDE", "geom1");
+model.component("comp1").physics("heat").field("dimensionless").field("T");
+model.component("comp1").physics("heat").field("dimensionless").component(new String[]{
+"T"});
+model.component("comp1").physics("heat").feature("cfeq1").set("da", "x*rho*cp");
+model.component("comp1").physics("heat").feature("cfeq1").set("c", "x*kherb*shrink^2");
+model.component("comp1").physics("heat").feature("cfeq1").set("f", "0");
+model.component("comp1").physics("heat").feature("init1").set("T", "28");
+model.component("comp1").physics("heat").create("flux1", "FluxBoundary", 1);
+model.component("comp1").physics("heat").feature("flux1").selection().set(4);
+model.component("comp1").physics("heat").feature("flux1").set("q", "R0*hT*shrink");
+model.component("comp1").physics("heat").feature("flux1").set("g", "R0*hT*shrink*Te(t)
+130
+
+
+");
+model.component("comp1").physics().create("mass", "CoefficientFormPDE", "geom1");
+model.component("comp1").physics("mass").field("dimensionless").field("C");
+model.component("comp1").physics("mass").field("dimensionless").component(new String[]{
+"C"});
+model.component("comp1").physics("mass").feature("cfeq1").set("da", "x");
+model.component("comp1").physics("mass").feature("cfeq1").set("c", "x*Dherb*shrink^2");
+model.component("comp1").physics("mass").feature("cfeq1").set("f", "0");
+model.component("comp1").physics("mass").feature("init1").set("C", "2.55");
+model.component("comp1").physics("mass").create("flux1", "FluxBoundary", 1);
+model.component("comp1").physics("mass").feature("flux1").selection().set(4);
+model.component("comp1").physics("mass").feature("flux1").set("q", "R0*hm*shrink");
+model.component("comp1").physics("mass").feature("flux1").set("g", "R0*hm*shrink*Ce(t)
+");
+model.component("comp1").mesh().create("mesh1");
+model.component("comp1").mesh("mesh1").autoMeshSize(3);
+model.component("comp1").mesh("mesh1").run();
+model.study().create("std1");
+model.study("std1").create("time", "Transient");
+model.study("std1").feature("time").set("tlist", "range(0,600,183600)
+183915.71747843814 184200");
+model.study("std1").feature("time").set("rtol", "1e−4");
+model.study("std1").run();
+double[] x = new double[1001];
+double[] y = new double[1001];
+for (int i = 0; i < 1001; i++) {
+x[i] = i * 0.00002;
+y[i] = 0.04;
+}
+model.result().dataset().create("cpt1", "CutPoint2D");
+model.result().dataset("cpt1").set("pointx", x);
+model.result().dataset("cpt1").set("pointy", y);
+model.result().create("pgC", "PlotGroup2D");
+model.result("pgC").label("Moisture field in shrinking herb reference domain");
+model.result("pgC").create("surf1", "Surface");
+model.result("pgC").feature("surf1").set("expr", "C");
+model.result().create("pgT", "PlotGroup2D");
+model.result("pgT").label("Temperature field in shrinking herb reference domain");
+model.result("pgT").create("surf1", "Surface");
+model.result("pgT").feature("surf1").set("expr", "T");
+131
+
+
+model.result().export().create("data1", "Data");
+model.result().export("data1").set("data", "cpt1");
+model.result().export("data1").set("expr", new String[]{"T", "C", "rphys", "Rt(t)"});
+model.result().export("data1").set("descr", new String[]{"Temperature", "Moisture", "
+Physical radius", "Herb radius"});
+model.result().export("data1").set("filename", WORK_DIR + "\\q4_comsol_profiles.csv");
+model.result().export("data1").set("separator", ",");
+model.result().export("data1").run();
+model.save(WORK_DIR + "\\q4_shrinking_herb_comsol.mph");
+return model;
+}
+private static void createInterpolation(Model model, String tag, String name,
+String file, String fununit) {
+model.func().create(tag, "Interpolation");
+model.func(tag).set("funcname", name);
+model.func(tag).set("source", "file");
+model.func(tag).set("filename", WORK_DIR + "\\" + file);
+model.func(tag).set("interp", "linear");
+model.func(tag).set("argunit", "s");
+model.func(tag).set("fununit", fununit);
+}
+public static void main(String[] args) throws java.io.IOException {
+build();
+}
+}
+2 . 29
+Q4Automation.java（original_tight）
+// File: comsol_q4/near_surface_check/original_tight/Q4Automation.java
+import com.comsol.model.*;
+import com.comsol.model.util.*;
+/** Question 4: coupled heat/moisture transport in a uniformly shrinking cylindrical herb.
+*/
+public class Q4Automation {
+private static final String WORK_DIR =
+"D:\\26mathmodel\\CUMCM2026Problems\\A题\\comsol_q4\\near_surface_check\\
+original_tight";
+public static Model build() throws java.io.IOException {
+Model model = ModelUtil.create("Model");
+model.modelPath(WORK_DIR);
+132
+
+
+model.label("q4_shrinking_herb_comsol.mph");
+model.param().set("R0", "0.02[m]", "Initial herb radius");
+model.param().set("L", "0.08[m]", "Representative cylinder length; ends insulated");
+model.param().set("hT", "25[W/(m^2*K)]", "Convective heat transfer coefficient");
+model.param().set("hm", "8e−7[m/s]", "Convective moisture transfer coefficient");
+// Temperature unknown is stored as the numerical value in degC, matching the paper
+equations.
+createInterpolation(model, "Te", "Te", "ambient_temperature.txt", "1");
+createInterpolation(model, "Ce", "Ce", "ambient_moisture.txt", "1");
+createInterpolation(model, "Rt", "Rt", "radius_history.txt", "m");
+model.component().create("comp1", true);
+model.component("comp1").geom().create("geom1", 2);
+model.component("comp1").geom("geom1").lengthUnit("m");
+model.component("comp1").geom("geom1").create("r1", "Rectangle");
+model.component("comp1").geom("geom1").feature("r1").set("size", new String[]{"R0", "L"
+});
+model.component("comp1").geom("geom1").run();
+model.component("comp1").variable().create("var1");
+model.component("comp1").variable("var1").set("Csafe", "max(C,1e−6)");
+model.component("comp1").variable("var1").set("rho", "760[kg/m^3]+90[kg/m^3]*Csafe");
+model.component("comp1").variable("var1").set("cp", "1850[J/(kg*K)]+2150[J/(kg*K)]*
+Csafe/(Csafe+1)");
+model.component("comp1").variable("var1").set("kherb", "0.12[W/(m*K)]+0.20[W/(m*K)]*
+Csafe/(Csafe+1)");
+model.component("comp1").variable("var1").set("Dherb", "4.2e−4[m^2/s]*exp(−0.30/Csafe)*
+exp(−3850/(T+273.15))");
+model.component("comp1").variable("var1").set("shrink", "R0/Rt(t)");
+model.component("comp1").variable("var1").set("rphys", "x*Rt(t)/R0");
+// Reference−coordinate radial PDE. x is the material radius at t=0.
+model.component("comp1").physics().create("heat", "CoefficientFormPDE", "geom1");
+model.component("comp1").physics("heat").field("dimensionless").field("T");
+model.component("comp1").physics("heat").field("dimensionless").component(new String[]{
+"T"});
+model.component("comp1").physics("heat").feature("cfeq1").set("da", "x*rho*cp");
+model.component("comp1").physics("heat").feature("cfeq1").set("c", "x*kherb*shrink^2");
+model.component("comp1").physics("heat").feature("cfeq1").set("f", "0");
+model.component("comp1").physics("heat").feature("init1").set("T", "28");
+model.component("comp1").physics("heat").create("flux1", "FluxBoundary", 1);
+model.component("comp1").physics("heat").feature("flux1").selection().set(4);
+model.component("comp1").physics("heat").feature("flux1").set("q", "R0*hT*shrink");
+model.component("comp1").physics("heat").feature("flux1").set("g", "R0*hT*shrink*Te(t)
+");
+133
+
+
+model.component("comp1").physics().create("mass", "CoefficientFormPDE", "geom1");
+model.component("comp1").physics("mass").field("dimensionless").field("C");
+model.component("comp1").physics("mass").field("dimensionless").component(new String[]{
+"C"});
+model.component("comp1").physics("mass").feature("cfeq1").set("da", "x");
+model.component("comp1").physics("mass").feature("cfeq1").set("c", "x*Dherb*shrink^2");
+model.component("comp1").physics("mass").feature("cfeq1").set("f", "0");
+model.component("comp1").physics("mass").feature("init1").set("C", "2.55");
+model.component("comp1").physics("mass").create("flux1", "FluxBoundary", 1);
+model.component("comp1").physics("mass").feature("flux1").selection().set(4);
+model.component("comp1").physics("mass").feature("flux1").set("q", "R0*hm*shrink");
+model.component("comp1").physics("mass").feature("flux1").set("g", "R0*hm*shrink*Ce(t)
+");
+model.component("comp1").mesh().create("mesh1");
+model.component("comp1").mesh("mesh1").autoMeshSize(3);
+model.component("comp1").mesh("mesh1").run();
+model.study().create("std1");
+model.study("std1").create("time", "Transient");
+model.study("std1").feature("time").set("tlist", "range(0,600,183600)
+183915.71747843814 184200");
+model.study("std1").feature("time").set("rtol", "1e−6");
+model.study("std1").run();
+double[] x = new double[1001];
+double[] y = new double[1001];
+for (int i = 0; i < 1001; i++) {
+x[i] = i * 0.00002;
+y[i] = 0.04;
+}
+model.result().dataset().create("cpt1", "CutPoint2D");
+model.result().dataset("cpt1").set("pointx", x);
+model.result().dataset("cpt1").set("pointy", y);
+model.result().create("pgC", "PlotGroup2D");
+model.result("pgC").label("Moisture field in shrinking herb reference domain");
+model.result("pgC").create("surf1", "Surface");
+model.result("pgC").feature("surf1").set("expr", "C");
+model.result().create("pgT", "PlotGroup2D");
+model.result("pgT").label("Temperature field in shrinking herb reference domain");
+model.result("pgT").create("surf1", "Surface");
+model.result("pgT").feature("surf1").set("expr", "T");
+model.result().export().create("data1", "Data");
+134
+
+
+model.result().export("data1").set("data", "cpt1");
+model.result().export("data1").set("expr", new String[]{"T", "C", "rphys", "Rt(t)"});
+model.result().export("data1").set("descr", new String[]{"Temperature", "Moisture", "
+Physical radius", "Herb radius"});
+model.result().export("data1").set("filename", WORK_DIR + "\\q4_comsol_profiles.csv");
+model.result().export("data1").set("separator", ",");
+model.result().export("data1").run();
+model.save(WORK_DIR + "\\q4_shrinking_herb_comsol.mph");
+return model;
+}
+private static void createInterpolation(Model model, String tag, String name,
+String file, String fununit) {
+model.func().create(tag, "Interpolation");
+model.func(tag).set("funcname", name);
+model.func(tag).set("source", "file");
+model.func(tag).set("filename", WORK_DIR + "\\" + file);
+model.func(tag).set("interp", "linear");
+model.func(tag).set("argunit", "s");
+model.func(tag).set("fununit", fununit);
+}
+public static void main(String[] args) throws java.io.IOException {
+build();
+}
+}
+2 . 30
+Q4Automation.java（graded80）
+// File: comsol_q4/near_surface_check/graded80/Q4Automation.java
+import com.comsol.model.*;
+import com.comsol.model.util.*;
+/** Question 4: coupled heat/moisture transport in a uniformly shrinking cylindrical herb.
+*/
+public class Q4Automation {
+private static final String WORK_DIR =
+"D:\\26mathmodel\\CUMCM2026Problems\\A题\\comsol_q4\\near_surface_check\\graded80";
+public static Model build() throws java.io.IOException {
+Model model = ModelUtil.create("Model");
+model.modelPath(WORK_DIR);
+model.label("q4_shrinking_herb_comsol.mph");
+135
+
+
+model.param().set("R0", "0.02[m]", "Initial herb radius");
+model.param().set("L", "0.08[m]", "Representative cylinder length; ends insulated");
+model.param().set("hT", "25[W/(m^2*K)]", "Convective heat transfer coefficient");
+model.param().set("hm", "8e−7[m/s]", "Convective moisture transfer coefficient");
+// Temperature unknown is stored as the numerical value in degC, matching the paper
+equations.
+createInterpolation(model, "Te", "Te", "ambient_temperature.txt", "1");
+createInterpolation(model, "Ce", "Ce", "ambient_moisture.txt", "1");
+createInterpolation(model, "Rt", "Rt", "radius_history.txt", "m");
+model.component().create("comp1", true);
+model.component("comp1").geom().create("geom1", 2);
+model.component("comp1").geom("geom1").lengthUnit("m");
+model.component("comp1").geom("geom1").create("r1", "Rectangle");
+model.component("comp1").geom("geom1").feature("r1").set("size", new String[]{"R0", "L"
+});
+model.component("comp1").geom("geom1").run();
+model.component("comp1").variable().create("var1");
+model.component("comp1").variable("var1").set("Csafe", "max(C,1e−6)");
+model.component("comp1").variable("var1").set("rho", "760[kg/m^3]+90[kg/m^3]*Csafe");
+model.component("comp1").variable("var1").set("cp", "1850[J/(kg*K)]+2150[J/(kg*K)]*
+Csafe/(Csafe+1)");
+model.component("comp1").variable("var1").set("kherb", "0.12[W/(m*K)]+0.20[W/(m*K)]*
+Csafe/(Csafe+1)");
+model.component("comp1").variable("var1").set("Dherb", "4.2e−4[m^2/s]*exp(−0.30/Csafe)*
+exp(−3850/(T+273.15))");
+model.component("comp1").variable("var1").set("shrink", "R0/Rt(t)");
+model.component("comp1").variable("var1").set("rphys", "x*Rt(t)/R0");
+// Reference−coordinate radial PDE. x is the material radius at t=0.
+model.component("comp1").physics().create("heat", "CoefficientFormPDE", "geom1");
+model.component("comp1").physics("heat").field("dimensionless").field("T");
+model.component("comp1").physics("heat").field("dimensionless").component(new String[]{
+"T"});
+model.component("comp1").physics("heat").feature("cfeq1").set("da", "x*rho*cp");
+model.component("comp1").physics("heat").feature("cfeq1").set("c", "x*kherb*shrink^2");
+model.component("comp1").physics("heat").feature("cfeq1").set("f", "0");
+model.component("comp1").physics("heat").feature("init1").set("T", "28");
+model.component("comp1").physics("heat").create("flux1", "FluxBoundary", 1);
+model.component("comp1").physics("heat").feature("flux1").selection().set(4);
+model.component("comp1").physics("heat").feature("flux1").set("q", "R0*hT*shrink");
+model.component("comp1").physics("heat").feature("flux1").set("g", "R0*hT*shrink*Te(t)
+");
+model.component("comp1").physics().create("mass", "CoefficientFormPDE", "geom1");
+136
+
+
+model.component("comp1").physics("mass").field("dimensionless").field("C");
+model.component("comp1").physics("mass").field("dimensionless").component(new String[]{
+"C"});
+model.component("comp1").physics("mass").feature("cfeq1").set("da", "x");
+model.component("comp1").physics("mass").feature("cfeq1").set("c", "x*Dherb*shrink^2");
+model.component("comp1").physics("mass").feature("cfeq1").set("f", "0");
+model.component("comp1").physics("mass").feature("init1").set("C", "2.55");
+model.component("comp1").physics("mass").create("flux1", "FluxBoundary", 1);
+model.component("comp1").physics("mass").feature("flux1").selection().set(4);
+model.component("comp1").physics("mass").feature("flux1").set("q", "R0*hm*shrink");
+model.component("comp1").physics("mass").feature("flux1").set("g", "R0*hm*shrink*Ce(t)
+");
+model.component("comp1").mesh().create("mesh1");
+model.component("comp1").mesh("mesh1").create("map1", "Map");
+model.component("comp1").mesh("mesh1").feature("map1").create("rad", "Distribution");
+model.component("comp1").mesh("mesh1").feature("map1").feature("rad").selection().set(
+new int[]{2,3});
+double[] locations = new double[81];
+for(int i=0;i<=80;i++) locations[i]=0.5*(1−Math.cos(Math.PI*i/80));
+model.component("comp1").mesh("mesh1").feature("map1").feature("rad").set("explicit",
+locations);
+model.component("comp1").mesh("mesh1").feature("map1").create("ax", "Distribution");
+model.component("comp1").mesh("mesh1").feature("map1").feature("ax").selection().set(
+new int[]{1,4});
+model.component("comp1").mesh("mesh1").feature("map1").feature("ax").set("numelem",4);
+model.component("comp1").mesh("mesh1").run();
+model.study().create("std1");
+model.study("std1").create("time", "Transient");
+model.study("std1").feature("time").set("tlist", "range(0,600,183600)
+183915.71747843814 184200");
+model.study("std1").feature("time").set("rtol", "1e−6");
+model.study("std1").run();
+double[] x = new double[1001];
+double[] y = new double[1001];
+for (int i = 0; i < 1001; i++) {
+x[i] = i * 0.00002;
+y[i] = 0.04;
+}
+model.result().dataset().create("cpt1", "CutPoint2D");
+model.result().dataset("cpt1").set("pointx", x);
+model.result().dataset("cpt1").set("pointy", y);
+model.result().create("pgC", "PlotGroup2D");
+model.result("pgC").label("Moisture field in shrinking herb reference domain");
+137
+
+
+model.result("pgC").create("surf1", "Surface");
+model.result("pgC").feature("surf1").set("expr", "C");
+model.result().create("pgT", "PlotGroup2D");
+model.result("pgT").label("Temperature field in shrinking herb reference domain");
+model.result("pgT").create("surf1", "Surface");
+model.result("pgT").feature("surf1").set("expr", "T");
+model.result().export().create("data1", "Data");
+model.result().export("data1").set("data", "cpt1");
+model.result().export("data1").set("expr", new String[]{"T", "C", "rphys", "Rt(t)"});
+model.result().export("data1").set("descr", new String[]{"Temperature", "Moisture", "
+Physical radius", "Herb radius"});
+model.result().export("data1").set("filename", WORK_DIR + "\\q4_comsol_profiles.csv");
+model.result().export("data1").set("separator", ",");
+model.result().export("data1").run();
+model.save(WORK_DIR + "\\q4_shrinking_herb_comsol.mph");
+return model;
+}
+private static void createInterpolation(Model model, String tag, String name,
+String file, String fununit) {
+model.func().create(tag, "Interpolation");
+model.func(tag).set("funcname", name);
+model.func(tag).set("source", "file");
+model.func(tag).set("filename", WORK_DIR + "\\" + file);
+model.func(tag).set("interp", "linear");
+model.func(tag).set("argunit", "s");
+model.func(tag).set("fununit", fununit);
+}
+public static void main(String[] args) throws java.io.IOException {
+build();
+}
+}
+2 . 31
+Q4Automation.java（graded160）
+// File: comsol_q4/near_surface_check/graded160/Q4Automation.java
+import com.comsol.model.*;
+import com.comsol.model.util.*;
+/** Question 4: coupled heat/moisture transport in a uniformly shrinking cylindrical herb.
+*/
+138
+
+
+public class Q4Automation {
+private static final String WORK_DIR =
+"D:\\26mathmodel\\CUMCM2026Problems\\A题\\comsol_q4\\near_surface_check\\graded160";
+public static Model build() throws java.io.IOException {
+Model model = ModelUtil.create("Model");
+model.modelPath(WORK_DIR);
+model.label("q4_shrinking_herb_comsol.mph");
+model.param().set("R0", "0.02[m]", "Initial herb radius");
+model.param().set("L", "0.08[m]", "Representative cylinder length; ends insulated");
+model.param().set("hT", "25[W/(m^2*K)]", "Convective heat transfer coefficient");
+model.param().set("hm", "8e−7[m/s]", "Convective moisture transfer coefficient");
+// Temperature unknown is stored as the numerical value in degC, matching the paper
+equations.
+createInterpolation(model, "Te", "Te", "ambient_temperature.txt", "1");
+createInterpolation(model, "Ce", "Ce", "ambient_moisture.txt", "1");
+createInterpolation(model, "Rt", "Rt", "radius_history.txt", "m");
+model.component().create("comp1", true);
+model.component("comp1").geom().create("geom1", 2);
+model.component("comp1").geom("geom1").lengthUnit("m");
+model.component("comp1").geom("geom1").create("r1", "Rectangle");
+model.component("comp1").geom("geom1").feature("r1").set("size", new String[]{"R0", "L"
+});
+model.component("comp1").geom("geom1").run();
+model.component("comp1").variable().create("var1");
+model.component("comp1").variable("var1").set("Csafe", "max(C,1e−6)");
+model.component("comp1").variable("var1").set("rho", "760[kg/m^3]+90[kg/m^3]*Csafe");
+model.component("comp1").variable("var1").set("cp", "1850[J/(kg*K)]+2150[J/(kg*K)]*
+Csafe/(Csafe+1)");
+model.component("comp1").variable("var1").set("kherb", "0.12[W/(m*K)]+0.20[W/(m*K)]*
+Csafe/(Csafe+1)");
+model.component("comp1").variable("var1").set("Dherb", "4.2e−4[m^2/s]*exp(−0.30/Csafe)*
+exp(−3850/(T+273.15))");
+model.component("comp1").variable("var1").set("shrink", "R0/Rt(t)");
+model.component("comp1").variable("var1").set("rphys", "x*Rt(t)/R0");
+// Reference−coordinate radial PDE. x is the material radius at t=0.
+model.component("comp1").physics().create("heat", "CoefficientFormPDE", "geom1");
+model.component("comp1").physics("heat").field("dimensionless").field("T");
+model.component("comp1").physics("heat").field("dimensionless").component(new String[]{
+"T"});
+model.component("comp1").physics("heat").feature("cfeq1").set("da", "x*rho*cp");
+model.component("comp1").physics("heat").feature("cfeq1").set("c", "x*kherb*shrink^2");
+139
+
+
+model.component("comp1").physics("heat").feature("cfeq1").set("f", "0");
+model.component("comp1").physics("heat").feature("init1").set("T", "28");
+model.component("comp1").physics("heat").create("flux1", "FluxBoundary", 1);
+model.component("comp1").physics("heat").feature("flux1").selection().set(4);
+model.component("comp1").physics("heat").feature("flux1").set("q", "R0*hT*shrink");
+model.component("comp1").physics("heat").feature("flux1").set("g", "R0*hT*shrink*Te(t)
+");
+model.component("comp1").physics().create("mass", "CoefficientFormPDE", "geom1");
+model.component("comp1").physics("mass").field("dimensionless").field("C");
+model.component("comp1").physics("mass").field("dimensionless").component(new String[]{
+"C"});
+model.component("comp1").physics("mass").feature("cfeq1").set("da", "x");
+model.component("comp1").physics("mass").feature("cfeq1").set("c", "x*Dherb*shrink^2");
+model.component("comp1").physics("mass").feature("cfeq1").set("f", "0");
+model.component("comp1").physics("mass").feature("init1").set("C", "2.55");
+model.component("comp1").physics("mass").create("flux1", "FluxBoundary", 1);
+model.component("comp1").physics("mass").feature("flux1").selection().set(4);
+model.component("comp1").physics("mass").feature("flux1").set("q", "R0*hm*shrink");
+model.component("comp1").physics("mass").feature("flux1").set("g", "R0*hm*shrink*Ce(t)
+");
+model.component("comp1").mesh().create("mesh1");
+model.component("comp1").mesh("mesh1").create("map1", "Map");
+model.component("comp1").mesh("mesh1").feature("map1").create("rad", "Distribution");
+model.component("comp1").mesh("mesh1").feature("map1").feature("rad").selection().set(
+new int[]{2,3});
+double[] locations = new double[161];
+for(int i=0;i<=160;i++) locations[i]=0.5*(1−Math.cos(Math.PI*i/160));
+model.component("comp1").mesh("mesh1").feature("map1").feature("rad").set("explicit",
+locations);
+model.component("comp1").mesh("mesh1").feature("map1").create("ax", "Distribution");
+model.component("comp1").mesh("mesh1").feature("map1").feature("ax").selection().set(
+new int[]{1,4});
+model.component("comp1").mesh("mesh1").feature("map1").feature("ax").set("numelem",4);
+model.component("comp1").mesh("mesh1").run();
+model.study().create("std1");
+model.study("std1").create("time", "Transient");
+model.study("std1").feature("time").set("tlist", "range(0,600,183600)
+183915.71747843814 184200");
+model.study("std1").feature("time").set("rtol", "1e−6");
+model.study("std1").run();
+double[] x = new double[1001];
+double[] y = new double[1001];
+for (int i = 0; i < 1001; i++) {
+140
+
+
+x[i] = i * 0.00002;
+y[i] = 0.04;
+}
+model.result().dataset().create("cpt1", "CutPoint2D");
+model.result().dataset("cpt1").set("pointx", x);
+model.result().dataset("cpt1").set("pointy", y);
+model.result().create("pgC", "PlotGroup2D");
+model.result("pgC").label("Moisture field in shrinking herb reference domain");
+model.result("pgC").create("surf1", "Surface");
+model.result("pgC").feature("surf1").set("expr", "C");
+model.result().create("pgT", "PlotGroup2D");
+model.result("pgT").label("Temperature field in shrinking herb reference domain");
+model.result("pgT").create("surf1", "Surface");
+model.result("pgT").feature("surf1").set("expr", "T");
+model.result().export().create("data1", "Data");
+model.result().export("data1").set("data", "cpt1");
+model.result().export("data1").set("expr", new String[]{"T", "C", "rphys", "Rt(t)"});
+model.result().export("data1").set("descr", new String[]{"Temperature", "Moisture", "
+Physical radius", "Herb radius"});
+model.result().export("data1").set("filename", WORK_DIR + "\\q4_comsol_profiles.csv");
+model.result().export("data1").set("separator", ",");
+model.result().export("data1").run();
+model.save(WORK_DIR + "\\q4_shrinking_herb_comsol.mph");
+return model;
+}
+private static void createInterpolation(Model model, String tag, String name,
+String file, String fununit) {
+model.func().create(tag, "Interpolation");
+model.func(tag).set("funcname", name);
+model.func(tag).set("source", "file");
+model.func(tag).set("filename", WORK_DIR + "\\" + file);
+model.func(tag).set("interp", "linear");
+model.func(tag).set("argunit", "s");
+model.func(tag).set("fununit", fununit);
+}
+public static void main(String[] args) throws java.io.IOException {
+build();
+}
+}
+141
+
+
+2 . 32
+Q4Automation.java（graded320）
+// File: comsol_q4/near_surface_check/graded320/Q4Automation.java
+import com.comsol.model.*;
+import com.comsol.model.util.*;
+/** Question 4: coupled heat/moisture transport in a uniformly shrinking cylindrical herb.
+*/
+public class Q4Automation {
+private static final String WORK_DIR =
+"D:\\26mathmodel\\CUMCM2026Problems\\A题\\comsol_q4\\near_surface_check\\graded320";
+public static Model build() throws java.io.IOException {
+Model model = ModelUtil.create("Model");
+model.modelPath(WORK_DIR);
+model.label("q4_shrinking_herb_comsol.mph");
+model.param().set("R0", "0.02[m]", "Initial herb radius");
+model.param().set("L", "0.08[m]", "Representative cylinder length; ends insulated");
+model.param().set("hT", "25[W/(m^2*K)]", "Convective heat transfer coefficient");
+model.param().set("hm", "8e−7[m/s]", "Convective moisture transfer coefficient");
+// Temperature unknown is stored as the numerical value in degC, matching the paper
+equations.
+createInterpolation(model, "Te", "Te", "ambient_temperature.txt", "1");
+createInterpolation(model, "Ce", "Ce", "ambient_moisture.txt", "1");
+createInterpolation(model, "Rt", "Rt", "radius_history.txt", "m");
+model.component().create("comp1", true);
+model.component("comp1").geom().create("geom1", 2);
+model.component("comp1").geom("geom1").lengthUnit("m");
+model.component("comp1").geom("geom1").create("r1", "Rectangle");
+model.component("comp1").geom("geom1").feature("r1").set("size", new String[]{"R0", "L"
+});
+model.component("comp1").geom("geom1").run();
+model.component("comp1").variable().create("var1");
+model.component("comp1").variable("var1").set("Csafe", "max(C,1e−6)");
+model.component("comp1").variable("var1").set("rho", "760[kg/m^3]+90[kg/m^3]*Csafe");
+model.component("comp1").variable("var1").set("cp", "1850[J/(kg*K)]+2150[J/(kg*K)]*
+Csafe/(Csafe+1)");
+model.component("comp1").variable("var1").set("kherb", "0.12[W/(m*K)]+0.20[W/(m*K)]*
+Csafe/(Csafe+1)");
+model.component("comp1").variable("var1").set("Dherb", "4.2e−4[m^2/s]*exp(−0.30/Csafe)*
+exp(−3850/(T+273.15))");
+model.component("comp1").variable("var1").set("shrink", "R0/Rt(t)");
+model.component("comp1").variable("var1").set("rphys", "x*Rt(t)/R0");
+142
+
+
+// Reference−coordinate radial PDE. x is the material radius at t=0.
+model.component("comp1").physics().create("heat", "CoefficientFormPDE", "geom1");
+model.component("comp1").physics("heat").field("dimensionless").field("T");
+model.component("comp1").physics("heat").field("dimensionless").component(new String[]{
+"T"});
+model.component("comp1").physics("heat").feature("cfeq1").set("da", "x*rho*cp");
+model.component("comp1").physics("heat").feature("cfeq1").set("c", "x*kherb*shrink^2");
+model.component("comp1").physics("heat").feature("cfeq1").set("f", "0");
+model.component("comp1").physics("heat").feature("init1").set("T", "28");
+model.component("comp1").physics("heat").create("flux1", "FluxBoundary", 1);
+model.component("comp1").physics("heat").feature("flux1").selection().set(4);
+model.component("comp1").physics("heat").feature("flux1").set("q", "R0*hT*shrink");
+model.component("comp1").physics("heat").feature("flux1").set("g", "R0*hT*shrink*Te(t)
+");
+model.component("comp1").physics().create("mass", "CoefficientFormPDE", "geom1");
+model.component("comp1").physics("mass").field("dimensionless").field("C");
+model.component("comp1").physics("mass").field("dimensionless").component(new String[]{
+"C"});
+model.component("comp1").physics("mass").feature("cfeq1").set("da", "x");
+model.component("comp1").physics("mass").feature("cfeq1").set("c", "x*Dherb*shrink^2");
+model.component("comp1").physics("mass").feature("cfeq1").set("f", "0");
+model.component("comp1").physics("mass").feature("init1").set("C", "2.55");
+model.component("comp1").physics("mass").create("flux1", "FluxBoundary", 1);
+model.component("comp1").physics("mass").feature("flux1").selection().set(4);
+model.component("comp1").physics("mass").feature("flux1").set("q", "R0*hm*shrink");
+model.component("comp1").physics("mass").feature("flux1").set("g", "R0*hm*shrink*Ce(t)
+");
+model.component("comp1").mesh().create("mesh1");
+model.component("comp1").mesh("mesh1").create("map1", "Map");
+model.component("comp1").mesh("mesh1").feature("map1").create("rad", "Distribution");
+model.component("comp1").mesh("mesh1").feature("map1").feature("rad").selection().set(
+new int[]{2,3});
+double[] locations = new double[321];
+for(int i=0;i<=320;i++) locations[i]=0.5*(1−Math.cos(Math.PI*i/320));
+model.component("comp1").mesh("mesh1").feature("map1").feature("rad").set("explicit",
+locations);
+model.component("comp1").mesh("mesh1").feature("map1").create("ax", "Distribution");
+model.component("comp1").mesh("mesh1").feature("map1").feature("ax").selection().set(
+new int[]{1,4});
+model.component("comp1").mesh("mesh1").feature("map1").feature("ax").set("numelem",4);
+model.component("comp1").mesh("mesh1").run();
+model.study().create("std1");
+model.study("std1").create("time", "Transient");
+143
+
+
+model.study("std1").feature("time").set("tlist", "range(0,600,183600)
+183915.71747843814 184200");
+model.study("std1").feature("time").set("rtol", "1e−6");
+model.study("std1").run();
+double[] x = new double[1001];
+double[] y = new double[1001];
+for (int i = 0; i < 1001; i++) {
+x[i] = i * 0.00002;
+y[i] = 0.04;
+}
+model.result().dataset().create("cpt1", "CutPoint2D");
+model.result().dataset("cpt1").set("pointx", x);
+model.result().dataset("cpt1").set("pointy", y);
+model.result().create("pgC", "PlotGroup2D");
+model.result("pgC").label("Moisture field in shrinking herb reference domain");
+model.result("pgC").create("surf1", "Surface");
+model.result("pgC").feature("surf1").set("expr", "C");
+model.result().create("pgT", "PlotGroup2D");
+model.result("pgT").label("Temperature field in shrinking herb reference domain");
+model.result("pgT").create("surf1", "Surface");
+model.result("pgT").feature("surf1").set("expr", "T");
+model.result().export().create("data1", "Data");
+model.result().export("data1").set("data", "cpt1");
+model.result().export("data1").set("expr", new String[]{"T", "C", "rphys", "Rt(t)"});
+model.result().export("data1").set("descr", new String[]{"Temperature", "Moisture", "
+Physical radius", "Herb radius"});
+model.result().export("data1").set("filename", WORK_DIR + "\\q4_comsol_profiles.csv");
+model.result().export("data1").set("separator", ",");
+model.result().export("data1").run();
+model.save(WORK_DIR + "\\q4_shrinking_herb_comsol.mph");
+return model;
+}
+private static void createInterpolation(Model model, String tag, String name,
+String file, String fununit) {
+model.func().create(tag, "Interpolation");
+model.func(tag).set("funcname", name);
+model.func(tag).set("source", "file");
+model.func(tag).set("filename", WORK_DIR + "\\" + file);
+model.func(tag).set("interp", "linear");
+model.func(tag).set("argunit", "s");
+model.func(tag).set("fununit", fununit);
+144
+
+
+}
+public static void main(String[] args) throws java.io.IOException {
+build();
+}
+}
+2 . 33
+Q4Automation.java（graded320_tight）
+// File: comsol_q4/near_surface_check/graded320_tight/Q4Automation.java
+import com.comsol.model.*;
+import com.comsol.model.util.*;
+/** Question 4: coupled heat/moisture transport in a uniformly shrinking cylindrical herb.
+*/
+public class Q4Automation {
+private static final String WORK_DIR =
+"D:\\26mathmodel\\CUMCM2026Problems\\A题\\comsol_q4\\near_surface_check\\
+graded320_tight";
+public static Model build() throws java.io.IOException {
+Model model = ModelUtil.create("Model");
+model.modelPath(WORK_DIR);
+model.label("q4_shrinking_herb_comsol.mph");
+model.param().set("R0", "0.02[m]", "Initial herb radius");
+model.param().set("L", "0.08[m]", "Representative cylinder length; ends insulated");
+model.param().set("hT", "25[W/(m^2*K)]", "Convective heat transfer coefficient");
+model.param().set("hm", "8e−7[m/s]", "Convective moisture transfer coefficient");
+// Temperature unknown is stored as the numerical value in degC, matching the paper
+equations.
+createInterpolation(model, "Te", "Te", "ambient_temperature.txt", "1");
+createInterpolation(model, "Ce", "Ce", "ambient_moisture.txt", "1");
+createInterpolation(model, "Rt", "Rt", "radius_history.txt", "m");
+model.component().create("comp1", true);
+model.component("comp1").geom().create("geom1", 2);
+model.component("comp1").geom("geom1").lengthUnit("m");
+model.component("comp1").geom("geom1").create("r1", "Rectangle");
+model.component("comp1").geom("geom1").feature("r1").set("size", new String[]{"R0", "L"
+});
+model.component("comp1").geom("geom1").run();
+model.component("comp1").variable().create("var1");
+145
+
+
+model.component("comp1").variable("var1").set("Csafe", "max(C,1e−6)");
+model.component("comp1").variable("var1").set("rho", "760[kg/m^3]+90[kg/m^3]*Csafe");
+model.component("comp1").variable("var1").set("cp", "1850[J/(kg*K)]+2150[J/(kg*K)]*
+Csafe/(Csafe+1)");
+model.component("comp1").variable("var1").set("kherb", "0.12[W/(m*K)]+0.20[W/(m*K)]*
+Csafe/(Csafe+1)");
+model.component("comp1").variable("var1").set("Dherb", "4.2e−4[m^2/s]*exp(−0.30/Csafe)*
+exp(−3850/(T+273.15))");
+model.component("comp1").variable("var1").set("shrink", "R0/Rt(t)");
+model.component("comp1").variable("var1").set("rphys", "x*Rt(t)/R0");
+// Reference−coordinate radial PDE. x is the material radius at t=0.
+model.component("comp1").physics().create("heat", "CoefficientFormPDE", "geom1");
+model.component("comp1").physics("heat").field("dimensionless").field("T");
+model.component("comp1").physics("heat").field("dimensionless").component(new String[]{
+"T"});
+model.component("comp1").physics("heat").feature("cfeq1").set("da", "x*rho*cp");
+model.component("comp1").physics("heat").feature("cfeq1").set("c", "x*kherb*shrink^2");
+model.component("comp1").physics("heat").feature("cfeq1").set("f", "0");
+model.component("comp1").physics("heat").feature("init1").set("T", "28");
+model.component("comp1").physics("heat").create("flux1", "FluxBoundary", 1);
+model.component("comp1").physics("heat").feature("flux1").selection().set(4);
+model.component("comp1").physics("heat").feature("flux1").set("q", "R0*hT*shrink");
+model.component("comp1").physics("heat").feature("flux1").set("g", "R0*hT*shrink*Te(t)
+");
+model.component("comp1").physics().create("mass", "CoefficientFormPDE", "geom1");
+model.component("comp1").physics("mass").field("dimensionless").field("C");
+model.component("comp1").physics("mass").field("dimensionless").component(new String[]{
+"C"});
+model.component("comp1").physics("mass").feature("cfeq1").set("da", "x");
+model.component("comp1").physics("mass").feature("cfeq1").set("c", "x*Dherb*shrink^2");
+model.component("comp1").physics("mass").feature("cfeq1").set("f", "0");
+model.component("comp1").physics("mass").feature("init1").set("C", "2.55");
+model.component("comp1").physics("mass").create("flux1", "FluxBoundary", 1);
+model.component("comp1").physics("mass").feature("flux1").selection().set(4);
+model.component("comp1").physics("mass").feature("flux1").set("q", "R0*hm*shrink");
+model.component("comp1").physics("mass").feature("flux1").set("g", "R0*hm*shrink*Ce(t)
+");
+model.component("comp1").mesh().create("mesh1");
+model.component("comp1").mesh("mesh1").create("map1", "Map");
+model.component("comp1").mesh("mesh1").feature("map1").create("rad", "Distribution");
+model.component("comp1").mesh("mesh1").feature("map1").feature("rad").selection().set(
+new int[]{2,3});
+double[] locations = new double[321];
+for(int i=0;i<=320;i++) locations[i]=0.5*(1−Math.cos(Math.PI*i/320));
+146
+
+
+model.component("comp1").mesh("mesh1").feature("map1").feature("rad").set("explicit",
+locations);
+model.component("comp1").mesh("mesh1").feature("map1").create("ax", "Distribution");
+model.component("comp1").mesh("mesh1").feature("map1").feature("ax").selection().set(
+new int[]{1,4});
+model.component("comp1").mesh("mesh1").feature("map1").feature("ax").set("numelem",4);
+model.component("comp1").mesh("mesh1").run();
+model.study().create("std1");
+model.study("std1").create("time", "Transient");
+model.study("std1").feature("time").set("tlist", "range(0,600,183600)
+183915.71747843814 184200");
+model.study("std1").feature("time").set("rtol", "1e−7");
+model.study("std1").run();
+double[] x = new double[1001];
+double[] y = new double[1001];
+for (int i = 0; i < 1001; i++) {
+x[i] = i * 0.00002;
+y[i] = 0.04;
+}
+model.result().dataset().create("cpt1", "CutPoint2D");
+model.result().dataset("cpt1").set("pointx", x);
+model.result().dataset("cpt1").set("pointy", y);
+model.result().create("pgC", "PlotGroup2D");
+model.result("pgC").label("Moisture field in shrinking herb reference domain");
+model.result("pgC").create("surf1", "Surface");
+model.result("pgC").feature("surf1").set("expr", "C");
+model.result().create("pgT", "PlotGroup2D");
+model.result("pgT").label("Temperature field in shrinking herb reference domain");
+model.result("pgT").create("surf1", "Surface");
+model.result("pgT").feature("surf1").set("expr", "T");
+model.result().export().create("data1", "Data");
+model.result().export("data1").set("data", "cpt1");
+model.result().export("data1").set("expr", new String[]{"T", "C", "rphys", "Rt(t)"});
+model.result().export("data1").set("descr", new String[]{"Temperature", "Moisture", "
+Physical radius", "Herb radius"});
+model.result().export("data1").set("filename", WORK_DIR + "\\q4_comsol_profiles.csv");
+model.result().export("data1").set("separator", ",");
+model.result().export("data1").run();
+model.save(WORK_DIR + "\\q4_shrinking_herb_comsol.mph");
+return model;
+}
+147
+
+
+private static void createInterpolation(Model model, String tag, String name,
+String file, String fununit) {
+model.func().create(tag, "Interpolation");
+model.func(tag).set("funcname", name);
+model.func(tag).set("source", "file");
+model.func(tag).set("filename", WORK_DIR + "\\" + file);
+model.func(tag).set("interp", "linear");
+model.func(tag).set("argunit", "s");
+model.func(tag).set("fununit", fununit);
+}
+public static void main(String[] args) throws java.io.IOException {
+build();
+}
+}
+148

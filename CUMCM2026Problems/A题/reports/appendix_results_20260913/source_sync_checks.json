@@ -1,0 +1,4253 @@
+{
+  "status": "PASS_WITH_NOTES",
+  "audit": "manifest-driven complete-source appendix synchronization",
+  "manifest_path": "E:\\26math model\\26mathmodel\\CUMCM2026Problems\\A题\\reports\\appendix_results_20260913\\source_manifest.json",
+  "pdf_path": "tmp\\source-sync-5ae7984\\main.pdf",
+  "baseline_path": "E:\\26math model\\26mathmodel\\tmp\\source-sync-5ae7984\\main-before.pdf",
+  "source_checks": [
+    {
+      "index": 1,
+      "source": "code/solve_drying.py",
+      "appendix_copy": "code/solve_drying.py",
+      "language": "Python",
+      "source_sha256": "7016bf12f67710261eb0db124ed932a6e74692d919ca472df655976522fe572d",
+      "appendix_sha256": "86e330cd459bab473da7936282ede6430d70d2c09104547faae801a9978e759d",
+      "source_lines": 858,
+      "filename_comment": "# File: code/solve_drying.py",
+      "first_source_line": "\"\"\"Numerical solution for CUMCM 2026 Problem A.",
+      "last_source_line": "    main()",
+      "full_source_identical": true,
+      "syntax_check": "Python AST parse and compile passed; not executed",
+      "latex_listing": {
+        "path": "code/solve_drying.py",
+        "options": "language={Python}",
+        "start_label": 1,
+        "end_label": 1
+      },
+      "pdf_first_page": 36,
+      "pdf_last_page": 55,
+      "filename_comment_pdf_pages": [
+        36
+      ],
+      "first_source_line_pdf_pages": [
+        36
+      ],
+      "last_source_line_pdf_pages": [
+        54
+      ]
+    },
+    {
+      "index": 2,
+      "source": "code/write_results.py",
+      "appendix_copy": "code/write_results.py",
+      "language": "Python",
+      "source_sha256": "cbade6ecc9922a5b1b91ec959e4279f4c8b5d77bccdb8e2e8d8e6a22cb9b41ca",
+      "appendix_sha256": "26511d087d7d832407af373976d7d3c4d39c499f29a18693caa09002ffe39030",
+      "source_lines": 291,
+      "filename_comment": "# File: code/write_results.py",
+      "first_source_line": "\"\"\"Write the four official-format Excel result workbooks.\"\"\"",
+      "last_source_line": "    main()",
+      "full_source_identical": true,
+      "syntax_check": "Python AST parse and compile passed; not executed",
+      "latex_listing": {
+        "path": "code/write_results.py",
+        "options": "language={Python}",
+        "start_label": 2,
+        "end_label": 2
+      },
+      "pdf_first_page": 55,
+      "pdf_last_page": 61,
+      "filename_comment_pdf_pages": [
+        55
+      ],
+      "first_source_line_pdf_pages": [
+        55
+      ],
+      "last_source_line_pdf_pages": [
+        60,
+        61
+      ]
+    },
+    {
+      "index": 3,
+      "source": "code/check_numerics.py",
+      "appendix_copy": "code/check_numerics.py",
+      "language": "Python",
+      "source_sha256": "b2e1e086ee88ee7fb554e73a5ceaf7f0b02c5a6a6dd72c72b053e2b0cfa33d59",
+      "appendix_sha256": "a955b0155d2704e61713982a4a0937de283258e15b5725f03723d2e5abad2a45",
+      "source_lines": 35,
+      "filename_comment": "# File: code/check_numerics.py",
+      "first_source_line": "\"\"\"Independent spatial/time refinement checks; does not overwrite production fields.\"\"\"",
+      "last_source_line": "    sys.stdout.reconfigure(encoding='utf-8');run()",
+      "full_source_identical": true,
+      "syntax_check": "Python AST parse and compile passed; not executed",
+      "latex_listing": {
+        "path": "code/check_numerics.py",
+        "options": "language={Python}",
+        "start_label": 3,
+        "end_label": 3
+      },
+      "pdf_first_page": 61,
+      "pdf_last_page": 62,
+      "filename_comment_pdf_pages": [
+        61
+      ],
+      "first_source_line_pdf_pages": [
+        61
+      ],
+      "last_source_line_pdf_pages": [
+        62
+      ]
+    },
+    {
+      "index": 4,
+      "source": "code/validate_2d.py",
+      "appendix_copy": "code/validate_2d.py",
+      "language": "Python",
+      "source_sha256": "c6e2eb0fe0ecca8af71cd12c76cccb5d871916f16810883e8226a711448154ac",
+      "appendix_sha256": "76fb7746cf8c3c7e5b492f4b88cdc768c43a172a2efd2f2105c5325d326a62cf",
+      "source_lines": 24,
+      "filename_comment": "# File: code/validate_2d.py",
+      "first_source_line": "\"\"\"Short-duration Q1 validation using the matched-grid axisymmetric solver.",
+      "last_source_line": "    run()",
+      "full_source_identical": true,
+      "syntax_check": "Python AST parse and compile passed; not executed",
+      "latex_listing": {
+        "path": "code/validate_2d.py",
+        "options": "language={Python}",
+        "start_label": 4,
+        "end_label": 4
+      },
+      "pdf_first_page": 62,
+      "pdf_last_page": 63,
+      "filename_comment_pdf_pages": [
+        62
+      ],
+      "first_source_line_pdf_pages": [
+        62
+      ],
+      "last_source_line_pdf_pages": [
+        62,
+        63
+      ]
+    },
+    {
+      "index": 5,
+      "source": "code/validate_long_2d.py",
+      "appendix_copy": "code/validate_long_2d.py",
+      "language": "Python",
+      "source_sha256": "d66cdde8bf216c97002bf542a2a311133059f50cbccd0af5679cdd85879f6c04",
+      "appendix_sha256": "3a822b2dcf6f0828d3a5d7ab4913785a90131f1bdca7808f4618ee3ec6a2cc68",
+      "source_lines": 104,
+      "filename_comment": "# File: code/validate_long_2d.py",
+      "first_source_line": "\"\"\"Full-duration axisymmetric validation with matched 1D grid and time step.",
+      "last_source_line": "    sys.stdout.reconfigure(encoding='utf-8');run()",
+      "full_source_identical": true,
+      "syntax_check": "Python AST parse and compile passed; not executed",
+      "latex_listing": {
+        "path": "code/validate_long_2d.py",
+        "options": "language={Python}",
+        "start_label": 5,
+        "end_label": 5
+      },
+      "pdf_first_page": 63,
+      "pdf_last_page": 65,
+      "filename_comment_pdf_pages": [
+        63
+      ],
+      "first_source_line_pdf_pages": [
+        63
+      ],
+      "last_source_line_pdf_pages": [
+        65
+      ]
+    },
+    {
+      "index": 6,
+      "source": "code/verify_revision.py",
+      "appendix_copy": "code/verify_revision.py",
+      "language": "Python",
+      "source_sha256": "ad02e1d84b97fa7fb702d3eaae3f1616fe069bc36a72b0cefaea565b1298d4d6",
+      "appendix_sha256": "1994f3b2cd59ad2de46cca275a177c41784bca65a4768d39ad98a0a741ffe364",
+      "source_lines": 58,
+      "filename_comment": "# File: code/verify_revision.py",
+      "first_source_line": "\"\"\"Check trajectory identity, refinement, closed-system invariance and balances.",
+      "last_source_line": "if __name__=='__main__':run()",
+      "full_source_identical": true,
+      "syntax_check": "Python AST parse and compile passed; not executed",
+      "latex_listing": {
+        "path": "code/verify_revision.py",
+        "options": "language={Python}",
+        "start_label": 6,
+        "end_label": 6
+      },
+      "pdf_first_page": 65,
+      "pdf_last_page": 67,
+      "filename_comment_pdf_pages": [
+        65
+      ],
+      "first_source_line_pdf_pages": [
+        65
+      ],
+      "last_source_line_pdf_pages": [
+        67
+      ]
+    },
+    {
+      "index": 7,
+      "source": "code/run_sensitivity.py",
+      "appendix_copy": "code/run_sensitivity.py",
+      "language": "Python",
+      "source_sha256": "0f500a0263edd6f9c9b8f9b6c55e9f248493ec9b777b3bd6f416b59ed6e6dd58",
+      "appendix_sha256": "45ff04ffd9d702cca1e46ff232d3ea5fa3c80b6d989b8cd887b1bf44723bdcac",
+      "source_lines": 81,
+      "filename_comment": "# File: code/run_sensitivity.py",
+      "first_source_line": "\"\"\"Boundary-condition sensitivity for the Q3 and Q4 drying times.\"\"\"",
+      "last_source_line": "    run()",
+      "full_source_identical": true,
+      "syntax_check": "Python AST parse and compile passed; not executed",
+      "latex_listing": {
+        "path": "code/run_sensitivity.py",
+        "options": "language={Python}",
+        "start_label": 7,
+        "end_label": 7
+      },
+      "pdf_first_page": 67,
+      "pdf_last_page": 69,
+      "filename_comment_pdf_pages": [
+        67
+      ],
+      "first_source_line_pdf_pages": [
+        67
+      ],
+      "last_source_line_pdf_pages": [
+        67,
+        69
+      ]
+    },
+    {
+      "index": 8,
+      "source": "code/run_q4_counterfactual.py",
+      "appendix_copy": "code/run_q4_counterfactual.py",
+      "language": "Python",
+      "source_sha256": "e5027c493896dbfaa5e7cd11b9a2996107f607c819d4a183347bf847ed2cc2ae",
+      "appendix_sha256": "b46820355ffe9f0714bccf1c52f04a7c6ef451f36bf5fe9ceffb93fca2690882",
+      "source_lines": 47,
+      "filename_comment": "# File: code/run_q4_counterfactual.py",
+      "first_source_line": "\"\"\"Counterfactual Q4 run using Appendix-4 properties but a fixed radius.\"\"\"",
+      "last_source_line": "    main()",
+      "full_source_identical": true,
+      "syntax_check": "Python AST parse and compile passed; not executed",
+      "latex_listing": {
+        "path": "code/run_q4_counterfactual.py",
+        "options": "language={Python}",
+        "start_label": 8,
+        "end_label": 8
+      },
+      "pdf_first_page": 69,
+      "pdf_last_page": 70,
+      "filename_comment_pdf_pages": [
+        69
+      ],
+      "first_source_line_pdf_pages": [
+        69
+      ],
+      "last_source_line_pdf_pages": [
+        69,
+        70
+      ]
+    },
+    {
+      "index": 9,
+      "source": "code/validate_moving_mesh.py",
+      "appendix_copy": "code/validate_moving_mesh.py",
+      "language": "Python",
+      "source_sha256": "7a9dccc4ac558daff24cd3f5051cc848880380381e8a6dd191dadb7632b5e31d",
+      "appendix_sha256": "706a867aeb40f6725a957ae5273504bb3fabe20a6647dfcaecd94c2f4f66ba7a",
+      "source_lines": 339,
+      "filename_comment": "# File: code/validate_moving_mesh.py",
+      "first_source_line": "\"\"\"Independent physical-radius moving-control-volume validation of Q4.",
+      "last_source_line": "    run()",
+      "full_source_identical": true,
+      "syntax_check": "Python AST parse and compile passed; not executed",
+      "latex_listing": {
+        "path": "code/validate_moving_mesh.py",
+        "options": "language={Python}",
+        "start_label": 9,
+        "end_label": 9
+      },
+      "pdf_first_page": 70,
+      "pdf_last_page": 78,
+      "filename_comment_pdf_pages": [
+        70
+      ],
+      "first_source_line_pdf_pages": [
+        70
+      ],
+      "last_source_line_pdf_pages": [
+        77,
+        78
+      ]
+    },
+    {
+      "index": 10,
+      "source": "code/check_moving_mesh_delivery.py",
+      "appendix_copy": "code/check_moving_mesh_delivery.py",
+      "language": "Python",
+      "source_sha256": "50c08bdd9e2a933e8f83c38c9bb9844b8b1a4170ef346d6cf7fc50924430faef",
+      "appendix_sha256": "9ac4f05602606f41f358b5a6ab9ac4f0383ebcfbc01ed796fb5a73867853d129",
+      "source_lines": 259,
+      "filename_comment": "# File: code/check_moving_mesh_delivery.py",
+      "first_source_line": "\"\"\"Verify saved Q4 results and the paper without integrating or packaging by default.",
+      "last_source_line": "        sys.exit(1)",
+      "full_source_identical": true,
+      "syntax_check": "Python AST parse and compile passed; not executed",
+      "latex_listing": {
+        "path": "code/check_moving_mesh_delivery.py",
+        "options": "language={Python}",
+        "start_label": 10,
+        "end_label": 10
+      },
+      "pdf_first_page": 78,
+      "pdf_last_page": 84,
+      "filename_comment_pdf_pages": [
+        78
+      ],
+      "first_source_line_pdf_pages": [
+        78
+      ],
+      "last_source_line_pdf_pages": [
+        84
+      ]
+    },
+    {
+      "index": 11,
+      "source": "code/figure_style.py",
+      "appendix_copy": "code/figure_style.py",
+      "language": "Python",
+      "source_sha256": "cf2ede75b1496617f56f19e309cc02f40fcdff7854e263824be655dc982263d9",
+      "appendix_sha256": "64386b8a4ff0a4031812dd88b8fd163c4991ac555a283bc358950dd2f8c7e91c",
+      "source_lines": 79,
+      "filename_comment": "# File: code/figure_style.py",
+      "first_source_line": "\"\"\"Shared, reproducible typography for all manuscript data figures.\"\"\"",
+      "last_source_line": "        logger.removeHandler(guard)",
+      "full_source_identical": true,
+      "syntax_check": "Python AST parse and compile passed; not executed",
+      "latex_listing": {
+        "path": "code/figure_style.py",
+        "options": "language={Python}",
+        "start_label": 11,
+        "end_label": 11
+      },
+      "pdf_first_page": 84,
+      "pdf_last_page": 86,
+      "filename_comment_pdf_pages": [
+        84
+      ],
+      "first_source_line_pdf_pages": [
+        84
+      ],
+      "last_source_line_pdf_pages": [
+        86
+      ]
+    },
+    {
+      "index": 12,
+      "source": "code/make_figures.py",
+      "appendix_copy": "code/make_figures.py",
+      "language": "Python",
+      "source_sha256": "59c66fb1bb0a441b7eb5f40f560c6e6720351c72f8c481fd7ead185a6fd37c9d",
+      "appendix_sha256": "c57cd2bb45dee64fdbc97b5b7bb7de165128df740b8d0c534cc1682ffda0469e",
+      "source_lines": 384,
+      "filename_comment": "# File: code/make_figures.py",
+      "first_source_line": "# Academic Figure Skill Asset Confirmation (verified against assets/figures/)",
+      "last_source_line": "    main()",
+      "full_source_identical": true,
+      "syntax_check": "Python AST parse and compile passed; not executed",
+      "latex_listing": {
+        "path": "code/make_figures.py",
+        "options": "language={Python}",
+        "start_label": 12,
+        "end_label": 12
+      },
+      "pdf_first_page": 86,
+      "pdf_last_page": 94,
+      "filename_comment_pdf_pages": [
+        86
+      ],
+      "first_source_line_pdf_pages": [
+        86,
+        94
+      ],
+      "last_source_line_pdf_pages": [
+        94
+      ]
+    },
+    {
+      "index": 13,
+      "source": "code/make_additional_figures.py",
+      "appendix_copy": "code/make_additional_figures.py",
+      "language": "Python",
+      "source_sha256": "36ec91a92fdb92856ed3898bb28975b3d9af102b93de7763824a76a1d5cd0437",
+      "appendix_sha256": "fab91c953257c1b86c3dbc1ffec11ce5dc2d63d6de0cc3e0bbc40f78b0c02fef",
+      "source_lines": 271,
+      "filename_comment": "# File: code/make_additional_figures.py",
+      "first_source_line": "# Academic Figure Skill Asset Confirmation (verified against assets/figures/)",
+      "last_source_line": "    main()",
+      "full_source_identical": true,
+      "syntax_check": "Python AST parse and compile passed; not executed",
+      "latex_listing": {
+        "path": "code/make_additional_figures.py",
+        "options": "language={Python}",
+        "start_label": 13,
+        "end_label": 13
+      },
+      "pdf_first_page": 94,
+      "pdf_last_page": 101,
+      "filename_comment_pdf_pages": [
+        94
+      ],
+      "first_source_line_pdf_pages": [
+        94
+      ],
+      "last_source_line_pdf_pages": [
+        94,
+        100,
+        101
+      ]
+    },
+    {
+      "index": 14,
+      "source": "code/plot_moving_mesh_validation.py",
+      "appendix_copy": "code/plot_moving_mesh_validation.py",
+      "language": "Python",
+      "source_sha256": "4ca41233e79906e5f6e77d17d99ecce94d3df3f8431fd843b826eb0338b1d537",
+      "appendix_sha256": "f0e47ee939623b93a6ef89b9ed54e9c9ed0e1e3cee7b236d071d9724f743fde5",
+      "source_lines": 100,
+      "filename_comment": "# File: code/plot_moving_mesh_validation.py",
+      "first_source_line": "\"\"\"Render real Q4 validation data and generate the manuscript result table.",
+      "last_source_line": "    main()",
+      "full_source_identical": true,
+      "syntax_check": "Python AST parse and compile passed; not executed",
+      "latex_listing": {
+        "path": "code/plot_moving_mesh_validation.py",
+        "options": "language={Python}",
+        "start_label": 14,
+        "end_label": 14
+      },
+      "pdf_first_page": 101,
+      "pdf_last_page": 103,
+      "filename_comment_pdf_pages": [
+        101
+      ],
+      "first_source_line_pdf_pages": [
+        101
+      ],
+      "last_source_line_pdf_pages": [
+        101,
+        102,
+        103
+      ]
+    },
+    {
+      "index": 15,
+      "source": "code/make_geometry_diagram.py",
+      "appendix_copy": "code/make_geometry_diagram.py",
+      "language": "Python",
+      "source_sha256": "7651dd53ba85daf181776f8bb972ba3f24b487a209bc736af8a459a66bca7e3b",
+      "appendix_sha256": "d17f74bee6335240b2a2e29dfdb5993295165da1fa457190057293871488ee06",
+      "source_lines": 107,
+      "filename_comment": "# File: code/make_geometry_diagram.py",
+      "first_source_line": "\"\"\"Build an editable DrawIO cylinder / cylindrical-coordinate schematic.\"\"\"",
+      "last_source_line": "print(out)",
+      "full_source_identical": true,
+      "syntax_check": "Python AST parse and compile passed; not executed",
+      "latex_listing": {
+        "path": "code/make_geometry_diagram.py",
+        "options": "language={Python}",
+        "start_label": 15,
+        "end_label": 15
+      },
+      "pdf_first_page": 103,
+      "pdf_last_page": 106,
+      "filename_comment_pdf_pages": [
+        103
+      ],
+      "first_source_line_pdf_pages": [
+        103
+      ],
+      "last_source_line_pdf_pages": [
+        106
+      ]
+    },
+    {
+      "index": 16,
+      "source": "code/run_figures.sh",
+      "appendix_copy": "code/run_figures.sh",
+      "language": "Bash",
+      "source_sha256": "2398c2de5f944e39595a29522cdd21d89686c788e3128954c3e38dcd1e2b3d9a",
+      "appendix_sha256": "b21381f199efca35c21d8e7e5c4a84b37884ca61c8fde297c847c9a8826ade7a",
+      "source_lines": 22,
+      "filename_comment": "# File: code/run_figures.sh",
+      "first_source_line": "#!/bin/zsh",
+      "last_source_line": "fi",
+      "full_source_identical": true,
+      "syntax_check": "Not executed or compiled; exact source copy verified",
+      "latex_listing": {
+        "path": "code/run_figures.sh",
+        "options": "language={bash}",
+        "start_label": 16,
+        "end_label": 16
+      },
+      "pdf_first_page": 106,
+      "pdf_last_page": 106,
+      "filename_comment_pdf_pages": [
+        106
+      ],
+      "first_source_line_pdf_pages": [
+        106
+      ],
+      "last_source_line_pdf_pages": [
+        106
+      ]
+    },
+    {
+      "index": 17,
+      "source": "inspect_inputs.py",
+      "appendix_copy": "code/inspect_inputs.py",
+      "language": "Python",
+      "source_sha256": "af854b66192173fe8d9afc2da8067f49c024a6ca5897986425799ab48fb2c740",
+      "appendix_sha256": "4c3c4bacf5dc386f0dc6d840884117199bbc4a9be0ccb046979e15afaa9ef691",
+      "source_lines": 28,
+      "filename_comment": "# File: inspect_inputs.py",
+      "first_source_line": "from pathlib import Path",
+      "last_source_line": "        preview_workbook(workbook_path)",
+      "full_source_identical": true,
+      "syntax_check": "Python AST parse and compile passed; not executed",
+      "latex_listing": {
+        "path": "code/inspect_inputs.py",
+        "options": "language={Python}",
+        "start_label": 17,
+        "end_label": 17
+      },
+      "pdf_first_page": 106,
+      "pdf_last_page": 107,
+      "filename_comment_pdf_pages": [
+        106
+      ],
+      "first_source_line_pdf_pages": [
+        106,
+        107
+      ],
+      "last_source_line_pdf_pages": [
+        107
+      ]
+    },
+    {
+      "index": 18,
+      "source": "comsol_q1/prepare_inputs.py",
+      "appendix_copy": "code/comsol_q1/prepare_inputs.py",
+      "language": "Python",
+      "source_sha256": "cf5d93819cfe820acca8f91af1d36ae9779e0299d106ca97009ed66005cbce40",
+      "appendix_sha256": "e843b8a158f609aae24f6bb560fc72ae1217850e7358680cbee1ea8a925b87be",
+      "source_lines": 96,
+      "filename_comment": "# File: comsol_q1/prepare_inputs.py",
+      "first_source_line": "\"\"\"Prepare COMSOL boundary data and compare its output with the Q1 baseline.\"\"\"",
+      "last_source_line": "        compare(Path(sys.argv[1]))",
+      "full_source_identical": true,
+      "syntax_check": "Python AST parse and compile passed; not executed",
+      "latex_listing": {
+        "path": "code/comsol_q1/prepare_inputs.py",
+        "options": "language={Python}",
+        "start_label": 18,
+        "end_label": 18
+      },
+      "pdf_first_page": 107,
+      "pdf_last_page": 109,
+      "filename_comment_pdf_pages": [
+        107
+      ],
+      "first_source_line_pdf_pages": [
+        107
+      ],
+      "last_source_line_pdf_pages": [
+        109
+      ]
+    },
+    {
+      "index": 19,
+      "source": "comsol_q1/Q1Automation.java",
+      "appendix_copy": "code/comsol_q1/Q1Automation.java",
+      "language": "Java",
+      "source_sha256": "49fa28f8ac6b2f67753d33700349921360967b95bf170a9c8804d327254893f7",
+      "appendix_sha256": "739b5cc433481c4a7185a28cf23e66be52511db1fe358ef1d884e6166e84e1fd",
+      "source_lines": 140,
+      "filename_comment": "// File: comsol_q1/Q1Automation.java",
+      "first_source_line": "import com.comsol.model.*;",
+      "last_source_line": "}",
+      "full_source_identical": true,
+      "syntax_check": "Not executed or compiled; exact source copy verified",
+      "latex_listing": {
+        "path": "code/comsol_q1/Q1Automation.java",
+        "options": "language={Java}",
+        "start_label": 19,
+        "end_label": 19
+      },
+      "pdf_first_page": 109,
+      "pdf_last_page": 113,
+      "filename_comment_pdf_pages": [
+        110
+      ],
+      "first_source_line_pdf_pages": [
+        110
+      ],
+      "last_source_line_pdf_pages": [
+        109,
+        110,
+        111,
+        112,
+        113
+      ]
+    },
+    {
+      "index": 20,
+      "source": "comsol_q1/run_comsol_q1.ps1",
+      "appendix_copy": "code/comsol_q1/run_comsol_q1.ps1",
+      "language": "PowerShell",
+      "source_sha256": "3f35529381ab14cd542c399abf28bb2f7007c9c815d10584c32077dc81b7c91d",
+      "appendix_sha256": "232282aa3b921088eb3aca60bd3d325b35b8d762892dc0fcd02bba8169e7eb14",
+      "source_lines": 17,
+      "filename_comment": "# File: comsol_q1/run_comsol_q1.ps1",
+      "first_source_line": "$ErrorActionPreference = 'Stop'",
+      "last_source_line": "Write-Host 'Q1 COMSOL simulation and comparison completed.'",
+      "full_source_identical": true,
+      "syntax_check": "Not executed or compiled; exact source copy verified",
+      "latex_listing": {
+        "path": "code/comsol_q1/run_comsol_q1.ps1",
+        "options": "language={}",
+        "start_label": 20,
+        "end_label": 20
+      },
+      "pdf_first_page": 113,
+      "pdf_last_page": 113,
+      "filename_comment_pdf_pages": [
+        113
+      ],
+      "first_source_line_pdf_pages": [
+        113
+      ],
+      "last_source_line_pdf_pages": [
+        113
+      ]
+    },
+    {
+      "index": 21,
+      "source": "comsol_q4/prepare_q4_inputs.py",
+      "appendix_copy": "code/comsol_q4/prepare_q4_inputs.py",
+      "language": "Python",
+      "source_sha256": "6d3e9f3f28bcf17dbf809321d51acfee9c6da18c9ad34cb5f89898b277fef967",
+      "appendix_sha256": "e49b82c2b066f4113acb360c63236973ef3b2089d711edd3d0debe42fc134781",
+      "source_lines": 57,
+      "filename_comment": "# File: comsol_q4/prepare_q4_inputs.py",
+      "first_source_line": "from pathlib import Path",
+      "last_source_line": "    main()",
+      "full_source_identical": true,
+      "syntax_check": "Python AST parse and compile passed; not executed",
+      "latex_listing": {
+        "path": "code/comsol_q4/prepare_q4_inputs.py",
+        "options": "language={Python}",
+        "start_label": 21,
+        "end_label": 21
+      },
+      "pdf_first_page": 113,
+      "pdf_last_page": 115,
+      "filename_comment_pdf_pages": [
+        113
+      ],
+      "first_source_line_pdf_pages": [
+        113
+      ],
+      "last_source_line_pdf_pages": [
+        114,
+        115
+      ]
+    },
+    {
+      "index": 22,
+      "source": "comsol_q4/Q4Automation.java",
+      "appendix_copy": "code/comsol_q4/Q4Automation.java",
+      "language": "Java",
+      "source_sha256": "6ac156d92df77aeeb025fb3db70ab109513d049a0eb8144ebf05f36917444f6b",
+      "appendix_sha256": "fd9438b4296b35f60313b7d098c01f03405f460fcae2b8e43c9a95c8100315ed",
+      "source_lines": 121,
+      "filename_comment": "// File: comsol_q4/Q4Automation.java",
+      "first_source_line": "import com.comsol.model.*;",
+      "last_source_line": "}",
+      "full_source_identical": true,
+      "syntax_check": "Not executed or compiled; exact source copy verified",
+      "latex_listing": {
+        "path": "code/comsol_q4/Q4Automation.java",
+        "options": "language={Java}",
+        "start_label": 22,
+        "end_label": 22
+      },
+      "pdf_first_page": 115,
+      "pdf_last_page": 117,
+      "filename_comment_pdf_pages": [
+        115
+      ],
+      "first_source_line_pdf_pages": [
+        115
+      ],
+      "last_source_line_pdf_pages": [
+        115,
+        116,
+        117
+      ]
+    },
+    {
+      "index": 23,
+      "source": "comsol_q4/analyze_q4_comsol.py",
+      "appendix_copy": "code/comsol_q4/analyze_q4_comsol.py",
+      "language": "Python",
+      "source_sha256": "11cf84b3eea1a5f87afcbf7ec7060bd0bcc5c0595324a571851ac3aab75b9f46",
+      "appendix_sha256": "e42f3a9ca821752682b8f62b07f653218da1e498e16ffaf2e31ac516de215f7a",
+      "source_lines": 128,
+      "filename_comment": "# File: comsol_q4/analyze_q4_comsol.py",
+      "first_source_line": "from __future__ import annotations",
+      "last_source_line": "    main()",
+      "full_source_identical": true,
+      "syntax_check": "Python AST parse and compile passed; not executed",
+      "latex_listing": {
+        "path": "code/comsol_q4/analyze_q4_comsol.py",
+        "options": "language={Python}",
+        "start_label": 23,
+        "end_label": 23
+      },
+      "pdf_first_page": 118,
+      "pdf_last_page": 120,
+      "filename_comment_pdf_pages": [
+        118
+      ],
+      "first_source_line_pdf_pages": [
+        118
+      ],
+      "last_source_line_pdf_pages": [
+        119,
+        120
+      ]
+    },
+    {
+      "index": 24,
+      "source": "comsol_q4/plot_q4_physical.py",
+      "appendix_copy": "code/comsol_q4/plot_q4_physical.py",
+      "language": "Python",
+      "source_sha256": "72aa3646060e2331f37a09148aec41818bd421768c982b7bb1e0e4fa69257290",
+      "appendix_sha256": "fa47efae938a45ee4a607e2c8340897041849eadc97d14eee7d4dd569b5c0ad9",
+      "source_lines": 239,
+      "filename_comment": "# File: comsol_q4/plot_q4_physical.py",
+      "first_source_line": "\"\"\"Plot saved COMSOL fields with the shared manuscript typography.\"\"\"",
+      "last_source_line": "    main()",
+      "full_source_identical": true,
+      "syntax_check": "Python AST parse and compile passed; not executed",
+      "latex_listing": {
+        "path": "code/comsol_q4/plot_q4_physical.py",
+        "options": "language={Python}",
+        "start_label": 24,
+        "end_label": 24
+      },
+      "pdf_first_page": 121,
+      "pdf_last_page": 126,
+      "filename_comment_pdf_pages": [
+        121
+      ],
+      "first_source_line_pdf_pages": [
+        121
+      ],
+      "last_source_line_pdf_pages": [
+        125,
+        126
+      ]
+    },
+    {
+      "index": 25,
+      "source": "comsol_q4/near_surface_check/analyze_refinement.py",
+      "appendix_copy": "code/comsol_q4/near_surface_check/analyze_refinement.py",
+      "language": "Python",
+      "source_sha256": "f5ebe4c4fd798df97239feda3ad4627586eb65a81cc3db28b1d33d9cad1f61ae",
+      "appendix_sha256": "61c5ed6a82456057b411f34d17e3d4376e41b82ad4ac26a50ddb2893eb283ee4",
+      "source_lines": 50,
+      "filename_comment": "# File: comsol_q4/near_surface_check/analyze_refinement.py",
+      "first_source_line": "\"\"\"Read-only comparison of independent COMSOL runs against the saved FVM field.\"\"\"",
+      "last_source_line": "print(json.dumps(comparisons,indent=2));print('protected',protected)",
+      "full_source_identical": true,
+      "syntax_check": "Python AST parse and compile passed; not executed",
+      "latex_listing": {
+        "path": "code/comsol_q4/near_surface_check/analyze_refinement.py",
+        "options": "language={Python}",
+        "start_label": 25,
+        "end_label": 25
+      },
+      "pdf_first_page": 126,
+      "pdf_last_page": 128,
+      "filename_comment_pdf_pages": [
+        126
+      ],
+      "first_source_line_pdf_pages": [
+        126
+      ],
+      "last_source_line_pdf_pages": [
+        128
+      ]
+    },
+    {
+      "index": 26,
+      "source": "comsol_q4/near_surface_check/write_report.py",
+      "appendix_copy": "code/comsol_q4/near_surface_check/write_report.py",
+      "language": "Python",
+      "source_sha256": "275949bc7ebce584049b80f599ade8a90353fc7ea63b52e96d4d701cc6986710",
+      "appendix_sha256": "d95049e59069804612838a5ffaf86e341d0b1374110e305bb17f3999372bdcc6",
+      "source_lines": 36,
+      "filename_comment": "# File: comsol_q4/near_surface_check/write_report.py",
+      "first_source_line": "from pathlib import Path",
+      "last_source_line": "(HERE/'REPORT.md').write_text('\\n'.join(lines)+'\\n',encoding='utf-8')",
+      "full_source_identical": true,
+      "syntax_check": "Python AST parse and compile passed; not executed",
+      "latex_listing": {
+        "path": "code/comsol_q4/near_surface_check/write_report.py",
+        "options": "language={Python}",
+        "start_label": 26,
+        "end_label": 26
+      },
+      "pdf_first_page": 128,
+      "pdf_last_page": 129,
+      "filename_comment_pdf_pages": [
+        128
+      ],
+      "first_source_line_pdf_pages": [
+        128
+      ],
+      "last_source_line_pdf_pages": [
+        129
+      ]
+    },
+    {
+      "index": 27,
+      "source": "comsol_q4/near_surface_check/run_cases.ps1",
+      "appendix_copy": "code/comsol_q4/near_surface_check/run_cases.ps1",
+      "language": "PowerShell",
+      "source_sha256": "6aee9b33db2f009bb57e433af50da24a3ede1687b831fce7a725dd7155c02c89",
+      "appendix_sha256": "c4d93456a880a8e96a655a2939fe45d6f17571ac47a0ac8f35523b27109fa325",
+      "source_lines": 15,
+      "filename_comment": "# File: comsol_q4/near_surface_check/run_cases.ps1",
+      "first_source_line": "$ErrorActionPreference = 'Stop'",
+      "last_source_line": "& 'D:\\Anaconda\\python.exe' -B (Join-Path $experimentRoot 'write_report.py')",
+      "full_source_identical": true,
+      "syntax_check": "Not executed or compiled; exact source copy verified",
+      "latex_listing": {
+        "path": "code/comsol_q4/near_surface_check/run_cases.ps1",
+        "options": "language={}",
+        "start_label": 27,
+        "end_label": 27
+      },
+      "pdf_first_page": 129,
+      "pdf_last_page": 129,
+      "filename_comment_pdf_pages": [
+        129
+      ],
+      "first_source_line_pdf_pages": [
+        129
+      ],
+      "last_source_line_pdf_pages": [
+        129
+      ]
+    },
+    {
+      "index": 28,
+      "source": "comsol_q4/near_surface_check/original_dense/Q4Automation.java",
+      "appendix_copy": "code/comsol_q4/near_surface_check/original_dense/Q4Automation.java",
+      "language": "Java",
+      "source_sha256": "0ade50df31ca02637b907e04874b9f338d8946711346d10d84bb984767119980",
+      "appendix_sha256": "f3bb2da05f0c2248e47df3e5d5874dcc7d09fae22e29a4f4abfea65679787481",
+      "source_lines": 121,
+      "filename_comment": "// File: comsol_q4/near_surface_check/original_dense/Q4Automation.java",
+      "first_source_line": "import com.comsol.model.*;",
+      "last_source_line": "}",
+      "full_source_identical": true,
+      "syntax_check": "Not executed or compiled; exact source copy verified",
+      "latex_listing": {
+        "path": "code/comsol_q4/near_surface_check/original_dense/Q4Automation.java",
+        "options": "language={Java}",
+        "start_label": 28,
+        "end_label": 28
+      },
+      "pdf_first_page": 129,
+      "pdf_last_page": 132,
+      "filename_comment_pdf_pages": [
+        129
+      ],
+      "first_source_line_pdf_pages": [
+        129,
+        132
+      ],
+      "last_source_line_pdf_pages": [
+        129,
+        130,
+        131,
+        132
+      ]
+    },
+    {
+      "index": 29,
+      "source": "comsol_q4/near_surface_check/original_tight/Q4Automation.java",
+      "appendix_copy": "code/comsol_q4/near_surface_check/original_tight/Q4Automation.java",
+      "language": "Java",
+      "source_sha256": "32af1ebe7ab7781a36ac5ad85c8f6240c471626c847054452e4aeb31ebd21b15",
+      "appendix_sha256": "3d8f8c00c8b475ab6aac927b493421e5c21f3030711fb1077bac47afa2e319cb",
+      "source_lines": 121,
+      "filename_comment": "// File: comsol_q4/near_surface_check/original_tight/Q4Automation.java",
+      "first_source_line": "import com.comsol.model.*;",
+      "last_source_line": "}",
+      "full_source_identical": true,
+      "syntax_check": "Not executed or compiled; exact source copy verified",
+      "latex_listing": {
+        "path": "code/comsol_q4/near_surface_check/original_tight/Q4Automation.java",
+        "options": "language={Java}",
+        "start_label": 29,
+        "end_label": 29
+      },
+      "pdf_first_page": 132,
+      "pdf_last_page": 135,
+      "filename_comment_pdf_pages": [
+        132
+      ],
+      "first_source_line_pdf_pages": [
+        132,
+        135
+      ],
+      "last_source_line_pdf_pages": [
+        132,
+        133,
+        134,
+        135
+      ]
+    },
+    {
+      "index": 30,
+      "source": "comsol_q4/near_surface_check/graded80/Q4Automation.java",
+      "appendix_copy": "code/comsol_q4/near_surface_check/graded80/Q4Automation.java",
+      "language": "Java",
+      "source_sha256": "92e7c61140f037916bc6c64ce771c2f8b9d36ed61057e6f6cfe894f0e9892c7d",
+      "appendix_sha256": "f9840709e0b45013f5e0b369b209e99923f2023d8df2a4db9c6b7890ff6115fa",
+      "source_lines": 129,
+      "filename_comment": "// File: comsol_q4/near_surface_check/graded80/Q4Automation.java",
+      "first_source_line": "import com.comsol.model.*;",
+      "last_source_line": "}",
+      "full_source_identical": true,
+      "syntax_check": "Not executed or compiled; exact source copy verified",
+      "latex_listing": {
+        "path": "code/comsol_q4/near_surface_check/graded80/Q4Automation.java",
+        "options": "language={Java}",
+        "start_label": 30,
+        "end_label": 30
+      },
+      "pdf_first_page": 135,
+      "pdf_last_page": 138,
+      "filename_comment_pdf_pages": [
+        135
+      ],
+      "first_source_line_pdf_pages": [
+        135,
+        138
+      ],
+      "last_source_line_pdf_pages": [
+        135,
+        136,
+        137,
+        138
+      ]
+    },
+    {
+      "index": 31,
+      "source": "comsol_q4/near_surface_check/graded160/Q4Automation.java",
+      "appendix_copy": "code/comsol_q4/near_surface_check/graded160/Q4Automation.java",
+      "language": "Java",
+      "source_sha256": "3062b47686abd678fa549da8cc983d1fd2641d9b93b742ed623b66ff2eb9e613",
+      "appendix_sha256": "db3bca1adb4dc2f3571ed436bad897e17f361645d37c69f069ed5b9d168ef68f",
+      "source_lines": 129,
+      "filename_comment": "// File: comsol_q4/near_surface_check/graded160/Q4Automation.java",
+      "first_source_line": "import com.comsol.model.*;",
+      "last_source_line": "}",
+      "full_source_identical": true,
+      "syntax_check": "Not executed or compiled; exact source copy verified",
+      "latex_listing": {
+        "path": "code/comsol_q4/near_surface_check/graded160/Q4Automation.java",
+        "options": "language={Java}",
+        "start_label": 31,
+        "end_label": 31
+      },
+      "pdf_first_page": 138,
+      "pdf_last_page": 141,
+      "filename_comment_pdf_pages": [
+        138
+      ],
+      "first_source_line_pdf_pages": [
+        138
+      ],
+      "last_source_line_pdf_pages": [
+        138,
+        139,
+        140,
+        141
+      ]
+    },
+    {
+      "index": 32,
+      "source": "comsol_q4/near_surface_check/graded320/Q4Automation.java",
+      "appendix_copy": "code/comsol_q4/near_surface_check/graded320/Q4Automation.java",
+      "language": "Java",
+      "source_sha256": "4bec91c7fdaaaf08bb3ea7bd02da219f8538e9997dd7d858556f3651128e1311",
+      "appendix_sha256": "16a5c8e5e371ee054eae95af1ccbee9259450b5d017c1538585301e3defc7d25",
+      "source_lines": 129,
+      "filename_comment": "// File: comsol_q4/near_surface_check/graded320/Q4Automation.java",
+      "first_source_line": "import com.comsol.model.*;",
+      "last_source_line": "}",
+      "full_source_identical": true,
+      "syntax_check": "Not executed or compiled; exact source copy verified",
+      "latex_listing": {
+        "path": "code/comsol_q4/near_surface_check/graded320/Q4Automation.java",
+        "options": "language={Java}",
+        "start_label": 32,
+        "end_label": 32
+      },
+      "pdf_first_page": 142,
+      "pdf_last_page": 145,
+      "filename_comment_pdf_pages": [
+        142
+      ],
+      "first_source_line_pdf_pages": [
+        142,
+        145
+      ],
+      "last_source_line_pdf_pages": [
+        142,
+        143,
+        144,
+        145
+      ]
+    },
+    {
+      "index": 33,
+      "source": "comsol_q4/near_surface_check/graded320_tight/Q4Automation.java",
+      "appendix_copy": "code/comsol_q4/near_surface_check/graded320_tight/Q4Automation.java",
+      "language": "Java",
+      "source_sha256": "4e0ed3c5fccff48d0f750b0534fdfce7fcf0417929544ea56cebf9fa6c21bd83",
+      "appendix_sha256": "6c203f60688281af544d428d2996361fe2e00c2aa75fbc8a789bc6179e4aa0c4",
+      "source_lines": 129,
+      "filename_comment": "// File: comsol_q4/near_surface_check/graded320_tight/Q4Automation.java",
+      "first_source_line": "import com.comsol.model.*;",
+      "last_source_line": "}",
+      "full_source_identical": true,
+      "syntax_check": "Not executed or compiled; exact source copy verified",
+      "latex_listing": {
+        "path": "code/comsol_q4/near_surface_check/graded320_tight/Q4Automation.java",
+        "options": "language={Java}",
+        "start_label": 33,
+        "end_label": 33
+      },
+      "pdf_first_page": 145,
+      "pdf_last_page": 148,
+      "filename_comment_pdf_pages": [
+        145
+      ],
+      "first_source_line_pdf_pages": [
+        145
+      ],
+      "last_source_line_pdf_pages": [
+        145,
+        146,
+        147,
+        148
+      ]
+    }
+  ],
+  "body_page_checks": [
+    {
+      "page": 1,
+      "exact_text_equal": false,
+      "normalized_text_equal": true,
+      "line_text_sequence_equal": false,
+      "max_line_bbox_displacement_pt": null,
+      "line_layout_tolerance_pt": 2.0,
+      "page_size_equal": true,
+      "pixels_identical": false,
+      "actual_render_sha256": "db59c389848bbcb448210ed371921ba67fa600addb341e6d9efafb99d7cc1d6a",
+      "baseline_render_sha256": "f3146e20c615cfd858d7f159699e0951b5c7e584d4de2ca008809f3105ebf3ca",
+      "changed_pixel_fraction": 0.21434663393326847,
+      "mean_absolute_channel_difference_255": 13.73263960847455,
+      "line_reflow_details": [
+        {
+          "kind": "replace",
+          "actual_line_numbers": [
+            31,
+            33
+          ],
+          "baseline_line_numbers": [
+            31,
+            33
+          ],
+          "actual_lines": [
+            {
+              "text": "为2.61×10-13kg/kg,干燥时间差为1.07×10-7s;COMSOL有限元复核在六个采",
+              "bbox": [
+                70.86614990234375,
+                681.3172607421875,
+                524.4094848632812,
+                697.6787719726562
+              ]
+            },
+            {
+              "text": "样时刻的最大水分差为4.54×10-5kg/kg。在收缩轨迹不变的所设温度与环境水分扰",
+              "bbox": [
+                70.86618041992188,
+                701.183837890625,
+                524.40576171875,
+                717.5453491210938
+              ]
+            },
+            {
+              "text": "动试验中,干燥时长对温度的响应更明显。模型可确定圆柱药材的干燥终点。",
+              "bbox": [
+                70.8662109375,
+                723.9437255859375,
+                479.03558349609375,
+                736.9091186523438
+              ]
+            }
+          ],
+          "baseline_lines": [
+            {
+              "text": "为2.61×10-13kg/kg,干燥时间差为1.07×10-7s;COMSOL有限元复核在六个",
+              "bbox": [
+                70.86602783203125,
+                680.7719116210938,
+                524.399169921875,
+                697.1339111328125
+              ]
+            },
+            {
+              "text": "采样时刻的最大水分差为4.54×10-5kg/kg。在收缩轨迹不变的所设温度与环境水分",
+              "bbox": [
+                70.86602783203125,
+                700.638916015625,
+                524.4219970703125,
+                717.0009155273438
+              ]
+            },
+            {
+              "text": "扰动试验中,干燥时长对温度的响应更明显。模型可确定圆柱药材的干燥终点。",
+              "bbox": [
+                70.86605834960938,
+                723.6508178710938,
+                491.0411376953125,
+                735.6558227539062
+              ]
+            }
+          ]
+        }
+      ],
+      "bbox_difference_details": []
+    },
+    {
+      "page": 2,
+      "exact_text_equal": true,
+      "normalized_text_equal": true,
+      "line_text_sequence_equal": true,
+      "max_line_bbox_displacement_pt": 0.8116455078125,
+      "line_layout_tolerance_pt": 2.0,
+      "page_size_equal": true,
+      "pixels_identical": false,
+      "actual_render_sha256": "8496dabdf6e3fc20194dcb873a6ac649f8d7587417463771309e093b6ddd92b9",
+      "baseline_render_sha256": "f8203a75225efa9db2768e32a80fa075af0504f9326a094b99f418772193d2df",
+      "changed_pixel_fraction": 0.17087192526582606,
+      "mean_absolute_channel_difference_255": 8.30617816321
+    },
+    {
+      "page": 3,
+      "exact_text_equal": false,
+      "normalized_text_equal": true,
+      "line_text_sequence_equal": true,
+      "max_line_bbox_displacement_pt": 3.001251220703125,
+      "line_layout_tolerance_pt": 2.0,
+      "page_size_equal": true,
+      "pixels_identical": false,
+      "actual_render_sha256": "adf7589df05f06185b5e6b6ef6b3277b806f73bfb512da2fac3c7b707457fbb5",
+      "baseline_render_sha256": "c0f7bf4f96b92c8182379204c9fd6e2437354378e99b072f2bb2a81337fbd1b5",
+      "changed_pixel_fraction": 0.12031117983707695,
+      "mean_absolute_channel_difference_255": 6.177342218112835,
+      "line_reflow_details": [],
+      "bbox_difference_details": [
+        {
+          "actual_line": 7,
+          "baseline_line": 7,
+          "text": "技术路线如图1所示。",
+          "max_displacement_pt": 3.001251220703125,
+          "actual_bbox": [
+            70.86614990234375,
+            204.76658630371094,
+            187.9147491455078,
+            217.22325134277344
+          ],
+          "baseline_bbox": [
+            70.86599731445312,
+            204.2906951904297,
+            190.91600036621094,
+            217.45567321777344
+          ]
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "exact_text_equal": false,
+      "normalized_text_equal": true,
+      "line_text_sequence_equal": false,
+      "max_line_bbox_displacement_pt": null,
+      "line_layout_tolerance_pt": 2.0,
+      "page_size_equal": true,
+      "pixels_identical": false,
+      "actual_render_sha256": "b6c41fb6d32c119f56cf3bd83d9e60736db21261ea99db2990f2d4f32e85b8e0",
+      "baseline_render_sha256": "ab2c0040dcac01e7a14f27abbc230d6bd4a812c54266a8379837a55b568ed9ae",
+      "changed_pixel_fraction": 0.13853839531954915,
+      "mean_absolute_channel_difference_255": 7.020164118669196,
+      "line_reflow_details": [
+        {
+          "kind": "replace",
+          "actual_line_numbers": [
+            1,
+            2
+          ],
+          "baseline_line_numbers": [
+            1,
+            2
+          ],
+          "actual_lines": [
+            {
+              "text": "值作为事件判据;通过全过程剖面检查确定控制位置,并在阈值附近插值定位临界时",
+              "bbox": [
+                70.86614227294922,
+                73.21756744384766,
+                524.4024047851562,
+                85.22254943847656
+              ]
+            },
+            {
+              "text": "刻,区分临界等于与其后的严格低于。",
+              "bbox": [
+                70.86614227294922,
+                93.08412170410156,
+                274.9508972167969,
+                105.08910369873047
+              ]
+            }
+          ],
+          "baseline_lines": [
+            {
+              "text": "值作为事件判据;通过全过程剖面检查确定控制位置,并在阈值附近插值定位临界时刻,",
+              "bbox": [
+                70.86599731445312,
+                72.50870513916016,
+                533.0946044921875,
+                84.51370239257812
+              ]
+            },
+            {
+              "text": "区分临界等于与其后的严格低于。",
+              "bbox": [
+                70.86599731445312,
+                92.3757095336914,
+                250.94100952148438,
+                104.38070678710938
+              ]
+            }
+          ]
+        }
+      ],
+      "bbox_difference_details": []
+    },
+    {
+      "page": 5,
+      "exact_text_equal": true,
+      "normalized_text_equal": true,
+      "line_text_sequence_equal": true,
+      "max_line_bbox_displacement_pt": 1.30401611328125,
+      "line_layout_tolerance_pt": 2.0,
+      "page_size_equal": true,
+      "pixels_identical": false,
+      "actual_render_sha256": "ba07330287986e6e5d2ba0c5fd5ab4ef065e420f40f967fa7dcb0384650ba104",
+      "baseline_render_sha256": "0a19ffa9b4e4a61e1166bf02f44a4bf451b99f0842041c3c6e572f0a45e91562",
+      "changed_pixel_fraction": 0.10317994866808011,
+      "mean_absolute_channel_difference_255": 6.059525897112979
+    },
+    {
+      "page": 6,
+      "exact_text_equal": true,
+      "normalized_text_equal": true,
+      "line_text_sequence_equal": true,
+      "max_line_bbox_displacement_pt": 2.06536865234375,
+      "line_layout_tolerance_pt": 2.0,
+      "page_size_equal": true,
+      "pixels_identical": false,
+      "actual_render_sha256": "67867558978d05c7d9532c2d206a7c1da1e8227c9e351a289398cc94903fdb54",
+      "baseline_render_sha256": "d14e05e2efbeb17ea7a92be55f94feecf36e86add64dce390b0d12745eb2027b",
+      "changed_pixel_fraction": 0.10129684834765418,
+      "mean_absolute_channel_difference_255": 6.14530161488307,
+      "line_reflow_details": [],
+      "bbox_difference_details": [
+        {
+          "actual_line": 37,
+          "baseline_line": 37,
+          "text": "数据",
+          "max_displacement_pt": 2.0650634765625,
+          "actual_bbox": [
+            133.42311096191406,
+            619.6577758789062,
+            157.43309020996094,
+            631.6627807617188
+          ],
+          "baseline_bbox": [
+            133.42300415039062,
+            617.5927124023438,
+            157.43301391601562,
+            629.5977172851562
+          ]
+        },
+        {
+          "actual_line": 38,
+          "baseline_line": 38,
+          "text": "覆盖区间",
+          "max_displacement_pt": 2.0650634765625,
+          "actual_bbox": [
+            213.28604125976562,
+            619.6577758789062,
+            261.3059997558594,
+            631.6627807617188
+          ],
+          "baseline_bbox": [
+            213.28599548339844,
+            617.5927124023438,
+            261.3059997558594,
+            629.5977172851562
+          ]
+        },
+        {
+          "actual_line": 39,
+          "baseline_line": 39,
+          "text": "采样间隔",
+          "max_displacement_pt": 2.0650634765625,
+          "actual_bbox": [
+            277.0925598144531,
+            619.6577758789062,
+            325.1125183105469,
+            631.6627807617188
+          ],
+          "baseline_bbox": [
+            277.09259033203125,
+            617.5927124023438,
+            325.11260986328125,
+            629.5977172851562
+          ]
+        },
+        {
+          "actual_line": 40,
+          "baseline_line": 40,
+          "text": "模型处理",
+          "max_displacement_pt": 2.0650634765625,
+          "actual_bbox": [
+            337.0694885253906,
+            619.6577758789062,
+            385.0893859863281,
+            631.6627807617188
+          ],
+          "baseline_bbox": [
+            337.069580078125,
+            617.5927124023438,
+            385.089599609375,
+            629.5977172851562
+          ]
+        },
+        {
+          "actual_line": 41,
+          "baseline_line": 41,
+          "text": "环境温度Te",
+          "max_displacement_pt": 2.06536865234375,
+          "actual_bbox": [
+            133.42311096191406,
+            644.801025390625,
+            195.4683837890625,
+            658.0416259765625
+          ],
+          "baseline_bbox": [
+            133.42300415039062,
+            642.7356567382812,
+            195.46847534179688,
+            656.6848754882812
+          ]
+        },
+        {
+          "actual_line": 45,
+          "baseline_line": 45,
+          "text": "环境水分Ce",
+          "max_displacement_pt": 2.06488037109375,
+          "actual_bbox": [
+            133.423095703125,
+            664.6675415039062,
+            196.98870849609375,
+            677.9081420898438
+          ],
+          "baseline_bbox": [
+            133.42303466796875,
+            662.6026611328125,
+            196.98851013183594,
+            676.5518798828125
+          ]
+        },
+        {
+          "actual_line": 48,
+          "baseline_line": 48,
+          "text": "PCHIP,区间外取0.05",
+          "max_displacement_pt": 2.06488037109375,
+          "actual_bbox": [
+            337.06243896484375,
+            664.6675415039062,
+            455.13555908203125,
+            677.1242065429688
+          ],
+          "baseline_bbox": [
+            337.06298828125,
+            662.6026611328125,
+            455.1357727050781,
+            675.7676391601562
+          ]
+        },
+        {
+          "actual_line": 49,
+          "baseline_line": 49,
+          "text": "药材半径R",
+          "max_displacement_pt": 2.06536865234375,
+          "actual_bbox": [
+            133.423095703125,
+            684.5340576171875,
+            193.3879852294922,
+            696.7607421875
+          ],
+          "baseline_bbox": [
+            133.42300415039062,
+            682.4686889648438,
+            193.38772583007812,
+            695.4037475585938
+          ]
+        },
+        {
+          "actual_line": 52,
+          "baseline_line": 52,
+          "text": "单调PCHIP并同步求导",
+          "max_displacement_pt": 2.06536865234375,
+          "actual_bbox": [
+            337.07281494140625,
+            684.5340576171875,
+            461.137939453125,
+            696.99072265625
+          ],
+          "baseline_bbox": [
+            337.072998046875,
+            682.4686889648438,
+            461.13800048828125,
+            695.6336669921875
+          ]
+        }
+      ]
+    },
+    {
+      "page": 7,
+      "exact_text_equal": false,
+      "normalized_text_equal": true,
+      "line_text_sequence_equal": true,
+      "max_line_bbox_displacement_pt": 1.58062744140625,
+      "line_layout_tolerance_pt": 2.0,
+      "page_size_equal": true,
+      "pixels_identical": false,
+      "actual_render_sha256": "2048ff4eeeeeeb79d74c5ceaec69911fb85d8c57e00f6eb9c2f1d895d6933308",
+      "baseline_render_sha256": "404acfc806d8e5758b542ea3f8618c4da1c5deeaf7682393ef92cce570083977",
+      "changed_pixel_fraction": 0.11350013550351512,
+      "mean_absolute_channel_difference_255": 5.664148559677343
+    },
+    {
+      "page": 8,
+      "exact_text_equal": true,
+      "normalized_text_equal": true,
+      "line_text_sequence_equal": true,
+      "max_line_bbox_displacement_pt": 1.3406982421875,
+      "line_layout_tolerance_pt": 2.0,
+      "page_size_equal": true,
+      "pixels_identical": false,
+      "actual_render_sha256": "f7d93ccd66e608c0bfd4c2fa2416d845efd109429de3c63c248fa7e6daf38c03",
+      "baseline_render_sha256": "7fdc6e6832f3720df5c08c141b569c301d6060951b945bca1665767d73b70f7c",
+      "changed_pixel_fraction": 0.08658674616206219,
+      "mean_absolute_channel_difference_255": 5.152672607565878
+    },
+    {
+      "page": 9,
+      "exact_text_equal": true,
+      "normalized_text_equal": true,
+      "line_text_sequence_equal": true,
+      "max_line_bbox_displacement_pt": 3.00146484375,
+      "line_layout_tolerance_pt": 2.0,
+      "page_size_equal": true,
+      "pixels_identical": false,
+      "actual_render_sha256": "899cc44fad6274652df7a29e99f7a6ecbda62ee86de00697c92976fe203b6a32",
+      "baseline_render_sha256": "8774dd6446a3565d2db46582ee268bffdb2760dacb82013aab09da28813bd6b6",
+      "changed_pixel_fraction": 0.08519584243332434,
+      "mean_absolute_channel_difference_255": 3.8108370928916444,
+      "line_reflow_details": [],
+      "bbox_difference_details": [
+        {
+          "actual_line": 25,
+          "baseline_line": 25,
+          "text": "温度场取s=ρcp,Γ=k,水分场取s=1,Γ=D。将(11)整理为",
+          "max_displacement_pt": 3.00146484375,
+          "actual_bbox": [
+            70.86611938476562,
+            252.84718322753906,
+            408.633544921875,
+            266.08782958984375
+          ],
+          "baseline_bbox": [
+            70.86599731445312,
+            252.6936798095703,
+            411.635009765625,
+            266.64288330078125
+          ]
+        }
+      ]
+    },
+    {
+      "page": 10,
+      "exact_text_equal": false,
+      "normalized_text_equal": true,
+      "line_text_sequence_equal": false,
+      "max_line_bbox_displacement_pt": null,
+      "line_layout_tolerance_pt": 2.0,
+      "page_size_equal": true,
+      "pixels_identical": false,
+      "actual_render_sha256": "01d1ffd8eb582f6567e5d924c341e7a61308f7a8182980fc8cf536995c073267",
+      "baseline_render_sha256": "83a022c0462fbed8413ee0caea6db0ffa63a31f480b032e24cdd3a31b216f8b1",
+      "changed_pixel_fraction": 0.11348020851599738,
+      "mean_absolute_channel_difference_255": 6.9444933762693495,
+      "line_reflow_details": [
+        {
+          "kind": "replace",
+          "actual_line_numbers": [
+            37,
+            38
+          ],
+          "baseline_line_numbers": [
+            37,
+            38
+          ],
+          "actual_lines": [
+            {
+              "text": "的预热过程。控制体、界面导通系数及三对角系统分别按(10)、(12)和(13)构造,中心",
+              "bbox": [
+                70.86614990234375,
+                628.9898071289062,
+                524.4205322265625,
+                641.4464721679688
+              ]
+            },
+            {
+              "text": "零通量和表面Robin通量按(14)处理。",
+              "bbox": [
+                70.86618041992188,
+                648.8563842773438,
+                276.281494140625,
+                661.3130493164062
+              ]
+            }
+          ],
+          "baseline_lines": [
+            {
+              "text": "的预热过程。控制体、界面导通系数及三对角系统分别按(10)、(12)和(13)构造,中",
+              "bbox": [
+                70.86599731445312,
+                630.2146606445312,
+                524.4030151367188,
+                643.379638671875
+              ]
+            },
+            {
+              "text": "心零通量和表面Robin通量按(14)处理。",
+              "bbox": [
+                70.86599731445312,
+                650.0816650390625,
+                291.28802490234375,
+                663.2466430664062
+              ]
+            }
+          ]
+        }
+      ],
+      "bbox_difference_details": [
+        {
+          "actual_line": 10,
+          "baseline_line": 10,
+          "text": "初始水分浓度下,由(7)得到",
+          "max_displacement_pt": 3.0015411376953125,
+          "actual_bbox": [
+            70.86618041992188,
+            253.2661895751953,
+            222.9214630126953,
+            265.72283935546875
+          ],
+          "baseline_bbox": [
+            70.86605834960938,
+            253.5786895751953,
+            225.92300415039062,
+            266.74365234375
+          ]
+        },
+        {
+          "actual_line": 35,
+          "baseline_line": 35,
+          "text": "6.2模型的求解",
+          "max_displacement_pt": 2.1854248046875,
+          "actual_bbox": [
+            70.86614227294922,
+            580.24658203125,
+            152.86697387695312,
+            593.7091674804688
+          ],
+          "baseline_bbox": [
+            70.86599731445312,
+            582.4320068359375,
+            152.86700439453125,
+            595.642578125
+          ]
+        }
+      ]
+    },
+    {
+      "page": 11,
+      "exact_text_equal": false,
+      "normalized_text_equal": true,
+      "line_text_sequence_equal": true,
+      "max_line_bbox_displacement_pt": 0.917144775390625,
+      "line_layout_tolerance_pt": 2.0,
+      "page_size_equal": true,
+      "pixels_identical": false,
+      "actual_render_sha256": "58361d6c64a7c5c27b9d4267100613b6b404504112d81791e008c665375d4c31",
+      "baseline_render_sha256": "5575353d2e784935c2083bd24486948e1c64051d5167913e32c4ffbea3a31a88",
+      "changed_pixel_fraction": 0.06476868752889409,
+      "mean_absolute_channel_difference_255": 4.120040172806836
+    },
+    {
+      "page": 12,
+      "exact_text_equal": true,
+      "normalized_text_equal": true,
+      "line_text_sequence_equal": true,
+      "max_line_bbox_displacement_pt": 3.806060791015625,
+      "line_layout_tolerance_pt": 2.0,
+      "page_size_equal": true,
+      "pixels_identical": false,
+      "actual_render_sha256": "298bbcdae74de14bfdf0b31a802f9359cd147407759b2633f479fd92ea92c0cf",
+      "baseline_render_sha256": "1b564adc13a2f22cb39a2339c9f1916dc0519bed4e5757c32fb7d96351630405",
+      "changed_pixel_fraction": 0.08072223373559284,
+      "mean_absolute_channel_difference_255": 5.094165643747974,
+      "line_reflow_details": [],
+      "bbox_difference_details": [
+        {
+          "actual_line": 4,
+          "baseline_line": 4,
+          "text": "t/s",
+          "max_displacement_pt": 3.8060455322265625,
+          "actual_bbox": [
+            163.50604248046875,
+            131.7545928955078,
+            175.75816345214844,
+            143.9895477294922
+          ],
+          "baseline_bbox": [
+            159.6999969482422,
+            130.65670776367188,
+            171.95233154296875,
+            142.8916778564453
+          ]
+        },
+        {
+          "actual_line": 5,
+          "baseline_line": 5,
+          "text": "T(R,t)-T(0,t)/°C",
+          "max_displacement_pt": 3.805450439453125,
+          "actual_bbox": [
+            193.59222412109375,
+            131.5328826904297,
+            293.16998291015625,
+            143.9895477294922
+          ],
+          "baseline_bbox": [
+            189.78700256347656,
+            130.43499755859375,
+            289.3645324707031,
+            142.8916778564453
+          ]
+        },
+        {
+          "actual_line": 6,
+          "baseline_line": 6,
+          "text": "C(0,t)-C(R,t)/(kg/kg)",
+          "max_displacement_pt": 3.80584716796875,
+          "actual_bbox": [
+            305.1221618652344,
+            131.5328826904297,
+            445.2598571777344,
+            143.9895477294922
+          ],
+          "baseline_bbox": [
+            301.3170166015625,
+            129.72669982910156,
+            441.4540100097656,
+            142.8916778564453
+          ]
+        },
+        {
+          "actual_line": 7,
+          "baseline_line": 7,
+          "text": "100",
+          "max_displacement_pt": 3.8053131103515625,
+          "actual_bbox": [
+            160.62831115722656,
+            157.1278076171875,
+            178.6357879638672,
+            169.13279724121094
+          ],
+          "baseline_bbox": [
+            156.822998046875,
+            156.02967834472656,
+            174.83050537109375,
+            168.03468322753906
+          ]
+        },
+        {
+          "actual_line": 8,
+          "baseline_line": 8,
+          "text": "0.1801",
+          "max_displacement_pt": 3.8057098388671875,
+          "actual_bbox": [
+            226.87271118164062,
+            157.1278076171875,
+            259.88641357421875,
+            169.13279724121094
+          ],
+          "baseline_bbox": [
+            223.06700134277344,
+            156.02967834472656,
+            256.08074951171875,
+            168.03468322753906
+          ]
+        },
+        {
+          "actual_line": 10,
+          "baseline_line": 10,
+          "text": "300",
+          "max_displacement_pt": 3.8052978515625,
+          "actual_bbox": [
+            160.6282958984375,
+            176.99432373046875,
+            178.63577270507812,
+            188.9993133544922
+          ],
+          "baseline_bbox": [
+            156.822998046875,
+            175.89666748046875,
+            174.83050537109375,
+            187.90167236328125
+          ]
+        },
+        {
+          "actual_line": 11,
+          "baseline_line": 11,
+          "text": "0.8081",
+          "max_displacement_pt": 3.8057098388671875,
+          "actual_bbox": [
+            226.87271118164062,
+            176.99432373046875,
+            259.88641357421875,
+            188.9993133544922
+          ],
+          "baseline_bbox": [
+            223.06700134277344,
+            175.89666748046875,
+            256.08074951171875,
+            187.90167236328125
+          ]
+        },
+        {
+          "actual_line": 13,
+          "baseline_line": 13,
+          "text": "600",
+          "max_displacement_pt": 3.8052978515625,
+          "actual_bbox": [
+            160.6282958984375,
+            196.86085510253906,
+            178.63577270507812,
+            208.8658447265625
+          ],
+          "baseline_bbox": [
+            156.822998046875,
+            195.76266479492188,
+            174.83050537109375,
+            207.76766967773438
+          ]
+        },
+        {
+          "actual_line": 14,
+          "baseline_line": 14,
+          "text": "1.7101",
+          "max_displacement_pt": 3.8057098388671875,
+          "actual_bbox": [
+            226.87271118164062,
+            196.86085510253906,
+            259.88641357421875,
+            208.8658447265625
+          ],
+          "baseline_bbox": [
+            223.06700134277344,
+            195.76266479492188,
+            256.08074951171875,
+            207.76766967773438
+          ]
+        },
+        {
+          "actual_line": 16,
+          "baseline_line": 16,
+          "text": "900",
+          "max_displacement_pt": 3.8052978515625,
+          "actual_bbox": [
+            160.6282958984375,
+            216.72738647460938,
+            178.63577270507812,
+            228.7323760986328
+          ],
+          "baseline_bbox": [
+            156.822998046875,
+            215.62966918945312,
+            174.83050537109375,
+            227.63467407226562
+          ]
+        },
+        {
+          "actual_line": 17,
+          "baseline_line": 17,
+          "text": "2.4043",
+          "max_displacement_pt": 3.8057098388671875,
+          "actual_bbox": [
+            226.87271118164062,
+            216.72738647460938,
+            259.88641357421875,
+            228.7323760986328
+          ],
+          "baseline_bbox": [
+            223.06700134277344,
+            215.62966918945312,
+            256.08074951171875,
+            227.63467407226562
+          ]
+        },
+        {
+          "actual_line": 19,
+          "baseline_line": 19,
+          "text": "1200",
+          "max_displacement_pt": 3.806060791015625,
+          "actual_bbox": [
+            157.62704467773438,
+            236.5939178466797,
+            181.6370086669922,
+            248.59890747070312
+          ],
+          "baseline_bbox": [
+            153.82098388671875,
+            235.49566650390625,
+            177.83099365234375,
+            247.50067138671875
+          ]
+        },
+        {
+          "actual_line": 20,
+          "baseline_line": 20,
+          "text": "2.8857",
+          "max_displacement_pt": 3.8057098388671875,
+          "actual_bbox": [
+            226.87269592285156,
+            236.5939178466797,
+            259.8863830566406,
+            248.59890747070312
+          ],
+          "baseline_bbox": [
+            223.06698608398438,
+            235.49566650390625,
+            256.08074951171875,
+            247.50067138671875
+          ]
+        },
+        {
+          "actual_line": 22,
+          "baseline_line": 22,
+          "text": "1500",
+          "max_displacement_pt": 3.806060791015625,
+          "actual_bbox": [
+            157.62704467773438,
+            256.46044921875,
+            181.6370086669922,
+            268.4654235839844
+          ],
+          "baseline_bbox": [
+            153.82098388671875,
+            255.36268615722656,
+            177.83099365234375,
+            267.36767578125
+          ]
+        },
+        {
+          "actual_line": 23,
+          "baseline_line": 23,
+          "text": "3.1242",
+          "max_displacement_pt": 3.8057098388671875,
+          "actual_bbox": [
+            226.87269592285156,
+            256.46044921875,
+            259.8863830566406,
+            268.4654235839844
+          ],
+          "baseline_bbox": [
+            223.06698608398438,
+            255.36268615722656,
+            256.08074951171875,
+            267.36767578125
+          ]
+        },
+        {
+          "actual_line": 25,
+          "baseline_line": 25,
+          "text": "1800",
+          "max_displacement_pt": 3.8060302734375,
+          "actual_bbox": [
+            157.62701416015625,
+            276.3269958496094,
+            181.63697814941406,
+            288.33197021484375
+          ],
+          "baseline_bbox": [
+            153.82098388671875,
+            275.2286682128906,
+            177.83099365234375,
+            287.233642578125
+          ]
+        },
+        {
+          "actual_line": 26,
+          "baseline_line": 26,
+          "text": "3.2095",
+          "max_displacement_pt": 3.8056793212890625,
+          "actual_bbox": [
+            226.87266540527344,
+            276.3269958496094,
+            259.8863525390625,
+            288.33197021484375
+          ],
+          "baseline_bbox": [
+            223.06698608398438,
+            275.2286682128906,
+            256.08074951171875,
+            287.233642578125
+          ]
+        }
+      ]
+    },
+    {
+      "page": 13,
+      "exact_text_equal": false,
+      "normalized_text_equal": true,
+      "line_text_sequence_equal": true,
+      "max_line_bbox_displacement_pt": 3.001312255859375,
+      "line_layout_tolerance_pt": 2.0,
+      "page_size_equal": true,
+      "pixels_identical": false,
+      "actual_render_sha256": "1206ff121d207021d57bea0c4c5e44aed1edde8f7c875e06e3d93ef2ce29f275",
+      "baseline_render_sha256": "1e910814e995db302491269ad5ea9ef5ed873774ce6afc856903b768bc47a23b",
+      "changed_pixel_fraction": 0.12718997592819903,
+      "mean_absolute_channel_difference_255": 6.066568094501746,
+      "line_reflow_details": [],
+      "bbox_difference_details": [
+        {
+          "actual_line": 2,
+          "baseline_line": 2,
+          "text": "图4展示0–30min的温度时空分布及等温线,热量由表面逐渐传向中心。",
+          "max_displacement_pt": 3.001312255859375,
+          "actual_bbox": [
+            94.87611389160156,
+            101.13825988769531,
+            479.70379638671875,
+            113.59491729736328
+          ],
+          "baseline_bbox": [
+            94.8759994506836,
+            100.4297103881836,
+            482.7051086425781,
+            113.59468078613281
+          ]
+        }
+      ]
+    },
+    {
+      "page": 14,
+      "exact_text_equal": false,
+      "normalized_text_equal": true,
+      "line_text_sequence_equal": false,
+      "max_line_bbox_displacement_pt": null,
+      "line_layout_tolerance_pt": 2.0,
+      "page_size_equal": true,
+      "pixels_identical": false,
+      "actual_render_sha256": "364e033f78a5cf70edc4116fa0b4e41eefb013dab5fc53f62c120b9418ba2907",
+      "baseline_render_sha256": "fa2643a51ae2d90876af6ef5e5e858a66820f09910eb1e300f7c3e6361af5f45",
+      "changed_pixel_fraction": 0.09486840217443293,
+      "mean_absolute_channel_difference_255": 5.986489502462976,
+      "line_reflow_details": [
+        {
+          "kind": "replace",
+          "actual_line_numbers": [
+            4,
+            4
+          ],
+          "baseline_line_numbers": [
+            4,
+            5
+          ],
+          "actual_lines": [
+            {
+              "text": "ρ/(kg/m3)cp/[J/(kgK)]",
+              "bbox": [
+                188.12960815429688,
+                101.99299621582031,
+                316.5834045410156,
+                116.55367279052734
+              ]
+            }
+          ],
+          "baseline_lines": [
+            {
+              "text": "ρ/(kg/m3)",
+              "bbox": [
+                184.32400512695312,
+                101.99247741699219,
+                247.3730010986328,
+                115.7696762084961
+              ]
+            },
+            {
+              "text": "cp/[J/(kgK)]",
+              "bbox": [
+                259.3280029296875,
+                103.53471374511719,
+                320.3772277832031,
+                116.55387878417969
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "replace",
+          "actual_line_numbers": [
+            24,
+            26
+          ],
+          "baseline_line_numbers": [
+            25,
+            27
+          ],
+          "actual_lines": [
+            {
+              "text": "沿用161个表面加密节点和1s步长,从(1)重新出发,采用附录3物性,不能以问",
+              "bbox": [
+                94.87610626220703,
+                264.5213928222656,
+                524.4190063476562,
+                276.97802734375
+              ]
+            },
+            {
+              "text": "题一的预热结果替代初段解。前3h用于本问分析,随后沿同一轨迹继续积分,为问题",
+              "bbox": [
+                70.86614990234375,
+                284.3879699707031,
+                524.4014892578125,
+                296.8446044921875
+              ]
+            },
+            {
+              "text": "三确定达标时间;4h后采用第五节的常值环境延拓。",
+              "bbox": [
+                70.86614990234375,
+                304.2545166015625,
+                352.9833068847656,
+                316.7111511230469
+              ]
+            }
+          ],
+          "baseline_lines": [
+            {
+              "text": "沿用161个表面加密节点和1s步长,从(1)重新出发,采用附录3物性,不能以",
+              "bbox": [
+                94.8759994506836,
+                263.8127136230469,
+                524.401123046875,
+                276.9776611328125
+              ]
+            },
+            {
+              "text": "问题一的预热结果替代初段解。前3h用于本问分析,随后沿同一轨迹继续积分,为问",
+              "bbox": [
+                70.86599731445312,
+                283.6797180175781,
+                524.3990478515625,
+                296.84466552734375
+              ]
+            },
+            {
+              "text": "题三确定达标时间;4h后采用第五节的常值环境延拓。",
+              "bbox": [
+                70.86598205566406,
+                303.54571533203125,
+                364.988037109375,
+                316.7106628417969
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "replace",
+          "actual_line_numbers": [
+            44,
+            46
+          ],
+          "baseline_line_numbers": [
+            45,
+            47
+          ],
+          "actual_lines": [
+            {
+              "text": "采用第五节的双重容差和逐步检查,实际最多5次Picard迭代即收敛,未触及",
+              "bbox": [
+                94.87610626220703,
+                541.85400390625,
+                524.4016723632812,
+                554.3106689453125
+              ]
+            },
+            {
+              "text": "30次上限。全隐式格式减轻稳定性限制,离散精度由问题三的长期收敛检验统一评估",
+              "bbox": [
+                70.86618041992188,
+                561.7205200195312,
+                524.3991088867188,
+                574.1771850585938
+              ]
+            },
+            {
+              "text": "(第8.3.3节)。",
+              "bbox": [
+                63.25501251220703,
+                581.5870971679688,
+                149.2924041748047,
+                594.0437622070312
+              ]
+            }
+          ],
+          "baseline_lines": [
+            {
+              "text": "采用第五节的双重容差和逐步检查,实际最多5次Picard迭代即收敛,未触及30",
+              "bbox": [
+                94.8759994506836,
+                541.6646728515625,
+                524.4089965820312,
+                554.8296508789062
+              ]
+            },
+            {
+              "text": "次上限。全隐式格式减轻稳定性限制,离散精度由问题三的长期收敛检验统一评估(第",
+              "bbox": [
+                70.86599731445312,
+                561.5307006835938,
+                524.4150390625,
+                573.5357055664062
+              ]
+            },
+            {
+              "text": "8.3.3节)。",
+              "bbox": [
+                70.86599731445312,
+                581.397705078125,
+                135.90650939941406,
+                594.5626831054688
+              ]
+            }
+          ]
+        }
+      ],
+      "bbox_difference_details": [
+        {
+          "actual_line": 3,
+          "baseline_line": 3,
+          "text": "状态",
+          "max_displacement_pt": 3.8054962158203125,
+          "actual_bbox": [
+            128.1544952392578,
+            103.31306457519531,
+            152.1644744873047,
+            115.31804656982422
+          ],
+          "baseline_bbox": [
+            124.3489990234375,
+            102.60470581054688,
+            148.3590087890625,
+            114.60970306396484
+          ]
+        },
+        {
+          "actual_line": 5,
+          "baseline_line": 6,
+          "text": "k/[W/(mK)]",
+          "max_displacement_pt": 3.805755615234375,
+          "actual_bbox": [
+            328.538818359375,
+            103.53478240966797,
+            390.0621337890625,
+            115.76972198486328
+          ],
+          "baseline_bbox": [
+            332.343994140625,
+            103.53471374511719,
+            393.8678894042969,
+            115.7696762084961
+          ]
+        },
+        {
+          "actual_line": 7,
+          "baseline_line": 8,
+          "text": "初始全域",
+          "max_displacement_pt": 3.8054962158203125,
+          "actual_bbox": [
+            128.1544952392578,
+            128.45631408691406,
+            176.17442321777344,
+            140.4613037109375
+          ],
+          "baseline_bbox": [
+            124.3489990234375,
+            127.7477035522461,
+            172.36898803710938,
+            139.75270080566406
+          ]
+        },
+        {
+          "actual_line": 9,
+          "baseline_line": 10,
+          "text": "3415.3",
+          "max_displacement_pt": 3.805816650390625,
+          "actual_bbox": [
+            269.5462646484375,
+            128.90798950195312,
+            302.5599670410156,
+            140.91297912597656
+          ],
+          "baseline_bbox": [
+            273.35198974609375,
+            128.9076690673828,
+            306.36578369140625,
+            140.9126739501953
+          ]
+        },
+        {
+          "actual_line": 10,
+          "baseline_line": 11,
+          "text": "0.4830",
+          "max_displacement_pt": 3.805084228515625,
+          "actual_bbox": [
+            342.7909240722656,
+            128.90798950195312,
+            375.8046875,
+            140.91297912597656
+          ],
+          "baseline_bbox": [
+            346.59600830078125,
+            128.9076690673828,
+            379.6097717285156,
+            140.9126739501953
+          ]
+        },
+        {
+          "actual_line": 11,
+          "baseline_line": 12,
+          "text": "5.642×10-9",
+          "max_displacement_pt": 3.805328369140625,
+          "actual_bbox": [
+            402.01190185546875,
+            126.98104858398438,
+            466.62091064453125,
+            140.68301391601562
+          ],
+          "baseline_bbox": [
+            405.8170166015625,
+            126.98127746582031,
+            470.4262390136719,
+            140.68270874023438
+          ]
+        },
+        {
+          "actual_line": 12,
+          "baseline_line": 13,
+          "text": "3h中心",
+          "max_displacement_pt": 3.8059234619140625,
+          "actual_bbox": [
+            128.15451049804688,
+            148.32284545898438,
+            170.1719512939453,
+            160.77951049804688
+          ],
+          "baseline_bbox": [
+            124.34902954101562,
+            147.6147003173828,
+            166.36602783203125,
+            160.77967834472656
+          ]
+        },
+        {
+          "actual_line": 14,
+          "baseline_line": 15,
+          "text": "3196.9",
+          "max_displacement_pt": 3.805816650390625,
+          "actual_bbox": [
+            269.5462646484375,
+            148.77452087402344,
+            302.5599670410156,
+            160.77951049804688
+          ],
+          "baseline_bbox": [
+            273.35205078125,
+            148.77467346191406,
+            306.36578369140625,
+            160.77967834472656
+          ]
+        },
+        {
+          "actual_line": 15,
+          "baseline_line": 16,
+          "text": "0.4526",
+          "max_displacement_pt": 3.80511474609375,
+          "actual_bbox": [
+            342.7909240722656,
+            148.77452087402344,
+            375.8046875,
+            160.77951049804688
+          ],
+          "baseline_bbox": [
+            346.5960388183594,
+            148.77467346191406,
+            379.60980224609375,
+            160.77967834472656
+          ]
+        },
+        {
+          "actual_line": 16,
+          "baseline_line": 17,
+          "text": "1.239×10-8",
+          "max_displacement_pt": 3.80535888671875,
+          "actual_bbox": [
+            402.01190185546875,
+            146.8475799560547,
+            466.62091064453125,
+            160.54954528808594
+          ],
+          "baseline_bbox": [
+            405.8170471191406,
+            146.8472900390625,
+            470.42626953125,
+            160.54971313476562
+          ]
+        },
+        {
+          "actual_line": 17,
+          "baseline_line": 18,
+          "text": "3h表面",
+          "max_displacement_pt": 3.8058929443359375,
+          "actual_bbox": [
+            128.15451049804688,
+            168.1893768310547,
+            170.1719512939453,
+            180.6460418701172
+          ],
+          "baseline_bbox": [
+            124.34906005859375,
+            167.48069763183594,
+            166.36605834960938,
+            180.6456756591797
+          ]
+        },
+        {
+          "actual_line": 19,
+          "baseline_line": 20,
+          "text": "2823.5",
+          "max_displacement_pt": 3.805877685546875,
+          "actual_bbox": [
+            269.5462646484375,
+            168.64105224609375,
+            302.5599670410156,
+            180.6460418701172
+          ],
+          "baseline_bbox": [
+            273.35205078125,
+            168.6406707763672,
+            306.3658447265625,
+            180.6456756591797
+          ]
+        },
+        {
+          "actual_line": 20,
+          "baseline_line": 21,
+          "text": "0.4008",
+          "max_displacement_pt": 3.805145263671875,
+          "actual_bbox": [
+            342.7909240722656,
+            168.64105224609375,
+            375.8046875,
+            180.6460418701172
+          ],
+          "baseline_bbox": [
+            346.5960693359375,
+            168.6406707763672,
+            379.6098327636719,
+            180.6456756591797
+          ]
+        },
+        {
+          "actual_line": 21,
+          "baseline_line": 22,
+          "text": "1.027×10-8",
+          "max_displacement_pt": 3.805389404296875,
+          "actual_bbox": [
+            402.01190185546875,
+            166.714111328125,
+            466.62091064453125,
+            180.41607666015625
+          ],
+          "baseline_bbox": [
+            405.81707763671875,
+            166.7142791748047,
+            470.4263000488281,
+            180.41571044921875
+          ]
+        }
+      ]
+    },
+    {
+      "page": 15,
+      "exact_text_equal": true,
+      "normalized_text_equal": true,
+      "line_text_sequence_equal": true,
+      "max_line_bbox_displacement_pt": 0.70892333984375,
+      "line_layout_tolerance_pt": 2.0,
+      "page_size_equal": true,
+      "pixels_identical": false,
+      "actual_render_sha256": "be1cce0fb1bd86c4aab70e949a0be26f34db7bec820ed4775761cdc266b0b857",
+      "baseline_render_sha256": "dfd169dd5e11f379f607a345d7e02c08148f2547cbf93f1939aec2f9bb282d81",
+      "changed_pixel_fraction": 0.027455403401935308,
+      "mean_absolute_channel_difference_255": 1.394361061072231
+    },
+    {
+      "page": 16,
+      "exact_text_equal": false,
+      "normalized_text_equal": true,
+      "line_text_sequence_equal": true,
+      "max_line_bbox_displacement_pt": 3.00189208984375,
+      "line_layout_tolerance_pt": 2.0,
+      "page_size_equal": true,
+      "pixels_identical": false,
+      "actual_render_sha256": "2a1cce8857bb3290394d26714a4727488c0ee3fcc34b932662fdfe67134a64ac",
+      "baseline_render_sha256": "9585708253f415be1b739b1a0c52eb217e866544c4f15122e39a44a4ba53d05e",
+      "changed_pixel_fraction": 0.061126034210652214,
+      "mean_absolute_channel_difference_255": 2.6178761019624095,
+      "line_reflow_details": [],
+      "bbox_difference_details": [
+        {
+          "actual_line": 31,
+          "baseline_line": 31,
+          "text": "图6展示前3h水分时空分布,失水影响由表面向中心传播。",
+          "max_displacement_pt": 3.00189208984375,
+          "actual_bbox": [
+            94.87611389160156,
+            345.592041015625,
+            413.0081787109375,
+            358.0486755371094
+          ],
+          "baseline_bbox": [
+            94.8759994506836,
+            344.88372802734375,
+            416.01007080078125,
+            358.0486755371094
+          ]
+        }
+      ]
+    },
+    {
+      "page": 17,
+      "exact_text_equal": true,
+      "normalized_text_equal": true,
+      "line_text_sequence_equal": true,
+      "max_line_bbox_displacement_pt": 1.49639892578125,
+      "line_layout_tolerance_pt": 2.0,
+      "page_size_equal": true,
+      "pixels_identical": false,
+      "actual_render_sha256": "78651203b20aa5ad9d0a045109f2a3e57e439fd41bf88fbee16f8a40152c6334",
+      "baseline_render_sha256": "c7ef3c5c04c8fa2f1104157a1ba93c5cc8b4fa9b3a14c873e481ee4714b56f19",
+      "changed_pixel_fraction": 0.07330142358398828,
+      "mean_absolute_channel_difference_255": 3.890312561441545
+    },
+    {
+      "page": 18,
+      "exact_text_equal": true,
+      "normalized_text_equal": true,
+      "line_text_sequence_equal": true,
+      "max_line_bbox_displacement_pt": 3.0010986328125,
+      "line_layout_tolerance_pt": 2.0,
+      "page_size_equal": true,
+      "pixels_identical": false,
+      "actual_render_sha256": "90aedfa4df734a87d40385430592e2e245eb66b170e7863330d6c09a0e1c1944",
+      "baseline_render_sha256": "e2b99e4f4862c277b9f847207ab3e33a18bfc51cc2548f8899307e761b9a3d70",
+      "changed_pixel_fraction": 0.06357107557907826,
+      "mean_absolute_channel_difference_255": 3.357350667155542,
+      "line_reflow_details": [],
+      "bbox_difference_details": [
+        {
+          "actual_line": 16,
+          "baseline_line": 16,
+          "text": "步完成Picard迭代并检查(21),以全域最大水分搜索首达区间。",
+          "max_displacement_pt": 3.0010986328125,
+          "actual_bbox": [
+            70.86618041992188,
+            344.6307067871094,
+            406.6539611816406,
+            357.08734130859375
+          ],
+          "baseline_bbox": [
+            70.86599731445312,
+            343.92169189453125,
+            409.6550598144531,
+            357.086669921875
+          ]
+        },
+        {
+          "actual_line": 33,
+          "baseline_line": 33,
+          "text": "由(23)得到",
+          "max_displacement_pt": 3.0009765625,
+          "actual_bbox": [
+            94.87610626220703,
+            722.4584350585938,
+            156.89402770996094,
+            734.9151000976562
+          ],
+          "baseline_bbox": [
+            94.8759994506836,
+            721.7496948242188,
+            159.89500427246094,
+            734.9146728515625
+          ]
+        }
+      ]
+    },
+    {
+      "page": 19,
+      "exact_text_equal": true,
+      "normalized_text_equal": true,
+      "line_text_sequence_equal": true,
+      "max_line_bbox_displacement_pt": 1.00341796875,
+      "line_layout_tolerance_pt": 2.0,
+      "page_size_equal": true,
+      "pixels_identical": false,
+      "actual_render_sha256": "7229ee2d9c7f5de3635b72936a41a6219aec9c623be27a062d4fc84ad412f0a3",
+      "baseline_render_sha256": "42c68d0545d47fd0e08ee361ab7ad5752137fe2c2d0d638d2851ae59c52a26d6",
+      "changed_pixel_fraction": 0.08566213394123934,
+      "mean_absolute_channel_difference_255": 5.443945384112612
+    },
+    {
+      "page": 20,
+      "exact_text_equal": false,
+      "normalized_text_equal": true,
+      "line_text_sequence_equal": false,
+      "max_line_bbox_displacement_pt": null,
+      "line_layout_tolerance_pt": 2.0,
+      "page_size_equal": true,
+      "pixels_identical": false,
+      "actual_render_sha256": "f49d1211b942a7a86b1546439066529e1b6b15fdd508869db6cb2371d412f6e0",
+      "baseline_render_sha256": "812c160b15f4445152ab368a163ccdc58793bbf93c0dc821a4345a4b08ff14f3",
+      "changed_pixel_fraction": 0.09103245707726892,
+      "mean_absolute_channel_difference_255": 4.619626355699384,
+      "line_reflow_details": [
+        {
+          "kind": "replace",
+          "actual_line_numbers": [
+            44,
+            44
+          ],
+          "baseline_line_numbers": [
+            44,
+            45
+          ],
+          "actual_lines": [
+            {
+              "text": "161节点,1s(终算)57.471909",
+              "bbox": [
+                210.59561157226562,
+                668.6305541992188,
+                384.68011474609375,
+                681.0872192382812
+              ]
+            }
+          ],
+          "baseline_lines": [
+            {
+              "text": "161节点,1s(终算)",
+              "bbox": [
+                206.7899932861328,
+                667.8387451171875,
+                325.509033203125,
+                681.0037231445312
+              ]
+            },
+            {
+              "text": "57.471909",
+              "bbox": [
+                337.4639892578125,
+                668.9987182617188,
+                388.4852600097656,
+                681.0037231445312
+              ]
+            }
+          ]
+        }
+      ],
+      "bbox_difference_details": [
+        {
+          "actual_line": 32,
+          "baseline_line": 32,
+          "text": "计算设置",
+          "max_displacement_pt": 3.8056182861328125,
+          "actual_bbox": [
+            210.59561157226562,
+            544.1546630859375,
+            258.6155700683594,
+            556.15966796875
+          ],
+          "baseline_bbox": [
+            206.7899932861328,
+            543.3626708984375,
+            254.8100128173828,
+            555.36767578125
+          ]
+        },
+        {
+          "actual_line": 33,
+          "baseline_line": 33,
+          "text": "问题三",
+          "max_displacement_pt": 3.806121826171875,
+          "actual_bbox": [
+            341.1619567871094,
+            544.1546630859375,
+            377.1768798828125,
+            556.15966796875
+          ],
+          "baseline_bbox": [
+            344.9679870605469,
+            543.3626708984375,
+            380.9830017089844,
+            555.36767578125
+          ]
+        },
+        {
+          "actual_line": 34,
+          "baseline_line": 34,
+          "text": "41节点,10s",
+          "max_displacement_pt": 3.805755615234375,
+          "actual_bbox": [
+            210.59561157226562,
+            569.2979736328125,
+            281.29296875,
+            581.754638671875
+          ],
+          "baseline_bbox": [
+            206.7899932861328,
+            568.5056762695312,
+            277.4872131347656,
+            581.670654296875
+          ]
+        },
+        {
+          "actual_line": 35,
+          "baseline_line": 35,
+          "text": "57.461591",
+          "max_displacement_pt": 3.805145263671875,
+          "actual_bbox": [
+            333.6588439941406,
+            569.7496337890625,
+            384.68011474609375,
+            581.754638671875
+          ],
+          "baseline_bbox": [
+            337.4639892578125,
+            569.6656494140625,
+            388.4852600097656,
+            581.670654296875
+          ]
+        },
+        {
+          "actual_line": 36,
+          "baseline_line": 36,
+          "text": "81节点,10s",
+          "max_displacement_pt": 3.805755615234375,
+          "actual_bbox": [
+            210.59561157226562,
+            589.1644897460938,
+            281.29296875,
+            601.6211547851562
+          ],
+          "baseline_bbox": [
+            206.7899932861328,
+            588.3726806640625,
+            277.4872131347656,
+            601.5376586914062
+          ]
+        },
+        {
+          "actual_line": 37,
+          "baseline_line": 37,
+          "text": "57.476003",
+          "max_displacement_pt": 3.805145263671875,
+          "actual_bbox": [
+            333.6588439941406,
+            589.6161499023438,
+            384.68011474609375,
+            601.6211547851562
+          ],
+          "baseline_bbox": [
+            337.4639892578125,
+            589.5326538085938,
+            388.4852600097656,
+            601.5376586914062
+          ]
+        },
+        {
+          "actual_line": 38,
+          "baseline_line": 38,
+          "text": "161节点,10s",
+          "max_displacement_pt": 3.817291259765625,
+          "actual_bbox": [
+            210.59561157226562,
+            609.031005859375,
+            287.29547119140625,
+            621.4876708984375
+          ],
+          "baseline_bbox": [
+            206.7899932861328,
+            608.2387084960938,
+            283.4781799316406,
+            621.4036865234375
+          ]
+        },
+        {
+          "actual_line": 39,
+          "baseline_line": 39,
+          "text": "57.479757",
+          "max_displacement_pt": 3.805145263671875,
+          "actual_bbox": [
+            333.6588439941406,
+            609.482666015625,
+            384.68011474609375,
+            621.4876708984375
+          ],
+          "baseline_bbox": [
+            337.4639892578125,
+            609.398681640625,
+            388.4852600097656,
+            621.4036865234375
+          ]
+        },
+        {
+          "actual_line": 40,
+          "baseline_line": 40,
+          "text": "321节点,10s",
+          "max_displacement_pt": 3.817291259765625,
+          "actual_bbox": [
+            210.59561157226562,
+            628.8975219726562,
+            287.29547119140625,
+            641.3541870117188
+          ],
+          "baseline_bbox": [
+            206.7899932861328,
+            628.105712890625,
+            283.4781799316406,
+            641.2706909179688
+          ]
+        },
+        {
+          "actual_line": 41,
+          "baseline_line": 41,
+          "text": "57.480706",
+          "max_displacement_pt": 3.805145263671875,
+          "actual_bbox": [
+            333.6588439941406,
+            629.3491821289062,
+            384.68011474609375,
+            641.3541870117188
+          ],
+          "baseline_bbox": [
+            337.4639892578125,
+            629.2656860351562,
+            388.4852600097656,
+            641.2706909179688
+          ]
+        },
+        {
+          "actual_line": 42,
+          "baseline_line": 42,
+          "text": "161节点,2s",
+          "max_displacement_pt": 3.81732177734375,
+          "actual_bbox": [
+            210.59561157226562,
+            648.7640380859375,
+            281.2929992675781,
+            661.220703125
+          ],
+          "baseline_bbox": [
+            206.7899932861328,
+            647.9717407226562,
+            277.4756774902344,
+            661.13671875
+          ]
+        },
+        {
+          "actual_line": 43,
+          "baseline_line": 43,
+          "text": "57.472781",
+          "max_displacement_pt": 3.805145263671875,
+          "actual_bbox": [
+            333.6588439941406,
+            649.2156982421875,
+            384.68011474609375,
+            661.220703125
+          ],
+          "baseline_bbox": [
+            337.4639892578125,
+            649.1317138671875,
+            388.4852600097656,
+            661.13671875
+          ]
+        }
+      ]
+    },
+    {
+      "page": 21,
+      "exact_text_equal": true,
+      "normalized_text_equal": true,
+      "line_text_sequence_equal": true,
+      "max_line_bbox_displacement_pt": 1.051513671875,
+      "line_layout_tolerance_pt": 2.0,
+      "page_size_equal": true,
+      "pixels_identical": false,
+      "actual_render_sha256": "1073f0654ac725b82669794d870784e882da761c9f4a054cf45271a6fc474dd2",
+      "baseline_render_sha256": "eb94a92a7a4a903387fef50a213ee1412ba56c6c38b8a937c59acbe93f31283a",
+      "changed_pixel_fraction": 0.10391525450748462,
+      "mean_absolute_channel_difference_255": 5.91473042771286
+    },
+    {
+      "page": 22,
+      "exact_text_equal": false,
+      "normalized_text_equal": true,
+      "line_text_sequence_equal": false,
+      "max_line_bbox_displacement_pt": null,
+      "line_layout_tolerance_pt": 2.0,
+      "page_size_equal": true,
+      "pixels_identical": false,
+      "actual_render_sha256": "80aeea6ae4efb15f87f3bc06a5a461c29c5188f6c851dd09044361545b674a96",
+      "baseline_render_sha256": "e69d155327bd536b725558dea1b08532dce11700defa6a0124a33895a27964d3",
+      "changed_pixel_fraction": 0.10789865931227982,
+      "mean_absolute_channel_difference_255": 5.785677278451753,
+      "line_reflow_details": [
+        {
+          "kind": "replace",
+          "actual_line_numbers": [
+            72,
+            76
+          ],
+          "baseline_line_numbers": [
+            72,
+            76
+          ],
+          "actual_lines": [
+            {
+              "text": "在ξi=1-(1-i/160)2上采用161个表面加密节点,时间步长取1s。每个时间",
+              "bbox": [
+                94.87610626220703,
+                639.4546508789062,
+                524.403564453125,
+                657.8385620117188
+              ]
+            },
+            {
+              "text": "层先由PCHIP更新半径和环境边界,再更新R-2内部扩散项及R-1表面交换项;随后",
+              "bbox": [
+                70.86618041992188,
+                659.3212280273438,
+                524.4119262695312,
+                676.1343994140625
+              ]
+            },
+            {
+              "text": "采用Picard迭代依次求解温度场和水分场。全域最大水分浓度跨越0.15kg/kg时停止搜",
+              "bbox": [
+                70.86614990234375,
+                683.5443115234375,
+                524.4094848632812,
+                696.0009765625
+              ]
+            },
+            {
+              "text": "索,并对相邻时间层线性插值定位临界时刻;首个严格低于阈值的整数秒另行核对。计",
+              "bbox": [
+                70.86618041992188,
+                703.410888671875,
+                524.4144287109375,
+                715.4158935546875
+              ]
+            },
+            {
+              "text": "算流程见图10。",
+              "bbox": [
+                70.86618041992188,
+                723.27734375,
+                157.90228271484375,
+                735.7340087890625
+              ]
+            }
+          ],
+          "baseline_lines": [
+            {
+              "text": "在ξi=1-(1-i/160)2上采用161个表面加密节点,时间步长取1s。每个时间层",
+              "bbox": [
+                94.8759994506836,
+                639.4266967773438,
+                524.4099731445312,
+                658.518798828125
+              ]
+            },
+            {
+              "text": "先由PCHIP更新半径和环境边界,再更新R-2内部扩散项及R-1表面交换项;随后采",
+              "bbox": [
+                70.865966796875,
+                659.292724609375,
+                524.4129638671875,
+                676.814697265625
+              ]
+            },
+            {
+              "text": "用Picard迭代依次求解温度场和水分场。全域最大水分浓度跨越0.15kg/kg时停止搜索,",
+              "bbox": [
+                70.865966796875,
+                683.5157470703125,
+                533.0850219726562,
+                696.6807250976562
+              ]
+            },
+            {
+              "text": "并对相邻时间层线性插值定位临界时刻;首个严格低于阈值的整数秒另行核对。计算流",
+              "bbox": [
+                70.86599731445312,
+                703.3827514648438,
+                524.4150390625,
+                715.3877563476562
+              ]
+            },
+            {
+              "text": "程见图10。",
+              "bbox": [
+                70.86599731445312,
+                723.2486572265625,
+                133.89199829101562,
+                736.4136352539062
+              ]
+            }
+          ]
+        }
+      ],
+      "bbox_difference_details": []
+    },
+    {
+      "page": 23,
+      "exact_text_equal": true,
+      "normalized_text_equal": true,
+      "line_text_sequence_equal": true,
+      "max_line_bbox_displacement_pt": 0.708984375,
+      "line_layout_tolerance_pt": 2.0,
+      "page_size_equal": true,
+      "pixels_identical": false,
+      "actual_render_sha256": "39c63579ae985c3d6e7ff927d86d88a523c1fbebc97c3adb028561129c03826b",
+      "baseline_render_sha256": "59092aec86018b0127427ccec9a8b5e37d58c2a6713c8210ec66c011c381d893",
+      "changed_pixel_fraction": 0.016443750099634946,
+      "mean_absolute_channel_difference_255": 0.8704486760509494
+    },
+    {
+      "page": 24,
+      "exact_text_equal": true,
+      "normalized_text_equal": true,
+      "line_text_sequence_equal": true,
+      "max_line_bbox_displacement_pt": 1.6026611328125,
+      "line_layout_tolerance_pt": 2.0,
+      "page_size_equal": true,
+      "pixels_identical": false,
+      "actual_render_sha256": "9ebb21fa4b0288584948d6bfe442ab2abc1665ecb7447a90065a082036f0cb58",
+      "baseline_render_sha256": "81d5d7626e5382dedaca7898b3d0a67c9942f4b31b8f47a6068def213cb8343c",
+      "changed_pixel_fraction": 0.0878600806644455,
+      "mean_absolute_channel_difference_255": 5.42178657399289
+    },
+    {
+      "page": 25,
+      "exact_text_equal": true,
+      "normalized_text_equal": true,
+      "line_text_sequence_equal": true,
+      "max_line_bbox_displacement_pt": 1.638427734375,
+      "line_layout_tolerance_pt": 2.0,
+      "page_size_equal": true,
+      "pixels_identical": false,
+      "actual_render_sha256": "66ef65957c71c3c49ba62fb2fadc41de653b0ebbc7982e74c153148dc431ba22",
+      "baseline_render_sha256": "feb38eee1bf4ac41145ea6c81a0c8885480aebd0493bc0b5e6d6d24308c302ab",
+      "changed_pixel_fraction": 0.0767687194120742,
+      "mean_absolute_channel_difference_255": 4.310689633184014
+    },
+    {
+      "page": 26,
+      "exact_text_equal": false,
+      "normalized_text_equal": true,
+      "line_text_sequence_equal": true,
+      "max_line_bbox_displacement_pt": 0.70904541015625,
+      "line_layout_tolerance_pt": 2.0,
+      "page_size_equal": true,
+      "pixels_identical": false,
+      "actual_render_sha256": "07c261a945f85736cc9e31ed69b2bf0fae45a4e2b3da2bd0fbc0d4ba2f06ac79",
+      "baseline_render_sha256": "d29b59790f8c57f71f30d13456874080d54e206968521e3f55133465994139be",
+      "changed_pixel_fraction": 0.05147738685456482,
+      "mean_absolute_channel_difference_255": 2.864130492541993
+    },
+    {
+      "page": 27,
+      "exact_text_equal": false,
+      "normalized_text_equal": true,
+      "line_text_sequence_equal": true,
+      "max_line_bbox_displacement_pt": 3.8058929443359375,
+      "line_layout_tolerance_pt": 2.0,
+      "page_size_equal": true,
+      "pixels_identical": false,
+      "actual_render_sha256": "0b6a8a79dbf74fa681b2fca59dc45181226f485534526309c95e00ebe1c9527f",
+      "baseline_render_sha256": "54201d99907e78edbc61835b5126c7223a039d148c6d7ea80a708c1757303781",
+      "changed_pixel_fraction": 0.038849654864576144,
+      "mean_absolute_channel_difference_255": 2.5177695590024816,
+      "line_reflow_details": [],
+      "bbox_difference_details": [
+        {
+          "actual_line": 3,
+          "baseline_line": 3,
+          "text": "网格设置",
+          "max_displacement_pt": 3.8057403564453125,
+          "actual_bbox": [
+            131.7557373046875,
+            103.31306457519531,
+            179.77566528320312,
+            115.31804656982422
+          ],
+          "baseline_bbox": [
+            127.94999694824219,
+            102.60470581054688,
+            175.97000122070312,
+            114.60970306396484
+          ]
+        },
+        {
+          "actual_line": 4,
+          "baseline_line": 4,
+          "text": "相对求解容差",
+          "max_displacement_pt": 3.805755615234375,
+          "actual_bbox": [
+            275.7657470703125,
+            103.31306457519531,
+            347.795654296875,
+            115.31804656982422
+          ],
+          "baseline_bbox": [
+            271.9599914550781,
+            102.60470581054688,
+            343.9900207519531,
+            114.60970306396484
+          ]
+        },
+        {
+          "actual_line": 5,
+          "baseline_line": 5,
+          "text": "最大水分差(kg/kg)",
+          "max_displacement_pt": 3.80560302734375,
+          "actual_bbox": [
+            359.7406005859375,
+            103.31306457519531,
+            471.1310729980469,
+            115.76972198486328
+          ],
+          "baseline_bbox": [
+            355.93499755859375,
+            102.60470581054688,
+            467.32598876953125,
+            115.7696762084961
+          ]
+        },
+        {
+          "actual_line": 6,
+          "baseline_line": 6,
+          "text": "初始自动网格",
+          "max_displacement_pt": 3.8057403564453125,
+          "actual_bbox": [
+            131.7557373046875,
+            128.45631408691406,
+            203.78562927246094,
+            140.4613037109375
+          ],
+          "baseline_bbox": [
+            127.94999694824219,
+            127.7477035522461,
+            199.97999572753906,
+            139.75270080566406
+          ]
+        },
+        {
+          "actual_line": 7,
+          "baseline_line": 7,
+          "text": "1.00×10-4",
+          "max_displacement_pt": 3.805755615234375,
+          "actual_bbox": [
+            282.1647644042969,
+            126.98104858398438,
+            340.8963928222656,
+            140.68301391601562
+          ],
+          "baseline_bbox": [
+            278.3590087890625,
+            126.98127746582031,
+            337.0912170410156,
+            140.68270874023438
+          ]
+        },
+        {
+          "actual_line": 9,
+          "baseline_line": 9,
+          "text": "初始自动网格,收紧容差",
+          "max_displacement_pt": 3.8057861328125,
+          "actual_bbox": [
+            131.75579833984375,
+            148.32284545898438,
+            263.8106384277344,
+            160.3278350830078
+          ],
+          "baseline_bbox": [
+            127.95001220703125,
+            147.6147003173828,
+            260.0050048828125,
+            159.6197052001953
+          ]
+        },
+        {
+          "actual_line": 10,
+          "baseline_line": 10,
+          "text": "1.00×10-6",
+          "max_displacement_pt": 3.805816650390625,
+          "actual_bbox": [
+            282.1648254394531,
+            146.8475799560547,
+            340.8964538574219,
+            160.54954528808594
+          ],
+          "baseline_bbox": [
+            278.3590087890625,
+            146.8472900390625,
+            337.09124755859375,
+            160.54971313476562
+          ]
+        },
+        {
+          "actual_line": 12,
+          "baseline_line": 12,
+          "text": "表层加密,80单元",
+          "max_displacement_pt": 3.8058929443359375,
+          "actual_bbox": [
+            131.755859375,
+            168.1893768310547,
+            230.79698181152344,
+            180.6460418701172
+          ],
+          "baseline_bbox": [
+            127.9500732421875,
+            167.48069763183594,
+            226.9910888671875,
+            180.6456756591797
+          ]
+        },
+        {
+          "actual_line": 13,
+          "baseline_line": 13,
+          "text": "1.00×10-6",
+          "max_displacement_pt": 3.8057861328125,
+          "actual_bbox": [
+            282.16485595703125,
+            166.714111328125,
+            340.896484375,
+            180.41607666015625
+          ],
+          "baseline_bbox": [
+            278.35906982421875,
+            166.7142791748047,
+            337.09130859375,
+            180.41571044921875
+          ]
+        },
+        {
+          "actual_line": 15,
+          "baseline_line": 15,
+          "text": "表层加密,160单元",
+          "max_displacement_pt": 3.80572509765625,
+          "actual_bbox": [
+            131.755859375,
+            188.055908203125,
+            236.7994842529297,
+            200.5125732421875
+          ],
+          "baseline_bbox": [
+            127.95013427734375,
+            187.3477020263672,
+            232.994140625,
+            200.51268005371094
+          ]
+        },
+        {
+          "actual_line": 16,
+          "baseline_line": 16,
+          "text": "1.00×10-6",
+          "max_displacement_pt": 3.80572509765625,
+          "actual_bbox": [
+            282.16485595703125,
+            186.5806427001953,
+            340.896484375,
+            200.28260803222656
+          ],
+          "baseline_bbox": [
+            278.359130859375,
+            186.5802764892578,
+            337.09136962890625,
+            200.28271484375
+          ]
+        },
+        {
+          "actual_line": 18,
+          "baseline_line": 18,
+          "text": "表层加密,320单元",
+          "max_displacement_pt": 3.8056640625,
+          "actual_bbox": [
+            131.755859375,
+            207.9224395751953,
+            236.7994842529297,
+            220.3791046142578
+          ],
+          "baseline_bbox": [
+            127.9501953125,
+            207.2136993408203,
+            232.99420166015625,
+            220.37867736816406
+          ]
+        },
+        {
+          "actual_line": 19,
+          "baseline_line": 19,
+          "text": "1.00×10-6",
+          "max_displacement_pt": 3.8056640625,
+          "actual_bbox": [
+            282.16485595703125,
+            206.44717407226562,
+            340.896484375,
+            220.14913940429688
+          ],
+          "baseline_bbox": [
+            278.35919189453125,
+            206.44728088378906,
+            337.0914306640625,
+            220.14871215820312
+          ]
+        },
+        {
+          "actual_line": 21,
+          "baseline_line": 21,
+          "text": "320单元,收紧容差",
+          "max_displacement_pt": 3.80560302734375,
+          "actual_bbox": [
+            131.755859375,
+            227.78897094726562,
+            236.7994842529297,
+            240.24563598632812
+          ],
+          "baseline_bbox": [
+            127.95025634765625,
+            227.08070373535156,
+            232.9942626953125,
+            240.2456817626953
+          ]
+        },
+        {
+          "actual_line": 22,
+          "baseline_line": 22,
+          "text": "1.00×10-7",
+          "max_displacement_pt": 3.80560302734375,
+          "actual_bbox": [
+            282.16485595703125,
+            226.31370544433594,
+            340.896484375,
+            240.0156707763672
+          ],
+          "baseline_bbox": [
+            278.3592529296875,
+            226.31329345703125,
+            337.09149169921875,
+            240.01571655273438
+          ]
+        },
+        {
+          "actual_line": 71,
+          "baseline_line": 71,
+          "text": "立计算,与固定材料坐标解比较,结果见表14和图14。",
+          "max_displacement_pt": 3.001739501953125,
+          "actual_bbox": [
+            70.86613464355469,
+            590.72998046875,
+            364.9882507324219,
+            603.1866455078125
+          ],
+          "baseline_bbox": [
+            70.86599731445312,
+            590.0216674804688,
+            367.989990234375,
+            603.1866455078125
+          ]
+        }
+      ]
+    },
+    {
+      "page": 28,
+      "exact_text_equal": true,
+      "normalized_text_equal": true,
+      "line_text_sequence_equal": true,
+      "max_line_bbox_displacement_pt": 1.42822265625,
+      "line_layout_tolerance_pt": 2.0,
+      "page_size_equal": true,
+      "pixels_identical": false,
+      "actual_render_sha256": "1646ac460b61a7b49ca3fe349c55a6f53c0dd116affdfa4614ed81c3142c48d0",
+      "baseline_render_sha256": "2af20cc67dd713a0c2f3df0dcee32b81ba136213582a1b34950c057c4cab1c8b",
+      "changed_pixel_fraction": 0.053689282469033484,
+      "mean_absolute_channel_difference_255": 3.0959145690191137
+    },
+    {
+      "page": 29,
+      "exact_text_equal": false,
+      "normalized_text_equal": true,
+      "line_text_sequence_equal": false,
+      "max_line_bbox_displacement_pt": null,
+      "line_layout_tolerance_pt": 2.0,
+      "page_size_equal": true,
+      "pixels_identical": false,
+      "actual_render_sha256": "2181a8e1d88439f9793c0600936dd664747f1b80833f26d0b13f59d20fa667a5",
+      "baseline_render_sha256": "134b61c939cfebc023c0a4752162908aa8af5287b512712fafbbc146bd33c0e6",
+      "changed_pixel_fraction": 0.09227191570087201,
+      "mean_absolute_channel_difference_255": 5.060727494460298,
+      "line_reflow_details": [
+        {
+          "kind": "replace",
+          "actual_line_numbers": [
+            21,
+            21
+          ],
+          "baseline_line_numbers": [
+            21,
+            22
+          ],
+          "actual_lines": [
+            {
+              "text": "161节点,1s(终算)51.087699",
+              "bbox": [
+                210.59561157226562,
+                363.4644470214844,
+                384.68011474609375,
+                375.92108154296875
+              ]
+            }
+          ],
+          "baseline_lines": [
+            {
+              "text": "161节点,1s(终算)",
+              "bbox": [
+                206.7899932861328,
+                362.7557067871094,
+                325.509033203125,
+                375.920654296875
+              ]
+            },
+            {
+              "text": "51.087699",
+              "bbox": [
+                337.4639892578125,
+                363.9156799316406,
+                388.4852600097656,
+                375.920654296875
+              ]
+            }
+          ]
+        }
+      ],
+      "bbox_difference_details": [
+        {
+          "actual_line": 9,
+          "baseline_line": 9,
+          "text": "计算设置",
+          "max_displacement_pt": 3.8056182861328125,
+          "actual_bbox": [
+            210.59561157226562,
+            238.98858642578125,
+            258.6155700683594,
+            250.9935760498047
+          ],
+          "baseline_bbox": [
+            206.7899932861328,
+            238.27969360351562,
+            254.8100128173828,
+            250.28469848632812
+          ]
+        },
+        {
+          "actual_line": 10,
+          "baseline_line": 10,
+          "text": "问题四",
+          "max_displacement_pt": 3.806121826171875,
+          "actual_bbox": [
+            341.1619567871094,
+            238.98858642578125,
+            377.1768798828125,
+            250.9935760498047
+          ],
+          "baseline_bbox": [
+            344.9679870605469,
+            238.27969360351562,
+            380.9830017089844,
+            250.28469848632812
+          ]
+        },
+        {
+          "actual_line": 11,
+          "baseline_line": 11,
+          "text": "41节点,10s",
+          "max_displacement_pt": 3.805755615234375,
+          "actual_bbox": [
+            210.59561157226562,
+            264.1318359375,
+            281.29296875,
+            276.5884704589844
+          ],
+          "baseline_bbox": [
+            206.7899932861328,
+            263.4237060546875,
+            277.4872131347656,
+            276.5886535644531
+          ]
+        },
+        {
+          "actual_line": 12,
+          "baseline_line": 12,
+          "text": "51.093100",
+          "max_displacement_pt": 3.805145263671875,
+          "actual_bbox": [
+            333.6588439941406,
+            264.58349609375,
+            384.68011474609375,
+            276.5884704589844
+          ],
+          "baseline_bbox": [
+            337.4639892578125,
+            264.58367919921875,
+            388.4852600097656,
+            276.5886535644531
+          ]
+        },
+        {
+          "actual_line": 13,
+          "baseline_line": 13,
+          "text": "81节点,10s",
+          "max_displacement_pt": 3.805755615234375,
+          "actual_bbox": [
+            210.59561157226562,
+            283.9983825683594,
+            281.29296875,
+            296.45501708984375
+          ],
+          "baseline_bbox": [
+            206.7899932861328,
+            283.2897033691406,
+            277.4872131347656,
+            296.45465087890625
+          ]
+        },
+        {
+          "actual_line": 14,
+          "baseline_line": 14,
+          "text": "51.093511",
+          "max_displacement_pt": 3.805389404296875,
+          "actual_bbox": [
+            333.881591796875,
+            284.4500427246094,
+            384.45867919921875,
+            296.45501708984375
+          ],
+          "baseline_bbox": [
+            337.6869812011719,
+            284.4496765136719,
+            388.2640686035156,
+            296.45465087890625
+          ]
+        },
+        {
+          "actual_line": 15,
+          "baseline_line": 15,
+          "text": "161节点,10s",
+          "max_displacement_pt": 3.817291259765625,
+          "actual_bbox": [
+            210.59561157226562,
+            303.8648986816406,
+            287.29547119140625,
+            316.321533203125
+          ],
+          "baseline_bbox": [
+            206.78997802734375,
+            303.1567077636719,
+            283.4781799316406,
+            316.3216552734375
+          ]
+        },
+        {
+          "actual_line": 16,
+          "baseline_line": 16,
+          "text": "51.093626",
+          "max_displacement_pt": 3.805145263671875,
+          "actual_bbox": [
+            333.6588439941406,
+            304.3165588378906,
+            384.68011474609375,
+            316.321533203125
+          ],
+          "baseline_bbox": [
+            337.4639892578125,
+            304.3166809082031,
+            388.4852600097656,
+            316.3216552734375
+          ]
+        },
+        {
+          "actual_line": 17,
+          "baseline_line": 17,
+          "text": "321节点,10s",
+          "max_displacement_pt": 3.817291259765625,
+          "actual_bbox": [
+            210.59561157226562,
+            323.7314147949219,
+            287.29547119140625,
+            336.18804931640625
+          ],
+          "baseline_bbox": [
+            206.7899932861328,
+            323.022705078125,
+            283.4781799316406,
+            336.1876525878906
+          ]
+        },
+        {
+          "actual_line": 18,
+          "baseline_line": 18,
+          "text": "51.093656",
+          "max_displacement_pt": 3.805145263671875,
+          "actual_bbox": [
+            333.6588439941406,
+            324.1830749511719,
+            384.68011474609375,
+            336.18804931640625
+          ],
+          "baseline_bbox": [
+            337.4639892578125,
+            324.18267822265625,
+            388.4852600097656,
+            336.1876525878906
+          ]
+        },
+        {
+          "actual_line": 19,
+          "baseline_line": 19,
+          "text": "161节点,2s",
+          "max_displacement_pt": 3.81732177734375,
+          "actual_bbox": [
+            210.59561157226562,
+            343.5979309082031,
+            281.2929992675781,
+            356.0545654296875
+          ],
+          "baseline_bbox": [
+            206.7899932861328,
+            342.88970947265625,
+            277.4756774902344,
+            356.0546569824219
+          ]
+        },
+        {
+          "actual_line": 20,
+          "baseline_line": 20,
+          "text": "51.088358",
+          "max_displacement_pt": 3.805145263671875,
+          "actual_bbox": [
+            333.6588439941406,
+            344.0495910644531,
+            384.68011474609375,
+            356.0545654296875
+          ],
+          "baseline_bbox": [
+            337.4639892578125,
+            344.0496826171875,
+            388.4852600097656,
+            356.0546569824219
+          ]
+        }
+      ]
+    },
+    {
+      "page": 30,
+      "exact_text_equal": true,
+      "normalized_text_equal": true,
+      "line_text_sequence_equal": true,
+      "max_line_bbox_displacement_pt": 3.8060150146484375,
+      "line_layout_tolerance_pt": 2.0,
+      "page_size_equal": true,
+      "pixels_identical": false,
+      "actual_render_sha256": "f018a4f4f51f97bffd8afa7d1436239c9ceae44f86d1f13eca08beed68b604bd",
+      "baseline_render_sha256": "580dcffa9a59afdd460e399936a88c12fa749e642c06bab4d47104ae94be45c5",
+      "changed_pixel_fraction": 0.11068644486601098,
+      "mean_absolute_channel_difference_255": 5.450045034991791,
+      "line_reflow_details": [],
+      "bbox_difference_details": [
+        {
+          "actual_line": 6,
+          "baseline_line": 6,
+          "text": "基准(10s)",
+          "max_displacement_pt": 3.8060150146484375,
+          "actual_bbox": [
+            216.62301635742188,
+            128.45631408691406,
+            284.3210144042969,
+            140.91297912597656
+          ],
+          "baseline_bbox": [
+            212.81700134277344,
+            127.7477035522461,
+            280.5150146484375,
+            140.9126739501953
+          ]
+        }
+      ]
+    },
+    {
+      "page": 31,
+      "exact_text_equal": false,
+      "normalized_text_equal": true,
+      "line_text_sequence_equal": false,
+      "max_line_bbox_displacement_pt": null,
+      "line_layout_tolerance_pt": 2.0,
+      "page_size_equal": true,
+      "pixels_identical": false,
+      "actual_render_sha256": "395084789c8d3f44e012b91f27c66361958725199a168dbfed245f871c8c8110",
+      "baseline_render_sha256": "0274f5099e04f26f97427266f1f7b8974cb0abbb93ecdeed9b3047a0c6a6d39a",
+      "changed_pixel_fraction": 0.05733193578727547,
+      "mean_absolute_channel_difference_255": 3.8030556042659693,
+      "line_reflow_details": [
+        {
+          "kind": "replace",
+          "actual_line_numbers": [
+            2,
+            3
+          ],
+          "baseline_line_numbers": [
+            2,
+            3
+          ],
+          "actual_lines": [
+            {
+              "text": "结合少量中心温湿测量,可标定扩散与表面交换参数,利用模型估计内部达标时",
+              "bbox": [
+                94.87611389160156,
+                101.13825988769531,
+                524.4022216796875,
+                113.14324188232422
+              ]
+            },
+            {
+              "text": "刻,并进一步加入能耗、品质和设备约束以优化干燥温度策略。",
+              "bbox": [
+                70.86614227294922,
+                121.00480651855469,
+                407.00567626953125,
+                133.00979614257812
+              ]
+            }
+          ],
+          "baseline_lines": [
+            {
+              "text": "结合少量中心温湿测量,可标定扩散与表面交换参数,利用模型估计内部达标时刻,",
+              "bbox": [
+                94.8759994506836,
+                100.4297103881836,
+                533.0946044921875,
+                112.43470764160156
+              ]
+            },
+            {
+              "text": "并进一步加入能耗、品质和设备约束以优化干燥温度策略。",
+              "bbox": [
+                70.86599731445312,
+                120.29671478271484,
+                382.9960632324219,
+                132.3017120361328
+              ]
+            }
+          ]
+        },
+        {
+          "kind": "replace",
+          "actual_line_numbers": [
+            8,
+            11
+          ],
+          "baseline_line_numbers": [
+            8,
+            11
+          ],
+          "actual_lines": [
+            {
+              "text": "本文使用ChatGPT(GPT-6)[7]等AI工具辅助思路讨论、局部公式检查、程序实",
+              "bbox": [
+                94.87612915039062,
+                256.4537658691406,
+                524.405029296875,
+                268.910400390625
+              ]
+            },
+            {
+              "text": "现与调试、结果核对及图文排版。数值结果由程序计算获得,参赛队负责模型方案的确",
+              "bbox": [
+                70.86613464355469,
+                276.3203430175781,
+                524.4143676757812,
+                288.3253173828125
+              ]
+            },
+            {
+              "text": "定、建议的取舍和结果审核,并对论文内容承担最终责任。具体使用情况见支撑材料",
+              "bbox": [
+                70.86613464355469,
+                296.1868896484375,
+                524.40234375,
+                308.1918640136719
+              ]
+            },
+            {
+              "text": "《AI工具使用详情》。",
+              "bbox": [
+                64.32342529296875,
+                316.0534362792969,
+                182.0343780517578,
+                328.51007080078125
+              ]
+            }
+          ],
+          "baseline_lines": [
+            {
+              "text": "本文使用ChatGPT(GPT-6)[7]等AI工具辅助思路讨论、局部公式检查、程序实现",
+              "bbox": [
+                94.87599182128906,
+                255.7447052001953,
+                524.4180908203125,
+                268.9106750488281
+              ]
+            },
+            {
+              "text": "与调试、结果核对及图文排版。数值结果由程序计算获得,参赛队负责模型方案的确定、",
+              "bbox": [
+                70.86599731445312,
+                275.6117248535156,
+                532.158203125,
+                287.6167297363281
+              ]
+            },
+            {
+              "text": "建议的取舍和结果审核,并对论文内容承担最终责任。具体使用情况见支撑材料《AI工",
+              "bbox": [
+                70.86599731445312,
+                295.4787292480469,
+                524.4089965820312,
+                308.6436767578125
+              ]
+            },
+            {
+              "text": "具使用详情》。",
+              "bbox": [
+                70.86599731445312,
+                315.3446960449219,
+                148.91050720214844,
+                327.3497009277344
+              ]
+            }
+          ]
+        }
+      ],
+      "bbox_difference_details": []
+    }
+  ],
+  "errors": [],
+  "warnings": [
+    {
+      "check": "body_line_layout_changed_explicitly_allowed",
+      "page": 1,
+      "line_sequence_equal": false,
+      "max_displacement_pt": null,
+      "page_text_equal": true,
+      "note": "Explicit --allow-body-reflow; detailed line and bbox changes retained. Text/page limits remain strict."
+    },
+    {
+      "check": "body_pixels_differ",
+      "page": 1,
+      "note": "Reported separately; text and line layout are checked independently"
+    },
+    {
+      "check": "body_pixels_differ",
+      "page": 2,
+      "note": "Reported separately; text and line layout are checked independently"
+    },
+    {
+      "check": "body_line_layout_changed_explicitly_allowed",
+      "page": 3,
+      "line_sequence_equal": true,
+      "max_displacement_pt": 3.001251220703125,
+      "page_text_equal": true,
+      "note": "Explicit --allow-body-reflow; detailed line and bbox changes retained. Text/page limits remain strict."
+    },
+    {
+      "check": "body_pixels_differ",
+      "page": 3,
+      "note": "Reported separately; text and line layout are checked independently"
+    },
+    {
+      "check": "body_line_layout_changed_explicitly_allowed",
+      "page": 4,
+      "line_sequence_equal": false,
+      "max_displacement_pt": null,
+      "page_text_equal": true,
+      "note": "Explicit --allow-body-reflow; detailed line and bbox changes retained. Text/page limits remain strict."
+    },
+    {
+      "check": "body_pixels_differ",
+      "page": 4,
+      "note": "Reported separately; text and line layout are checked independently"
+    },
+    {
+      "check": "body_pixels_differ",
+      "page": 5,
+      "note": "Reported separately; text and line layout are checked independently"
+    },
+    {
+      "check": "body_line_layout_changed_explicitly_allowed",
+      "page": 6,
+      "line_sequence_equal": true,
+      "max_displacement_pt": 2.06536865234375,
+      "page_text_equal": true,
+      "note": "Explicit --allow-body-reflow; detailed line and bbox changes retained. Text/page limits remain strict."
+    },
+    {
+      "check": "body_pixels_differ",
+      "page": 6,
+      "note": "Reported separately; text and line layout are checked independently"
+    },
+    {
+      "check": "body_pixels_differ",
+      "page": 7,
+      "note": "Reported separately; text and line layout are checked independently"
+    },
+    {
+      "check": "body_pixels_differ",
+      "page": 8,
+      "note": "Reported separately; text and line layout are checked independently"
+    },
+    {
+      "check": "body_line_layout_changed_explicitly_allowed",
+      "page": 9,
+      "line_sequence_equal": true,
+      "max_displacement_pt": 3.00146484375,
+      "page_text_equal": true,
+      "note": "Explicit --allow-body-reflow; detailed line and bbox changes retained. Text/page limits remain strict."
+    },
+    {
+      "check": "body_pixels_differ",
+      "page": 9,
+      "note": "Reported separately; text and line layout are checked independently"
+    },
+    {
+      "check": "body_line_layout_changed_explicitly_allowed",
+      "page": 10,
+      "line_sequence_equal": false,
+      "max_displacement_pt": null,
+      "page_text_equal": true,
+      "note": "Explicit --allow-body-reflow; detailed line and bbox changes retained. Text/page limits remain strict."
+    },
+    {
+      "check": "body_pixels_differ",
+      "page": 10,
+      "note": "Reported separately; text and line layout are checked independently"
+    },
+    {
+      "check": "body_pixels_differ",
+      "page": 11,
+      "note": "Reported separately; text and line layout are checked independently"
+    },
+    {
+      "check": "body_line_layout_changed_explicitly_allowed",
+      "page": 12,
+      "line_sequence_equal": true,
+      "max_displacement_pt": 3.806060791015625,
+      "page_text_equal": true,
+      "note": "Explicit --allow-body-reflow; detailed line and bbox changes retained. Text/page limits remain strict."
+    },
+    {
+      "check": "body_pixels_differ",
+      "page": 12,
+      "note": "Reported separately; text and line layout are checked independently"
+    },
+    {
+      "check": "body_line_layout_changed_explicitly_allowed",
+      "page": 13,
+      "line_sequence_equal": true,
+      "max_displacement_pt": 3.001312255859375,
+      "page_text_equal": true,
+      "note": "Explicit --allow-body-reflow; detailed line and bbox changes retained. Text/page limits remain strict."
+    },
+    {
+      "check": "body_pixels_differ",
+      "page": 13,
+      "note": "Reported separately; text and line layout are checked independently"
+    },
+    {
+      "check": "body_line_layout_changed_explicitly_allowed",
+      "page": 14,
+      "line_sequence_equal": false,
+      "max_displacement_pt": null,
+      "page_text_equal": true,
+      "note": "Explicit --allow-body-reflow; detailed line and bbox changes retained. Text/page limits remain strict."
+    },
+    {
+      "check": "body_pixels_differ",
+      "page": 14,
+      "note": "Reported separately; text and line layout are checked independently"
+    },
+    {
+      "check": "body_pixels_differ",
+      "page": 15,
+      "note": "Reported separately; text and line layout are checked independently"
+    },
+    {
+      "check": "body_line_layout_changed_explicitly_allowed",
+      "page": 16,
+      "line_sequence_equal": true,
+      "max_displacement_pt": 3.00189208984375,
+      "page_text_equal": true,
+      "note": "Explicit --allow-body-reflow; detailed line and bbox changes retained. Text/page limits remain strict."
+    },
+    {
+      "check": "body_pixels_differ",
+      "page": 16,
+      "note": "Reported separately; text and line layout are checked independently"
+    },
+    {
+      "check": "body_pixels_differ",
+      "page": 17,
+      "note": "Reported separately; text and line layout are checked independently"
+    },
+    {
+      "check": "body_line_layout_changed_explicitly_allowed",
+      "page": 18,
+      "line_sequence_equal": true,
+      "max_displacement_pt": 3.0010986328125,
+      "page_text_equal": true,
+      "note": "Explicit --allow-body-reflow; detailed line and bbox changes retained. Text/page limits remain strict."
+    },
+    {
+      "check": "body_pixels_differ",
+      "page": 18,
+      "note": "Reported separately; text and line layout are checked independently"
+    },
+    {
+      "check": "body_pixels_differ",
+      "page": 19,
+      "note": "Reported separately; text and line layout are checked independently"
+    },
+    {
+      "check": "body_line_layout_changed_explicitly_allowed",
+      "page": 20,
+      "line_sequence_equal": false,
+      "max_displacement_pt": null,
+      "page_text_equal": true,
+      "note": "Explicit --allow-body-reflow; detailed line and bbox changes retained. Text/page limits remain strict."
+    },
+    {
+      "check": "body_pixels_differ",
+      "page": 20,
+      "note": "Reported separately; text and line layout are checked independently"
+    },
+    {
+      "check": "body_pixels_differ",
+      "page": 21,
+      "note": "Reported separately; text and line layout are checked independently"
+    },
+    {
+      "check": "body_line_layout_changed_explicitly_allowed",
+      "page": 22,
+      "line_sequence_equal": false,
+      "max_displacement_pt": null,
+      "page_text_equal": true,
+      "note": "Explicit --allow-body-reflow; detailed line and bbox changes retained. Text/page limits remain strict."
+    },
+    {
+      "check": "body_pixels_differ",
+      "page": 22,
+      "note": "Reported separately; text and line layout are checked independently"
+    },
+    {
+      "check": "body_pixels_differ",
+      "page": 23,
+      "note": "Reported separately; text and line layout are checked independently"
+    },
+    {
+      "check": "body_pixels_differ",
+      "page": 24,
+      "note": "Reported separately; text and line layout are checked independently"
+    },
+    {
+      "check": "body_pixels_differ",
+      "page": 25,
+      "note": "Reported separately; text and line layout are checked independently"
+    },
+    {
+      "check": "body_pixels_differ",
+      "page": 26,
+      "note": "Reported separately; text and line layout are checked independently"
+    },
+    {
+      "check": "body_line_layout_changed_explicitly_allowed",
+      "page": 27,
+      "line_sequence_equal": true,
+      "max_displacement_pt": 3.8058929443359375,
+      "page_text_equal": true,
+      "note": "Explicit --allow-body-reflow; detailed line and bbox changes retained. Text/page limits remain strict."
+    },
+    {
+      "check": "body_pixels_differ",
+      "page": 27,
+      "note": "Reported separately; text and line layout are checked independently"
+    },
+    {
+      "check": "body_pixels_differ",
+      "page": 28,
+      "note": "Reported separately; text and line layout are checked independently"
+    },
+    {
+      "check": "body_line_layout_changed_explicitly_allowed",
+      "page": 29,
+      "line_sequence_equal": false,
+      "max_displacement_pt": null,
+      "page_text_equal": true,
+      "note": "Explicit --allow-body-reflow; detailed line and bbox changes retained. Text/page limits remain strict."
+    },
+    {
+      "check": "body_pixels_differ",
+      "page": 29,
+      "note": "Reported separately; text and line layout are checked independently"
+    },
+    {
+      "check": "body_line_layout_changed_explicitly_allowed",
+      "page": 30,
+      "line_sequence_equal": true,
+      "max_displacement_pt": 3.8060150146484375,
+      "page_text_equal": true,
+      "note": "Explicit --allow-body-reflow; detailed line and bbox changes retained. Text/page limits remain strict."
+    },
+    {
+      "check": "body_pixels_differ",
+      "page": 30,
+      "note": "Reported separately; text and line layout are checked independently"
+    },
+    {
+      "check": "body_line_layout_changed_explicitly_allowed",
+      "page": 31,
+      "line_sequence_equal": false,
+      "max_displacement_pt": null,
+      "page_text_equal": true,
+      "note": "Explicit --allow-body-reflow; detailed line and bbox changes retained. Text/page limits remain strict."
+    },
+    {
+      "check": "body_pixels_differ",
+      "page": 31,
+      "note": "Reported separately; text and line layout are checked independently"
+    }
+  ],
+  "numerical_source_execution": false,
+  "source_file_count": 33,
+  "source_language_counts": {
+    "Python": 22,
+    "Bash": 1,
+    "Java": 8,
+    "PowerShell": 2
+  },
+  "original_source_lines": 4744,
+  "latex_listing_count": 33,
+  "pdf_pages": 148,
+  "appendix_A_page": 32,
+  "appendix_B_page": 36,
+  "pdf_sha256": "c52c5dfd4bef6c99fd1d583e87ccf697abc17712983bab27b829cd0c713b559e",
+  "baseline_sha256": "cd0f75c37882c2e01fdcbcaa3ee22b095275fb2416f21ff9a5292f67babe494e",
+  "body_layout_policy": {
+    "allow_body_reflow": true,
+    "actual_pdf_producer": "xdvipdfmx (0.1)",
+    "baseline_pdf_producer": "MiKTeX-dvipdfmx (20250413)",
+    "text_and_page_count_checks_remain_strict": true,
+    "text_line_reflow_pages": [
+      1,
+      4,
+      10,
+      14,
+      20,
+      22,
+      29,
+      31
+    ],
+    "bbox_only_difference_pages": [
+      3,
+      6,
+      9,
+      12,
+      13,
+      16,
+      18,
+      27,
+      30
+    ]
+  },
+  "body_boundary": {
+    "abstract_pages_expected": 1,
+    "manuscript_pages_expected": 30,
+    "preserved_prefix_pages_expected": 31,
+    "actual_preserved_prefix_pages": 31,
+    "baseline_preserved_prefix_pages": 31
+  },
+  "appendix_A_pages": [
+    32,
+    33,
+    34,
+    35
+  ],
+  "supporting_files_found": {
+    "results/result1.xlsx": true,
+    "results/result2.xlsx": true,
+    "results/result3.xlsx": true,
+    "results/result4.xlsx": true,
+    "AI工具使用详情.pdf": true
+  },
+  "appendix_A_continuation_headers": [
+    {
+      "page": 33,
+      "continuation_marker_present": true
+    },
+    {
+      "page": 34,
+      "continuation_marker_present": true
+    },
+    {
+      "page": 35,
+      "continuation_marker_present": true
+    }
+  ],
+  "compile_log": {
+    "path": "tmp\\source-sync-5ae7984\\main.log",
+    "sha256": "b14461cf74bfde0cbf94f24720bfacf0dd0218188386c9f0a9f04f5ad7c89855",
+    "aux_path": "tmp\\source-sync-5ae7984\\main.aux",
+    "aux_sha256": "f19dd6f6b3ecc0bfb396cec2bbf6001622b596fc6eb88449fe1813fdc4901835",
+    "not_older_than_manifest_and_appendix_inputs": true,
+    "aux_not_older_than_manifest_and_appendix_inputs": true,
+    "reported_output": "main.xdv",
+    "tectonic_pdf_conversion": {
+      "path": "tmp\\source-sync-5ae7984\\compile-output.txt",
+      "sha256": "5732fac5831c3fb09d21b58bc7f047f546cab6b4f7e0d3cc569d2777b18974d2",
+      "encoding": "utf-16",
+      "written_pdf": "E:\\26math model\\26mathmodel\\tmp\\source-sync-5ae7984\\main.pdf",
+      "recorded_bytes": 2267377.0,
+      "actual_bytes": 2267377,
+      "same_pdf_bytes": true,
+      "byte_count_matches": true,
+      "not_older_than_appendix_inputs": true,
+      "verified": true
+    },
+    "reported_pages": 148,
+    "findings": []
+  },
+  "pdf_integrity": {
+    "replacement_or_missing_character_pages": [],
+    "body_unresolved_reference_marker_pages": [],
+    "text_outside_page": [],
+    "visual_review_claimed": true,
+    "visually_reviewed_pages": [
+      1,
+      31,
+      32,
+      36,
+      148
+    ],
+    "visual_review_result": "摘要、正文末页、文件清单、源码起始及结束页无明显裁切、缺字或重叠。"
+  },
+  "rendered_appendix_pages": []
+}

@@ -1,0 +1,562 @@
+{
+  "status": "PASS",
+  "scope": "Four final principal simulations and every final workbook result cell; current paper primary numerical tables.",
+  "source_commit_context": "5ae7984; root agent pulled and synchronized current sources before this recheck.",
+  "current_solver_sha256": "7016bf12f67710261eb0db124ed932a6e74692d919ca472df655976522fe572d",
+  "current_exporter_sha256": "cbade6ecc9922a5b1b91ec959e4279f4c8b5d77bccdb8e2e8d8e6a22cb9b41ca",
+  "environment": {
+    "python": "3.13.9 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 19:09:58) [MSC v.1929 64 bit (AMD64)]",
+    "numpy": "2.3.5",
+    "scipy": "1.16.3",
+    "platform": "Windows-11-10.0.22621-SP0"
+  },
+  "main_model_settings": {
+    "nodes": 161,
+    "output_nodes_fixed": 21,
+    "grid_power": 2.0,
+    "dt_s": 1.0,
+    "initial_t": 28.0,
+    "initial_c": 2.55,
+    "h_T": 25.0,
+    "h_m": 8e-07,
+    "terminal_t": 50.0,
+    "terminal_c": 0.05
+  },
+  "model_correspondence": {
+    "q1": "Appendix 2 constant thermal properties; nonlinear D(C); fixed radius 0.02 m; initial 28 C, 2.55 kg/kg; 1 s for 1800 s.",
+    "q2_q3": "Appendix 3 state-dependent properties; independent initial field; one 1 s trajectory with 161 surface-refined nodes. Q2 workbook uses 1..10800 s as explicitly retained by user; Q3 samples same trajectory every 60 s.",
+    "q4": "Appendix 4 properties; homogeneous material shrinkage with v_s=w, include_advection=False, actual PCHIP radius, R^-2 internal diffusion and R^-1 surface exchange. Native 161 material-coordinate nodes are retained for export.",
+    "boundary": "PCHIP observed boundary through 14400 s, then 50 C and 0.05 kg/kg; h_T=25 and h_m=8e-7; zero axis flux and Robin surface exchange.",
+    "iteration": "Fully implicit finite volumes, arithmetic face means, temperature then moisture Picard updates; tolerances 1e-8 and 1e-10, maximum 30 iterations.",
+    "event_and_export": "Global maximum 0.15 crossing interpolated from consecutive 1 s layers; strict first integer second checked; Q3/Q4 output through first minute after event; Q4 fixed exterior positions blank, final column is moving surface."
+  },
+  "runtime_seconds": {
+    "q1": 1.3012764999875799,
+    "q23": 191.32386290002614,
+    "q4": 181.76894979999634
+  },
+  "native_steps": {
+    "q1": 1800,
+    "q23": 206940,
+    "q4": 183960
+  },
+  "field_comparisons": {
+    "q1": {
+      "times_s": {
+        "shape": [
+          1801
+        ],
+        "recomputed_shape": [
+          1801
+        ],
+        "values": 1801,
+        "exact_equal": true,
+        "max_abs_difference": 0.0,
+        "unequal_values": 0
+      },
+      "radius_m": {
+        "shape": [
+          21
+        ],
+        "recomputed_shape": [
+          21
+        ],
+        "values": 21,
+        "exact_equal": true,
+        "max_abs_difference": 0.0,
+        "unequal_values": 0
+      },
+      "temperature_c": {
+        "shape": [
+          1801,
+          21
+        ],
+        "recomputed_shape": [
+          1801,
+          21
+        ],
+        "values": 37821,
+        "exact_equal": false,
+        "max_abs_difference": 2.83577605841856e-11,
+        "unequal_values": 37677
+      },
+      "moisture": {
+        "shape": [
+          1801,
+          21
+        ],
+        "recomputed_shape": [
+          1801,
+          21
+        ],
+        "values": 37821,
+        "exact_equal": false,
+        "max_abs_difference": 1.461053500406706e-13,
+        "unequal_values": 30721
+      }
+    },
+    "q2": {
+      "times_s": {
+        "shape": [
+          206941
+        ],
+        "recomputed_shape": [
+          206941
+        ],
+        "values": 206941,
+        "exact_equal": true,
+        "max_abs_difference": 0.0,
+        "unequal_values": 0
+      },
+      "radius_m": {
+        "shape": [
+          21
+        ],
+        "recomputed_shape": [
+          21
+        ],
+        "values": 21,
+        "exact_equal": true,
+        "max_abs_difference": 0.0,
+        "unequal_values": 0
+      },
+      "temperature_c": {
+        "shape": [
+          206941,
+          21
+        ],
+        "recomputed_shape": [
+          206941,
+          21
+        ],
+        "values": 4345761,
+        "exact_equal": false,
+        "max_abs_difference": 3.014122285094345e-11,
+        "unequal_values": 4340465
+      },
+      "moisture": {
+        "shape": [
+          206941,
+          21
+        ],
+        "recomputed_shape": [
+          206941,
+          21
+        ],
+        "values": 4345761,
+        "exact_equal": false,
+        "max_abs_difference": 1.9872992140790302e-13,
+        "unequal_values": 4307656
+      },
+      "threshold_temperature_c": {
+        "shape": [
+          21
+        ],
+        "recomputed_shape": [
+          21
+        ],
+        "values": 21,
+        "exact_equal": false,
+        "max_abs_difference": 9.109157872444484e-12,
+        "unequal_values": 21
+      },
+      "threshold_moisture": {
+        "shape": [
+          21
+        ],
+        "recomputed_shape": [
+          21
+        ],
+        "values": 21,
+        "exact_equal": false,
+        "max_abs_difference": 9.159339953157541e-16,
+        "unequal_values": 20
+      }
+    },
+    "q3": {
+      "times_s": {
+        "shape": [
+          3450
+        ],
+        "recomputed_shape": [
+          3450
+        ],
+        "values": 3450,
+        "exact_equal": true,
+        "max_abs_difference": 0.0,
+        "unequal_values": 0
+      },
+      "radius_m": {
+        "shape": [
+          21
+        ],
+        "recomputed_shape": [
+          21
+        ],
+        "values": 21,
+        "exact_equal": true,
+        "max_abs_difference": 0.0,
+        "unequal_values": 0
+      },
+      "temperature_c": {
+        "shape": [
+          3450,
+          21
+        ],
+        "recomputed_shape": [
+          3450,
+          21
+        ],
+        "values": 72450,
+        "exact_equal": false,
+        "max_abs_difference": 2.275868382639601e-11,
+        "unequal_values": 72348
+      },
+      "moisture": {
+        "shape": [
+          3450,
+          21
+        ],
+        "recomputed_shape": [
+          3450,
+          21
+        ],
+        "values": 72450,
+        "exact_equal": false,
+        "max_abs_difference": 1.8385293287792592e-13,
+        "unequal_values": 71780
+      },
+      "threshold_temperature_c": {
+        "shape": [
+          21
+        ],
+        "recomputed_shape": [
+          21
+        ],
+        "values": 21,
+        "exact_equal": false,
+        "max_abs_difference": 9.109157872444484e-12,
+        "unequal_values": 21
+      },
+      "threshold_moisture": {
+        "shape": [
+          21
+        ],
+        "recomputed_shape": [
+          21
+        ],
+        "values": 21,
+        "exact_equal": false,
+        "max_abs_difference": 9.159339953157541e-16,
+        "unequal_values": 20
+      }
+    },
+    "q4": {
+      "times_s": {
+        "shape": [
+          3067
+        ],
+        "recomputed_shape": [
+          3067
+        ],
+        "values": 3067,
+        "exact_equal": true,
+        "max_abs_difference": 0.0,
+        "unequal_values": 0
+      },
+      "xi": {
+        "shape": [
+          161
+        ],
+        "recomputed_shape": [
+          161
+        ],
+        "values": 161,
+        "exact_equal": true,
+        "max_abs_difference": 0.0,
+        "unequal_values": 0
+      },
+      "radii_m": {
+        "shape": [
+          3067
+        ],
+        "recomputed_shape": [
+          3067
+        ],
+        "values": 3067,
+        "exact_equal": true,
+        "max_abs_difference": 0.0,
+        "unequal_values": 0
+      },
+      "temperature_c": {
+        "shape": [
+          3067,
+          161
+        ],
+        "recomputed_shape": [
+          3067,
+          161
+        ],
+        "values": 493787,
+        "exact_equal": false,
+        "max_abs_difference": 2.2303936475509545e-11,
+        "unequal_values": 493187
+      },
+      "moisture": {
+        "shape": [
+          3067,
+          161
+        ],
+        "recomputed_shape": [
+          3067,
+          161
+        ],
+        "values": 493787,
+        "exact_equal": false,
+        "max_abs_difference": 8.304468224196171e-14,
+        "unequal_values": 491032
+      },
+      "threshold_temperature_c": {
+        "shape": [
+          161
+        ],
+        "recomputed_shape": [
+          161
+        ],
+        "values": 161,
+        "exact_equal": false,
+        "max_abs_difference": 3.574029960873304e-12,
+        "unequal_values": 161
+      },
+      "threshold_moisture": {
+        "shape": [
+          161
+        ],
+        "recomputed_shape": [
+          161
+        ],
+        "values": 161,
+        "exact_equal": false,
+        "max_abs_difference": 1.4988010832439613e-15,
+        "unequal_values": 159
+      }
+    }
+  },
+  "field_array_count": 23,
+  "field_value_count": 10118594,
+  "max_abs_temperature_difference_c": 3.014122285094345e-11,
+  "max_abs_moisture_difference_kg_per_kg": 1.9872992140790302e-13,
+  "exact_equal_all_field_values": false,
+  "interpretation": "Full-precision fields differ only at approximately 1e-11 C / 1e-13 kg/kg; runtime libraries differ from the earlier audit. All workbook values at required four decimals and all published primary table values match exactly. No solver or fields replacement is required.",
+  "final_workbooks": {
+    "result1.xlsx": {
+      "sheets": {
+        "温度": {
+          "data_rows": 1800,
+          "expected_rows": 1800,
+          "compared_cells": 37800,
+          "expected_blank_cells": 0,
+          "mismatch_examples": [],
+          "max_abs_rounded_difference": 0.0,
+          "first_time_s": 1,
+          "last_time_s": 1800,
+          "pass": true
+        },
+        "水分浓度": {
+          "data_rows": 1800,
+          "expected_rows": 1800,
+          "compared_cells": 37800,
+          "expected_blank_cells": 0,
+          "mismatch_examples": [],
+          "max_abs_rounded_difference": 0.0,
+          "first_time_s": 1,
+          "last_time_s": 1800,
+          "pass": true
+        }
+      },
+      "pass": true
+    },
+    "result2.xlsx": {
+      "sheets": {
+        "温度": {
+          "data_rows": 10800,
+          "expected_rows": 10800,
+          "compared_cells": 226800,
+          "expected_blank_cells": 0,
+          "mismatch_examples": [],
+          "max_abs_rounded_difference": 0.0,
+          "first_time_s": 1,
+          "last_time_s": 10800,
+          "pass": true
+        },
+        "水分浓度": {
+          "data_rows": 10800,
+          "expected_rows": 10800,
+          "compared_cells": 226800,
+          "expected_blank_cells": 0,
+          "mismatch_examples": [],
+          "max_abs_rounded_difference": 0.0,
+          "first_time_s": 1,
+          "last_time_s": 10800,
+          "pass": true
+        }
+      },
+      "pass": true
+    },
+    "result3.xlsx": {
+      "sheets": {
+        "Sheet1": {
+          "data_rows": 3449,
+          "expected_rows": 3449,
+          "compared_cells": 72429,
+          "expected_blank_cells": 0,
+          "mismatch_examples": [],
+          "max_abs_rounded_difference": 0.0,
+          "first_time_s": 60,
+          "last_time_s": 206940,
+          "pass": true
+        }
+      },
+      "pass": true
+    },
+    "result4.xlsx": {
+      "sheets": {
+        "Sheet1": {
+          "data_rows": 3066,
+          "expected_rows": 3066,
+          "compared_cells": 64386,
+          "expected_blank_cells": 20101,
+          "mismatch_examples": [],
+          "max_abs_rounded_difference": 0.0,
+          "first_time_s": 60,
+          "last_time_s": 183960,
+          "pass": true
+        }
+      },
+      "pass": true
+    }
+  },
+  "workbook_numeric_cells_compared": 645914,
+  "workbook_blank_cells_compared": 20101,
+  "workbook_total_result_cells_compared": 666015,
+  "workbook_max_abs_rounded_difference": 0.0,
+  "workbook_value_mismatches": 0,
+  "paper_primary_tables_against_recomputed_fields": {
+    "tab:q1t": {
+      "rows": 7,
+      "values": 35,
+      "mismatches": [],
+      "pass": true
+    },
+    "tab:q1c": {
+      "rows": 7,
+      "values": 35,
+      "mismatches": [],
+      "pass": true
+    },
+    "tab:q2t": {
+      "rows": 6,
+      "values": 30,
+      "mismatches": [],
+      "pass": true
+    },
+    "tab:q2c": {
+      "rows": 6,
+      "values": 30,
+      "mismatches": [],
+      "pass": true
+    },
+    "tab:q3": {
+      "rows": 10,
+      "values": 50,
+      "mismatches": [],
+      "pass": true
+    },
+    "tab:q4": {
+      "rows": 9,
+      "values": 36,
+      "mismatches": [],
+      "pass": true
+    }
+  },
+  "paper_primary_values_compared": 216,
+  "threshold_and_last_output_checks": {
+    "q3": {
+      "recomputed_event_s": 206898.8710273097,
+      "recomputed_event_h": 57.47190861869714,
+      "stored_event_s": 206898.87102730837,
+      "event_abs_difference_s": 1.3387762010097504e-09,
+      "native_event_bracket": {
+        "before_s": 206898.0,
+        "after_s": 206899.0,
+        "max_before": 0.150000253731442,
+        "max_after": 0.1499999624300796,
+        "event_s": 206898.8710273097,
+        "event_max": 0.15,
+        "center_controls": true
+      },
+      "strict_first_integer_second": 206899,
+      "last_output_s": 206940.0,
+      "unrounded_last_output_max_c": 0.14998802138865786,
+      "last_output_displayed_max_c": 0.15,
+      "last_output_is_strictly_below_threshold": true,
+      "radius_m": 0.02
+    },
+    "q4": {
+      "recomputed_event_s": 183915.71747844346,
+      "recomputed_event_h": 51.087699299567625,
+      "stored_event_s": 183915.71747843814,
+      "event_abs_difference_s": 5.326000973582268e-09,
+      "native_event_bracket": {
+        "before_s": 183915.0,
+        "after_s": 183916.0,
+        "max_before": 0.15000036843115389,
+        "max_after": 0.14999985492282866,
+        "event_s": 183915.71747844346,
+        "event_max": 0.15,
+        "center_controls": true
+      },
+      "strict_first_integer_second": 183916,
+      "last_output_s": 183960.0,
+      "unrounded_last_output_max_c": 0.14997726697670938,
+      "last_output_displayed_max_c": 0.15,
+      "last_output_is_strictly_below_threshold": true,
+      "radius_m": 0.012
+    }
+  },
+  "final_workbooks_sha256": {
+    "result1.xlsx": "0246ef2d4dc1e7ee733d1d87130b2e27dadd585cf42839e24c9cc2584b44ce58",
+    "result2.xlsx": "7c5f3043554b8493c1c07c65b0c286b2190690dd3814e2d12ca70a094c5540e4",
+    "result3.xlsx": "6f805f29a5261b29f112e285fdb614e6495259f8742567fcb904a93cf5050286",
+    "result4.xlsx": "9888f85de53c9b8f0047e2d87a6bb09de7be623c930d8f9b5f273044ee079439"
+  },
+  "protected_solver_inputs_and_fields_unchanged": true,
+  "protected_hashes_before": {
+    "code\\solve_drying.py": "7016bf12f67710261eb0db124ed932a6e74692d919ca472df655976522fe572d",
+    "附件\\附件1.xlsx": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7",
+    "附件\\附件2.xlsx": "5563acbfa4b4afb10cc6c03e2207e5369bf39da27576672aff14cc5c32e704af",
+    "results\\q1\\fields.npz": "9330e7249efc81d66a4cab40c600f3721076c2d2d66a238ca1b828cc23417192",
+    "results\\q1\\summary.json": "5ee2d254c12320ab193a6e7b519e7bcdc86750fee84898d5073f5a77fedbb225",
+    "results\\q2\\fields.npz": "864e4d90d2a0b22f3eae37f34cae3fcea093dfb9f63bd4d0f2214f149209ab6b",
+    "results\\q2\\summary.json": "50e944799e9441d5dd4979d3fd2a3f3cca0276e6efaa2516408ea67ff3b7fb0a",
+    "results\\q3\\fields.npz": "1f1869a3a04c0627a5c738288aa028002b158803e526668baf339d17cb83c278",
+    "results\\q3\\summary.json": "f9db8dc65c06725c2439513804ab449109e781a604a3c3a5c3603dfb4bc6a622",
+    "results\\q4\\fields.npz": "ec26dda9a41ad47a13259710c913fd40a8a283fe5c64d84cce93ed203d0a53cd",
+    "results\\q4\\summary.json": "8e9e15a59063fe34c775da0a069da66776fd37f825533cb5f5e9f9bb744a8425"
+  },
+  "protected_hashes_after": {
+    "code\\solve_drying.py": "7016bf12f67710261eb0db124ed932a6e74692d919ca472df655976522fe572d",
+    "附件\\附件1.xlsx": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7",
+    "附件\\附件2.xlsx": "5563acbfa4b4afb10cc6c03e2207e5369bf39da27576672aff14cc5c32e704af",
+    "results\\q1\\fields.npz": "9330e7249efc81d66a4cab40c600f3721076c2d2d66a238ca1b828cc23417192",
+    "results\\q1\\summary.json": "5ee2d254c12320ab193a6e7b519e7bcdc86750fee84898d5073f5a77fedbb225",
+    "results\\q2\\fields.npz": "864e4d90d2a0b22f3eae37f34cae3fcea093dfb9f63bd4d0f2214f149209ab6b",
+    "results\\q2\\summary.json": "50e944799e9441d5dd4979d3fd2a3f3cca0276e6efaa2516408ea67ff3b7fb0a",
+    "results\\q3\\fields.npz": "1f1869a3a04c0627a5c738288aa028002b158803e526668baf339d17cb83c278",
+    "results\\q3\\summary.json": "f9db8dc65c06725c2439513804ab449109e781a604a3c3a5c3603dfb4bc6a622",
+    "results\\q4\\fields.npz": "ec26dda9a41ad47a13259710c913fd40a8a283fe5c64d84cce93ed203d0a53cd",
+    "results\\q4\\summary.json": "8e9e15a59063fe34c775da0a069da66776fd37f825533cb5f5e9f9bb744a8425"
+  },
+  "isolated_evidence_directory": "tmp\\source-sync-5ae7984\\model-recheck",
+  "scope_limits": "This is numerical freshness and consistency verification of the stated final model; template structure and styling are verified separately by the parent agent."
+}

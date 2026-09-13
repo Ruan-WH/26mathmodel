@@ -1,3 +1,4 @@
+# File: code/validate_long_2d.py
 """Full-duration axisymmetric validation with matched 1D grid and time step.
 
 z=0 is the symmetry mid-plane; z=L/2 is the exposed end.

@@ -1,0 +1,836 @@
+{
+  "schema_version": 1,
+  "source_count": 33,
+  "size_limit_bytes": 20000000,
+  "appendix_crosscheck": {
+    "equal": true,
+    "missing_from_appendix": [],
+    "missing_from_package": []
+  },
+  "verification_scope": "文件逐字节与哈希核对、Python语法解析、ZIP完整性；未运行仿真",
+  "files": [
+    {
+      "source": "paper/AI_usage/AI工具使用详情.pdf",
+      "archive_path": "AI工具使用详情.pdf",
+      "description": "AI工具使用情况说明",
+      "size_bytes": 154470,
+      "sha256": "ebae38e734aebbc7848f32c1625f8a380ca40970766845a76df5f96958d52efa"
+    },
+    {
+      "source": null,
+      "archive_path": "README.md",
+      "description": "支撑材料运行及文件核验说明",
+      "size_bytes": 9279,
+      "sha256": "f8b0a502a277373cb5a206f6e54a74f20f77614477bdb082260d31101fe272c2"
+    },
+    {
+      "source": "code/check_moving_mesh_delivery.py",
+      "archive_path": "code/check_moving_mesh_delivery.py",
+      "description": "建模、求解、结果导出、验证或绘图源程序",
+      "size_bytes": 14545,
+      "sha256": "50c08bdd9e2a933e8f83c38c9bb9844b8b1a4170ef346d6cf7fc50924430faef"
+    },
+    {
+      "source": "code/check_numerics.py",
+      "archive_path": "code/check_numerics.py",
+      "description": "建模、求解、结果导出、验证或绘图源程序",
+      "size_bytes": 1974,
+      "sha256": "b2e1e086ee88ee7fb554e73a5ceaf7f0b02c5a6a6dd72c72b053e2b0cfa33d59"
+    },
+    {
+      "source": "code/figure_style.py",
+      "archive_path": "code/figure_style.py",
+      "description": "建模、求解、结果导出、验证或绘图源程序",
+      "size_bytes": 3006,
+      "sha256": "cf2ede75b1496617f56f19e309cc02f40fcdff7854e263824be655dc982263d9"
+    },
+    {
+      "source": "code/make_additional_figures.py",
+      "archive_path": "code/make_additional_figures.py",
+      "description": "建模、求解、结果导出、验证或绘图源程序",
+      "size_bytes": 13843,
+      "sha256": "36ec91a92fdb92856ed3898bb28975b3d9af102b93de7763824a76a1d5cd0437"
+    },
+    {
+      "source": "code/make_figures.py",
+      "archive_path": "code/make_figures.py",
+      "description": "建模、求解、结果导出、验证或绘图源程序",
+      "size_bytes": 12560,
+      "sha256": "59c66fb1bb0a441b7eb5f40f560c6e6720351c72f8c481fd7ead185a6fd37c9d"
+    },
+    {
+      "source": "code/make_geometry_diagram.py",
+      "archive_path": "code/make_geometry_diagram.py",
+      "description": "建模、求解、结果导出、验证或绘图源程序",
+      "size_bytes": 5382,
+      "sha256": "7651dd53ba85daf181776f8bb972ba3f24b487a209bc736af8a459a66bca7e3b"
+    },
+    {
+      "source": "code/plot_moving_mesh_validation.py",
+      "archive_path": "code/plot_moving_mesh_validation.py",
+      "description": "建模、求解、结果导出、验证或绘图源程序",
+      "size_bytes": 5764,
+      "sha256": "4ca41233e79906e5f6e77d17d99ecce94d3df3f8431fd843b826eb0338b1d537"
+    },
+    {
+      "source": "code/run_figures.sh",
+      "archive_path": "code/run_figures.sh",
+      "description": "建模、求解、结果导出、验证或绘图源程序",
+      "size_bytes": 867,
+      "sha256": "2398c2de5f944e39595a29522cdd21d89686c788e3128954c3e38dcd1e2b3d9a"
+    },
+    {
+      "source": "code/run_q4_counterfactual.py",
+      "archive_path": "code/run_q4_counterfactual.py",
+      "description": "建模、求解、结果导出、验证或绘图源程序",
+      "size_bytes": 1461,
+      "sha256": "e5027c493896dbfaa5e7cd11b9a2996107f607c819d4a183347bf847ed2cc2ae"
+    },
+    {
+      "source": "code/run_sensitivity.py",
+      "archive_path": "code/run_sensitivity.py",
+      "description": "建模、求解、结果导出、验证或绘图源程序",
+      "size_bytes": 2992,
+      "sha256": "0f500a0263edd6f9c9b8f9b6c55e9f248493ec9b777b3bd6f416b59ed6e6dd58"
+    },
+    {
+      "source": "code/solve_drying.py",
+      "archive_path": "code/solve_drying.py",
+      "description": "建模、求解、结果导出、验证或绘图源程序",
+      "size_bytes": 34056,
+      "sha256": "7016bf12f67710261eb0db124ed932a6e74692d919ca472df655976522fe572d"
+    },
+    {
+      "source": "code/validate_2d.py",
+      "archive_path": "code/validate_2d.py",
+      "description": "建模、求解、结果导出、验证或绘图源程序",
+      "size_bytes": 824,
+      "sha256": "c6e2eb0fe0ecca8af71cd12c76cccb5d871916f16810883e8226a711448154ac"
+    },
+    {
+      "source": "code/validate_long_2d.py",
+      "archive_path": "code/validate_long_2d.py",
+      "description": "建模、求解、结果导出、验证或绘图源程序",
+      "size_bytes": 5466,
+      "sha256": "d66cdde8bf216c97002bf542a2a311133059f50cbccd0af5679cdd85879f6c04"
+    },
+    {
+      "source": "code/validate_moving_mesh.py",
+      "archive_path": "code/validate_moving_mesh.py",
+      "description": "建模、求解、结果导出、验证或绘图源程序",
+      "size_bytes": 19231,
+      "sha256": "7a9dccc4ac558daff24cd3f5051cc848880380381e8a6dd191dadb7632b5e31d"
+    },
+    {
+      "source": "code/verify_revision.py",
+      "archive_path": "code/verify_revision.py",
+      "description": "建模、求解、结果导出、验证或绘图源程序",
+      "size_bytes": 3126,
+      "sha256": "ad02e1d84b97fa7fb702d3eaae3f1616fe069bc36a72b0cefaea565b1298d4d6"
+    },
+    {
+      "source": "code/write_results.py",
+      "archive_path": "code/write_results.py",
+      "description": "建模、求解、结果导出、验证或绘图源程序",
+      "size_bytes": 11804,
+      "sha256": "cbade6ecc9922a5b1b91ec959e4279f4c8b5d77bccdb8e2e8d8e6a22cb9b41ca"
+    },
+    {
+      "source": "comsol_q1/Q1Automation.java",
+      "archive_path": "comsol_q1/Q1Automation.java",
+      "description": "COMSOL模型、输入准备、比较或运行源程序",
+      "size_bytes": 7160,
+      "sha256": "49fa28f8ac6b2f67753d33700349921360967b95bf170a9c8804d327254893f7"
+    },
+    {
+      "source": "comsol_q1/ambient_moisture.txt",
+      "archive_path": "comsol_q1/ambient_moisture.txt",
+      "description": "COMSOL输入、导出数据或数值比较记录",
+      "size_bytes": 49480,
+      "sha256": "c763c904d1be19b99299fd47d2ee9ef97d15de3075e6b73286e15c9c0b04d46e"
+    },
+    {
+      "source": "comsol_q1/ambient_temperature.txt",
+      "archive_path": "comsol_q1/ambient_temperature.txt",
+      "description": "COMSOL输入、导出数据或数值比较记录",
+      "size_bytes": 45921,
+      "sha256": "109d160f14c236387e7b9cd92e0acd38fea28e483600a88f6fe2b2b8d4bad395"
+    },
+    {
+      "source": "comsol_q1/comparison.json",
+      "archive_path": "comsol_q1/comparison.json",
+      "description": "COMSOL输入、导出数据或数值比较记录",
+      "size_bytes": 1137,
+      "sha256": "81b55f34b17e1750bc6ac88c8b643d3d919cec6240a8d0451e98110538ddf809"
+    },
+    {
+      "source": "comsol_q1/input_metadata.json",
+      "archive_path": "comsol_q1/input_metadata.json",
+      "description": "COMSOL输入、导出数据或数值比较记录",
+      "size_bytes": 377,
+      "sha256": "2f978f668f63728b9986f8546234ce13eb40c70752901d26b4ee2c254e66b765"
+    },
+    {
+      "source": "comsol_q1/prepare_inputs.py",
+      "archive_path": "comsol_q1/prepare_inputs.py",
+      "description": "COMSOL模型、输入准备、比较或运行源程序",
+      "size_bytes": 4375,
+      "sha256": "cf5d93819cfe820acca8f91af1d36ae9779e0299d106ca97009ed66005cbce40"
+    },
+    {
+      "source": "comsol_q1/q1_comparison.csv",
+      "archive_path": "comsol_q1/q1_comparison.csv",
+      "description": "COMSOL输入、导出数据或数值比较记录",
+      "size_bytes": 4441,
+      "sha256": "52b817839c99a65197c9d72a17aa97a35af8bc1aec230ff32a009a7b3ec11d44"
+    },
+    {
+      "source": "comsol_q1/q1_comsol_profiles.csv",
+      "archive_path": "comsol_q1/q1_comsol_profiles.csv",
+      "description": "COMSOL输入、导出数据或数值比较记录",
+      "size_bytes": 6700,
+      "sha256": "cfb8034b58504c1986f1612f0f2a9778fe2b03ecbe517e1396770987541acb69"
+    },
+    {
+      "source": "comsol_q1/run_comsol_q1.ps1",
+      "archive_path": "comsol_q1/run_comsol_q1.ps1",
+      "description": "COMSOL模型、输入准备、比较或运行源程序",
+      "size_bytes": 1129,
+      "sha256": "3f35529381ab14cd542c399abf28bb2f7007c9c815d10584c32077dc81b7c91d"
+    },
+    {
+      "source": "comsol_q4/Q4Automation.java",
+      "archive_path": "comsol_q4/Q4Automation.java",
+      "description": "COMSOL模型、输入准备、比较或运行源程序",
+      "size_bytes": 6694,
+      "sha256": "6ac156d92df77aeeb025fb3db70ab109513d049a0eb8144ebf05f36917444f6b"
+    },
+    {
+      "source": "comsol_q4/ambient_moisture.txt",
+      "archive_path": "comsol_q4/ambient_moisture.txt",
+      "description": "COMSOL输入、导出数据或数值比较记录",
+      "size_bytes": 38775,
+      "sha256": "d83017a8c4885c77f1bf03e063e77c67e6bf1bba8f527964d7d99082a4b82f47"
+    },
+    {
+      "source": "comsol_q4/ambient_temperature.txt",
+      "archive_path": "comsol_q4/ambient_temperature.txt",
+      "description": "COMSOL输入、导出数据或数值比较记录",
+      "size_bytes": 32872,
+      "sha256": "070ad4deecf5a27b4877b1007c693608af79bb406d743a60e01e01e653592429"
+    },
+    {
+      "source": "comsol_q4/analyze_q4_comsol.py",
+      "archive_path": "comsol_q4/analyze_q4_comsol.py",
+      "description": "COMSOL模型、输入准备、比较或运行源程序",
+      "size_bytes": 5944,
+      "sha256": "11cf84b3eea1a5f87afcbf7ec7060bd0bcc5c0595324a571851ac3aab75b9f46"
+    },
+    {
+      "source": "comsol_q4/near_surface_check/analyze_refinement.py",
+      "archive_path": "comsol_q4/near_surface_check/analyze_refinement.py",
+      "description": "COMSOL模型、输入准备、比较或运行源程序",
+      "size_bytes": 3546,
+      "sha256": "f5ebe4c4fd798df97239feda3ad4627586eb65a81cc3db28b1d33d9cad1f61ae"
+    },
+    {
+      "source": "comsol_q4/near_surface_check/comparison.csv",
+      "archive_path": "comsol_q4/near_surface_check/comparison.csv",
+      "description": "COMSOL输入、导出数据或数值比较记录",
+      "size_bytes": 2841,
+      "sha256": "9129836830ce5a5db16170ba162a780ce85ae04261fb370927460214c05c4ae1"
+    },
+    {
+      "source": "comsol_q4/near_surface_check/comparison_fields.npz",
+      "archive_path": "comsol_q4/near_surface_check/comparison_fields.npz",
+      "description": "COMSOL输入、导出数据或数值比较记录",
+      "size_bytes": 313946,
+      "sha256": "24911d871588702727408e7ceef7208338d6ac11d29ca5bd430c552ec24cf21d"
+    },
+    {
+      "source": "comsol_q4/near_surface_check/graded160/Q4Automation.java",
+      "archive_path": "comsol_q4/near_surface_check/graded160/Q4Automation.java",
+      "description": "COMSOL模型、输入准备、比较或运行源程序",
+      "size_bytes": 7443,
+      "sha256": "3062b47686abd678fa549da8cc983d1fd2641d9b93b742ed623b66ff2eb9e613"
+    },
+    {
+      "source": "comsol_q4/near_surface_check/graded160/ambient_moisture.txt",
+      "archive_path": "comsol_q4/near_surface_check/graded160/ambient_moisture.txt",
+      "description": "COMSOL输入、导出数据或数值比较记录",
+      "size_bytes": 38775,
+      "sha256": "d83017a8c4885c77f1bf03e063e77c67e6bf1bba8f527964d7d99082a4b82f47"
+    },
+    {
+      "source": "comsol_q4/near_surface_check/graded160/ambient_temperature.txt",
+      "archive_path": "comsol_q4/near_surface_check/graded160/ambient_temperature.txt",
+      "description": "COMSOL输入、导出数据或数值比较记录",
+      "size_bytes": 32872,
+      "sha256": "070ad4deecf5a27b4877b1007c693608af79bb406d743a60e01e01e653592429"
+    },
+    {
+      "source": "comsol_q4/near_surface_check/graded160/radius_history.txt",
+      "archive_path": "comsol_q4/near_surface_check/graded160/radius_history.txt",
+      "description": "COMSOL输入、导出数据或数值比较记录",
+      "size_bytes": 55602,
+      "sha256": "4f7b9680d0a94a3eb75451e17767dca12388618ee1ae4dc9c0f76590d22040fb"
+    },
+    {
+      "source": "comsol_q4/near_surface_check/graded320/Q4Automation.java",
+      "archive_path": "comsol_q4/near_surface_check/graded320/Q4Automation.java",
+      "description": "COMSOL模型、输入准备、比较或运行源程序",
+      "size_bytes": 7443,
+      "sha256": "4bec91c7fdaaaf08bb3ea7bd02da219f8538e9997dd7d858556f3651128e1311"
+    },
+    {
+      "source": "comsol_q4/near_surface_check/graded320/ambient_moisture.txt",
+      "archive_path": "comsol_q4/near_surface_check/graded320/ambient_moisture.txt",
+      "description": "COMSOL输入、导出数据或数值比较记录",
+      "size_bytes": 38775,
+      "sha256": "d83017a8c4885c77f1bf03e063e77c67e6bf1bba8f527964d7d99082a4b82f47"
+    },
+    {
+      "source": "comsol_q4/near_surface_check/graded320/ambient_temperature.txt",
+      "archive_path": "comsol_q4/near_surface_check/graded320/ambient_temperature.txt",
+      "description": "COMSOL输入、导出数据或数值比较记录",
+      "size_bytes": 32872,
+      "sha256": "070ad4deecf5a27b4877b1007c693608af79bb406d743a60e01e01e653592429"
+    },
+    {
+      "source": "comsol_q4/near_surface_check/graded320/radius_history.txt",
+      "archive_path": "comsol_q4/near_surface_check/graded320/radius_history.txt",
+      "description": "COMSOL输入、导出数据或数值比较记录",
+      "size_bytes": 55602,
+      "sha256": "4f7b9680d0a94a3eb75451e17767dca12388618ee1ae4dc9c0f76590d22040fb"
+    },
+    {
+      "source": "comsol_q4/near_surface_check/graded320_tight/Q4Automation.java",
+      "archive_path": "comsol_q4/near_surface_check/graded320_tight/Q4Automation.java",
+      "description": "COMSOL模型、输入准备、比较或运行源程序",
+      "size_bytes": 7449,
+      "sha256": "4e0ed3c5fccff48d0f750b0534fdfce7fcf0417929544ea56cebf9fa6c21bd83"
+    },
+    {
+      "source": "comsol_q4/near_surface_check/graded320_tight/ambient_moisture.txt",
+      "archive_path": "comsol_q4/near_surface_check/graded320_tight/ambient_moisture.txt",
+      "description": "COMSOL输入、导出数据或数值比较记录",
+      "size_bytes": 38775,
+      "sha256": "d83017a8c4885c77f1bf03e063e77c67e6bf1bba8f527964d7d99082a4b82f47"
+    },
+    {
+      "source": "comsol_q4/near_surface_check/graded320_tight/ambient_temperature.txt",
+      "archive_path": "comsol_q4/near_surface_check/graded320_tight/ambient_temperature.txt",
+      "description": "COMSOL输入、导出数据或数值比较记录",
+      "size_bytes": 32872,
+      "sha256": "070ad4deecf5a27b4877b1007c693608af79bb406d743a60e01e01e653592429"
+    },
+    {
+      "source": "comsol_q4/near_surface_check/graded320_tight/q4_comsol_profiles.csv",
+      "archive_path": "comsol_q4/near_surface_check/graded320_tight/q4_comsol_profiles.csv",
+      "description": "COMSOL输入、导出数据或数值比较记录",
+      "size_bytes": 19551044,
+      "sha256": "5b9718001907b28ecdb0c2f69b248dd8432de77d9ac47fdedcc21ef3aab35fbf"
+    },
+    {
+      "source": "comsol_q4/near_surface_check/graded320_tight/radius_history.txt",
+      "archive_path": "comsol_q4/near_surface_check/graded320_tight/radius_history.txt",
+      "description": "COMSOL输入、导出数据或数值比较记录",
+      "size_bytes": 55602,
+      "sha256": "4f7b9680d0a94a3eb75451e17767dca12388618ee1ae4dc9c0f76590d22040fb"
+    },
+    {
+      "source": "comsol_q4/near_surface_check/graded80/Q4Automation.java",
+      "archive_path": "comsol_q4/near_surface_check/graded80/Q4Automation.java",
+      "description": "COMSOL模型、输入准备、比较或运行源程序",
+      "size_bytes": 7439,
+      "sha256": "92e7c61140f037916bc6c64ce771c2f8b9d36ed61057e6f6cfe894f0e9892c7d"
+    },
+    {
+      "source": "comsol_q4/near_surface_check/graded80/ambient_moisture.txt",
+      "archive_path": "comsol_q4/near_surface_check/graded80/ambient_moisture.txt",
+      "description": "COMSOL输入、导出数据或数值比较记录",
+      "size_bytes": 38775,
+      "sha256": "d83017a8c4885c77f1bf03e063e77c67e6bf1bba8f527964d7d99082a4b82f47"
+    },
+    {
+      "source": "comsol_q4/near_surface_check/graded80/ambient_temperature.txt",
+      "archive_path": "comsol_q4/near_surface_check/graded80/ambient_temperature.txt",
+      "description": "COMSOL输入、导出数据或数值比较记录",
+      "size_bytes": 32872,
+      "sha256": "070ad4deecf5a27b4877b1007c693608af79bb406d743a60e01e01e653592429"
+    },
+    {
+      "source": "comsol_q4/near_surface_check/graded80/radius_history.txt",
+      "archive_path": "comsol_q4/near_surface_check/graded80/radius_history.txt",
+      "description": "COMSOL输入、导出数据或数值比较记录",
+      "size_bytes": 55602,
+      "sha256": "4f7b9680d0a94a3eb75451e17767dca12388618ee1ae4dc9c0f76590d22040fb"
+    },
+    {
+      "source": "comsol_q4/near_surface_check/manifest.json",
+      "archive_path": "comsol_q4/near_surface_check/manifest.json",
+      "description": "COMSOL输入、导出数据或数值比较记录",
+      "size_bytes": 812,
+      "sha256": "15ed5c2b78dc6d0e1237db551f71d1a5790f9b4dbe6eed5e26e6a282f6d5ad5c"
+    },
+    {
+      "source": "comsol_q4/near_surface_check/original_dense/Q4Automation.java",
+      "archive_path": "comsol_q4/near_surface_check/original_dense/Q4Automation.java",
+      "description": "COMSOL模型、输入准备、比较或运行源程序",
+      "size_bytes": 6734,
+      "sha256": "0ade50df31ca02637b907e04874b9f338d8946711346d10d84bb984767119980"
+    },
+    {
+      "source": "comsol_q4/near_surface_check/original_dense/ambient_moisture.txt",
+      "archive_path": "comsol_q4/near_surface_check/original_dense/ambient_moisture.txt",
+      "description": "COMSOL输入、导出数据或数值比较记录",
+      "size_bytes": 38775,
+      "sha256": "d83017a8c4885c77f1bf03e063e77c67e6bf1bba8f527964d7d99082a4b82f47"
+    },
+    {
+      "source": "comsol_q4/near_surface_check/original_dense/ambient_temperature.txt",
+      "archive_path": "comsol_q4/near_surface_check/original_dense/ambient_temperature.txt",
+      "description": "COMSOL输入、导出数据或数值比较记录",
+      "size_bytes": 32872,
+      "sha256": "070ad4deecf5a27b4877b1007c693608af79bb406d743a60e01e01e653592429"
+    },
+    {
+      "source": "comsol_q4/near_surface_check/original_dense/radius_history.txt",
+      "archive_path": "comsol_q4/near_surface_check/original_dense/radius_history.txt",
+      "description": "COMSOL输入、导出数据或数值比较记录",
+      "size_bytes": 55602,
+      "sha256": "4f7b9680d0a94a3eb75451e17767dca12388618ee1ae4dc9c0f76590d22040fb"
+    },
+    {
+      "source": "comsol_q4/near_surface_check/original_tight/Q4Automation.java",
+      "archive_path": "comsol_q4/near_surface_check/original_tight/Q4Automation.java",
+      "description": "COMSOL模型、输入准备、比较或运行源程序",
+      "size_bytes": 6734,
+      "sha256": "32af1ebe7ab7781a36ac5ad85c8f6240c471626c847054452e4aeb31ebd21b15"
+    },
+    {
+      "source": "comsol_q4/near_surface_check/original_tight/ambient_moisture.txt",
+      "archive_path": "comsol_q4/near_surface_check/original_tight/ambient_moisture.txt",
+      "description": "COMSOL输入、导出数据或数值比较记录",
+      "size_bytes": 38775,
+      "sha256": "d83017a8c4885c77f1bf03e063e77c67e6bf1bba8f527964d7d99082a4b82f47"
+    },
+    {
+      "source": "comsol_q4/near_surface_check/original_tight/ambient_temperature.txt",
+      "archive_path": "comsol_q4/near_surface_check/original_tight/ambient_temperature.txt",
+      "description": "COMSOL输入、导出数据或数值比较记录",
+      "size_bytes": 32872,
+      "sha256": "070ad4deecf5a27b4877b1007c693608af79bb406d743a60e01e01e653592429"
+    },
+    {
+      "source": "comsol_q4/near_surface_check/original_tight/radius_history.txt",
+      "archive_path": "comsol_q4/near_surface_check/original_tight/radius_history.txt",
+      "description": "COMSOL输入、导出数据或数值比较记录",
+      "size_bytes": 55602,
+      "sha256": "4f7b9680d0a94a3eb75451e17767dca12388618ee1ae4dc9c0f76590d22040fb"
+    },
+    {
+      "source": "comsol_q4/near_surface_check/run_cases.ps1",
+      "archive_path": "comsol_q4/near_surface_check/run_cases.ps1",
+      "description": "COMSOL模型、输入准备、比较或运行源程序",
+      "size_bytes": 912,
+      "sha256": "6aee9b33db2f009bb57e433af50da24a3ede1687b831fce7a725dd7155c02c89"
+    },
+    {
+      "source": "comsol_q4/near_surface_check/summary.json",
+      "archive_path": "comsol_q4/near_surface_check/summary.json",
+      "description": "COMSOL输入、导出数据或数值比较记录",
+      "size_bytes": 6970,
+      "sha256": "d58aac147cb2143817333c744842f6c7412a84072c2ec0cebcb3c872413b91d0"
+    },
+    {
+      "source": "comsol_q4/near_surface_check/write_report.py",
+      "archive_path": "comsol_q4/near_surface_check/write_report.py",
+      "description": "COMSOL模型、输入准备、比较或运行源程序",
+      "size_bytes": 3849,
+      "sha256": "275949bc7ebce584049b80f599ade8a90353fc7ea63b52e96d4d701cc6986710"
+    },
+    {
+      "source": "comsol_q4/plot_q4_physical.py",
+      "archive_path": "comsol_q4/plot_q4_physical.py",
+      "description": "COMSOL模型、输入准备、比较或运行源程序",
+      "size_bytes": 10934,
+      "sha256": "72aa3646060e2331f37a09148aec41818bd421768c982b7bb1e0e4fa69257290"
+    },
+    {
+      "source": "comsol_q4/prepare_q4_inputs.py",
+      "archive_path": "comsol_q4/prepare_q4_inputs.py",
+      "description": "COMSOL模型、输入准备、比较或运行源程序",
+      "size_bytes": 2272,
+      "sha256": "6d3e9f3f28bcf17dbf809321d51acfee9c6da18c9ad34cb5f89898b277fef967"
+    },
+    {
+      "source": "comsol_q4/q4_comsol_comparison.csv",
+      "archive_path": "comsol_q4/q4_comsol_comparison.csv",
+      "description": "COMSOL输入、导出数据或数值比较记录",
+      "size_bytes": 1248,
+      "sha256": "f10087fb0c1cbbbf3bee12f431f09245577956b79f8bcafdb9292a136856350e"
+    },
+    {
+      "source": "comsol_q4/q4_comsol_fields.npz",
+      "archive_path": "comsol_q4/q4_comsol_fields.npz",
+      "description": "COMSOL输入、导出数据或数值比较记录",
+      "size_bytes": 362368,
+      "sha256": "250ea014d0ae1f0941fbf64e9a4fc0b6b6bfd55f02a2157dfea526be974ae23e"
+    },
+    {
+      "source": "comsol_q4/q4_comsol_profiles.csv",
+      "archive_path": "comsol_q4/q4_comsol_profiles.csv",
+      "description": "COMSOL输入、导出数据或数值比较记录",
+      "size_bytes": 1914345,
+      "sha256": "06169817eb91d79080b25c3d99d671a980a39a54f173f90d5bb04a598af31a7b"
+    },
+    {
+      "source": "comsol_q4/q4_comsol_validation.json",
+      "archive_path": "comsol_q4/q4_comsol_validation.json",
+      "description": "COMSOL输入、导出数据或数值比较记录",
+      "size_bytes": 3954,
+      "sha256": "868b76865c4596f2bf7f56fc39fe99d27cf57a2f61c9dd0524195a91ac6d0650"
+    },
+    {
+      "source": "comsol_q4/radius_history.txt",
+      "archive_path": "comsol_q4/radius_history.txt",
+      "description": "COMSOL输入、导出数据或数值比较记录",
+      "size_bytes": 55602,
+      "sha256": "4f7b9680d0a94a3eb75451e17767dca12388618ee1ae4dc9c0f76590d22040fb"
+    },
+    {
+      "source": "inspect_inputs.py",
+      "archive_path": "inspect_inputs.py",
+      "description": "建模、求解、结果导出、验证或绘图源程序",
+      "size_bytes": 879,
+      "sha256": "af854b66192173fe8d9afc2da8067f49c024a6ca5897986425799ab48fb2c740"
+    },
+    {
+      "source": "paper/cumcm-1.1.0/main.pdf",
+      "archive_path": "paper/cumcm-1.1.0/main.pdf",
+      "description": "当前完整论文；供附录与结果核对",
+      "size_bytes": 2267377,
+      "sha256": "c52c5dfd4bef6c99fd1d583e87ccf697abc17712983bab27b829cd0c713b559e"
+    },
+    {
+      "source": "results/data_audit.json",
+      "archive_path": "results/data_audit.json",
+      "description": "已保存的计算场、汇总结果或验证记录",
+      "size_bytes": 624,
+      "sha256": "e9152d3b0c4c3472b6fcc75b59bf509ce250227ac99fee32f96fa232693f37c3"
+    },
+    {
+      "source": "results/long_2d_verification.json",
+      "archive_path": "results/long_2d_verification.json",
+      "description": "已保存的计算场、汇总结果或验证记录",
+      "size_bytes": 3615,
+      "sha256": "1504bf28631f51c30411ee89e65750ad1c7c0e5a39b419f2021e268697fa63bb"
+    },
+    {
+      "source": "results/numerical_verification.json",
+      "archive_path": "results/numerical_verification.json",
+      "description": "已保存的计算场、汇总结果或验证记录",
+      "size_bytes": 1030,
+      "sha256": "f74ef375afa9c759969c8a0412e8bec666ba3c3c05ad75dcb8bc85a716104935"
+    },
+    {
+      "source": "results/paper_revision_verification.json",
+      "archive_path": "results/paper_revision_verification.json",
+      "description": "已保存的计算场、汇总结果或验证记录",
+      "size_bytes": 183,
+      "sha256": "a59a24de0743588facb4246e81d7f3ccec172137a97be5c873d1773fbac709e2"
+    },
+    {
+      "source": "results/paper_table_audit.json",
+      "archive_path": "results/paper_table_audit.json",
+      "description": "已保存的计算场、汇总结果或验证记录",
+      "size_bytes": 9254,
+      "sha256": "f10538a6025d91b2de0050b5b73cf1a9ccea451f0199f1aa2450a7b99313fbf0"
+    },
+    {
+      "source": "results/q1/fields.npz",
+      "archive_path": "results/q1/fields.npz",
+      "description": "已保存的计算场、汇总结果或验证记录",
+      "size_bytes": 474467,
+      "sha256": "9330e7249efc81d66a4cab40c600f3721076c2d2d66a238ca1b828cc23417192"
+    },
+    {
+      "source": "results/q1/summary.json",
+      "archive_path": "results/q1/summary.json",
+      "description": "已保存的计算场、汇总结果或验证记录",
+      "size_bytes": 3024,
+      "sha256": "5ee2d254c12320ab193a6e7b519e7bcdc86750fee84898d5073f5a77fedbb225"
+    },
+    {
+      "source": "results/q1/validation_2d.json",
+      "archive_path": "results/q1/validation_2d.json",
+      "description": "已保存的计算场、汇总结果或验证记录",
+      "size_bytes": 614,
+      "sha256": "17e903b96bec52d8328b3f8b3c18136a71e87a132dba55bc57eadf744716927b"
+    },
+    {
+      "source": "results/q2/summary.json",
+      "archive_path": "results/q2/summary.json",
+      "description": "已保存的计算场、汇总结果或验证记录",
+      "size_bytes": 2606,
+      "sha256": "50e944799e9441d5dd4979d3fd2a3f3cca0276e6efaa2516408ea67ff3b7fb0a"
+    },
+    {
+      "source": "results/q3/fields.npz",
+      "archive_path": "results/q3/fields.npz",
+      "description": "已保存的计算场、汇总结果或验证记录",
+      "size_bytes": 720492,
+      "sha256": "1f1869a3a04c0627a5c738288aa028002b158803e526668baf339d17cb83c278"
+    },
+    {
+      "source": "results/q3/summary.json",
+      "archive_path": "results/q3/summary.json",
+      "description": "已保存的计算场、汇总结果或验证记录",
+      "size_bytes": 2621,
+      "sha256": "f9db8dc65c06725c2439513804ab449109e781a604a3c3a5c3603dfb4bc6a622"
+    },
+    {
+      "source": "results/q4/fields.npz",
+      "archive_path": "results/q4/fields.npz",
+      "description": "已保存的计算场、汇总结果或验证记录",
+      "size_bytes": 4852894,
+      "sha256": "ec26dda9a41ad47a13259710c913fd40a8a283fe5c64d84cce93ed203d0a53cd"
+    },
+    {
+      "source": "results/q4/output_verification.json",
+      "archive_path": "results/q4/output_verification.json",
+      "description": "已保存的计算场、汇总结果或验证记录",
+      "size_bytes": 1261,
+      "sha256": "6fe42f5917733afb8ce459f1c3d51c14189139614d0ad33c16b7498c37dc4a52"
+    },
+    {
+      "source": "results/q4/summary.json",
+      "archive_path": "results/q4/summary.json",
+      "description": "已保存的计算场、汇总结果或验证记录",
+      "size_bytes": 2756,
+      "sha256": "8e9e15a59063fe34c775da0a069da66776fd37f825533cb5f5e9f9bb744a8425"
+    },
+    {
+      "source": "results/q4/validation_moving_mesh/comparison.csv",
+      "archive_path": "results/q4/validation_moving_mesh/comparison.csv",
+      "description": "已保存的计算场、汇总结果或验证记录",
+      "size_bytes": 1239,
+      "sha256": "601537ba4e4329ec851e13f64cc1951a807fe8e150fd12767a398b97a6299eea"
+    },
+    {
+      "source": "results/q4/validation_moving_mesh/delivery_checks.json",
+      "archive_path": "results/q4/validation_moving_mesh/delivery_checks.json",
+      "description": "已保存的计算场、汇总结果或验证记录",
+      "size_bytes": 15832,
+      "sha256": "794e173d3eb4301ea1bf65b92bb59c68549058a7b2439b05100895340423758e"
+    },
+    {
+      "source": "results/q4/validation_moving_mesh/profiles.csv",
+      "archive_path": "results/q4/validation_moving_mesh/profiles.csv",
+      "description": "已保存的计算场、汇总结果或验证记录",
+      "size_bytes": 73825,
+      "sha256": "83e9dc6940452f4d656771aaaadbfd98ac16496949c33954038d761b5f36a699"
+    },
+    {
+      "source": "results/q4/validation_moving_mesh/protected_files_sha256.json",
+      "archive_path": "results/q4/validation_moving_mesh/protected_files_sha256.json",
+      "description": "已保存的计算场、汇总结果或验证记录",
+      "size_bytes": 7641,
+      "sha256": "105f89339e7dc5d3fd0d9013ecc0701961e89856ade9a584b9c54456a87d1ec6"
+    },
+    {
+      "source": "results/q4/validation_moving_mesh/reference_reproduction.json",
+      "archive_path": "results/q4/validation_moving_mesh/reference_reproduction.json",
+      "description": "已保存的计算场、汇总结果或验证记录",
+      "size_bytes": 95,
+      "sha256": "de0efc682c68be9647bd7c240761aaaba04506f1b64a0b72eb6e0000a6462b4f"
+    },
+    {
+      "source": "results/q4/validation_moving_mesh/summary.json",
+      "archive_path": "results/q4/validation_moving_mesh/summary.json",
+      "description": "已保存的计算场、汇总结果或验证记录",
+      "size_bytes": 1573,
+      "sha256": "12d3d023b5f1e92ecd5e8e79da7c2785494a099caacb70065d6c2bc40a7be620"
+    },
+    {
+      "source": "results/q4/validation_moving_mesh/unit_checks.json",
+      "archive_path": "results/q4/validation_moving_mesh/unit_checks.json",
+      "description": "已保存的计算场、汇总结果或验证记录",
+      "size_bytes": 293,
+      "sha256": "09627f865b9416c6344b43a992d8ba2f97a7f581cd838a067cfdcd1a8f9966ab"
+    },
+    {
+      "source": "results/result1.xlsx",
+      "archive_path": "results/result1.xlsx",
+      "description": "题目要求的正式结果工作簿",
+      "size_bytes": 379565,
+      "sha256": "0246ef2d4dc1e7ee733d1d87130b2e27dadd585cf42839e24c9cc2584b44ce58"
+    },
+    {
+      "source": "results/result2.xlsx",
+      "archive_path": "results/result2.xlsx",
+      "description": "题目要求的正式结果工作簿",
+      "size_bytes": 2478187,
+      "sha256": "7c5f3043554b8493c1c07c65b0c286b2190690dd3814e2d12ca70a094c5540e4"
+    },
+    {
+      "source": "results/result3.xlsx",
+      "archive_path": "results/result3.xlsx",
+      "description": "题目要求的正式结果工作簿",
+      "size_bytes": 353745,
+      "sha256": "6f805f29a5261b29f112e285fdb614e6495259f8742567fcb904a93cf5050286"
+    },
+    {
+      "source": "results/result4.xlsx",
+      "archive_path": "results/result4.xlsx",
+      "description": "题目要求的正式结果工作簿",
+      "size_bytes": 300045,
+      "sha256": "9888f85de53c9b8f0047e2d87a6bb09de7be623c930d8f9b5f273044ee079439"
+    },
+    {
+      "source": "results/revision_checks.json",
+      "archive_path": "results/revision_checks.json",
+      "description": "已保存的计算场、汇总结果或验证记录",
+      "size_bytes": 2396,
+      "sha256": "4dce1c550a82d51aa0c161b3125fd17fef181a314f595b95b7cc7814d696f5a3"
+    },
+    {
+      "source": "results/revision_scope_verification.json",
+      "archive_path": "results/revision_scope_verification.json",
+      "description": "已保存的计算场、汇总结果或验证记录",
+      "size_bytes": 456,
+      "sha256": "d8c0f57a87917d416328702d9b90902f63951194ee51d5efcd5fa213b8a86e2a"
+    },
+    {
+      "source": "results/sensitivity.json",
+      "archive_path": "results/sensitivity.json",
+      "description": "已保存的计算场、汇总结果或验证记录",
+      "size_bytes": 1655,
+      "sha256": "3cd89da3544231c92932d2e918de6c4e80abc190ba5ea7c1037cf8ab9277b46e"
+    },
+    {
+      "source": "results/workbook_verification.json",
+      "archive_path": "results/workbook_verification.json",
+      "description": "已保存的计算场、汇总结果或验证记录",
+      "size_bytes": 9502,
+      "sha256": "dbf07f2fcd00cd883688acbdf939d687237e9e5c092c73fd9a9095e63f239f35"
+    },
+    {
+      "source": "附件/附件1.xlsx",
+      "archive_path": "附件/附件1.xlsx",
+      "description": "题目原始输入数据或结果工作簿模板",
+      "size_bytes": 16586,
+      "sha256": "7ef32870abeef420b89560b2530ff60dfe4255917805151d89988d0311af9dd7"
+    },
+    {
+      "source": "附件/附件2.xlsx",
+      "archive_path": "附件/附件2.xlsx",
+      "description": "题目原始输入数据或结果工作簿模板",
+      "size_bytes": 11485,
+      "sha256": "5563acbfa4b4afb10cc6c03e2207e5369bf39da27576672aff14cc5c32e704af"
+    },
+    {
+      "source": "附件/附件3/result1.xlsx",
+      "archive_path": "附件/附件3/result1.xlsx",
+      "description": "题目原始输入数据或结果工作簿模板",
+      "size_bytes": 10073,
+      "sha256": "23b261b295c1b787d000eebbca6521c37075107b6fcf78724f8d395ce1798ff4"
+    },
+    {
+      "source": "附件/附件3/result2.xlsx",
+      "archive_path": "附件/附件3/result2.xlsx",
+      "description": "题目原始输入数据或结果工作簿模板",
+      "size_bytes": 10073,
+      "sha256": "23b261b295c1b787d000eebbca6521c37075107b6fcf78724f8d395ce1798ff4"
+    },
+    {
+      "source": "附件/附件3/result3.xlsx",
+      "archive_path": "附件/附件3/result3.xlsx",
+      "description": "题目原始输入数据或结果工作簿模板",
+      "size_bytes": 9345,
+      "sha256": "07e4793d620a7f899804c0298d49a16a197960440fd47f8bb780c57ec27e2859"
+    },
+    {
+      "source": "附件/附件3/result4.xlsx",
+      "archive_path": "附件/附件3/result4.xlsx",
+      "description": "题目原始输入数据或结果工作簿模板",
+      "size_bytes": 9351,
+      "sha256": "86e9300ffa3d30c43de895ea6723da943e85b8740b137bcae5af7107f076eeac"
+    }
+  ],
+  "omitted_rebuildable": [
+    {
+      "archive_path": "comsol_q4/near_surface_check/graded160/q4_comsol_profiles.csv",
+      "source": "comsol_q4/near_surface_check/graded160/q4_comsol_profiles.csv",
+      "size_bytes": 19355430,
+      "sha256": "4330e86e13dc484e0ced3868bd6d612b2c8f7586565d6f23c6a0cb1f5a7c852e",
+      "compressed_size_bytes": 4952505,
+      "reason": "超过20 MB提交包体积约束；保留完整源码与输入供重建",
+      "rebuild_command": "在 comsol_q4/near_surface_check/graded160/ 修正 WORK_DIR 后，用 COMSOL 6.3 的 comsolcompile 和 comsolbatch 执行同目录 Q4Automation.java"
+    },
+    {
+      "archive_path": "comsol_q4/near_surface_check/graded320/q4_comsol_profiles.csv",
+      "source": "comsol_q4/near_surface_check/graded320/q4_comsol_profiles.csv",
+      "size_bytes": 19444033,
+      "sha256": "5f455cfb995a685dd1d5325b6b5f6b5cf48d1cf4cb6f9498c2c39891d44c1c33",
+      "compressed_size_bytes": 4971489,
+      "reason": "超过20 MB提交包体积约束；保留完整源码与输入供重建",
+      "rebuild_command": "在 comsol_q4/near_surface_check/graded320/ 修正 WORK_DIR 后，用 COMSOL 6.3 的 comsolcompile 和 comsolbatch 执行同目录 Q4Automation.java"
+    },
+    {
+      "archive_path": "comsol_q4/near_surface_check/graded80/q4_comsol_profiles.csv",
+      "source": "comsol_q4/near_surface_check/graded80/q4_comsol_profiles.csv",
+      "size_bytes": 19565542,
+      "sha256": "edb619f1c28ba3b107f1d24f4cb484b14706b1db99ffd287f972c7cd72b54f39",
+      "compressed_size_bytes": 4912265,
+      "reason": "超过20 MB提交包体积约束；保留完整源码与输入供重建",
+      "rebuild_command": "在 comsol_q4/near_surface_check/graded80/ 修正 WORK_DIR 后，用 COMSOL 6.3 的 comsolcompile 和 comsolbatch 执行同目录 Q4Automation.java"
+    },
+    {
+      "archive_path": "comsol_q4/near_surface_check/original_dense/q4_comsol_profiles.csv",
+      "source": "comsol_q4/near_surface_check/original_dense/q4_comsol_profiles.csv",
+      "size_bytes": 18997561,
+      "sha256": "4f3b1ab0d1d4d8cb4e71d7981febcc05d5b78f3a7e7b112283fd5084e097dbaa",
+      "compressed_size_bytes": 4889659,
+      "reason": "超过20 MB提交包体积约束；保留完整源码与输入供重建",
+      "rebuild_command": "在 comsol_q4/near_surface_check/original_dense/ 修正 WORK_DIR 后，用 COMSOL 6.3 的 comsolcompile 和 comsolbatch 执行同目录 Q4Automation.java"
+    },
+    {
+      "archive_path": "comsol_q4/near_surface_check/original_tight/q4_comsol_profiles.csv",
+      "source": "comsol_q4/near_surface_check/original_tight/q4_comsol_profiles.csv",
+      "size_bytes": 18993124,
+      "sha256": "f4b6c9135bcc78c64c1fc6d20f92212c798b732ba4a4272728d1bf643b2d4034",
+      "compressed_size_bytes": 4891958,
+      "reason": "超过20 MB提交包体积约束；保留完整源码与输入供重建",
+      "rebuild_command": "在 comsol_q4/near_surface_check/original_tight/ 修正 WORK_DIR 后，用 COMSOL 6.3 的 comsolcompile 和 comsolbatch 执行同目录 Q4Automation.java"
+    },
+    {
+      "archive_path": "results/q2/fields.npz",
+      "source": "results/q2/fields.npz",
+      "size_bytes": 38337343,
+      "sha256": "864e4d90d2a0b22f3eae37f34cae3fcea093dfb9f63bd4d0f2214f149209ab6b",
+      "compressed_size_bytes": 37611300,
+      "reason": "超过20 MB提交包体积约束；保留完整源码与输入供重建",
+      "rebuild_command": "python code/solve_drying.py --skip-convergence"
+    },
+    {
+      "archive_path": "results/q4/fixed_radius_counterfactual.npz",
+      "source": "results/q4/fixed_radius_counterfactual.npz",
+      "size_bytes": 1542497,
+      "sha256": "95b4070c4f49c551b7cde0be5bfd0d76b650363fea654726a7ea1a0a090fcf6f",
+      "compressed_size_bytes": 1532691,
+      "reason": "超过20 MB提交包体积约束；保留完整源码与输入供重建",
+      "rebuild_command": "python code/run_q4_counterfactual.py"
+    },
+    {
+      "archive_path": "results/q4/validation_moving_mesh/fields.npz",
+      "source": "results/q4/validation_moving_mesh/fields.npz",
+      "size_bytes": 14824563,
+      "sha256": "c20e4371912ce3574447cdb039e0ef84a7fd2d98fef504cb8518a9eaa1193441",
+      "compressed_size_bytes": 14675876,
+      "reason": "超过20 MB提交包体积约束；保留完整源码与输入供重建",
+      "rebuild_command": "python code/validate_moving_mesh.py"
+    }
+  ]
+}

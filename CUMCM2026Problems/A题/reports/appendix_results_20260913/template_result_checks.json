@@ -1,0 +1,146 @@
+{
+  "status": "PASS",
+  "baseline_commit": "5ae7984e2006d4b097271ce7fb7193db335021ff",
+  "workbooks": [
+    {
+      "file": "result1.xlsx",
+      "sheet_names": [
+        "温度",
+        "水分浓度"
+      ],
+      "checks": [
+        {
+          "sheet": "温度",
+          "rows": 1800,
+          "columns": 22,
+          "first_time_s": 1,
+          "last_time_s": 1800,
+          "header_exact": true,
+          "sheet_settings_match": true,
+          "style_mismatches": 0,
+          "four_decimal_format_mismatches": 0,
+          "changed_values_excluding_A1": 0,
+          "column_widths_match": true,
+          "row_heights_match": true,
+          "time_schedule_exact": true
+        },
+        {
+          "sheet": "水分浓度",
+          "rows": 1800,
+          "columns": 22,
+          "first_time_s": 1,
+          "last_time_s": 1800,
+          "header_exact": true,
+          "sheet_settings_match": true,
+          "style_mismatches": 0,
+          "four_decimal_format_mismatches": 0,
+          "changed_values_excluding_A1": 0,
+          "column_widths_match": true,
+          "row_heights_match": true,
+          "time_schedule_exact": true
+        }
+      ],
+      "errors": [],
+      "author_and_editor_empty": true,
+      "sha256": "0246ef2d4dc1e7ee733d1d87130b2e27dadd585cf42839e24c9cc2584b44ce58",
+      "pass": true
+    },
+    {
+      "file": "result2.xlsx",
+      "sheet_names": [
+        "温度",
+        "水分浓度"
+      ],
+      "checks": [
+        {
+          "sheet": "温度",
+          "rows": 10800,
+          "columns": 22,
+          "first_time_s": 1,
+          "last_time_s": 10800,
+          "header_exact": true,
+          "sheet_settings_match": true,
+          "style_mismatches": 0,
+          "four_decimal_format_mismatches": 0,
+          "changed_values_excluding_A1": 0,
+          "column_widths_match": true,
+          "row_heights_match": true,
+          "time_schedule_exact": true
+        },
+        {
+          "sheet": "水分浓度",
+          "rows": 10800,
+          "columns": 22,
+          "first_time_s": 1,
+          "last_time_s": 10800,
+          "header_exact": true,
+          "sheet_settings_match": true,
+          "style_mismatches": 0,
+          "four_decimal_format_mismatches": 0,
+          "changed_values_excluding_A1": 0,
+          "column_widths_match": true,
+          "row_heights_match": true,
+          "time_schedule_exact": true
+        }
+      ],
+      "errors": [],
+      "author_and_editor_empty": true,
+      "sha256": "7c5f3043554b8493c1c07c65b0c286b2190690dd3814e2d12ca70a094c5540e4",
+      "pass": true
+    },
+    {
+      "file": "result3.xlsx",
+      "sheet_names": [
+        "Sheet1"
+      ],
+      "checks": [
+        {
+          "sheet": "Sheet1",
+          "rows": 3449,
+          "columns": 22,
+          "first_time_s": 60,
+          "last_time_s": 206940,
+          "header_exact": true,
+          "sheet_settings_match": true,
+          "style_mismatches": 0,
+          "four_decimal_format_mismatches": 0,
+          "changed_values_excluding_A1": 0,
+          "column_widths_match": true,
+          "row_heights_match": true,
+          "time_schedule_exact": true
+        }
+      ],
+      "errors": [],
+      "author_and_editor_empty": true,
+      "sha256": "6f805f29a5261b29f112e285fdb614e6495259f8742567fcb904a93cf5050286",
+      "pass": true
+    },
+    {
+      "file": "result4.xlsx",
+      "sheet_names": [
+        "Sheet1"
+      ],
+      "checks": [
+        {
+          "sheet": "Sheet1",
+          "rows": 3066,
+          "columns": 22,
+          "first_time_s": 60,
+          "last_time_s": 183960,
+          "header_exact": true,
+          "sheet_settings_match": true,
+          "style_mismatches": 0,
+          "four_decimal_format_mismatches": 0,
+          "changed_values_excluding_A1": 0,
+          "column_widths_match": true,
+          "row_heights_match": true,
+          "time_schedule_exact": true
+        }
+      ],
+      "errors": [],
+      "author_and_editor_empty": true,
+      "sha256": "9888f85de53c9b8f0047e2d87a6bb09de7be623c930d8f9b5f273044ee079439",
+      "pass": true
+    }
+  ]
+}

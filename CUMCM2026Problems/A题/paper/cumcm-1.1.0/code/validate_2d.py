@@ -1,3 +1,4 @@
+# File: code/validate_2d.py
 """Short-duration Q1 validation using the matched-grid axisymmetric solver.
 
 Whole-run extrema and final-time differences are explicitly distinguished.

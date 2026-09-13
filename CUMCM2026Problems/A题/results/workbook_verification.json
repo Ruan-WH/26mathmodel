@@ -1,9 +1,9 @@
 {
-  "authoring_backend": "openpyxl fallback",
-  "fallback_reason": "@oai/artifact-tool and container_tools marker are unavailable in the current Windows runtime; template structure is preserved with openpyxl.",
+  "authoring_backend": "existing openpyxl result exporter",
+  "template_policy": "保留附件模板表头、工作表名称和样式；展开省略号，结果显示四位小数。",
   "outputs": [
     {
-      "path": "D:\\26mathmodel\\CUMCM2026Problems\\A题\\results\\result1.xlsx",
+      "path": "E:\\26math model\\26mathmodel\\CUMCM2026Problems\\A题\\results\\result1.xlsx",
       "rows_including_header": 1801,
       "columns": 22,
       "sheets": [
@@ -12,7 +12,7 @@
       ]
     },
     {
-      "path": "D:\\26mathmodel\\CUMCM2026Problems\\A题\\results\\result2.xlsx",
+      "path": "E:\\26math model\\26mathmodel\\CUMCM2026Problems\\A题\\results\\result2.xlsx",
       "rows_including_header": 10801,
       "columns": 22,
       "sheets": [
@@ -21,7 +21,7 @@
       ]
     },
     {
-      "path": "D:\\26mathmodel\\CUMCM2026Problems\\A题\\results\\result3.xlsx",
+      "path": "E:\\26math model\\26mathmodel\\CUMCM2026Problems\\A题\\results\\result3.xlsx",
       "rows_including_header": 3450,
       "columns": 22,
       "sheets": [
@@ -29,7 +29,7 @@
       ]
     },
     {
-      "path": "D:\\26mathmodel\\CUMCM2026Problems\\A题\\results\\result4.xlsx",
+      "path": "E:\\26math model\\26mathmodel\\CUMCM2026Problems\\A题\\results\\result4.xlsx",
       "rows_including_header": 3067,
       "columns": 22,
       "sheets": [
@@ -40,14 +40,14 @@
   ],
   "verification": [
     {
-      "path": "D:\\26mathmodel\\CUMCM2026Problems\\A题\\results\\result1.xlsx",
-      "file_size_bytes": 378707,
+      "path": "E:\\26math model\\26mathmodel\\CUMCM2026Problems\\A题\\results\\result1.xlsx",
+      "file_size_bytes": 379565,
       "sheets": {
         "温度": {
           "rows": 1801,
           "columns": 22,
           "first_row": [
-            "时间/s",
+            "时间\\到药材中心的距离",
             0,
             0.1,
             0.2,
@@ -99,7 +99,7 @@
           "rows": 1801,
           "columns": 22,
           "first_row": [
-            "时间/s",
+            "时间\\到药材中心的距离",
             0,
             0.1,
             0.2,
@@ -153,17 +153,17 @@
       "source_value_mismatches": 0,
       "time_schedule_valid": true,
       "source_fields_sha256": "9330e7249efc81d66a4cab40c600f3721076c2d2d66a238ca1b828cc23417192",
-      "workbook_sha256": "7c772029f4c973190a9c2746a12ced0db038c4a68f86f150610443e093651b5e"
+      "workbook_sha256": "0246ef2d4dc1e7ee733d1d87130b2e27dadd585cf42839e24c9cc2584b44ce58"
     },
     {
-      "path": "D:\\26mathmodel\\CUMCM2026Problems\\A题\\results\\result2.xlsx",
-      "file_size_bytes": 2469345,
+      "path": "E:\\26math model\\26mathmodel\\CUMCM2026Problems\\A题\\results\\result2.xlsx",
+      "file_size_bytes": 2478187,
       "sheets": {
         "温度": {
           "rows": 10801,
           "columns": 22,
           "first_row": [
-            "时间/s",
+            "时间\\到药材中心的距离",
             0,
             0.1,
             0.2,
@@ -215,7 +215,7 @@
           "rows": 10801,
           "columns": 22,
           "first_row": [
-            "时间/s",
+            "时间\\到药材中心的距离",
             0,
             0.1,
             0.2,
@@ -269,17 +269,17 @@
       "source_value_mismatches": 0,
       "time_schedule_valid": true,
       "source_fields_sha256": "864e4d90d2a0b22f3eae37f34cae3fcea093dfb9f63bd4d0f2214f149209ab6b",
-      "workbook_sha256": "a62b843b4668743da2cf870651843f476cf3f7005638c698d7930220c46ec562"
+      "workbook_sha256": "7c5f3043554b8493c1c07c65b0c286b2190690dd3814e2d12ca70a094c5540e4"
     },
     {
-      "path": "D:\\26mathmodel\\CUMCM2026Problems\\A题\\results\\result3.xlsx",
-      "file_size_bytes": 352924,
+      "path": "E:\\26math model\\26mathmodel\\CUMCM2026Problems\\A题\\results\\result3.xlsx",
+      "file_size_bytes": 353745,
       "sheets": {
         "Sheet1": {
           "rows": 3450,
           "columns": 22,
           "first_row": [
-            "时间/s",
+            "时间\\到药材中心的距离",
             0,
             0.1,
             0.2,
@@ -333,17 +333,17 @@
       "source_value_mismatches": 0,
       "time_schedule_valid": true,
       "source_fields_sha256": "1f1869a3a04c0627a5c738288aa028002b158803e526668baf339d17cb83c278",
-      "workbook_sha256": "0a5440ae41a36cf8048279d01afda1563e9df8b39cea8fd75e01dfe97f384bc0"
+      "workbook_sha256": "6f805f29a5261b29f112e285fdb614e6495259f8742567fcb904a93cf5050286"
     },
     {
-      "path": "D:\\26mathmodel\\CUMCM2026Problems\\A题\\results\\result4.xlsx",
-      "file_size_bytes": 298991,
+      "path": "E:\\26math model\\26mathmodel\\CUMCM2026Problems\\A题\\results\\result4.xlsx",
+      "file_size_bytes": 300045,
       "sheets": {
         "Sheet1": {
           "rows": 3067,
           "columns": 22,
           "first_row": [
-            "时间/s",
+            "时间\\到药材中心的距离",
             0,
             0.1,
             0.2,
@@ -397,7 +397,7 @@
       "source_value_mismatches": 0,
       "time_schedule_valid": true,
       "source_fields_sha256": "ec26dda9a41ad47a13259710c913fd40a8a283fe5c64d84cce93ed203d0a53cd",
-      "workbook_sha256": "2099593de507cb61f5e879b55812cb5b2e2c57dada9be59e05cd2e057b06a779"
+      "workbook_sha256": "9888f85de53c9b8f0047e2d87a6bb09de7be623c930d8f9b5f273044ee079439"
     }
   ]
 }

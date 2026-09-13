@@ -1,16 +1,1 @@
-[
-  "code/write_results.py",
-  "code/check_numerics.py",
-  "code/validate_2d.py",
-  "code/validate_long_2d.py",
-  "code/verify_revision.py",
-  "code/run_sensitivity.py",
-  "code/validate_moving_mesh.py",
-  "code/check_moving_mesh_delivery.py",
-  "inspect_inputs.py",
-  "comsol_q1/prepare_inputs.py",
-  "comsol_q4/prepare_q4_inputs.py",
-  "comsol_q4/analyze_q4_comsol.py",
-  "comsol_q4/near_surface_check/analyze_refinement.py",
-  "comsol_q4/near_surface_check/write_report.py"
-]
+[]
