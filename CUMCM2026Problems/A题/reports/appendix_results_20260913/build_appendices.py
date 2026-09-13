@@ -28,6 +28,7 @@ SOURCE_CATALOG = [
     ('comsol_q4/plot_q4_physical.py', '有限元物理剖面和水分场绘制'),
     ('comsol_q4/near_surface_check/analyze_refinement.py', '有限元近表面加密结果分析'),
     ('comsol_q4/near_surface_check/write_report.py', '有限元网格与容差检验结果汇总'),
+    ('code/figure_style.py', '绘图字体、数学排版与缺字检查'),
 ]
 
 # Final scope confirmed by the user: core solution and manuscript plotting only.
@@ -39,9 +40,10 @@ SELECTED = {
     'code/plot_moving_mesh_validation.py',
     'code/make_geometry_diagram.py',
     'comsol_q4/plot_q4_physical.py',
+    'code/figure_style.py',
 }
 SOURCES = [(path, purpose) for path, purpose in SOURCE_CATALOG if path in SELECTED]
-assert len(SOURCES) == 7
+assert len(SOURCES) == 8
 
 def digest(data):
     return hashlib.sha256(data).hexdigest()

@@ -13,28 +13,25 @@ from pathlib import Path
 import numpy as np
 import matplotlib
 matplotlib.use('Agg')
-from make_additional_figures import save_cns_figure, CATEGORICAL
+from make_additional_figures import CATEGORICAL
+from figure_style import configure_fonts, save_figure
+configure_fonts()
 import matplotlib.pyplot as plt
 from validate_moving_mesh import OUT, ROOT, write_comparisons, check_preservation
 
 
-def main():
-    arrays=np.load(OUT/'fields.npz')
-    report=json.loads((OUT/'summary.json').read_text(encoding='utf8'))
-    report['event_comparison_note']='Own-event profiles and common mapping-event centre/surface values are distinguished; trajectories compare identical time levels.'
-    (OUT/'summary.json').write_text(json.dumps(report,indent=2),encoding='utf8')
-    write_comparisons(arrays,report)
+def render_figures(arrays):
     tr=arrays['step_trace']; hours=tr[:,0]/3600
-    fig,axes=plt.subplots(1,2,figsize=(7.2,2.75))
-    fig.subplots_adjust(left=.085,right=.98,bottom=.25,top=.96,wspace=.36)
+    fig,axes=plt.subplots(1,2,figsize=(7.2,3.6))
+    fig.subplots_adjust(left=.105,right=.98,bottom=.26,top=.96,wspace=.40)
     ax=axes[0]
     ax.plot(hours,tr[:,1],color=CATEGORICAL[0],lw=1.65,label='固定域映射法')
     ax.plot(hours,tr[:,2],color=CATEGORICAL[1],lw=1.0,ls=(0,(5,3)),label='直接移动网格法')
     ax.axhline(.15,color='#666666',ls=':',lw=.8)
-    ax.text(5,.20,r'$C=0.15$',fontsize=7,color='#555555')
+    ax.text(5,.20,r'$C=0.15$',fontsize=10,color='#555555')
     ax.set(xlim=(0,52),ylim=(0,2.65),xlabel='时间 / h',ylabel='中心水分浓度 / (kg/kg)')
-    ax.set_xticks([0,12,24,36,48]);ax.legend(loc='upper right',fontsize=7)
-    ax.text(.5,-.30,'(a) 中心水分轨迹',transform=ax.transAxes,ha='center',fontsize=8)
+    ax.set_xticks([0,12,24,36,48]);ax.legend(loc='upper right',fontsize=10)
+    ax.text(.5,-.30,'(a) 中心水分轨迹',transform=ax.transAxes,ha='center',fontsize=10)
     ax=axes[1]
     for h,color in [(24,CATEGORICAL[0]),(48,CATEGORICAL[4])]:
         i=int(np.flatnonzero(arrays['times_s']==h*3600)[0])
@@ -42,26 +39,39 @@ def main():
         ax.plot(r,arrays['mapping_moisture'][i],color=color,lw=1.65,label=f'{h} h，固定域')
         ax.plot(r,arrays['moving_moisture'][i],color=color,lw=.85,ls='--',
                 marker='o',mfc='white',mew=.65,ms=2.5,markevery=20,label=f'{h} h，移动网格')
-    ax.set(xlim=(0,1.24),ylim=(.04,.30),xlabel='物理半径 / cm',ylabel='水分浓度 / (kg/kg)')
-    ax.set_xticks([0,.3,.6,.9,1.2]);ax.legend(loc='lower left',fontsize=6.6)
-    ax.text(.5,-.30,'(b) 完整径向剖面',transform=ax.transAxes,ha='center',fontsize=8)
-    from matplotlib.text import Text
-    from matplotlib.patheffects import withStroke
-    fig.canvas.draw()
-    for text in fig.findobj(Text):
-        text.set_path_effects([withStroke(linewidth=0.16, foreground=text.get_color())])
-    save_cns_figure(fig,OUT/'q4_moving_mesh_validation');plt.close(fig)
+    ax.set(xlim=(0,1.24),ylim=(.04,.30),xlabel=r'物理半径 $r\,/\,\mathrm{cm}$',ylabel='水分浓度 / (kg/kg)')
+    ax.xaxis.label.set_fontfamily('SimSun')
+    ax.set_xticks([0,.3,.6,.9,1.2]);ax.legend(loc='lower left',fontsize=10)
+    ax.text(.5,-.30,'(b) 完整径向剖面',transform=ax.transAxes,ha='center',fontsize=10)
+    save_figure(fig,OUT/'q4_moving_mesh_validation');plt.close(fig)
     shutil.copy2(OUT/'q4_moving_mesh_validation.pdf',ROOT/'paper/cumcm-1.1.0/figures/q4_moving_mesh_validation.pdf')
 
-    fig,axes=plt.subplots(1,2,figsize=(7.2,2.65))
-    fig.subplots_adjust(left=.10,right=.98,bottom=.21,top=.88,wspace=.42)
+    fig,axes=plt.subplots(1,2,figsize=(7.2,3.2))
+    fig.subplots_adjust(left=.12,right=.98,bottom=.23,top=.90,wspace=.52)
     for ax,column,label,color in [(axes[0],5,'水分场最大绝对差 / (kg/kg)',CATEGORICAL[0]),
-                                  (axes[1],6,'温度场最大绝对差 / ℃',CATEGORICAL[1])]:
+                                  (axes[1],6,'温度场最大绝对差 / °C',CATEGORICAL[1])]:
         ax.plot(hours,tr[:,column],lw=.6,color=color,rasterized=True)
         ax.set(xlim=(0,52),ylim=(0,None),xlabel='时间 / h',ylabel=label)
+        if '$' in label:
+            ax.yaxis.label.set_fontfamily('SimSun')
         ax.set_xticks([0,12,24,36,48]);ax.ticklabel_format(axis='y',style='sci',scilimits=(0,0))
-    save_cns_figure(fig,OUT/'q4_moving_mesh_errors');plt.close(fig)
+    save_figure(fig,OUT/'q4_moving_mesh_errors');plt.close(fig)
 
+
+def main():
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--figures-only', action='store_true',
+                        help='Render saved fields without rewriting numerical reports or tables')
+    args = parser.parse_args()
+    arrays=np.load(OUT/'fields.npz')
+    render_figures(arrays)
+    if args.figures_only:
+        return
+    report=json.loads((OUT/'summary.json').read_text(encoding='utf8'))
+    report['event_comparison_note']='Own-event profiles and common mapping-event centre/surface values are distinguished; trajectories compare identical time levels.'
+    (OUT/'summary.json').write_text(json.dumps(report,indent=2),encoding='utf8')
+    write_comparisons(arrays,report)
     rows=list(csv.DictReader((OUT/'comparison.csv').open(encoding='utf-8-sig')))
     labels={'drying_time':r'$t_d$/h'}
     for time,caption in [('6h','6 h'),('24h','24 h'),('48h','48 h'),('common_event',r'$t_d^{\rm map}$')]:

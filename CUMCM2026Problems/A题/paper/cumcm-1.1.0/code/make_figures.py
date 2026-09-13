@@ -6,36 +6,9 @@
 #       "param inherit" = drawing function below that copies Class A/B/C values.
 #       The production asset's data semantics differ, so only its clean line/marker structure is inherited.
 
-# Academic Figure Skill Typography Baseline — COPY VERBATIM, place at TOP of script
-import matplotlib as mpl
-mpl.rcParams.update({
-    "font.family": "sans-serif",
-    "font.sans-serif": ["Arial", "Helvetica", "Liberation Sans"],
-    "font.size": 8,
-    "axes.titlesize": 8,
-    "axes.labelsize": 8,
-    "xtick.labelsize": 7,
-    "ytick.labelsize": 7,
-    "legend.fontsize": 8,
-    "figure.titlesize": 9,
-    "axes.spines.top": False,
-    "axes.spines.right": False,
-    "axes.linewidth": 0.6,
-    "xtick.direction": "out",
-    "ytick.direction": "out",
-    "xtick.major.width": 0.6,
-    "ytick.major.width": 0.6,
-    "legend.frameon": False,
-})
+from figure_style import configure_fonts, save_figure
 
-mpl.rcParams.update({
-    "font.family": ["Times New Roman", "SimSun"],
-    "mathtext.fontset": "custom",
-    "mathtext.rm": "Times New Roman",
-    "mathtext.it": "Times New Roman:italic",
-    "mathtext.bf": "Times New Roman:bold",
-    "mathtext.sf": "Times New Roman",
-})
+configure_fonts()
 
 # Academic Figure Skill Nature/Cell/Science Color Palette -- COPY VERBATIM
 CATEGORICAL = ["#2166AC", "#B2182B", "#1B7837", "#F1A340", "#762A83", "#666666"]
@@ -49,33 +22,13 @@ ACCENT_RED  = "#B2182B"
 GREY        = "#999999"
 BLACK       = "#222222"
 
-# Academic Figure Skill Export Baseline — COPY VERBATIM
-mpl.rcParams.update({
-    "pdf.fonttype": 42,         # TrueType font embedding
-    "svg.fonttype": "none",     # editable text in SVG
-    "savefig.bbox": "tight",    # trim whitespace
-    "savefig.dpi": 300,
-})
-
-def save_cns_figure(fig, filename, bold_text=False):
-    """Standard Academic Figure Skill export: vector PDF + 300dpi PNG preview."""
-    if bold_text:
-        from matplotlib.text import Text
-        from matplotlib.patheffects import withStroke
-        fig.canvas.draw()
-        for text in fig.findobj(Text):
-            text.set_path_effects([withStroke(linewidth=0.16, foreground=text.get_color())])
-    fig.savefig(f"{filename}.pdf", bbox_inches="tight", dpi=300)
-    fig.savefig(f"{filename}.png", bbox_inches="tight", dpi=300)
-
-
 import json
 import sys
 from pathlib import Path
 
 import matplotlib.pyplot as plt
 import numpy as np
-from matplotlib import font_manager
+from matplotlib.ticker import MaxNLocator, StrMethodFormatter
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -83,18 +36,6 @@ RESULTS = ROOT / "results"
 FIGURES = ROOT / "figures"
 MM_TO_INCH = 1.0 / 25.4
 TIME_COLORS = ["#BFD7EA", "#6BAED6", "#2166AC", "#762A83", "#B2182B"]
-
-
-def require_fonts() -> None:
-    font_manager.findfont("Times New Roman", fallback_to_default=False)
-    for chinese_font in ("SimSun", "Songti SC", "STSong"):
-        try:
-            font_manager.findfont(chinese_font, fallback_to_default=False)
-        except ValueError:
-            continue
-        mpl.rcParams["font.family"] = ["Times New Roman", chinese_font]
-        return
-    raise RuntimeError("需要 SimSun、Songti SC 或 STSong 中至少一种中文字体")
 
 
 def load_summary(question: str) -> dict:
@@ -110,17 +51,25 @@ def panel_labels(fig, axes: list[plt.Axes], labels: str = "ab") -> None:
         box = axis.get_position()
         fig.text(
             0.5 * (box.x0 + box.x1),
-            0.035,
+            0.025,
             f"({label})",
             ha="center",
             va="bottom",
-            fontsize=8,
+            fontsize=11,
             fontweight="bold",
         )
 
 
 def common_axis_style(axis: plt.Axes) -> None:
-    axis.tick_params(length=3.0, width=0.6)
+    axis.tick_params(length=3.0, width=0.6, labelsize=10)
+    axis.xaxis.label.set_size(11)
+    axis.yaxis.label.set_size(11)
+    axis.xaxis.set_major_locator(MaxNLocator(nbins=5))
+    axis.yaxis.set_major_locator(MaxNLocator(nbins=6, steps=[1, 2, 2.5, 5, 10]))
+    axis.spines["top"].set_visible(False)
+    axis.spines["right"].set_visible(False)
+    axis.spines["left"].set_linewidth(0.6)
+    axis.spines["bottom"].set_linewidth(0.6)
     axis.grid(False)
 
 
@@ -147,7 +96,7 @@ def plot_profiles(
             label=label,
         )
     axis.set_xlabel("到药材中心的距离 / cm")
-    axis.set_ylabel(ylabel)
+    axis.set_ylabel(ylabel, fontfamily="SimSun" if "$" in ylabel else None)
     axis.set_xlim(float(radius_cm[0]), float(radius_cm[-1]))
     if show_legend:
         axis.legend(
@@ -156,8 +105,11 @@ def plot_profiles(
             ncol=min(len(labels), 3),
             columnspacing=0.9,
             handlelength=1.8,
+            fontsize=10,
         )
     common_axis_style(axis)
+    axis.set_xticks(np.linspace(float(radius_cm[0]), float(radius_cm[-1]), 5))
+    axis.xaxis.set_major_formatter(StrMethodFormatter("{x:g}"))
 
 
 def figure_q1() -> None:
@@ -170,7 +122,7 @@ def figure_q1() -> None:
     fig, axes = plt.subplots(
         1,
         2,
-        figsize=(183 * MM_TO_INCH, 68 * MM_TO_INCH),
+        figsize=(183 * MM_TO_INCH, 82 * MM_TO_INCH),
         gridspec_kw={"wspace": 0.22},
     )
     plot_profiles(
@@ -186,7 +138,7 @@ def figure_q1() -> None:
         radius_cm,
         data["moisture"][indexes],
         labels,
-        "水分浓度 C / (kg/kg)",
+        r"水分浓度 $C\,/\,\mathrm{(kg/kg)}$",
         show_legend=False,
     )
     axes[1].set_ylim(1.4, 2.60)
@@ -201,10 +153,12 @@ def figure_q1() -> None:
         handlelength=1.8,
         handletextpad=0.45,
         borderaxespad=0.0,
+        fontsize=10,
+        frameon=False,
     )
-    fig.subplots_adjust(left=0.08, right=0.99, top=0.85, bottom=0.20, wspace=0.22)
+    fig.subplots_adjust(left=0.10, right=0.98, top=0.84, bottom=0.24, wspace=0.34)
     panel_labels(fig, list(axes))
-    save_cns_figure(fig, str(FIGURES / "q1_preheat_profiles"))
+    save_figure(fig, str(FIGURES / "q1_preheat_profiles"))
     plt.close(fig)
 
 
@@ -218,7 +172,7 @@ def figure_q2() -> None:
     fig, axes = plt.subplots(
         1,
         2,
-        figsize=(183 * MM_TO_INCH, 68 * MM_TO_INCH),
+        figsize=(183 * MM_TO_INCH, 82 * MM_TO_INCH),
         gridspec_kw={"wspace": 0.22},
     )
     plot_profiles(
@@ -234,7 +188,7 @@ def figure_q2() -> None:
         radius_cm,
         data["moisture"][indexes],
         labels,
-        "水分浓度 C / (kg/kg)",
+        r"水分浓度 $C\,/\,\mathrm{(kg/kg)}$",
         show_legend=False,
     )
     handles, legend_labels = axes[0].get_legend_handles_labels()
@@ -248,10 +202,12 @@ def figure_q2() -> None:
         handlelength=1.8,
         handletextpad=0.45,
         borderaxespad=0.0,
+        fontsize=10,
+        frameon=False,
     )
-    fig.subplots_adjust(left=0.08, right=0.99, top=0.85, bottom=0.20, wspace=0.22)
+    fig.subplots_adjust(left=0.10, right=0.98, top=0.84, bottom=0.24, wspace=0.34)
     panel_labels(fig, list(axes))
-    save_cns_figure(fig, str(FIGURES / "q2_coupled_profiles"))
+    save_figure(fig, str(FIGURES / "q2_coupled_profiles"))
     plt.close(fig)
 
 
@@ -264,7 +220,7 @@ def figure_q3() -> None:
     fig, axes = plt.subplots(
         1,
         2,
-        figsize=(183 * MM_TO_INCH, 76 * MM_TO_INCH),
+        figsize=(183 * MM_TO_INCH, 86 * MM_TO_INCH),
         gridspec_kw={"wspace": 0.28},
     )
     axes[0].plot(time_h, data["moisture"][:, 0], color=CATEGORICAL[0], linewidth=1.4, label="中心")
@@ -283,13 +239,13 @@ def figure_q3() -> None:
         xy=(end_h, 0.15),
         xytext=(end_h - 16, 0.42),
         arrowprops={"arrowstyle": "->", "lw": 0.7, "color": BLACK},
-        fontsize=7,
+        fontsize=10,
     )
     axes[0].set_xlabel("时间 / h")
-    axes[0].set_ylabel("水分浓度 / (kg/kg)")
+    axes[0].set_ylabel(r"水分浓度 $C\,/\,\mathrm{(kg/kg)}$", fontfamily="SimSun")
     axes[0].set_xlim(0, max(time_h))
     axes[0].set_ylim(0, 2.65)
-    axes[0].legend(loc="upper right")
+    axes[0].legend(loc="upper right", frameon=False)
     common_axis_style(axes[0])
 
     requested_h = [6, 18, 36, 48, end_h]
@@ -302,7 +258,7 @@ def figure_q3() -> None:
         radius_cm,
         profiles,
         labels,
-        "水分浓度 / (kg/kg)",
+        r"水分浓度 $C\,/\,\mathrm{(kg/kg)}$",
         show_legend=False,
     )
     axes[1].axhline(0.15, color=ACCENT_RED, linewidth=0.8, linestyle=":")
@@ -312,16 +268,18 @@ def figure_q3() -> None:
         handles,
         legend_labels,
         loc="upper center",
-        bbox_to_anchor=(0.67, 0.975),
+        bbox_to_anchor=(0.5, 0.975),
         ncol=len(legend_labels),
         columnspacing=1.0,
         handlelength=1.8,
         handletextpad=0.45,
         borderaxespad=0.0,
+        fontsize=10,
+        frameon=False,
     )
-    fig.subplots_adjust(left=0.09, right=0.98, top=0.86, bottom=0.22, wspace=0.28)
+    fig.subplots_adjust(left=0.10, right=0.98, top=0.84, bottom=0.24, wspace=0.34)
     panel_labels(fig, list(axes))
-    save_cns_figure(fig, str(FIGURES / "q3_threshold_diagnostics"))
+    save_figure(fig, str(FIGURES / "q3_threshold_diagnostics"))
     plt.close(fig)
 
 
@@ -338,7 +296,7 @@ def figure_q4() -> None:
     fig, axes = plt.subplots(
         1,
         2,
-        figsize=(183 * MM_TO_INCH, 74 * MM_TO_INCH),
+        figsize=(183 * MM_TO_INCH, 86 * MM_TO_INCH),
         gridspec_kw={"width_ratios": [1.35, 1.0], "wspace": 0.34},
     )
     axes[0].plot(
@@ -370,13 +328,19 @@ def figure_q4() -> None:
         xytext=(end4_h - 15, 0.43),
         arrowprops={"arrowstyle": "->", "lw": 0.7, "color": ACCENT_RED},
         color=ACCENT_RED,
-        fontsize=7,
+        fontsize=10,
     )
     axes[0].set_xlabel("时间 / h")
-    axes[0].set_ylabel("中心水分浓度 / (kg·kg⁻¹)")
+    axes[0].set_ylabel(r"中心水分浓度 $C\,/\,\mathrm{(kg/kg)}$", fontfamily="SimSun")
     axes[0].set_xlim(0, max(time_fixed_h))
     axes[0].set_ylim(0, 2.65)
-    axes[0].legend(loc="upper right")
+    handles, legend_labels = axes[0].get_legend_handles_labels()
+    fig.legend(
+        handles, legend_labels, loc="upper center", bbox_to_anchor=(0.5, 0.975),
+        ncol=2, columnspacing=1.2, handlelength=1.8, fontsize=10,
+        borderaxespad=0.0,
+        frameon=False,
+    )
     common_axis_style(axes[0])
 
     axes[1].plot(
@@ -394,22 +358,21 @@ def figure_q4() -> None:
         xy=(end4_h, summary4["radius_at_end_cm"]),
         xytext=(end4_h - 17, 1.33),
         arrowprops={"arrowstyle": "->", "lw": 0.7, "color": BLACK},
-        fontsize=7,
+        fontsize=10,
     )
     axes[1].set_xlabel("时间 / h")
-    axes[1].set_ylabel("药材半径 / cm")
+    axes[1].set_ylabel(r"药材半径 $R\,/\,\mathrm{cm}$", fontfamily="SimSun")
     axes[1].set_xlim(0, max(time4_h))
     axes[1].set_ylim(1.12, 2.05)
     common_axis_style(axes[1])
-    fig.subplots_adjust(left=0.09, right=0.98, top=0.84, bottom=0.23, wspace=0.34)
+    fig.subplots_adjust(left=0.10, right=0.98, top=0.83, bottom=0.24, wspace=0.38)
     panel_labels(fig, list(axes))
-    save_cns_figure(fig, str(FIGURES / "q4_shrinkage_comparison"), bold_text=True)
+    save_figure(fig, str(FIGURES / "q4_shrinkage_comparison"))
     plt.close(fig)
 
 
 def main() -> None:
     sys.stdout.reconfigure(encoding="utf-8")
-    require_fonts()
     FIGURES.mkdir(parents=True, exist_ok=True)
     figure_q1()
     figure_q2()

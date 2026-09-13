@@ -3,19 +3,9 @@
 # q2 map -> heatmap/plot_composition.py -> param inherit (continuous field, not counts)
 # q3 threshold region -> no semantic match -> cross-type inherit
 # q4 field / disks -> heatmap shared quantitative scale -> param inherit
-# Baseline is copied below from the existing verified make_figures.py.
-# Academic Figure Skill Typography Baseline — COPY VERBATIM, place at TOP of script
+# Shared CUMCM typography is applied after the common plot settings below.
 import matplotlib as mpl
 mpl.rcParams.update({
-    "font.family": "sans-serif",
-    "font.sans-serif": ["Arial", "Helvetica", "Liberation Sans"],
-    "font.size": 8,
-    "axes.titlesize": 8,
-    "axes.labelsize": 8,
-    "xtick.labelsize": 7,
-    "ytick.labelsize": 7,
-    "legend.fontsize": 8,
-    "figure.titlesize": 9,
     "axes.spines.top": False,
     "axes.spines.right": False,
     "axes.linewidth": 0.6,
@@ -24,15 +14,6 @@ mpl.rcParams.update({
     "xtick.major.width": 0.6,
     "ytick.major.width": 0.6,
     "legend.frameon": False,
-})
-
-mpl.rcParams.update({
-    "font.family": ["Times New Roman", "SimSun"],
-    "mathtext.fontset": "custom",
-    "mathtext.rm": "Times New Roman",
-    "mathtext.it": "Times New Roman:italic",
-    "mathtext.bf": "Times New Roman:bold",
-    "mathtext.sf": "Times New Roman",
 })
 
 # Academic Figure Skill Nature/Cell/Science Color Palette -- COPY VERBATIM
@@ -47,22 +28,6 @@ ACCENT_RED  = "#B2182B"
 GREY        = "#999999"
 BLACK       = "#222222"
 
-# Academic Figure Skill Export Baseline — COPY VERBATIM
-mpl.rcParams.update({
-    "pdf.fonttype": 42,         # TrueType font embedding
-    "svg.fonttype": "none",     # editable text in SVG
-    "savefig.bbox": "tight",    # trim whitespace
-    "savefig.dpi": 300,
-})
-
-def save_cns_figure(fig, filename):
-    """Standard Academic Figure Skill export: vector PDF + 300dpi PNG preview."""
-    fig.savefig(f"{filename}.pdf", bbox_inches="tight", dpi=300)
-    fig.savefig(f"{filename}.png", bbox_inches="tight", dpi=300)
-
-
-
-
 import json
 import shutil
 import sys
@@ -72,9 +37,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap, Normalize
 from matplotlib.patches import Circle
-from matplotlib import font_manager
 sys.dont_write_bytecode = True
 from solve_drying import property_q23
+from figure_style import configure_fonts, save_figure
+
+configure_fonts()
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'figures'
@@ -107,7 +74,7 @@ def event_data(q):
     return d,s,t,c,keep
 
 def save(fig,name):
-    save_cns_figure(fig,str(OUT/name))
+    save_figure(fig,str(OUT/name))
     shutil.copy2(OUT/f'{name}.pdf',PAPER/f'{name}.pdf')
     plt.close(fig)
 
@@ -130,9 +97,9 @@ def surface(q,key,name,zlabel,cmap,limit,ticks):
     ax.set_xticks([0,10,20,30] if q=='q1' else [0,1,2,3])
     ax.set_yticks([0,1,2]); ax.set_zticks(ticks)
     ax.set_xlabel('时间 / '+('min' if q=='q1' else 'h'),labelpad=7)
-    ax.set_ylabel('半径 / cm',labelpad=6)
+    ax.set_ylabel(r'半径 $r\,/\,\mathrm{cm}$',labelpad=6)
     ax.set_zlabel('')
-    fig.text(.10,.62,zlabel,rotation=90,va='center',ha='center',fontsize=8)
+    fig.text(.10,.62,zlabel,rotation=90,va='center',ha='center',fontsize=11)
     ax.view_init(elev=30,azim=45 if q=='q2' else -135)
     ax.set_box_aspect((1.7,1,1.05))
     for axis in [ax.xaxis,ax.yaxis,ax.zaxis]:
@@ -141,9 +108,30 @@ def surface(q,key,name,zlabel,cmap,limit,ticks):
         axis._axinfo['grid'].update(color='#E3E3E3',linewidth=.35)
     cb=fig.colorbar(mpl.cm.ScalarMappable(norm=norm,cmap=cmap),cax=fig.add_axes([.82,.28,.022,.48]))
     cb.set_label(zlabel,labelpad=8)
-    fig.text(.44,.03,'实线：中心边界    虚线：表面边界',ha='center',fontsize=8)
+    fig.text(.44,.03,'实线：中心边界    虚线：表面边界',ha='center',fontsize=10)
     METRICS[name]={'shape':list(v.shape),'min':float(v.min()),'max':float(v.max()),'time_range_s':[0,limit]}
     save(fig,name)
+
+def label_contours_inside(ax, contours):
+    """Keep numeric labels inside the plotted domain after enlarging the type."""
+    xmin, xmax = ax.get_xlim()
+    ymin, ymax = ax.get_ylim()
+    points = []
+    for segments in contours.allsegs:
+        paths = [segment for segment in segments if len(segment) > 1]
+        if not paths:
+            continue
+        vertices = np.concatenate(paths)
+        normalized = (vertices - [xmin, ymin]) / [xmax - xmin, ymax - ymin]
+        inside = ((normalized[:, 0] > .07) & (normalized[:, 0] < .96)
+                  & (normalized[:, 1] > .10) & (normalized[:, 1] < .88))
+        if not np.any(inside):
+            continue
+        candidates = vertices[inside]
+        score = np.sum((normalized[inside] - [.55, .60]) ** 2, axis=1)
+        points.append(tuple(candidates[np.argmin(score)]))
+    return ax.clabel(contours, fmt='%g', fontsize=10, inline=True, manual=points)
+
 
 def surface_heatmap(q,key,name,zlabel,cmap,limit,ticks):
     d=read(q)
@@ -156,22 +144,18 @@ def surface_heatmap(q,key,name,zlabel,cmap,limit,ticks):
     norm=Normalize(float(v.min()),float(v.max()))
     im=ax.pcolormesh(t,r,v.T,cmap=cmap,norm=norm,shading='auto',rasterized=True)
     cs=ax.contour(t,r,v.T,levels=ticks,colors='white',linewidths=.75)
-    labels=ax.clabel(cs,fmt='%g',fontsize=7,inline=True)
-    # The 2.5 contour lies against the initial-value boundary; suppress only
-    # that edge label to avoid clipping while retaining the contour itself.
+    labels=label_contours_inside(ax,cs)
     for label in labels:
-        if label.get_text() == '2.5':
-            label.set_visible(False)
-    for label in labels:
-        label.set_path_effects([pe.withStroke(linewidth=1.4,foreground='#555555')])
+        label.set_color(BLACK)
+        label.set_path_effects([pe.withStroke(linewidth=.8,foreground='white')])
     ax.plot(t,np.zeros_like(t),color='#222222',lw=.85)
     ax.plot(t,np.full_like(t,2),color='#222222',lw=.85,ls='--')
-    ax.set(xlim=(t[0],t[-1]),ylim=(0,2),xlabel='时间 / '+('min' if q=='q1' else 'h'),ylabel='到药材中心的距离 / cm')
+    ax.set(xlim=(t[0],t[-1]),ylim=(0,2),xlabel='时间 / '+('min' if q=='q1' else 'h'),ylabel=r'到药材中心的距离 $r\,/\,\mathrm{cm}$')
     ax.set_xticks([0,10,20,30] if q=='q1' else [0,1,2,3])
     ax.set_yticks([0,.5,1,1.5,2])
     cb=fig.colorbar(im,cax=fig.add_axes([.89,.20,.023,.73]))
     cb.set_label(zlabel,labelpad=8)
-    fig.text(.47,.035,'下边界：中心    上边界：表面',ha='center',fontsize=8)
+    fig.text(.47,.035,'下边界：中心    上边界：表面',ha='center',fontsize=10)
     METRICS[name]={'shape':list(v.shape),'min':float(v.min()),'max':float(v.max()),'time_range_s':[0,limit], 'plot':'2D heatmap with contour lines'}
     save(fig,name)
 
@@ -183,17 +167,18 @@ def diffusivity():
     fig.subplots_adjust(left=.10,right=.86,bottom=.20,top=.94)
     im=ax.pcolormesh(t,r,z.T,cmap='viridis',shading='auto',rasterized=True)
     cs=ax.contour(t,r,z.T,levels=[6,8,10,12],colors='white',linewidths=.8)
-    labels=ax.clabel(cs,fmt='%g',fontsize=8,inline=True)
+    labels=label_contours_inside(ax,cs)
     import matplotlib.patheffects as pe
     for label in labels:
-        label.set_path_effects([pe.withStroke(linewidth=1.5,foreground='#555555')])
-    ax.set(xlim=(0,3),ylim=(0,2),xlabel='时间 / h',ylabel='到药材中心的距离 / cm')
+        label.set_color(BLACK)
+        label.set_path_effects([pe.withStroke(linewidth=.8,foreground='white')])
+    ax.set(xlim=(0,3),ylim=(0,2),xlabel='时间 / h',ylabel=r'到药材中心的距离 $r\,/\,\mathrm{cm}$')
     ax.plot(t,np.zeros_like(t),color='#222222',lw=.8)
     ax.plot(t,np.full_like(t,2),color='#222222',lw=.8,ls='--')
     ax.set_xticks([0,1,2,3])
     ax.set_yticks([0,.5,1,1.5,2])
     cb=fig.colorbar(im,cax=fig.add_axes([.89,.20,.023,.74]))
-    cb.set_label(r'扩散系数 $D$ / ($10^{-9}\,\mathrm{m^2/s}$)',labelpad=8)
+    cb.set_label(r'扩散系数 $D\,/\,(10^{-9}\,\mathrm{m^2/s})$',labelpad=8)
     METRICS['q2_diffusivity_map']={'shape':list(z.shape),'min_1e9':float(z.min()),'max_1e9':float(z.max()),'center_end_1e9':float(z[-1,0]),'surface_end_1e9':float(z[-1,-1])}
     save(fig,'q2_diffusivity_map')
 
@@ -212,14 +197,14 @@ def threshold_front():
     ts=np.interp(.15,c[start-1:start+1,-1][::-1],t[start-1:start+1][::-1])
     ax.plot(t[start:],front[start:],color=ACCENT_RED,lw=1.8)
     ax.scatter([ts,t[-1]],[2,0],s=24,color=ACCENT_RED,zorder=6,clip_on=False)
-    ax.text(14,.42,'未达标区域\nC > 0.15 kg/kg',ha='center',fontsize=9,color='#17466B')
-    ax.text(43,1.55,'已达标区域\nC < 0.15 kg/kg',ha='center',fontsize=9,
+    ax.text(14,.42,'未达标区域\n'+r'$C > 0.15\ \mathrm{kg/kg}$',ha='center',fontsize=10,color='#17466B')
+    ax.text(43,1.55,'已达标区域\n'+r'$C < 0.15\ \mathrm{kg/kg}$',ha='center',fontsize=10,
             bbox=dict(facecolor='white',edgecolor='none',alpha=.92,pad=3))
-    ax.annotate(f'表面首达 {ts:.3f} h',xy=(ts,2),xytext=(ts+2,2.13),fontsize=8,
+    ax.annotate(f'表面首达 {ts:.3f} h',xy=(ts,2),xytext=(ts+2,2.13),fontsize=10,
                 arrowprops=dict(arrowstyle='-',color=GREY,lw=.7),annotation_clip=False)
-    ax.annotate(f'中心首达 {t[-1]:.3f} h',xy=(t[-1],0),xytext=(42,.32),fontsize=8,
+    ax.annotate(f'中心首达 {t[-1]:.3f} h',xy=(t[-1],0),xytext=(40,.32),fontsize=10,
                 arrowprops=dict(arrowstyle='->',color=ACCENT_RED,lw=.8))
-    ax.set(xlim=(0,t[-1]),ylim=(0,2),xlabel='时间 / h',ylabel='半径 / cm')
+    ax.set(xlim=(0,t[-1]),ylim=(0,2),xlabel='时间 / h',ylabel=r'半径 $r\,/\,\mathrm{cm}$')
     event_h = float(s["drying_time_h"])
     ticks = [0, 12, 24, 36, 48, event_h]
     ax.set_xticks(ticks); ax.set_xticklabels(['0', '12', '24', '36', '48', f'{event_h:.3f}'])
@@ -237,16 +222,22 @@ def shrinking():
     im=ax.pcolormesh(xx,yy,c,cmap=BLUE,norm=NORM_C,shading='gouraud',rasterized=True)
     ax.plot(t,radii,color=BLACK,lw=1.2)
     con=ax.contour(xx,yy,c,levels=[.15],colors=ACCENT_RED,linewidths=1.2)
-    contour_labels = ax.clabel(con,fmt={.15:'C = 0.15'},fontsize=8,inline=True)
+    # Place the label on the middle of the threshold curve, away from the axes.
+    label_index=int(np.argmin(abs(t-.60*t[-1])))
+    label_radius=float(np.interp(.15,c[label_index,::-1],yy[label_index,::-1]))
+    contour_labels = ax.clabel(con,fmt={.15:r'$C = 0.15$'},fontsize=10,inline=True,
+                              manual=[(float(t[label_index]),label_radius)])
     for label in contour_labels:
         label.set_color(BLACK)
-    ax.text(27,1.73,'材料域外（留白）',ha='center',fontsize=9,color='#666666')
-    ax.annotate('实时表面 R(t)',xy=(6,radii[np.argmin(abs(t-6))]),xytext=(10,1.75),
-                arrowprops=dict(arrowstyle='->',color=BLACK,lw=.7),fontsize=8)
-    ax.set(xlim=(0,t[-1]),ylim=(0,2.08),xlabel='时间 / h',ylabel='物理半径 / cm')
+        label.set_fontweight('normal')
+        label.set_path_effects([pe.withStroke(linewidth=.8,foreground='white')])
+    ax.text(32,1.73,'材料域外（留白）',ha='center',fontsize=10,color='#666666')
+    ax.annotate(r'实时表面 $R(t)$',xy=(6,radii[np.argmin(abs(t-6))]),xytext=(8,1.75),
+                arrowprops=dict(arrowstyle='->',color=BLACK,lw=.7),fontsize=10)
+    ax.set(xlim=(0,t[-1]),ylim=(0,2.08),xlabel='时间 / h',ylabel=r'物理半径 $r\,/\,\mathrm{cm}$')
     ax.set_xticks([0,12,24,36,48]); ax.set_yticks([0,.5,1,1.5,2])
-    cb=fig.colorbar(im,cax=fig.add_axes([.89,.48,.021,.46]));cb.set_label(r'水分浓度 $C$ / ($\mathrm{kg/kg}$)',labelpad=7)
-    fig.text(.465,.38,'(a) 收缩材料域中的水分时空场',ha='center',fontsize=8)
+    cb=fig.colorbar(im,cax=fig.add_axes([.89,.48,.021,.46]));cb.set_label(r'水分浓度 $C\,/\,(\mathrm{kg/kg})$',labelpad=7)
+    fig.text(.465,.38,'(a) 收缩材料域中的水分时空场',ha='center',fontsize=10)
     requested=[0,6,12,24,36,float(t[-1])]
     theta=np.linspace(0,2*np.pi,181)
     details=[]
@@ -259,28 +250,18 @@ def shrinking():
         a.add_patch(Circle((0,0),rad,fill=False,ec=BLACK,lw=.65))
         a.add_patch(Circle((0,0),2,fill=False,ec='#BBBBBB',lw=.55,ls='--'))
         a.set(xlim=(-2.15,2.15),ylim=(-2.15,2.15),aspect='equal');a.axis('off')
-        a.text(.5,1.07,f'{h:.2f} h' if j==5 else f'{h:g} h',transform=a.transAxes,ha='center',fontsize=8)
-        a.text(.5,-.07,f'R = {rad:.3f} cm',transform=a.transAxes,ha='center',fontsize=7)
+        a.text(.5,1.07,f'{h:.2f} h' if j==5 else f'{h:g} h',transform=a.transAxes,ha='center',fontsize=10)
+        a.text(.5,-.07,rf'$R = {rad:.3f}$ cm',transform=a.transAxes,ha='center',fontsize=10)
         details.append({'time_h':float(t[i]),'radius_cm':float(rad),'center_C':float(c[i,0])})
-    fig.text(.50,.035,'(b) 等比例圆截面重建；虚线为初始外轮廓，共用上方水分色标',ha='center',fontsize=8)
+    fig.text(.50,.025,'(b) 等比例圆截面重建；虚线为初始外轮廓，共用上方水分色标',ha='center',fontsize=10)
     METRICS['q4_shrinking_field']={'snapshots':details,'all_time_samples':len(t),'method':'axisymmetric reconstruction of 1D radial solution, not independent 2D simulation'}
     save(fig,'q4_shrinking_field')
 
 def main():
     sys.stdout.reconfigure(encoding='utf8')
-    font_manager.findfont('Times New Roman',fallback_to_default=False)
-    for chinese_font in ('SimSun','Songti SC','STSong'):
-        try:
-            font_manager.findfont(chinese_font,fallback_to_default=False)
-        except ValueError:
-            continue
-        mpl.rcParams['font.family']=['Times New Roman',chinese_font]
-        break
-    else:
-        raise RuntimeError('需要 SimSun、Songti SC 或 STSong 中至少一种中文字体')
     surface_heatmap('q1','temperature_c','q1_temperature_surface','温度 / °C','plasma',1800,[29,31,33,35,37])
     print('Q1 surface saved',flush=True)
-    surface_heatmap('q2','moisture','q2_moisture_surface','水分浓度 C / (kg/kg)',BLUE,10800,[1,1.5,2,2.5])
+    surface_heatmap('q2','moisture','q2_moisture_surface',r'水分浓度 $C\,/\,(\mathrm{kg/kg})$',BLUE,10800,[1,1.5,2,2.5])
     print('Q2 surface saved',flush=True)
     diffusivity();threshold_front();shrinking()
     (REPORT/'metrics.json').write_text(json.dumps(METRICS,ensure_ascii=False,indent=2),encoding='utf8')

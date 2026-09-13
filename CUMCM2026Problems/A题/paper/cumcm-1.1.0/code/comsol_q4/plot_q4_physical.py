@@ -1,16 +1,17 @@
 # File: comsol_q4/plot_q4_physical.py
-# Academic Figure Skill Typography Baseline — COPY VERBATIM, place at TOP of script
+"""Plot saved COMSOL fields with the shared manuscript typography."""
+from pathlib import Path
+import json
+import sys
+
+sys.dont_write_bytecode = True
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "code"))
 import matplotlib as mpl
+mpl.use("Agg")
+from figure_style import configure_fonts, save_figure
+
+configure_fonts()
 mpl.rcParams.update({
-    "font.family": "sans-serif",
-    "font.sans-serif": ["Arial", "Helvetica", "Liberation Sans"],
-    "font.size": 8,
-    "axes.titlesize": 8,
-    "axes.labelsize": 8,
-    "xtick.labelsize": 7,
-    "ytick.labelsize": 7,
-    "legend.fontsize": 8,
-    "figure.titlesize": 9,
     "axes.spines.top": False,
     "axes.spines.right": False,
     "axes.linewidth": 0.6,
@@ -20,38 +21,6 @@ mpl.rcParams.update({
     "ytick.major.width": 0.6,
     "legend.frameon": False,
 })
-
-mpl.rcParams.update({
-    "font.family": ["Times New Roman", "SimSun"],
-    "mathtext.fontset": "custom",
-    "mathtext.rm": "Times New Roman",
-    "mathtext.it": "Times New Roman:italic",
-    "mathtext.bf": "Times New Roman:bold",
-    "mathtext.sf": "Times New Roman",
-})
-
-# Academic Figure Skill Export Baseline — COPY VERBATIM
-mpl.rcParams.update({
-    "pdf.fonttype": 42,
-    "svg.fonttype": "none",
-    "savefig.bbox": "tight",
-    "savefig.dpi": 300,
-})
-
-def save_cns_figure(fig, filename, bold_text=False):
-    if bold_text:
-        from matplotlib.text import Text
-        from matplotlib.patheffects import withStroke
-        fig.canvas.draw()
-        for text in fig.findobj(Text):
-            text.set_path_effects([withStroke(linewidth=0.16, foreground=text.get_color())])
-    """Standard Academic Figure Skill export: vector PDF + 300dpi PNG preview."""
-    fig.savefig(f"{filename}.pdf", bbox_inches="tight", dpi=300)
-    fig.savefig(f"{filename}.png", bbox_inches="tight", dpi=300)
-
-
-from pathlib import Path
-import json
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -113,7 +82,7 @@ def draw_cylinder(ax, radius_cm, length_cm, xi, moisture, norm, cmap, title, ini
     ax.plot(np.zeros_like(theta), initial_radius*np.cos(theta), initial_radius*np.sin(theta),
             color=GREY, ls=(0, (2, 2)), lw=0.8, alpha=0.8)
     ax.plot([0, length_cm], [0, 0], [0, 0], color=BLACK, lw=0.45, alpha=0.6)
-    ax.set_title(title, pad=1.5)
+    ax.set_title(title, pad=1.5, fontfamily="SimSun")
     ax.set_xlim(-0.4, length_cm + 0.4)
     ax.set_ylim(-2.15, 2.15)
     ax.set_zlim(-2.15, 2.15)
@@ -129,29 +98,31 @@ def make_physical_plate(comsol):
     radii = comsol["radii_m"] * 100
     event_time = json.loads(BASE.with_name("summary.json").read_text(encoding="utf-8"))["drying_time_s"]
     chosen = [0.0, 21600.0, 86400.0, event_time]
-    titles = ["0 h", "6 h", "24 h", f"{event_time/3600:.2f} h (终点)"]
+    titles = [r"$0\,\mathrm{h}$", r"$6\,\mathrm{h}$", r"$24\,\mathrm{h}$",
+              rf"${event_time/3600:.2f}\,\mathrm{{h}}$ (终点)"]
     cmap = LinearSegmentedColormap.from_list("moisture_blue", SEQUENTIAL, N=256)
     norm = LogNorm(vmin=0.05, vmax=2.55)
 
     mm = 1 / 25.4
-    fig = plt.figure(figsize=(183*mm, 58*mm))
+    fig = plt.figure(figsize=(183*mm, 76*mm))
     gs = fig.add_gridspec(1, 5, width_ratios=[1, 1, 1, 1, 0.055], wspace=0.03)
+    fig.subplots_adjust(left=0.015, right=0.88, bottom=0.12, top=0.74)
     for k, (target, title) in enumerate(zip(chosen, titles)):
         i = nearest(times, target)
         ax = fig.add_subplot(gs[0, k], projection="3d")
         draw_cylinder(ax, float(radii[i]), 6.0, xi, moisture[i], norm, cmap,
-                      f"{title}\n$R={radii[i]:.3f}$ cm")
+                      f"{title}\n" + rf"$R={radii[i]:.3f}\,\mathrm{{cm}}$")
         ax.text2D(0.01, 0.95, chr(ord('a') + k), transform=ax.transAxes,
-                  fontsize=9, fontweight="bold", color=BLACK)
+                  fontsize=10, fontweight="normal", color=BLACK)
     cax = fig.add_subplot(gs[0, 4])
     sm = mpl.cm.ScalarMappable(norm=norm, cmap=cmap)
     cb = fig.colorbar(sm, cax=cax)
-    cb.set_label("Moisture content, $C$ (kg kg$^{-1}$)")
+    cb.set_label(r"水分浓度 $C\,/\,(\mathrm{kg/kg})$", fontfamily="SimSun")
     cb.set_ticks([0.05, 0.1, 0.2, 0.5, 1, 2.55])
     cb.set_ticklabels(["0.05", "0.10", "0.20", "0.50", "1.0", "2.55"])
     cb.outline.set_linewidth(0.5)
-    fig.suptitle("第四问：收缩圆柱药材内部水分场（COMSOL 轴对称解重构）", y=0.995)
-    save_cns_figure(fig, OUT / "q4_comsol_physical_moisture_field")
+    fig.suptitle("第四问：收缩圆柱药材内部水分场\n（COMSOL 轴对称解重构）", y=0.98, fontsize=11)
+    save_figure(fig, OUT / "q4_comsol_physical_moisture_field")
     plt.close(fig)
 
 
@@ -167,8 +138,8 @@ def make_validation_figure(comsol, baseline):
     colors = [CATEGORICAL[0], CATEGORICAL[3], CATEGORICAL[1]]
 
     mm = 1 / 25.4
-    fig, axes = plt.subplots(1, 3, figsize=(183*mm, 66*mm), gridspec_kw={"wspace": 0.38})
-    fig.subplots_adjust(left=0.09, right=0.985, bottom=0.25, top=0.84)
+    fig, axes = plt.subplots(1, 3, figsize=(183*mm, 87*mm), gridspec_kw={"wspace": 0.62})
+    fig.subplots_adjust(left=0.105, right=0.985, bottom=0.27, top=0.77)
     ax = axes[0]
     for target, label, color in zip(chosen, labels, colors):
         ic = nearest(ct, target)
@@ -179,12 +150,14 @@ def make_validation_figure(comsol, baseline):
         pick = np.unique(np.r_[np.arange(0, len(cxi), stride), len(cxi)-1-np.array([0, 1, 2, 5])])
         ax.plot(r_cm[pick], base_at_cxi[pick], "o", ms=2.8, mfc="white",
                 mec=color, mew=0.7)
-    ax.set_xlabel("实际半径 r / cm")
-    ax.set_ylabel("水分浓度 C / (kg/kg)")
+    ax.set_xlabel(r"实际半径 $r\,/\,\mathrm{cm}$", fontfamily="SimSun")
+    ax.set_ylabel(r"水分浓度 $C\,/\,(\mathrm{kg/kg})$", fontfamily="SimSun")
     ax.set_xlim(0, 1.45)
-    ax.legend(title="干燥时间", loc="upper right", bbox_to_anchor=(1.17, 1.02))
-    ax.text(0.5, -0.30, "（a）径向水分剖面", transform=ax.transAxes,
-            ha="center", va="top", fontsize=8)
+    handles, time_labels = ax.get_legend_handles_labels()
+    fig.legend(handles, time_labels, loc="upper center", bbox_to_anchor=(0.5, 0.92),
+               ncol=3, fontsize=10, title="干燥时间", title_fontsize=10)
+    ax.text(0.5, -0.42, "(a) 径向水分剖面", transform=ax.transAxes,
+            ha="center", va="top", fontsize=10)
 
     ax = axes[1]
     # Match the six times reported in the numerical comparison and paper.
@@ -200,16 +173,18 @@ def make_validation_figure(comsol, baseline):
     ax.plot([lo, hi], [lo, hi], color=GREY, ls="--", lw=0.7)
     ax.scatter(parity_x, parity_y, s=8, color=CATEGORICAL[0], alpha=0.7,
                edgecolors="none", rasterized=True)
-    ax.set_xlabel("有限体积水分浓度 / (kg/kg)")
-    ax.set_ylabel("COMSOL 水分浓度 / (kg/kg)")
+    ax.set_xlabel("有限体积水分浓度\n(kg/kg)")
+    ax.set_ylabel("COMSOL 水分浓度\n(kg/kg)")
     ax.set_xlim(lo, hi)
     ax.set_ylim(lo, hi)
     ax.set_aspect("equal", adjustable="box")
     err = np.max(np.abs(parity_y - parity_x))
     exponent = int(np.floor(np.log10(err)))
-    ax.text(0.05, 0.92, rf"$\max|\Delta C|={err/10**exponent:.2f}\times10^{{{exponent}}}$", transform=ax.transAxes)
-    ax.text(0.5, -0.30, "（b）COMSOL 与基准模型逐点校核", transform=ax.transAxes,
-            ha="center", va="top", fontsize=8)
+    ax.text(0.03, 0.96, r"$\max|\Delta C|$" + "\n" +
+            rf"$={err/10**exponent:.2f}\times10^{{{exponent}}}$", transform=ax.transAxes,
+            va="top", fontsize=10)
+    ax.text(0.5, -0.42, "(b) COMSOL 与基准模型\n逐点校核", transform=ax.transAxes,
+            ha="center", va="top", fontsize=10)
 
     ax = axes[2]
     ax.plot(ct/3600, cr, color=CATEGORICAL[0], lw=1.5)
@@ -219,16 +194,16 @@ def make_validation_figure(comsol, baseline):
     ax.scatter([event_h], [1.2], color=ACCENT_RED, s=18, zorder=3)
     ax.annotate(f"主模型达标时刻\n{event_h:.2f} h", (event_h, 1.2), xytext=(-38, 18),
                 textcoords="offset points", arrowprops=dict(arrowstyle="-", lw=0.6),
-                ha="center", fontsize=7)
-    ax.set_xlabel("时间 t / h")
-    ax.set_ylabel("药材半径 R(t) / cm")
+                ha="center", fontsize=10)
+    ax.set_xlabel(r"时间 $t\,/\,\mathrm{h}$", fontfamily="SimSun")
+    ax.set_ylabel(r"药材半径 $R(t)\,/\,\mathrm{cm}$", fontfamily="SimSun")
     ax.set_xlim(0, 52)
     ax.set_ylim(1.15, 2.05)
-    ax.text(0.5, -0.30, "（c）药材半径收缩历程", transform=ax.transAxes,
-            ha="center", va="top", fontsize=8)
+    ax.text(0.5, -0.42, "(c) 药材半径收缩历程", transform=ax.transAxes,
+            ha="center", va="top", fontsize=10)
 
-    fig.suptitle("COMSOL 物理场剖面、独立数值校核与收缩历程", y=0.96)
-    save_cns_figure(fig, OUT / "q4_comsol_profiles_validation", bold_text=True)
+    fig.suptitle("COMSOL 物理场剖面、独立数值校核与收缩历程", y=0.98, fontsize=11)
+    save_figure(fig, OUT / "q4_comsol_profiles_validation")
     plt.close(fig)
     return {"max_abs_moisture_difference": float(err), "comparison_points": len(parity_x),
             "baseline_saved_nodes": len(bxi)}
